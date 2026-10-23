@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Sprunki Verity TD</title>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1230;--bg2:#1a2a5e;--surf:#16224a;--surf2:#1f2f64;--ink:#eef3ff;--mute:#a9b7dd;--line:#3a4f95;--acc:#7fd35f;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#cfe8c6;--bg2:#eaf6e4;--surf:#fff;--surf2:#f1f8ec;--ink:#1d2b1a;--mute:#4f6149;--line:#8fb27f;--acc:#2f8a22;color-scheme:light}}
+:root[data-theme="light"]{--bg:#cfe8c6;--bg2:#eaf6e4;--surf:#fff;--surf2:#f1f8ec;--ink:#1d2b1a;--mute:#4f6149;--line:#8fb27f;--acc:#2f8a22;color-scheme:light}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;min-height:100vh;color:var(--ink);font:700 15px/1.4 Nunito,system-ui,sans-serif;background:radial-gradient(circle at 20% 10%,var(--bg2),transparent 55%),var(--bg)}
+.w{max-width:720px;margin:0 auto;padding:12px}
+header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+h1{font:700 clamp(20px,5vw,30px) Silkscreen,monospace;margin:0}h1 em{font-style:normal;color:var(--acc)}
+h2{font:700 20px Silkscreen,monospace;margin:6px 0 10px}
+.hide{display:none!important}
+.p{background:var(--surf);border:3px solid var(--line);border-radius:6px;box-shadow:4px 4px 0 rgba(0,0,0,.3);padding:10px}
+button{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--line);border-radius:6px;background:var(--surf2);color:var(--ink);cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.3)}
+button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.3)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button.on{background:var(--acc);border-color:var(--acc);color:#0b1230}
+button:disabled{opacity:.45;cursor:default}
+.dg{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.df{display:flex;flex-direction:column;gap:6px;text-align:left;padding:12px;background:var(--c);border-color:rgba(0,0,0,.45);color:#fff;box-shadow:5px 5px 0 rgba(0,0,0,.35);text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.df.y{color:#2a2000;text-shadow:none}
+.df .sq{width:84px;height:84px;background:rgba(255,255,255,.88);border:3px solid rgba(0,0,0,.5);border-radius:6px;display:grid;place-items:center}
+.df b{font:700 20px Silkscreen,monospace}.df small{font-weight:700;opacity:.95}
+.df em{font-style:normal;margin-top:auto;padding-top:8px;border-top:2px dashed rgba(255,255,255,.55);font-size:13px}
+.df.y em{border-color:rgba(0,0,0,.4)}.df i{opacity:.6;font-style:normal}
+.hud{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.chip{background:var(--surf);border:2px solid var(--line);border-radius:6px;padding:4px 10px;font-weight:800}
+.fear{flex:1 1 130px;min-width:110px;height:30px;border:2px solid var(--line);border-radius:6px;background:var(--surf);overflow:hidden;position:relative}
+.fear i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#9b1c1c,#ff4a3a);transition:width .1s}
+.fear span{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;text-shadow:0 1px 2px #000;color:#fff}
+.cw{position:relative}
+canvas{width:100%;height:auto;display:block;border:4px solid var(--line);border-radius:6px;background:#5aa646;touch-action:manipulation;box-shadow:4px 4px 0 rgba(0,0,0,.3)}
+#end{position:absolute;inset:0;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;background:rgba(5,8,25,.78);border-radius:6px;text-align:center;padding:16px}
+#end b{font:700 clamp(22px,6vw,34px) Silkscreen,monospace}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+#shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-top:10px}
+#shop button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;font-size:12px}
+#shop button small{color:var(--mute);font-weight:700}#shop button.on small{color:#0b1230}
+#msg,#lm{min-height:24px;margin-top:10px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.cu{border:2px solid var(--line);border-radius:6px;padding:8px;background:var(--surf2);font-size:13px}.cu.no{opacity:.35}
+</style></head><body><div class="w">
+<header><h1>Sprunki <em>Verity</em> TD</h1><button id="lb">Лобби</button></header>
+<section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
+<section id="game" class="hide">
+<div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b>/10</span><span class="chip">🎃 <b id="s"></b></span><div class="fear"><i id="f"></i><span>Страх</span></div></div>
+<div class="cw"><canvas id="cv" width="640" height="400"></canvas><div id="end" class="hide"><b id="et"></b><div class="row"><button id="e1">Выбрать сложность</button><button id="e2">В лобби</button></div></div></div>
+<div id="shop"></div>
+<div class="row"><button id="ph">Фаза 2: выкл</button><button id="sk">Пропустить ожидание</button><button id="sp">Скорость ×1</button><span class="chip" id="cd"></span></div>
+<div id="msg" role="status"></div></section>
+<section id="lobby" class="hide p"><h2>Лобби</h2><p>Банк: <b id="bk"></b> 🪙 · Семечки: <b id="bs"></b> 🎃</p><div class="row"><button id="c1">Ящик Верити: 400 🪙</button><button id="c2">Тыквенный ящик: 60 🎃</button><button id="back">Назад</button></div><div id="lm" role="status"></div><div class="grid" id="col"></div></section>
+</div><script>
+var $=function(i){return document.getElementById(i)},cv=$('cv'),x=cv.getContext('2d'),C=40,G=null,cur='menu',prev='menu';
+var PT=[[-1,2],[4,2],[4,6],[9,6],[9,1],[13,1],[13,7],[16,7]].map(function(p){return[(p[0]+.5)*C,(p[1]+.5)*C]});
+var segs=[],tot=0,road={};
+for(var i=1;i<PT.length;i++){var a=PT[i-1],b=PT[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);segs.push([a,b,L,tot]);tot+=L;for(var t=0;t<=L;t+=8){road[Math.floor((a[0]+(b[0]-a[0])*t/L)/C)+','+Math.floor((a[1]+(b[1]-a[1])*t/L)/C)]=1}}
+function pos(d){for(var i=0;i<segs.length;i++){var s=segs[i];if(d<=s[3]+s[2]){var t=(d-s[3])/s[2];return[s[0][0]+(s[1][0]-s[0][0])*t,s[0][1]+(s[1][1]-s[0][1])*t]}}return PT[PT.length-1]}
+var TY={
+verity:{n:'Verity',cost:100,dmg:12,rate:.5,rng:100,col:'#ffd21f',d:'Быстрые выстрелы'},
+lovity:{n:'Lovity',cost:120,dmg:5,rate:.8,rng:95,col:'#ff7ac8',d:'Замедляет врагов'},
+cruelity:{n:'Cruelity',cost:200,dmg:30,rate:1,rng:85,col:'#e6261f',d:'Каждый 4-й удар крит'},
+pumpkinity:{n:'Pumpkinity',cost:250,dmg:10,rate:.9,rng:100,col:'#ff8a1f',d:'Поджог и взрывы'},
+sadity:{n:'Sadity',cost:130,dmg:6,rate:.9,rng:95,col:'#8a3fd0',d:'Враги получают +25% урона'},
+moggity:{n:'Moggity',cost:140,dmg:8,rate:1.1,rng:90,col:'#f2b705',d:'Оглушает взглядом'},
+falsity:{n:'Falsity',cost:180,dmg:10,rate:.8,rng:100,col:'#2f6fe0',d:'Отбрасывает врагов назад'},
+galaxity:{n:'Galaxity',cost:300,dmg:22,rate:1.6,rng:110,col:'#3b2a8a',d:'Метеориты по области'},
+demonity:{n:'Demonity',cost:320,dmg:16,rate:1,rng:105,col:'#222',d:'Бьёт процентами HP, видит призраков'}};
+var RA={verity:'Common',lovity:'Rare',sadity:'Rare',moggity:'Rare',cruelity:'Epic',falsity:'Epic',galaxity:'Legendary',demonity:'Legendary',pumpkinity:'Event'};
+var M={bank:450,seeds:120,own:{verity:1,lovity:1}};
+try{var sv=JSON.parse(localStorage.getItem('vtd'));if(sv&&sv.own)M=sv}catch(e){}
+function save(){try{localStorage.setItem('vtd',JSON.stringify(M))}catch(e){}}
+var ET={walker:{hp:1,v:1,c:'#2a2236',r:12},runner:{hp:.55,v:1.8,c:'#2b5fd0',r:10},tank:{hp:2.8,v:.6,c:'#666b78',r:16},ghost:{hp:.9,v:1,c:'#cfd8ff',r:12},healer:{hp:1.2,v:.9,c:'#2fb36a',r:12},splitter:{hp:1.3,v:.9,c:'#8a3fd0',r:14}};
+var DF={
+easy:{n:'Лёгкая',c:'#2f9e3a',ic:'verity',ic2:'#ffd21f',hp:.8,sp:.9,cn:.8,lv:25,co:300,off:0,bm:1,boss:{n:'Тыквенный Король',hp:3200,v:22,col:'#ff8a1f',sk:0},rec:['verity','lovity','moggity'],d:'Медленные враги и много жизней.'},
+medium:{n:'Средняя',c:'#e8b923',y:1,ic:'falsity',ic2:'#2f6fe0',hp:1.2,sp:1,cn:1,lv:20,co:250,off:1,bm:1.3,boss:{n:'Король Лжи (лечится)',hp:5500,v:24,col:'#2f6fe0',sk:1},rec:['falsity','sadity','pumpkinity'],d:'Больше видов врагов, появляются быстрее.'},
+hard:{n:'Сложная',c:'#d62d27',ic:'cruelity',ic2:'#e6261f',hp:1.6,sp:1.1,cn:1.2,lv:15,co:250,off:2,bm:1.7,boss:{n:'Ярость Круэлти (бесится)',hp:9000,v:26,col:'#c4161c',sk:2},rec:['cruelity','galaxity','demonity'],d:'Крепкие враги, призраки и целители рано.'},
+insane:{n:'Инсейн',c:'#8e36d6',ic:'manipulity',ic2:'#8a3fd0',hp:2.2,sp:1.2,cn:1.5,lv:10,co:300,off:3,bm:2.2,boss:{n:'Манипулити Прайм',hp:16000,v:28,col:'#8a3fd0',sk:3},rec:['demonity','galaxity','sadity','falsity'],d:'Толпы сильных врагов. Босс лечится, бесится и зовёт подмогу.'}};
+function ico(c,k,s){var ang=k=='cruelity'||k=='demonity',lid=k=='manipulity';return'<svg viewBox="0 0 40 40" width="'+s+'" height="'+s+'" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="'+c+'" stroke="#111" stroke-width="2.5"/><circle cx="14" cy="17" r="2.4" fill="#111"/><circle cx="26" cy="17" r="2.4" fill="#111"/>'+(ang?'<path d="M9 10l9 4M31 10l-9 4M12 29q8-6 16 0" fill="none" stroke="#111" stroke-width="2.5"/>':'<path d="M11 24q9 9 18 0" fill="none" stroke="#111" stroke-width="2.5"/>')+(lid?'<path d="M10 14h8M22 14h8" stroke="#111" stroke-width="2.5"/>':'')+'</svg>'}
+function say(t){$('msg').textContent=t}function lm(t){$('lm').textContent=t}
+function scr(n){prev=cur==='lobby'?prev:cur;cur=n;['menu','game','lobby'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='lobby'&&k==n?' p':'')+(k=='menu'?' p':'')});if(n=='lobby')lobby()}
+function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс 10 волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
+ $('diffs').innerHTML=h;[].forEach.call($('diffs').children,function(b){b.onclick=function(){start(b.dataset.k)}})}
+function start(k){var d=DF[k];G={d:d,coins:d.co,lives:d.lv,wave:0,fear:100,p2:false,cool:0,sel:'verity',units:[],en:[],q:0,sp:0,run:false,shots:[],over:0,boss:false,next:6,spd:1};$('end').className='hide';scr('game');shop();hud();say('Расставляй башни: волны идут сами.')}
+function hud(){$('c').textContent=Math.floor(G.coins);$('l').textContent=G.lives;$('w').textContent=G.wave;$('s').textContent=M.seeds;$('f').style.width=G.fear+'%';
+ $('ph').textContent='Фаза 2: '+(G.p2?'вкл':'выкл');$('ph').className=G.p2?'on':'';$('sk').disabled=G.run||!!G.over;$('sp').textContent='Скорость ×'+G.spd;
+ $('cd').textContent=G.over?'Конец':(G.run?'Волна идёт':'Следующая волна: '+Math.ceil(G.next)+' с')}
+function shop(){var h=$('shop');h.innerHTML='';for(var k in TY){var t=TY[k],b=document.createElement('button');b.innerHTML=ico(t.col,k,30)+'<span>'+t.n+'</span><small>'+(M.own[k]?t.cost+' 🪙':'🔒 ящик')+'</small>';b.title=t.d;
+ if(!M.own[k])b.disabled=true;if(G.sel===k)b.className='on';(function(k){b.onclick=function(){G.sel=k;shop();say(TY[k].n+': '+TY[k].d)}})(k);h.appendChild(b)}}
+cv.onclick=function(e){if(!G||G.over)return;var r=cv.getBoundingClientRect(),cx=Math.floor((e.clientX-r.left)*640/r.width/C),cy=Math.floor((e.clientY-r.top)*400/r.height/C),t=TY[G.sel];
+ if(road[cx+','+cy])return say('На дороге башню ставить нельзя.');
+ if(G.units.some(function(u){return u.cx==cx&&u.cy==cy}))return say('Клетка занята.');
+ if(G.coins<t.cost)return say('Не хватает монет.');G.coins-=t.cost;G.units.push({k:G.sel,cx:cx,cy:cy,x:(cx+.5)*C,y:(cy+.5)*C,cd:0,n:0});hud()};
+$('sk').onclick=function(){if(!G.run)G.next=0};
+$('sp').onclick=function(){G.spd=G.spd==1?2:1;hud()};
+$('ph').onclick=function(){if(G.p2){G.p2=false}else if(G.fear>=20&&G.cool<=0){G.p2=true}else say('Страх ещё не накопился.');hud()};
+function mk(ty,d){var h=25+G.wave*6;return{d:d,hp:h,max:h,v:60,sl:0,burn:0,vul:0,t:0,ty:ty,boss:0,bt:0}}
+function hit(e,d){if(e.vul>0)d*=1.25;e.hp-=d;if(e.hp<=0&&!e.dead){e.dead=1;G.coins+=e.boss?300:(e.ty=='tank'?15:8);M.seeds+=e.boss?50:0;if(e.ty=='splitter'){G.en.push(mk('runner',e.d),mk('runner',e.d))}}}
+function aoe(cx,cy,r,d){G.en.forEach(function(e){var p=pos(e.d);if(Math.hypot(p[0]-cx,p[1]-cy)<=r)hit(e,d)})}
+function pick(){var w=G.wave+G.d.off,l=['walker'];if(w>=2)l.push('runner');if(w>=3)l.push('tank');if(w>=4)l.push('ghost');if(w>=5)l.push('healer');if(w>=6)l.push('splitter');return l[Math.floor(Math.random()*l.length)]}
+function inv(e){return e.ty=='ghost'&&e.t%3>1.5}
+function startWave(){G.wave++;G.run=true;G.boss=G.wave==10;G.q=Math.round((G.boss?12:6+3*G.wave)*G.d.cn);G.sp=0;say(G.boss?'Босс: '+G.d.boss.n+'!':'Волна '+G.wave)}
+function endGame(w,t){G.over=w;$('et').textContent=w==2?'ПОБЕДА':'ПОРАЖЕНИЕ';$('end').className='';say(t);save()}
+function upd(dt){
+ if(G.p2){G.fear-=14*dt;if(G.fear<=0){G.fear=0;G.p2=false;G.cool=5;say('Страх кончился, юниты спят 5 секунд.')}}else{G.fear=Math.min(100,G.fear+5*dt)}
+ if(G.cool>0)G.cool-=dt;
+ if(!G.run){G.next-=dt;if(G.next<=0)startWave()}
+ if(G.run&&G.q>0){G.sp-=dt;if(G.sp<=0){G.sp=G.boss?1.4:.8;G.q--;var b=G.boss&&G.q==0,ty=b?'walker':pick(),T=ET[ty],B=G.d.boss,h=b?B.hp:(30+G.wave*18)*T.hp*G.d.hp;G.en.push({d:0,hp:h,max:h,v:b?B.v:(38+G.wave*2)*T.v*G.d.sp,sl:0,burn:0,vul:0,t:0,ty:ty,boss:b,bt:0})}}
+ G.units.forEach(function(u){var t=TY[u.k];u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
+  G.en.forEach(function(e){if(inv(e)&&u.k!='demonity')return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
+  u.cd=t.rate;u.n++;var p=pos(tg.d),m=G.p2?2.5:1,d=t.dmg*m;G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
+  if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(G.p2)aoe(p[0],p[1],50,d);else hit(tg,d)}
+  else if(u.k=='lovity'){tg.sl=1.5;tg.slp=G.p2?.8:.5;hit(tg,d)}
+  else if(u.k=='pumpkinity'){if(G.p2)aoe(p[0],p[1],70,d*1.4);else{tg.burn=3;hit(tg,d)}}
+  else if(u.k=='sadity'){tg.vul=3;hit(tg,d)}
+  else if(u.k=='moggity'){tg.stun=G.p2?1.2:.6;hit(tg,d)}
+  else if(u.k=='falsity'){tg.d=Math.max(0,tg.d-(G.p2?60:25));hit(tg,d)}
+  else if(u.k=='galaxity'){aoe(p[0],p[1],G.p2?85:55,d)}
+  else if(u.k=='demonity'){hit(tg,d+tg.max*(G.p2?.06:.03))}
+  else hit(tg,d)});
+ G.en.forEach(function(e){e.t+=dt;if(e.vul>0)e.vul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}
+  var sk=G.d.boss.sk;if(e.boss){if(sk==1||sk==3)e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
+  if(e.ty=='healer')G.en.forEach(function(o){if(o!==e&&Math.abs(o.d-e.d)<70)o.hp=Math.min(o.max,o.hp+5*dt)});
+  if(e.stun>0){e.stun-=dt;return}
+  var s=e.sl>0?(e.sl-=dt,1-e.slp):1,rg=e.boss&&sk>=2&&e.hp<e.max*.5?1.8:1;e.d+=e.v*s*rg*dt;if(e.d>=tot){e.dead=1;G.lives-=e.boss?10:1}});
+ G.en=G.en.filter(function(e){return!e.dead});G.shots=G.shots.filter(function(s){return(s.t-=dt)>0});
+ if(G.lives<=0){G.lives=0;M.bank+=Math.floor(G.coins/2);return endGame(1,'База пала. Половина монет ушла в банк.')}
+ if(G.run&&G.q==0&&!G.en.length){G.run=false;G.next=6;G.coins+=60;M.seeds+=5;M.bank+=Math.round(80*G.d.bm);
+  if(G.wave>=10){M.bank+=Math.floor(500*G.d.bm+G.coins);endGame(2,'Победа! Бонус в банк. Загляни в лобби за новыми Верити.')}else{save();say('Волна пройдена: +60 монет, +5 семечек.')}}
+ hud()}
+function face(u,p2,s){var c=u.x,y=u.y-s*.3;x.fillStyle='#111';x.beginPath();x.arc(c-s*.35,y-s*.2,s*.12,0,7);x.arc(c+s*.35,y-s*.2,s*.12,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.beginPath();
+ if(p2){x.moveTo(c-s*.5,y+s*.35);x.lineTo(c-s*.25,y+s*.15);x.lineTo(c,y+s*.35);x.lineTo(c+s*.25,y+s*.15);x.lineTo(c+s*.5,y+s*.35)}else x.arc(c,y+s*.05,s*.45,.2,2.9);x.stroke()}
+function draw(){for(var i=0;i<16;i++)for(var j=0;j<10;j++){x.fillStyle=(i+j)%2?'#5aa646':'#63b04e';x.fillRect(i*C,j*C,C,C)}
+ x.lineCap='square';x.lineJoin='miter';[[C-2,'#5b3b1f'],[C-8,'#9b6b3e']].forEach(function(s){x.strokeStyle=s[1];x.lineWidth=s[0];x.beginPath();PT.forEach(function(p,i){i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});x.stroke()});
+ G.units.forEach(function(u){var t=TY[u.k],p2=G.p2&&G.cool<=0;x.fillStyle='rgba(0,0,0,.25)';x.fillRect(u.cx*C+4,u.cy*C+34,C-8,4);x.fillStyle='#6b4a2b';x.fillRect(u.cx*C+4,u.cy*C+22,C-8,14);x.fillStyle='#4aa83a';x.fillRect(u.cx*C+4,u.cy*C+20,C-8,6);
+  x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26);
+  if(u.k=='pumpkinity'){x.fillStyle='#2b7a2b';x.fillRect(u.x-2,u.y-24,4,6)}});
+ G.shots.forEach(function(s){x.strokeStyle=s.col;x.lineWidth=3;x.beginPath();x.moveTo(s.a,s.b-4);x.lineTo(s.c,s.e);x.stroke()});
+ G.en.forEach(function(e){var p=pos(e.d),T=ET[e.ty],r=e.boss?26:T.r;x.globalAlpha=inv(e)?.3:1;x.fillStyle=e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
+  x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
+  if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8)}
+  x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
+ if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
+function lobby(){$('bk').textContent=Math.floor(M.bank);$('bs').textContent=M.seeds;var h='';for(var k in TY)h+='<div class="cu'+(M.own[k]?'':' no')+'">'+ico(TY[k].col,k,34)+'<br><b>'+TY[k].n+'</b><br>'+RA[k]+'<br>'+TY[k].d+'</div>';$('col').innerHTML=h}
+function opn(c){var r=Math.random(),pool,k;
+ if(c==1){if(M.bank<400)return lm('Не хватает монет.');M.bank-=400;pool=r<.55?['moggity','sadity','lovity']:r<.88?['cruelity','falsity']:['galaxity','demonity']}
+ else{if(M.seeds<60)return lm('Нужно 60 семечек.');M.seeds-=60;pool=r<.2?['pumpkinity']:r<.6?['cruelity','falsity','sadity']:['moggity','lovity','galaxity','demonity']}
+ k=pool[Math.floor(Math.random()*pool.length)];
+ if(M.own[k]){M.bank+=120;lm('Дубликат: '+TY[k].n+'. Вернули 120 монет.')}else{M.own[k]=1;lm('Новый Верити: '+TY[k].n+' ('+RA[k]+')!')}
+ save();lobby()}
+$('lb').onclick=function(){if(cur!='lobby'){lm('Монеты копятся в банк за волны и победу.');scr('lobby')}};
+$('back').onclick=function(){if(prev=='game'&&G){scr('game');shop()}else{menu();scr('menu')}};
+$('c1').onclick=function(){opn(1)};$('c2').onclick=function(){opn(2)};
+$('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
+var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
+menu();requestAnimationFrame(loop);
+</script></body></html>
