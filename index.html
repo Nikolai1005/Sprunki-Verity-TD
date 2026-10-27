@@ -253,7 +253,7 @@ function sNight(){SV.mode='cut';SV.ct=0;SV.cb=0;SV.fl=0;SV.rain=0;SV.alarm=0;SV.
 function chStart(){Q={t:0,T:40,um:0,gap:26,lane:1,vx:0,y:0,vy:0,stun:0,dash:0,dcd:0,ml:1,mx:0,mlt:1.6,obs:[],no:2.4,li:0,sub:0,uvp:-26,vm:7+SUS*.2,cr:.75-SUS*.02,oi:Math.max(1.05,1.9-SUS*.06),shk:0,boom:0,fr:0,fi:0,hb:1,near:0,cl:0};
  SV.mode='chase';SV.ft=0;SV.endShown=0;TW=null;$('sdlgw').className='hide';$('sctl').className='';$('sth').textContent='История · Глава 2: Монстр';chSub('Моб','Только не оглядывайся... только не оглядывайся!');drone(1)}
 function chSub(w,t){$('ssub').innerHTML='<b'+(w=='Verity'?' class="v"':'')+'>'+w+':</b> '+t;if(Q)Q.sub=3}
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function spick(a){return a[Math.floor(Math.random()*a.length)]}
 function chL(){if(Q&&SV.mode=='chase')Q.lane=Math.max(0,Q.lane-1)}
 function chR(){if(Q&&SV.mode=='chase')Q.lane=Math.min(2,Q.lane+1)}
 function chJ(){if(Q&&SV.mode=='chase'&&Q.y<=0&&Q.vy==0){Q.vy=7.2;tone(110,.2,'sine',.15,60)}}
@@ -264,8 +264,8 @@ function chUpd(dt){Q.t+=dt;var vm=Q.vm,vv=vm+Q.cr;if(Q.dash>0){Q.dash-=dt;vv+=3.
  if(Q.y>0||Q.vy>0){Q.vy-=20*dt;Q.y+=Q.vy*dt;if(Q.y<=0){Q.y=0;Q.vy=0}}
  Q.mlt-=dt;if(Q.mlt<=0){Q.mlt=1+Math.random()*1.4;Q.ml=Math.max(0,Math.min(2,Q.ml+(Math.random()<.5?-1:1)))}
  var mt=LX[Q.ml];Q.mx+=Math.sign(mt-Q.mx)*Math.min(Math.abs(mt-Q.mx),7*dt);
- Q.no-=dt;if(Q.no<=0&&Q.t<Q.T-2){Q.no=Q.oi*(.8+Math.random()*.5);var r=Math.random();Q.obs.push({u:Q.um-.6,l:Math.random()<.6?Q.ml:Math.floor(Math.random()*3),ty:r<.45?'hole':r<.8?'block':'tnt'});if(Math.random()<.22&&Q.sub<=0)chSub('Моб',pick(['Получай!','Попробуй перепрыгни!','Лови блок!']))}
- Q.obs.forEach(function(o){if(o.pass)return;if(Q.uvp<o.u&&uv>=o.u){o.pass=1;if(Math.abs(Q.vx-LX[o.l])<1.7){if(o.ty=='hole'&&Q.y>.35)return;o.hit=1;Q.stun=.85;Q.shk=.5;if(o.ty=='tnt')Q.boom=.45;fxHit();chSub('Моб',pick(['Ха! Споткнулся!','Не догонишь!','Получилось!']))}}});
+ Q.no-=dt;if(Q.no<=0&&Q.t<Q.T-2){Q.no=Q.oi*(.8+Math.random()*.5);var r=Math.random();Q.obs.push({u:Q.um-.6,l:Math.random()<.6?Q.ml:Math.floor(Math.random()*3),ty:r<.45?'hole':r<.8?'block':'tnt'});if(Math.random()<.22&&Q.sub<=0)chSub('Моб',spick(['Получай!','Попробуй перепрыгни!','Лови блок!']))}
+ Q.obs.forEach(function(o){if(o.pass)return;if(Q.uvp<o.u&&uv>=o.u){o.pass=1;if(Math.abs(Q.vx-LX[o.l])<1.7){if(o.ty=='hole'&&Q.y>.35)return;o.hit=1;Q.stun=.85;Q.shk=.5;if(o.ty=='tnt')Q.boom=.45;fxHit();chSub('Моб',spick(['Ха! Споткнулся!','Не догонишь!','Получилось!']))}}});
  Q.uvp=uv;Q.obs=Q.obs.filter(function(o){return uc-o.u<75});
  var cl=Math.max(0,Math.min(1,1-(Q.gap-5)/21));Q.cl=cl;Q.hb-=dt;if(Q.hb<=0){Q.hb=.95-.5*cl;fxBeat()}
  Q.fr+=dt*(Q.stun>0?2:vv*1.15);var fi=Math.floor(Q.fr)%6;if(fi!==Q.fi){if(fi%3==0){fxStep();Q.shk=Math.max(Q.shk,.08+.12*cl)}Q.fi=fi}
@@ -344,7 +344,7 @@ function drawScene(c,dt){if(SV.sc=='in')interior(c);else{cover(c);if(SV.sc=='vil
  var inn=SV.sc=='in',mxp=inn?420:SV.sc=='village'?470:440;mobD(c,mxp,300,80,SV.t,0,SV.mood);
  if(SV.vis){if(SV.pop<1)SV.pop=Math.min(1,SV.pop+dt*1.6);var p=SV.pop,vy=270-55*(1-Math.pow(1-p,3))+(p>=1?Math.sin(SV.t*2.5)*6:0);sphere(c,300,vy,30);if(SV.spk=='v')bub(c,300,vy-48)}
  if(SV.spk=='m')bub(c,mxp+30,120);
- if(SV.notes){if(Math.random()<.08)SV.nt.push({x:560,y:240,a:1,c:pick(['#ffd21f','#7fd35f','#ff7ac8','#7fc8ff'])});c.font='700 22px sans-serif';c.textAlign='center';SV.nt.forEach(function(n){n.y-=40*dt;n.x+=Math.sin(n.y/12)*.8;n.a-=.25*dt;c.globalAlpha=Math.max(0,n.a);c.fillStyle=n.c;c.fillText('♪',n.x,n.y)});c.globalAlpha=1;SV.nt=SV.nt.filter(function(n){return n.a>0})}
+ if(SV.notes){if(Math.random()<.08)SV.nt.push({x:560,y:240,a:1,c:spick(['#ffd21f','#7fd35f','#ff7ac8','#7fc8ff'])});c.font='700 22px sans-serif';c.textAlign='center';SV.nt.forEach(function(n){n.y-=40*dt;n.x+=Math.sin(n.y/12)*.8;n.a-=.25*dt;c.globalAlpha=Math.max(0,n.a);c.fillStyle=n.c;c.fillText('♪',n.x,n.y)});c.globalAlpha=1;SV.nt=SV.nt.filter(function(n){return n.a>0})}
  if(SV.alarm>0){c.fillStyle='rgba(220,0,0,'+(.18+.22*Math.abs(Math.sin(SV.t*9)))+')';c.fillRect(0,0,640,360);if(Math.sin(SV.t*9)>0)bigT(c,'ЭТО НОЧЬ',320,60,'#ff3030',34)}
  glitch(c);vign(c);
  if(SV.dayT<1.8){var a=SV.dayT<.3?SV.dayT/.3:Math.max(0,(1.8-SV.dayT)/1.5);c.fillStyle='rgba(0,0,0,'+(.7*a)+')';c.fillRect(0,0,640,360);c.globalAlpha=a;bigT(c,'ДЕНЬ '+SV.dayN,320,195,'#fff',54);c.globalAlpha=1}}
