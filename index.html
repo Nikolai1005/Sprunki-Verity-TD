@@ -68,7 +68,7 @@ select{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--l
 .vb{display:inline-block;vertical-align:middle;font:800 12px Nunito,sans-serif;background:var(--acc);color:#0b1230;border-radius:4px;padding:2px 7px;cursor:pointer;margin-left:4px}
 #modal{position:fixed;inset:0;z-index:60;background:rgba(3,6,20,.72);display:flex;align-items:center;justify-content:center;padding:16px}
 #mbox{width:100%;max-width:520px;max-height:86vh;overflow:auto}#mc p{margin:6px 0}#mc ul{margin:6px 0;padding-left:20px;line-height:1.55}
-.mu{color:var(--mute)}.vtag{background:var(--acc);color:#0b1230;padding:1px 7px;border-radius:4px}.nwb{background:#ffd21f;color:#7a0000;padding:1px 6px;border-radius:4px;font-size:12px}
+.mu{color:var(--mute)}.mktabs button.on{background:var(--acc);color:#0b1230}.mkg{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.mkc{display:flex;align-items:center;gap:8px}.mkc canvas,.mkc img{flex:none}.mki{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.mkc button{flex:none}.mkon p{margin:8px 0 0}#mkm{min-height:22px;margin-top:8px;color:var(--mute)}button.sm{padding:3px 8px;font-size:12px}.onerr{color:#e5484d;font-weight:700}.onme{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.oncode{font-family:Silkscreen,monospace;letter-spacing:1px}.onct{display:flex;flex-direction:column;align-items:center;font:700 20px Silkscreen,monospace}.onct small{font:600 11px system-ui;color:var(--mute)}.onl{display:flex;flex-direction:column;gap:4px;max-height:260px;overflow:auto}.onp{background:var(--surf2);border:2px solid var(--line);border-radius:6px;padding:5px 8px;font-size:13px}#market h3{margin:16px 0 4px}.vtag{background:var(--acc);color:#0b1230;padding:1px 7px;border-radius:4px}.nwb{background:#ffd21f;color:#7a0000;padding:1px 6px;border-radius:4px;font-size:12px}
 .set{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}.set span{flex:1}.set select,.set input{flex:0 1 170px;min-width:120px}
 #mcode{width:100%;min-height:72px;font:600 12px monospace;background:var(--surf2);color:var(--ink);border:2px solid var(--line);border-radius:6px;word-break:break-all;margin-top:6px}#mbtn{justify-content:flex-end}
 .hwp{background:radial-gradient(circle at 50% -10%,#4a1d6b 0,#1d0c33 45%,#0b0614 100%)!important;border-color:#ff7a1a!important;box-shadow:0 0 22px rgba(255,122,26,.35),4px 4px 0 rgba(0,0,0,.4)!important;color:#ffe9d2;position:relative;overflow:hidden}
@@ -126,7 +126,7 @@ select{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--l
 .adr{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}.adr label{display:flex;align-items:center;gap:4px}.adr input[type=number]{width:90px;flex:none;min-width:0}#adcode{width:100%;min-height:70px;font:600 11px monospace;background:var(--surf2);color:var(--ink);border:2px solid var(--line);border-radius:6px;word-break:break-all;margin-top:8px}.aderr{max-height:140px;overflow:auto;background:var(--surf2);border:2px solid var(--line);border-radius:6px;padding:8px;font:600 11px monospace}
 .df.hwc.soon{cursor:default}.df.hwc.soon .hwbadge{background:#7a1fa8;color:#fff;box-shadow:0 0 14px #b45cff}.df.hwc.soon em{font-size:16px;color:#ffb36b}
 </style></head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.16</span></h1><div class="row" style="margin:0"><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.18</span></h1><div class="row" style="margin:0"><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b>/10</span><span class="chip">🎃 <b id="s"></b></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div>
@@ -153,7 +153,7 @@ select{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--l
 <div class="row"><button class="go" id="hwplay">Играть: Ночь Тыквенного Короля</button><button class="bk">Назад</button></div></section>
 <section id="tasks" class="hide p"><h2>Задания и ачивки</h2><p>Банк: <b id="tb"></b> 🪙 · Семечки: <b id="ts"></b> 🎃</p><div class="grid" id="tl"></div><div class="row"><button class="bk">Назад</button></div></section>
 <section id="trade" class="hide p"><h2>Обмен по коду</h2><p>Создай код и отправь другу: он введёт его у себя и получит Верити. У тебя этот юнит пропадёт. Каждый код работает один раз на устройство.</p><div class="row"><select id="tsel"></select><button id="tgo">Создать код</button></div><div id="tcode"></div><div class="row"><input id="tin" placeholder="Код от друга" autocomplete="off"><button id="tacc">Принять</button><button class="bk">Назад</button></div><div id="tmsg" role="status"></div></section>
-<section id="promo" class="hide p"><h2>Промокоды</h2><div class="row"><input id="pi" placeholder="Введи промокод" autocomplete="off"><button id="pb">Активировать</button><button class="bk">Назад</button></div><div id="pmm" role="status"></div></section>
+<section id="market" class="hide p"><h2>💎 Рынок</h2><p>Гемы: <b id="mkg"></b> 💎 · Продаж сегодня: <b id="mks"></b>/3 · Цены обновятся через <span id="mkt"></span></p><div class="row mktabs"><button data-m="sell">Продать ботам</button><button data-m="buy">Лавка</button><button data-m="on">Всемирный рынок 🌐</button></div><div id="mkbody"></div><div id="mkm" role="status"></div><div class="row"><button class="bk">Назад</button></div></section><section id="promo" class="hide p"><h2>Промокоды</h2><div class="row"><input id="pi" placeholder="Введи промокод" autocomplete="off"><button id="pb">Активировать</button><button class="bk">Назад</button></div><div id="pmm" role="status"></div></section>
 </div><div id="modal" class="hide" role="dialog" aria-modal="true" aria-labelledby="mt"><div id="mbox" class="p"><h2 id="mt"></h2><div id="mc"></div><div id="mbtn" class="row"></div></div></div>
 <script>
 var $=function(i){return document.getElementById(i)},cv=$('cv'),x=cv.getContext('2d'),C=40,G=null,cur='menu',prev='menu';
@@ -196,7 +196,7 @@ var HWCOVER="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYG
 function pic(k,n,s){return IMG[k+n]?'<img src="'+IMG[k+n]+'" width="'+s+'" height="'+s+'" alt="" style="border-radius:6px;vertical-align:middle;margin-right:4px">':ico(TY[k].col,k,s)}
 function ico(c,k,s){var ang=k=='cruelity'||k=='demonity',lid=k=='manipulity';return'<svg viewBox="0 0 40 40" width="'+s+'" height="'+s+'" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="'+c+'" stroke="#111" stroke-width="2.5"/><circle cx="14" cy="17" r="2.4" fill="#111"/><circle cx="26" cy="17" r="2.4" fill="#111"/>'+(ang?'<path d="M9 10l9 4M31 10l-9 4M12 29q8-6 16 0" fill="none" stroke="#111" stroke-width="2.5"/>':'<path d="M11 24q9 9 18 0" fill="none" stroke="#111" stroke-width="2.5"/>')+(lid?'<path d="M10 14h8M22 14h8" stroke="#111" stroke-width="2.5"/>':'')+'</svg>'}
 function say(t){$('msg').textContent=t}function lm(t){$('lm').textContent=t}
-function scr(n){if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd()}
+function scr(n){if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR()}
 function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс 10 волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
  h='<button class="df story" data-k="story" style="background-image:linear-gradient(90deg,rgba(0,0,0,.25),transparent),url('+ST_COVER+')"><span class="nw">НОВОЕ!</span><b>История</b><small>Глава 1: сцены и вопросы Моба. Глава 2: 3D-погоня, в которой ты огромный монстр.</small><em>Награда: Monster Verity (Legendary)</em></button>'+hwCard()+h;
  $('diffs').innerHTML=h;[].forEach.call($('diffs').children,function(b){b.onclick=function(){var k=b.dataset.k;if(k=='soon')return;k=='story'?sStart():start(k)}})}
@@ -506,8 +506,10 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.16',VOL=.8,MQ=[],CI=0;
+var VER='1.18',VOL=.8,MQ=[],CI=0;
 var CHG=[
+{v:'1.18',t:'Всемирный рынок',a:['Во вкладке «Рынок 💎» появился «Всемирный рынок 🌐»','У каждого игрока свой ник и код игрока, по коду можно найти лоты друга','Выставь своего Верити за гемы: когда его купят, гемы придут, даже если ты был не в игре','Список тех, кто сейчас в игре','Ник проверяется на плохие слова, настоящее имя писать не нужно','Лимиты: 3 лота сразу, 5 новых лотов и 5 покупок в день. Купленного Верити можно перепродать только через сутки']},
+{v:'1.17',t:'Рынок и гемы',a:['Новая вкладка «Рынок 💎» и новая валюта — гемы','Продавай лишних Верити ботам: цены меняются каждый день, Бот Коллекционер платит ×1.6 за двух Верити дня','Не больше 3 продаж в день. Стартовые Верити и награды пропуска не продаются','В лавке каждый день три Верити за гемы, а в обменнике гемы меняются на монеты и семечки','Можно продавать только тех Верити, кого выбрал сам: кнопка «Продать» у каждого']},
 {v:'1.16',t:'Хэллоуин в полночь',a:['Ивент «Ночь Тыквенного Короля» стартует 31 октября в 00:00 по Москве','До старта в меню висит карточка «Скоро» с обратным отсчётом','В полночь ивент откроется сам, даже если игра уже открыта, и придёт подарок 150 🍬','Ивент идёт до конца 7 ноября']},
 {v:'1.15',t:'Баланс: сильные стали сильными',a:['Monster Verity: урон 80 вместо 45, бьёт быстрее','Reaperity: урон 55 вместо 34, бьёт быстрее','Skeletonity: урон 40 вместо 16, бьёт быстрее',"Jack-o'-Lantern: урон 50 вместо 18, огненный взрыв задевает врагов рядом",'Lord Verity: свой урон 30, аура шире (170) и даёт +25% скорости атаки, +15% урона и +15% дальности','Phonkity: урон 20 вместо 14, дроп каждые 6 ударов (во 2-й фазе каждые 4), аура +30% скорости']},
 {v:'1.14',t:'Подарки от автора',a:['Автор игры может прислать подарочный код с Верити, монетами, семечками или конфетами','Подарочный код вводится во вкладке «Промокоды» и срабатывает один раз на устройстве','Если у тебя пропали Верити, напиши автору игры']},
@@ -765,4 +767,126 @@ var EVS=evOn();setInterval(function(){var n=evOn();if(n!==EVS){EVS=n;$('hwb').cl
  if(n&&!M.hwGift){M.hwGift=1;M.candy+=150;save();var gift=function(){mOpen('С Хэллоуином! 🎃','<p>Начался ивент «Ночь Тыквенного Короля». Держи подарок: <b>150 🍬</b>, этого хватит на первый Проклятый сундук.</p><p class="mu">Хэллоуинский пропуск: кнопка 🎃 вверху и в лобби.</p>',[['Открыть пропуск',function(){$('modal').className='hide';MQ.length=0;if(cur!='game')hwOpen()}],['Позже',mClose]])};if($('modal').className=='hide')gift();else MQ.push(gift)}
  if(!n&&Date.now()>=EV_END&&cur=='menu')menu()}else if(evPre()&&$('hwsoon'))$('hwsoon').textContent=hwLeft()},1000);
 menu();requestAnimationFrame(loop);
-</script></body></html>
+</script><script>
+var MKP={Common:5,Rare:12,Epic:25,Legendary:50,Mythic:90,Event:60,Secret:150},MKNS={verity:'стартовый Верити',lovity:'стартовый Верити',skel:'награда пропуска',reaper:'награда пропуска'},MKLIM=3,MKTAB='sell';
+function mkFix(){if(typeof M.gem!='number')M.gem=0;if(!M.mkd||M.mkd.d!==dKey())M.mkd={d:dKey(),n:0,b:{}}}
+function mkH(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return(h>>>0)/4294967296}
+function mkWant(){var l=Object.keys(TY).filter(function(k){return!MKNS[k]&&RA[k]!='Secret'});l.sort(function(a,b){return mkH(dKey()+'w'+a)-mkH(dKey()+'w'+b)});return l.slice(0,2)}
+function mkOffer(k){var b=MKP[RA[k]]||5,m=.85+mkH(dKey()+k)*.3,w=mkWant(),bot='Бот Монетка';if(w.indexOf(k)>=0){m*=1.6;bot='Бот Коллекционер'}else if(evOn()&&HWU.concat(['pumpkinity']).indexOf(k)>=0){m*=1.3;bot='Бот Тыквоед'}return{p:Math.max(1,Math.round(b*m)),bot:bot}}
+function mkShop(){var l=Object.keys(TY).filter(function(k){return!MKNS[k]&&['phonk','pumpkinity','jack'].indexOf(k)<0&&(HWU.indexOf(k)<0||evOn())});l.sort(function(a,b){return mkH(dKey()+'s'+a)-mkH(dKey()+'s'+b)});return l.slice(0,3).map(function(k){return{k:k,p:Math.round((MKP[RA[k]]||5)*3)}})}
+function mkLeft(){var n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate()+1)-n;return Math.floor(t/36e5)+' ч '+Math.floor(t%36e5/6e4)+' мин'}
+function mkMsg(t){$('mkm').textContent=t||''}
+function mkCard(k,sub,btn){return'<div class="cu mkc fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'')+'" style="--rc:'+RC[RA[k]]+'">'+pic(k,1,44)+'<div class="mki"><b>'+esc(TY[k].n)+'</b><small style="color:'+RC[RA[k]]+'">'+RA[k]+'</small>'+sub+'</div>'+btn+'</div>'}
+function mkR(){mkFix();$('mkg').textContent=M.gem;$('mks').textContent=M.mkd.n;$('mkt').textContent=mkLeft();
+ [].forEach.call(document.querySelectorAll('.mktabs button'),function(b){b.className=b.dataset.m==MKTAB?'on':''});
+ var h='',own=Object.keys(M.own).filter(function(k){return TY[k]});
+ if(MKTAB=='sell'){var w=mkWant();h+='<p class="mu">Сегодня <b>Бот Коллекционер</b> ищет: '+w.map(function(k){return esc(TY[k].n)}).join(' и ')+' и платит за них ×1.6.'+(evOn()?' <b>Бот Тыквоед</b> платит ×1.3 за хэллоуинских Верити.':'')+' Не больше '+MKLIM+' продаж в день.</p><div class="grid mkg">';
+  own.forEach(function(k){var o=mkOffer(k),dis=MKNS[k]||own.length<=2||M.mkd.n>=MKLIM;h+=mkCard(k,'<small>'+o.bot+': <b>'+o.p+' 💎</b></small>'+(MKNS[k]?'<small class="mu">Нельзя: '+MKNS[k]+'</small>':''),'<button data-sell="'+k+'"'+(dis?' disabled':'')+'>Продать</button>')});
+  h+='</div>'+(own.length<=2?'<p class="mu">Нужно оставить хотя бы двух Верити.</p>':'')}
+ if(MKTAB=='buy'){h+='<p class="mu">Новые Верити в лавке каждый день. Обновление через '+mkLeft()+'.</p><div class="grid mkg">';
+  mkShop().forEach(function(o){var got=M.mkd.b[o.k]||M.own[o.k];h+=mkCard(o.k,'<small>Цена: <b>'+o.p+' 💎</b></small>',got?'<i class="mu">Уже есть</i>':'<button class="go" data-buy="'+o.k+'" data-p="'+o.p+'"'+(M.gem<o.p?' disabled':'')+'>Купить</button>')});
+  h+='</div><h3>Обменник</h3><div class="row"><button data-ex="c"'+(M.gem<10?' disabled':'')+'>10 💎 → 150 🪙</button><button data-ex="s"'+(M.gem<10?' disabled':'')+'>10 💎 → 15 🎃</button></div>'}
+ if(MKTAB=='on'){h+='<div class="cu mkon"><b>🌐 Живые игроки — скоро</b><p>Список игроков онлайн и продажа Верити другим игрокам за гемы появятся, когда к игре подключат сервер. Без сервера игра не видит других людей: весь прогресс хранится только на твоём устройстве.</p><p class="mu">Чат будет только из готовых фраз и эмодзи, а ник — без настоящего имени. Так безопаснее.</p></div>'}
+ $('mkbody').innerHTML=h;
+ [].forEach.call($('mkbody').querySelectorAll('[data-sell]'),function(b){b.onclick=function(){mkSell(b.dataset.sell)}});
+ [].forEach.call($('mkbody').querySelectorAll('[data-buy]'),function(b){b.onclick=function(){mkBuy(b.dataset.buy,+b.dataset.p)}});
+ [].forEach.call($('mkbody').querySelectorAll('[data-ex]'),function(b){b.onclick=function(){mkFix();if(M.gem<10)return;M.gem-=10;if(b.dataset.ex=='c'){M.bank+=150;mkMsg('+150 🪙')}else{M.seeds+=15;mkMsg('+15 🎃')}save();mkR()}})}
+function mkSell(k){mkFix();if(!M.own[k]||MKNS[k])return;if(Object.keys(M.own).length<=2)return mkMsg('Нужно оставить хотя бы двух Верити.');if(M.mkd.n>=MKLIM)return mkMsg('Сегодня больше продавать нельзя. Приходи завтра.');if(prev=='game'&&G&&!G.over)return mkMsg('Сначала закончи матч.');
+ var o=mkOffer(k);mOpen('Продать '+TY[k].n+'?','<div class="pkof">'+pic(k,1,72)+'</div><p>'+o.bot+' даст <b>'+o.p+' 💎</b>.</p><p class="mu">Верити пропадёт из коллекции. Вернуть его можно только из ящика или из лавки.</p>',[['Продать за '+o.p+' 💎',function(){mkFix();if(!M.own[k]||M.mkd.n>=MKLIM){mClose();return}delete M.own[k];M.gem+=o.p;M.mkd.n++;save();mClose();tone(880,.12,'square',.08,1320);mkMsg('Продано: '+TY[k].n+' за '+o.p+' 💎');mkR()}],['Отмена',mClose]])}
+function mkBuy(k,p){mkFix();if(M.own[k])return;if(M.gem<p)return mkMsg('Не хватает '+(p-M.gem)+' 💎');M.gem-=p;M.own[k]=1;M.mkd.b[k]=1;save();tone(660,.2,'triangle',.12,990);mkMsg('Куплен: '+TY[k].n+'!');mkR()}
+[].forEach.call(document.querySelectorAll('.mktabs button'),function(b){b.onclick=function(){MKTAB=b.dataset.m;mkMsg('');mkR()}});
+$('mkb').onclick=function(){mkMsg('');scr('market')};mkFix();
+</script>
+<script>
+/* ===== Всемирный рынок и онлайн (Firebase Realtime Database через REST) ===== */
+var FBC={apiKey:"AIzaSyBQU9DThOL8OiMTSMkz4RRFtrh1HAENTH4",authDomain:"sprunki-verity-td.firebaseapp.com",databaseURL:"https://sprunki-verity-td-default-rtdb.europe-west1.firebasedatabase.app",projectId:"sprunki-verity-td"};/*FBC*/
+var ON={tok:null,exp:0,uid:null,adm:0,ban:0,lots:[],mine:[],online:[],q:'',st:'',busy:0,last:0,tm:null};
+var ONLIM={act:3,day:5,buy:5};
+function onOk(){return!!(FBC&&FBC.apiKey&&FBC.databaseURL)}
+function onFix(){M.fb=M.fb||{};M.esc=M.esc||{};M.mkLock=M.mkLock||{};if(!M.ond||M.ond.d!==dKey())M.ond={d:dKey(),l:0,b:0}}
+function onCode(u){var h=0;for(var i=0;i<u.length;i++)h=(h*31+u.charCodeAt(i))>>>0;var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='';for(i=0;i<6;i++){s+=a[h%a.length];h=Math.floor(h/a.length)^(u.charCodeAt(i%u.length)*7919)}return'VT-'+s}
+var ONBAD=['хуй','хуе','хуё','пизд','еба','ебу','ёба','бля','сука','суки','пидор','пидар','гандон','мудак','шлюх','дебил','даун','нацис','гитлер','fuck','shit','bitch','dick','cunt','nigg','nazi','hitler','porn','sex','секс','порн','admin','админ','модер'];
+function onNickBad(n){var l=n.toLowerCase().replace(/0/g,'о').replace(/3/g,'з').replace(/[_\-]/g,'');for(var i=0;i<ONBAD.length;i++)if(l.indexOf(ONBAD[i])>=0)return 1;return 0}
+async function onAuth(){if(ON.tok&&Date.now()<ON.exp-6e4)return ON.tok;onFix();
+ var A=FBC.authBase||'https://identitytoolkit.googleapis.com',T=FBC.tokenBase||'https://securetoken.googleapis.com',r,j;
+ if(M.fb.rt){r=await fetch(T+'/v1/token?key='+FBC.apiKey,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(M.fb.rt)});
+  if(r.ok){j=await r.json();ON.tok=j.id_token;ON.uid=j.user_id;ON.exp=Date.now()+(+j.expires_in||3600)*1e3;M.fb.rt=j.refresh_token;M.fb.uid=ON.uid;save();return ON.tok}}
+ r=await fetch(A+'/v1/accounts:signUp?key='+FBC.apiKey,{method:'POST',headers:{'Content-Type':'application/json'},body:'{"returnSecureToken":true}'});
+ if(!r.ok)throw Error('auth '+r.status);j=await r.json();ON.tok=j.idToken;ON.uid=j.localId;ON.exp=Date.now()+(+j.expiresIn||3600)*1e3;M.fb.rt=j.refreshToken;M.fb.uid=ON.uid;save();return ON.tok}
+async function db(path,o){o=o||{};var t=await onAuth(),q=(o.q?o.q+'&':'')+'auth='+encodeURIComponent(t),init={method:o.m||'GET'};
+ if(o.b!==undefined){init.body=JSON.stringify(o.b);init.headers={'Content-Type':'application/json'}}
+ var r=await fetch(FBC.databaseURL.replace(/\/$/,'')+'/'+path+'.json?'+q,init),j=null;try{j=await r.json()}catch(e){}return{ok:r.ok,st:r.status,j:j}}
+function qs(k,v){return k+'='+encodeURIComponent(JSON.stringify(v))}
+async function onPing(){if(!onOk()||!M.fb||!M.fb.nick||ON.ban)return;
+ try{await db('online/'+ON.uid,{m:'PUT',b:{n:M.fb.nick,c:onCode(ON.uid),t:{'.sv':'timestamp'},w:cur=='game'?'бой':'меню'}})}catch(e){}}
+async function onSync(){if(!onOk())return;onFix();
+ try{await onAuth();
+  var bn=await db('bans/'+ON.uid);ON.ban=bn.ok&&bn.j===true?1:0;
+  var ad=await db('admins/'+ON.uid);ON.adm=ad.ok&&ad.j===true?1:0;
+  await onCollect();await onPing();ON.st='';ON.last=Date.now()}catch(e){ON.st='Нет связи с сервером. Проверь интернет. ('+(e&&e.message||e)+')'}}
+async function onCollect(){while(ON.col)await new Promise(function(r){setTimeout(r,100)});ON.col=1;try{await onCol2()}finally{ON.col=0}}
+async function onCol2(){var ids=Object.keys(M.esc),r=await db('market',{q:qs('orderBy','s')+'&'+qs('equalTo',ON.uid)});if(!r.ok)return;var all=r.j||{},got=[],mine=[];
+ for(var i=0;i<ids.length;i++){var id=ids[i],e=M.esc[id],l=all[id];if(!e)continue;
+  if(l&&!l.b){mine.push({id:id,u:e.u,p:e.p});continue}
+  if(l&&l.b){var d=await db('market/'+id,{m:'DELETE'});if(!d.ok||!M.esc[id])continue}
+  delete M.esc[id];
+  if(l&&l.b&&l.b!==ON.uid){M.gem=(M.gem||0)+e.p;got.push(TY[e.u]?TY[e.u].n+' за '+e.p+' 💎':e.p+' 💎')}
+  else if(TY[e.u]){if(M.own[e.u])M.bank+=120;else M.own[e.u]=1}}
+ for(var id2 in M.esc)if(ids.indexOf(id2)<0)mine.push({id:id2,u:M.esc[id2].u,p:M.esc[id2].p});ON.mine=mine;save();if(got.length){tone(880,.12,'square',.08,1320);var t='Твоих Верити купили на всемирном рынке: '+got.join(', ')+'.';if(cur=='market')mkMsg(t);else if(cur!='game'){if($('modal').className=='hide')mOpen('💎 Продажа!','<p>'+esc(t)+'</p>');else MQ.push(function(){mOpen('💎 Продажа!','<p>'+esc(t)+'</p>')})}}}
+async function onLoad(){var q=ON.q.trim().toUpperCase(),r=q?await db('market',{q:qs('orderBy','c')+'&'+qs('equalTo',q)}):await db('market',{q:qs('orderBy','t')+'&'+qs('limitToLast',80)});
+ if(!r.ok){ON.st='Не удалось загрузить рынок.';return}var a=[];for(var id in(r.j||{})){var l=r.j[id];if(l&&!l.b&&TY[l.u])a.push(Object.assign({id:id},l))}a.sort(function(x,y){return y.t-x.t});ON.lots=a;
+ var o=await db('online',{q:qs('orderBy','t')+'&'+qs('startAt',Date.now()-18e4)});if(o.ok){var b=[];for(var u in(o.j||{}))b.push(Object.assign({u:u},o.j[u]));b.sort(function(x,y){return y.t-x.t});ON.online=b}}
+function onRange(k){var b=MKP[RA[k]]||5;return[Math.max(1,Math.round(b*.5)),Math.round(b*4)]}
+function onSellable(k){if(MKNS[k])return MKNS[k];if(M.mkLock[k]&&Date.now()-M.mkLock[k]<864e5)return'куплен недавно, можно через '+Math.ceil((864e5-(Date.now()-M.mkLock[k]))/36e5)+' ч';return''}
+function onTime(t){var s=Math.floor((Date.now()-t)/1e3);return s<60?'только что':s<3600?Math.floor(s/60)+' мин назад':s<86400?Math.floor(s/3600)+' ч назад':Math.floor(s/86400)+' дн назад'}
+function onRender(){var B=$('mkbody');onFix();
+ if(!onOk()){B.innerHTML='<div class="cu mkon"><b>🌐 Всемирный рынок</b><p>Сервер ещё не подключён. Когда автор игры подключит его, здесь появятся лоты игроков со всего мира и список тех, кто сейчас в игре.</p></div>';return}
+ if(!M.fb.nick){B.innerHTML='<div class="cu mkon"><b>🌐 Придумай ник</b><p>Ник увидят другие игроки. <b>Не пиши настоящее имя и фамилию</b>. 3–14 символов: буквы, цифры, _ и -.</p><div class="row"><input id="onn" maxlength="14" placeholder="Например, Тыквенный_Кот" autocomplete="off"><button class="go" id="onns">Готово</button></div><p class="mu" id="onnm"></p></div>';
+  $('onns').onclick=function(){var n=$('onn').value.trim();if(!/^[A-Za-zА-Яа-яЁё0-9_\-]{3,14}$/.test(n))return $('onnm').textContent='3–14 символов: буквы, цифры, _ и -.';if(onNickBad(n))return $('onnm').textContent='Такой ник нельзя. Придумай другой.';M.fb.nick=n;save();onOpen()};return}
+ if(ON.busy&&!ON.last){B.innerHTML='<p class="mu">Подключаюсь к серверу…</p>';return}
+ var h='';if(ON.st)h+='<p class="onerr">'+esc(ON.st)+'</p>';
+ if(ON.ban){B.innerHTML=h+'<div class="cu mkon"><b>⛔ Доступ закрыт</b><p>Автор игры закрыл тебе всемирный рынок за нарушение правил.</p></div>';return}
+ h+='<div class="cu onme"><div><b>'+esc(M.fb.nick)+'</b>'+(ON.adm?' <span class="vtag">админ</span>':'')+'<br><small class="mu">Твой код игрока</small> <b class="oncode">'+(ON.uid?onCode(ON.uid):'…')+'</b> <button id="oncp" class="sm">Копировать</button></div><div class="onct">🟢 '+ON.online.length+'<small>в игре</small></div></div>';
+ h+='<h3>Мои лоты <small class="mu">'+ON.mine.length+'/'+ONLIM.act+'</small></h3>';
+ if(!ON.mine.length)h+='<p class="mu">Ты ещё ничего не выставил.</p>';else{h+='<div class="grid mkg">';ON.mine.forEach(function(l){h+=mkCard(l.u,'<small>Цена: <b>'+l.p+' 💎</b></small><small class="mu">Ждёт покупателя</small>','<button data-cn="'+l.id+'">Снять</button>')});h+='</div>'}
+ var own=Object.keys(M.own).filter(function(k){return TY[k]&&!onSellable(k)});
+ h+='<h3>Выставить своего Верити</h3>';
+ if(Object.keys(M.own).length<=2)h+='<p class="mu">Нужно оставить хотя бы двух Верити.</p>';
+ else if(!own.length)h+='<p class="mu">Нечего выставить: стартовые Верити и награды пропуска не продаются.</p>';
+ else{h+='<div class="row"><select id="onu">'+own.map(function(k){return'<option value="'+k+'">'+esc(TY[k].n)+' ('+RA[k]+')</option>'}).join('')+'</select><input id="onp" type="number" inputmode="numeric" min="1" style="width:90px"> 💎<button class="go" id="onl"'+(ON.mine.length>=ONLIM.act||M.ond.l>=ONLIM.day?' disabled':'')+'>Выставить</button></div><p class="mu" id="onph"></p>'}
+ h+='<p class="mu">Пока лот висит, Верити хранится на рынке. Когда его купят, гемы придут тебе, даже если ты был не в игре. Не больше '+ONLIM.act+' лотов сразу и '+ONLIM.day+' новых лотов в день.</p>';
+ h+='<h3>Лоты игроков</h3><div class="row"><input id="onq" placeholder="Код игрока, например VT-ABC123" value="'+esc(ON.q)+'" autocomplete="off"><button id="ons">Найти</button>'+(ON.q?'<button id="onx">Все лоты</button>':'')+'<button id="onr">🔄</button></div>';
+ var lots=ON.lots.filter(function(l){return l.s!==ON.uid});
+ if(!lots.length)h+='<p class="mu">'+(ON.q?'У этого игрока нет лотов.':'Пока никто ничего не выставил. Будь первым!')+'</p>';
+ else{h+='<div class="grid mkg">';lots.forEach(function(l){var has=M.own[l.u],can=!has&&M.gem>=l.p&&M.ond.b<ONLIM.buy;h+=mkCard(l.u,'<small>Цена: <b>'+l.p+' 💎</b></small><small class="mu">'+esc(l.n)+' · '+esc(l.c)+' · '+onTime(l.t)+'</small>',(has?'<i class="mu">Уже есть</i>':'<button class="go" data-by="'+l.id+'"'+(can?'':' disabled')+'>Купить</button>')+(ON.adm?'<button class="sm" data-ad="'+l.id+'">Удалить</button><button class="sm" data-ab="'+l.s+'">Бан</button>':''))});h+='</div>'}
+ h+='<p class="mu">Гемы: '+(M.gem||0)+' 💎 · Покупок сегодня: '+M.ond.b+'/'+ONLIM.buy+'</p>';
+ h+='<h3>Сейчас в игре 🟢 '+ON.online.length+'</h3>';
+ if(!ON.online.length)h+='<p class="mu">Пока никого.</p>';else{h+='<div class="onl">';ON.online.slice(0,60).forEach(function(p){h+='<div class="onp"><b>'+esc(p.n)+'</b> <small class="mu">'+esc(p.c)+(p.w?' · '+esc(p.w):'')+'</small>'+(p.u==ON.uid?' <i class="mu">(ты)</i>':'')+(ON.adm&&p.u!=ON.uid?' <button class="sm" data-ab="'+p.u+'">Бан</button>':'')+'</div>'});h+='</div>'}
+ h+='<p class="mu"><button class="sm" id="onrn">Сменить ник</button></p>';
+ B.innerHTML=h;
+ $('oncp').onclick=function(){cpy(onCode(ON.uid));this.textContent='Скопировано'};
+ if($('onu')){var up=function(){var k=$('onu').value,r=onRange(k);$('onp').min=r[0];$('onp').max=r[1];if(!$('onp').value||+$('onp').value<r[0]||+$('onp').value>r[1])$('onp').value=Math.round((MKP[RA[k]]||5)*1.5);$('onph').textContent='Цена от '+r[0]+' до '+r[1]+' 💎. Боты дают за него около '+mkOffer(k).p+' 💎.'};$('onu').onchange=up;up();$('onl').onclick=function(){onList($('onu').value,Math.round(+$('onp').value))}}
+ [].forEach.call(B.querySelectorAll('[data-cn]'),function(b){b.onclick=function(){onCancel(b.dataset.cn)}});
+ [].forEach.call(B.querySelectorAll('[data-by]'),function(b){b.onclick=function(){var l=ON.lots.filter(function(x){return x.id==b.dataset.by})[0];if(l)onBuyAsk(l)}});
+ [].forEach.call(B.querySelectorAll('[data-ad]'),function(b){b.onclick=function(){onAdmDel(b.dataset.ad)}});
+ [].forEach.call(B.querySelectorAll('[data-ab]'),function(b){b.onclick=function(){onAdmBan(b.dataset.ab)}});
+ $('ons').onclick=function(){ON.q=$('onq').value;onOpen()};if($('onx'))$('onx').onclick=function(){ON.q='';onOpen()};$('onr').onclick=function(){onOpen()};
+ $('onrn').onclick=function(){M.fb.nick='';save();onRender()}}
+async function onOpen(){if(!onOk()||!M.fb||!M.fb.nick){onRender();return}ON.busy=1;onRender();try{await onSync();if(!ON.ban)await onLoad()}catch(e){ON.st='Нет связи с сервером. Проверь интернет. ('+(e&&e.message||e)+')'}ON.busy=0;if(cur=='market'&&MKTAB=='on')onRender()}
+async function onList(k,p){onFix();var r=onRange(k),why=onSellable(k);if(why||!M.own[k])return mkMsg('Этого Верити выставить нельзя.');if(Object.keys(M.own).length<=2)return mkMsg('Нужно оставить хотя бы двух Верити.');
+ if(!(p>=r[0]&&p<=r[1]))return mkMsg('Цена для '+TY[k].n+': от '+r[0]+' до '+r[1]+' 💎.');if(ON.mine.length>=ONLIM.act)return mkMsg('Уже '+ONLIM.act+' лота. Подожди, пока купят, или сними один.');if(M.ond.l>=ONLIM.day)return mkMsg('Сегодня больше выставлять нельзя.');
+ if(prev=='game'&&G&&!G.over)return mkMsg('Сначала закончи матч.');
+ try{var x=await db('market',{m:'POST',b:{s:ON.uid,n:M.fb.nick,c:onCode(ON.uid),u:k,p:p,t:{'.sv':'timestamp'}}});if(!x.ok||!x.j||!x.j.name)return mkMsg('Сервер не принял лот.');
+  delete M.own[k];M.esc[x.j.name]={u:k,p:p};M.ond.l++;save();tone(660,.15,'triangle',.1,990);mkMsg(TY[k].n+' выставлен за '+p+' 💎.');onOpen()}catch(e){mkMsg('Нет связи с сервером.')}}
+async function onCancel(id){try{var w=await db('market/'+id+'/b',{m:'PUT',b:ON.uid});if(!w.ok){await onSync();onRender();return mkMsg('Не успел: лот уже купили! Гемы начислены.')}await onCollect();mkMsg('Лот снят, Верити вернулся к тебе.');onOpen()}catch(e){mkMsg('Нет связи с сервером.')}}
+function onBuyAsk(l){mOpen('Купить '+TY[l.u].n+'?','<div class="pkof">'+pic(l.u,1,72)+'</div><p>Продавец: <b>'+esc(l.n)+'</b> ('+esc(l.c)+')</p><p>Цена: <b>'+l.p+' 💎</b> · у тебя '+(M.gem||0)+' 💎</p>',[['Купить за '+l.p+' 💎',function(){mClose();onBuy(l)}],['Отмена',mClose]])}
+async function onBuy(l){onFix();if(M.own[l.u])return mkMsg('Этот Верити у тебя уже есть.');if((M.gem||0)<l.p)return mkMsg('Не хватает '+(l.p-(M.gem||0))+' 💎.');if(M.ond.b>=ONLIM.buy)return mkMsg('Сегодня больше покупать нельзя.');
+ try{var c=await db('market/'+l.id);if(!c.ok||!c.j||c.j.b||c.j.u!==l.u||c.j.p!==l.p){mkMsg('Этот лот уже купили или сняли.');return onOpen()}
+  var w=await db('market/'+l.id+'/b',{m:'PUT',b:ON.uid});if(!w.ok){mkMsg('Не успел: кто-то купил раньше.');return onOpen()}
+  M.gem-=l.p;M.own[l.u]=1;M.mkLock[l.u]=Date.now();M.ond.b++;save();tone(660,.2,'triangle',.12,990);tone(990,.25,'triangle',.1,0,.12);mkMsg('Куплен: '+TY[l.u].n+'! Он уже в магазине башен.');onOpen()}catch(e){mkMsg('Нет связи с сервером.')}}
+async function onAdmDel(id){if(!ON.adm)return;var r=await db('market/'+id,{m:'DELETE'});mkMsg(r.ok?'Лот удалён. Верити вернётся продавцу.':'Не получилось удалить.');onOpen()}
+async function onAdmBan(u){if(!ON.adm)return;mOpen('Заблокировать игрока?','<p>Игрок больше не сможет выставлять, покупать и появляться в списке онлайн.</p>',[['Заблокировать',async function(){mClose();var r=await db('bans/'+u,{m:'PUT',b:true});await db('online/'+u,{m:'DELETE'});mkMsg(r.ok?'Игрок заблокирован.':'Не получилось.');onOpen()}],['Отмена',mClose]])}
+(function(){var mk0=mkR;mkR=function(){mk0();if(MKTAB=='on'){if(!ON.last||Date.now()-ON.last>3e4)onOpen();else onRender()}}})();
+if(onOk()){setTimeout(function(){if(M.fb&&M.fb.nick)onSync()},2500);setInterval(function(){if(document.visibilityState=='visible'&&M.fb&&M.fb.nick){onPing();if(Date.now()-ON.last>12e4)onSync()}},6e4)}
+</script>
+</body></html>
