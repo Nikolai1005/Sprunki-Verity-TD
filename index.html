@@ -135,8 +135,8 @@ select{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--l
 @keyframes pzgl{0%{transform:translate(0,0)}50%{transform:translate(3px,-2px)}}
 .prshop.hls{border-color:#39ff6a;background:radial-gradient(circle at 15% 50%,rgba(57,255,106,.3),transparent 60%),radial-gradient(circle at 90% 20%,rgba(255,138,31,.3),transparent 50%),rgba(0,0,0,.35);box-shadow:0 0 22px rgba(57,255,106,.35)}
 .hlst{font:800 13px system-ui;color:#39ff6a}.hlm{color:#ffd21f!important}
-</style></head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.37</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button></div></header>
+#hlsb.hlsbtn{background:linear-gradient(90deg,#0b3d1a,#7a3a06);color:#fff;border-color:#39ff6a;box-shadow:0 0 12px rgba(57,255,106,.45)}</style></head><body><div class="w">
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.38</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip">🎃 <b id="s"></b></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -519,8 +519,9 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.37',VOL=.8,MQ=[],CI=0;
+var VER='1.38',VOL=.8,MQ=[],CI=0;
 var CHG=[
+{v:'1.38',t:'Кнопка «Сток»',a:['В меню появилась кнопка «Сток 🛒» — сразу открывает лимитку Hackoluinity','Hackoluinity можно купить уже во время вечеринки, не дожидаясь лавки']},
 {v:'1.37',t:'Hackoluinity',a:['В лавке вечеринки появилась лимитка Mythic — Hackoluinity, хакерско-хэллоуинский Верити','Всего 2 штуки на всю игру! Цена — 1000 🍭','Лавка с конфетами открыта ещё сутки после вечеринки, рейд «Спаси конфеты» тоже можно проходить']},
 {v:'1.36',t:'Площадь вечеринки',a:['Перед рейдом все игроки собираются на площади в «🎉 Вечеринке»','Каждый — своя Верити с аватарки и ником сверху, нажимай на площадь, чтобы ходить','Когда Хакерити взламывает вечеринку, всех с площади переносит в рейд']},
 {v:'1.35',t:'Музыка лобби',a:['В меню, лобби, на рынке и других экранах играет своя бодрая восьмибитная музыка','На экране Хэллоуина остаётся вальс, а во время вечеринки — танцевальная музыка','Выключается в настройках вместе с остальной музыкой']},
@@ -1947,7 +1948,8 @@ function hlAtk(u,tg,d,p,P2){hit(tg,d);G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:
 var HL={st:null,ld:0,busy:0,msg:''};
 async function hlLoad(){if(!onOk()||HL.ld>Date.now()-5000)return;HL.ld=Date.now();try{var r=await db('party/hl',{});if(r.ok){HL.st=r.j||{};if(cur=='pty')hlShow()}}catch(e){}}
 function hlLeft(){if(!HL.st)return null;return 2-['a','b'].filter(function(s){return HL.st[s]}).length}
-function hlShow(){var B=$('prbody');if(!B||!prShopOn())return;var o=$('hlshop');if(o)o.remove();var left=hlLeft(),h='';
+function hlOn(){return typeof prS=='function'&&Date.now()>=prS()&&Date.now()<prS()+PRX}
+function hlShow(){var B=$('prbody');if(!B||!hlOn())return;var o=$('hlshop');if(o)o.remove();var left=hlLeft(),h='';
  if(M.own.hackol)h='<div class="prshop hls got" id="hlshop">'+pic('hackol',1,56)+'<div><b>Hackoluinity уже твой!</b><small>Ты один из двух владельцев во всей игре</small></div></div>';
  else{h='<div class="prshop hls" id="hlshop">'+pic('hackol',1,80)+'<div><b>Hackoluinity</b><span class="rar" style="background:'+RC.Mythic+'">Mythic · ЛИМИТКА</span><small>Хакерско-хэллоуинский Верити. Тыква-вирус взрывается по области и вызывает сбой у врагов</small><span class="hlst">'+(left==null?'В наличии: …':left>0?'В наличии: '+left+' из 2':'РАСПРОДАНО')+'</span>'+(left>0?'<button class="mkbtn go2" id="hlbuy"'+(M.pty.c<1000||HL.busy?' disabled':'')+'>Купить за 1000 🍭</button>':'')+(HL.msg?'<small class="hlm">'+esc(HL.msg)+'</small>':'')+'</div></div>'}
  B.insertAdjacentHTML('afterbegin',h);var bb=$('hlbuy');if(bb)bb.onclick=hlBuy}
@@ -1958,6 +1960,7 @@ async function hlBuy(){prFix();if(M.pty.c<1000||HL.busy||M.own.hackol)return;if(
  if(ok){M.pty.c-=1000;M.own.hackol=1;save();HL.msg='';tone(880,.25,'triangle');prBan('💚🎃 HACKOLUINITY ТВОЙ!','Лимитка — всего 2 на всю игру. Возьми его в бой в «Снаряжении»')}else HL.msg='Не успел — лимитка уже раскуплена';
  await hlLoad();HL.ld=0;hlLoad();hlShow();if(cur=='pty')prRender()}
 (function(){var r0=prRender;prRender=function(){r0();hlShow();hlLoad()}})();
+(function(){var b=$('hlsb');if(!b)return;b.onclick=function(){scr('pty');setTimeout(function(){var e=$('hlshop');if(e)e.scrollIntoView({behavior:'smooth',block:'center'})},150)};setInterval(function(){b.className=hlOn()?'hlsbtn':'hide'},2000);b.className=hlOn()?'hlsbtn':'hide'})();
 
 (function(){var s0=prStep;prStep=function(id){var was=M.pty&&M.pty.done&&M.pty.done[id],inPz=cur=='pty'&&pzVis();s0(id);if(id=='hack'&&!was&&inPz&&!M.ptyPrevNoGo){PZ.go=1;var o=$('pzgo');if(o){o.className='show';o.querySelector('b').textContent='Хакерити взломал вечеринку! Все с площади — в рейд!'}setTimeout(function(){if(o)o.className='';if(cur=='pty')start('pr')},3200)}}})();
 
