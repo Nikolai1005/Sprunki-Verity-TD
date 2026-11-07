@@ -136,7 +136,7 @@ select{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--l
 .prshop.hls{border-color:#39ff6a;background:radial-gradient(circle at 15% 50%,rgba(57,255,106,.3),transparent 60%),radial-gradient(circle at 90% 20%,rgba(255,138,31,.3),transparent 50%),rgba(0,0,0,.35);box-shadow:0 0 22px rgba(57,255,106,.35)}
 .hlst{font:800 13px system-ui;color:#39ff6a}.hlm{color:#ffd21f!important}
 #hlsb.hlsbtn{background:linear-gradient(90deg,#0b3d1a,#7a3a06);color:#fff;border-color:#39ff6a;box-shadow:0 0 12px rgba(57,255,106,.45)}</style></head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.40</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.41</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip">🎃 <b id="s"></b></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -254,7 +254,7 @@ function upd(dt){
   else if(u.k=='vamp'){if(u.n%8==0&&G.lives<G.d.lv)G.lives++;if(P2&&tg.boss&&!(u.dr>0)){u.dr=6;hit(tg,tg.max*.05)}hit(tg,d)}
   else if(u.k=='jack'){tg.burn=3;hit(tg,d);G.en.forEach(function(o){if(o===tg||o.po)return;var q=pos(o.d);if(Math.hypot(q[0]-p[0],q[1]-p[1])<40){hit(o,d*.5);o.burn=2}});if(P2&&u.apw!==G.wave){u.apw=G.wave;G.boom=1;G.en.forEach(function(o){if(!o.po)hit(o,o.boss?o.max*.04:150)});say('Тыквенный апокалипсис!')}}
   else if(u.k=='gumity'||u.k=='obesity'){exAtk(u,tg,d,p,P2)}
-  else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
+  else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='byehw'){byeAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
   else if(u.k=='glitch'||u.k=='fwall'||u.k=='virusv'||u.k=='hacker'){hkAtk(u,tg,d,p,P2)}
   else if(P2&&u.k=='verity'){hit(tg,t.dmg*1.3);hit(tg,t.dmg*1.3);hit(tg,t.dmg*1.3)}
   else hit(tg,d)});
@@ -519,8 +519,9 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.40',VOL=.8,MQ=[],CI=0;
+var VER='1.41',VOL=.8,MQ=[],CI=0;
 var CHG=[
+{v:'1.41',t:'Баф Goodbye, Halloweenity!',a:['Сильнее: урон 28 → 42, стреляет быстрее, дальность больше','Бросает 3 вида конфет: 🍬 отравление, 🍭 ×2 урон, 🍫 замедление','Фаза 2: конфеты взрываются по области, аура хэллоуинским Верити +25% урона','Админ может выдать Верити игроку по почте']},
 {v:'1.40',t:'Сток Hackoluinity',a:['Лишний купленный Hackoluinity вернули в сток — его снова можно купить за 1000 🍭','Конфеты и лавка остаются до завтрашнего вечера']},
 {v:'1.39',t:'Исправление стока',a:['Если покупка Hackoluinity не прошла из-за сервера, игра больше не пишет «раскуплено», а объясняет причину']},
 {v:'1.38',t:'Кнопка «Сток»',a:['В меню появилась кнопка «Сток 🛒» — сразу открывает лимитку Hackoluinity','Hackoluinity можно купить уже во время вечеринки, не дожидаясь лавки']},
@@ -1861,11 +1862,19 @@ function prFx(){x.save();G.en.forEach(function(e){if(e.ty!='thief'&&e.ty!='thief
  var v=x.createRadialGradient(320,200,170,320,200,420);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(60,10,80,.35)');x.fillStyle=v;x.fillRect(0,0,640,400);x.restore()}
 (function(){var e0=endGame;endGame=function(w,t){var pr=G&&G.key=='pr';e0(w,t);if(pr){prFix();$('et').textContent=w==2?'🍭 Конфеты спасены!':'Воры сбежали…';say('Спасено за рейд: смотри счётчик 🍭. Возвращайся в «🎉 Вечеринку».')}trCheck()}})();
 /* ---------- Goodbye, Halloweenity! ---------- */
-TY.byehw={n:'Goodbye, Halloweenity!',cost:420,dmg:28,rate:.6,rng:105,col:'#ff8a1f',d:'Legendary, прощальный юнит Хэллоуина. Бросает конфеты: каждый враг, побеждённый им, даёт +2 🪙. Фаза 2: раз в волну на 8 с даёт хэллоуинским Верити рядом +15% урона. Только с прощальной вечеринки'};
+TY.byehw={n:'Goodbye, Halloweenity!',cost:420,dmg:42,rate:.5,rng:125,col:'#ff8a1f',d:'Legendary, прощальный юнит Хэллоуина. Бросает 3 вида конфет по очереди: 🍬 ядовитая (отравление на 3 с), 🍭 леденец (×2 урон), 🍫 тянучка (враг медленнее на 40% на 2 с). Каждый враг, побеждённый им, даёт +2 🪙. Фаза 2: конфеты взрываются и задевают врагов рядом, а раз в волну на 8 с хэллоуинские Верити рядом получают +25% урона. Только с прощальной вечеринки'};
 RA.byehw='Legendary';MKNS.byehw='награда вечеринки';if(typeof EXU!='undefined')EXU.push('byehw');
 (function(){[1,2].forEach(function(n){var o=document.createElement('canvas');o.width=o.height=128;byePaint(o.getContext('2d'),128,n==2);IMG['byehw'+n]=o.toDataURL();var im=new Image();im.src=IMG['byehw'+n];IM['byehw'+n]=im})})();
+/* ---------- баф Goodbye, Halloweenity!: 3 вида конфет ---------- */
+var BYEC=[{e:'🍬',c:'#7dff4a'},{e:'🍭',c:'#ff4d8d'},{e:'🍫',c:'#8a4a1f'}];
+function byeOne(e,d,t,full){if(e.dead)return;if(t==0){hit(e,d*(full?1:.5));if(!e.dead){e.byP=3;e.byD=Math.max(e.byD||0,d*.6)}}else if(t==1){hit(e,d*(full?2:1))}else{hit(e,d*(full?1:.5));if(!e.dead){e.sl=2;e.slp=Math.max(e.slp||0,.4)}}}
+function byeAtk(u,tg,d,p,P2){var t=u.n%3,c=BYEC[t];byeOne(tg,d,t,1);G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:c.c});(G.pops=G.pops||[]).push({x:p[0],y:p[1]-8,t:.6,s:c.e});
+ if(P2){G.en.forEach(function(e){if(e===tg||e.dead||e.po)return;var q=pos(e.d);if(Math.hypot(q[0]-p[0],q[1]-p[1])<=50)byeOne(e,d,t,0)});(G.waves=G.waves||[]).push({x:p[0],y:p[1],t:.5,c:c.c})}}
+(function(){var u0=upd;upd=function(dt){u0(dt);if(!G||G.guest)return;G.en.forEach(function(e){if(e.byP>0&&!e.dead){e.byP-=dt;hit(e,e.byD*dt);if(e.byP<=0)e.byD=0}})}})();
+(function(){var d0=draw;draw=function(){d0();if(!G)return;x.save();G.en.forEach(function(e){if(e.byP>0&&!e.dead){var q=pos(e.d);x.fillStyle='rgba(125,255,74,'+(.35+.2*Math.sin(performance.now()/90))+')';x.beginPath();x.arc(q[0],q[1],(ET[e.ty]&&ET[e.ty].r||12)+3,0,7);x.fill()}});(G.pops||[]).forEach(function(o){if(!o.s||o.s.length>2)return;x.globalAlpha=Math.max(0,1-o.t/1.4);x.font='18px serif';x.textAlign='center';x.fillText(o.s,o.x,o.y-o.t*20)});x.globalAlpha=1;x.restore()}})();
+(function(){var u0=upd;upd=function(dt){u0(dt);if(!G||G.key=='pr')return;(G.pops||[]).forEach(function(o){if(o.s&&o.s.length<=2)o.t+=dt});G.pops=(G.pops||[]).filter(function(o){return !(o.s&&o.s.length<=2)||o.t<1.4})}})();
 var BYEHW=['pumpkinity','jack','skel','reaper','batv','ghostv','vamp','byehw'];
-function prD(u){if(!G)return 1;var k=typeof ek=='function'?ek(u):u.k;if(BYEHW.indexOf(k)<0)return 1;return G.units.some(function(b){return b.k=='byehw'&&b.byeT>0&&Math.hypot(b.x-u.x,b.y-u.y)<=150})?1.15:1}
+function prD(u){if(!G)return 1;var k=typeof ek=='function'?ek(u):u.k;if(BYEHW.indexOf(k)<0)return 1;return G.units.some(function(b){return b.k=='byehw'&&b.byeT>0&&Math.hypot(b.x-u.x,b.y-u.y)<=150})?1.25:1}
 (function(){var u0=upd;upd=function(dt){u0(dt);if(!G||G.guest)return;G.units.forEach(function(u){if(u.k!='byehw')return;if(u.byeT>0)u.byeT-=dt;var P2=(G.p2&&G.cool<=0)||u.inf>0;if(P2&&G.run&&u.byeW!==G.wave){u.byeW=G.wave;u.byeT=8;(G.waves=G.waves||[]).push({x:u.x,y:u.y,t:0,c:'#ff8a1f'});say('Goodbye, Halloweenity!: «Последний праздник!» +15% урона хэллоуинским Верити')}})}})();
 (function(){var h0=hit;hit=function(e,d){var w=e.dead;h0(e,d);if(!w&&e.dead&&G&&G.cu&&G.cu.k=='byehw')G.coins+=2}})();
 (function(){var d0=draw;draw=function(){d0();if(!G)return;x.save();G.units.forEach(function(u){if(u.k=='byehw'&&u.byeT>0){x.strokeStyle='rgba(255,138,31,'+(.4+.3*Math.sin(performance.now()/120))+')';x.lineWidth=3;x.beginPath();x.arc(u.x,u.y,150,0,7);x.stroke()}});x.restore()}})();
