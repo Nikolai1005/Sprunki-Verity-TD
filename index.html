@@ -2490,7 +2490,7 @@ function busPaint(c,s,p2,dir){c.save();c.clearRect(0,0,s,s);c.translate(s/2,s/2)
  c.fillStyle='#fff6a0';c.beginPath();c.arc(w/2-s*.02,y+h*.75,s*.03,0,7);c.fill();
  // лицо Верити в окне водителя
  c.fillStyle=p2?'#ff2a2a':'#2a1a00';c.beginPath();c.arc(w/2-w*.09,y+h*.26,s*.018,0,7);c.fill();
- c.fillStyle='#1a1000';c.font='900 '+Math.round(s*.09)+'px system-ui';c.textAlign='center';c.fillText(p2?'ТАРАН!':'BUS',-w*.05,y+h*.9);
+ c.fillStyle='#1a1000';c.font='900 '+Math.round(s*.09)+'px system-ui';c.textAlign='center';c.save();if(dir<0)c.scale(-1,1);c.fillText(p2?'ТАРАН!':'BUS',dir<0?w*.05:-w*.05,y+h*.9);c.restore();
  if(p2){c.fillStyle='#ffd21f';for(var f=0;f<3;f++){c.beginPath();c.moveTo(-w/2,y+h*.3+f*h*.18);c.lineTo(-w/2-s*.12,y+h*.36+f*h*.18);c.lineTo(-w/2,y+h*.42+f*h*.18);c.fill()}}
  c.restore()}
 (function(){[1,2].forEach(function(n){var o=document.createElement('canvas');o.width=o.height=128;var c=o.getContext('2d');c.fillStyle=n==2?'#3a0a04':'#0e2a3a';c.beginPath();c.arc(64,64,62,0,7);c.fill();busPaint(c,128,n==2,1);IMG['busity'+n]=o.toDataURL();var im=new Image();im.src=IMG['busity'+n];IM['busity'+n]=im})})();
