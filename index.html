@@ -1086,7 +1086,15 @@ async function onList(k,p){onFix();var r=onRange(k),why=onSellable(k);if(why||!M
  if(prev=='game'&&G&&!G.over)return mkMsg('Сначала закончи матч.');
  try{var x=await db('market',{m:'POST',b:{s:ON.uid,n:M.fb.nick,c:onCode(ON.uid),u:k,p:p,t:{'.sv':'timestamp'}}});if(!x.ok||!x.j||!x.j.name)return mkMsg('Сервер не принял лот.');
   delete M.own[k];M.esc[x.j.name]={u:k,p:p};M.ond.l++;save();tone(660,.15,'triangle',.1,990);mkMsg(TY[k].n+' выставлен за '+p+' 💎.');onOpen()}catch(e){mkMsg('Нет связи с сервером.')}}
-async function onCancel(id){try{var w=await db('market/'+id+'/b',{m:'PUT',b:ON.uid});if(!w.ok){await onSync();onRender();return mkMsg('Не успел: лот уже купили! Гемы начислены.')}await onCollect();mkMsg('Лот снят, Верити вернулся к тебе.');onOpen()}catch(e){mkMsg('Нет связи с сервером.')}}
+async function onCancel(id){if(ON.cn)return;ON.cn=1;var bt=document.querySelector('[data-cn="'+id+'"]');if(bt){bt.disabled=true;bt.textContent='Снимаю…'}
+ function back(u){if(!itOk(u))return;if(itOwn(u)){if(isPet(u))M.gem=(M.gem||0)+PDUP[itRar(u)];else M.bank+=120}else itAdd(u)}
+ try{await onAuth();var g=await db('market/'+id),l=g.ok?g.j:null,e=M.esc[id]||(l&&l.s==ON.uid?{u:l.u,p:l.p}:null);
+  if(!e){mkMsg('Этот лот не твой или уже снят.');return onOpen()}
+  if(l&&l.b&&l.b!==ON.uid){var d0=await db('market/'+id,{m:'DELETE'});if(d0.ok||!M.esc[id]){delete M.esc[id];M.gem=(M.gem||0)+e.p;save()}mkMsg('Не успел: лот уже купили! +'+e.p+' 💎');return onOpen()}
+  if(l&&!l.b){var w=await db('market/'+id+'/b',{m:'PUT',b:ON.uid});if(!w.ok){var g2=await db('market/'+id);var l2=g2.ok?g2.j:null;if(l2&&l2.b&&l2.b!==ON.uid){var d1=await db('market/'+id,{m:'DELETE'});if(d1.ok){delete M.esc[id];M.gem=(M.gem||0)+e.p;save()}mkMsg('Не успел: лот уже купили! +'+e.p+' 💎');return onOpen()}if(!(l2&&l2.b===ON.uid)){mkMsg('Сервер не дал снять лот ('+w.st+'). Попробуй ещё раз.');return onOpen()}}}
+  if(l){var d=await db('market/'+id,{m:'DELETE'});if(!d.ok){mkMsg('Сервер не дал снять лот ('+d.st+'). Проверь правила Firebase.');return onOpen()}}
+  delete M.esc[id];back(e.u);save();ON.mine=(ON.mine||[]).filter(function(x){return x.id!=id});tone(660,.12,'triangle',.08,880);mkMsg('Лот снят: '+(itOk(e.u)?itName(e.u):'предмет')+' вернулся к тебе.');onOpen()}
+ catch(err){mkMsg('Нет связи с сервером.');if(bt){bt.disabled=false;bt.textContent='Снять'}}finally{ON.cn=0}}
 function onBuyAsk(l){mOpen('Купить '+TY[l.u].n+'?','<div class="pkof">'+pic(l.u,1,72)+'</div><p>Продавец: <b>'+esc(l.n)+'</b> ('+esc(l.c)+')</p><p>Цена: <b>'+l.p+' 💎</b> · у тебя '+(M.gem||0)+' 💎</p>',[['Купить за '+l.p+' 💎',function(){mClose();onBuy(l)}],['Отмена',mClose]])}
 async function onBuy(l){onFix();if(M.own[l.u])return mkMsg('Этот Верити у тебя уже есть.');if((M.gem||0)<l.p)return mkMsg('Не хватает '+(l.p-(M.gem||0))+' 💎.');if(M.ond.b>=ONLIM.buy)return mkMsg('Сегодня больше покупать нельзя.');
  try{var c=await db('market/'+l.id);if(!c.ok||!c.j||c.j.b||c.j.u!==l.u||c.j.p!==l.p){mkMsg('Этот лот уже купили или сняли.');return onOpen()}
@@ -1413,6 +1421,7 @@ async function onCol2(){var ids=Object.keys(M.esc),r=await db('market',{q:qs('or
   delete M.esc[id];
   if(l&&l.b&&l.b!==ON.uid){M.gem=(M.gem||0)+e.p;got.push(itOk(e.u)?itName(e.u)+' за '+e.p+' 💎':e.p+' 💎')}
   else if(itOk(e.u)){if(itOwn(e.u)){if(isPet(e.u))M.gem=(M.gem||0)+PDUP[itRar(e.u)];else M.bank+=120}else itAdd(e.u)}}
+ for(var id3 in all){var l3=all[id3];if(!M.esc[id3]&&l3&&l3.s==ON.uid&&!l3.b&&itOk(l3.u)){M.esc[id3]={u:l3.u,p:l3.p};mine.push({id:id3,u:l3.u,p:l3.p})}}
  for(var id2 in M.esc)if(ids.indexOf(id2)<0)mine.push({id:id2,u:M.esc[id2].u,p:M.esc[id2].p});ON.mine=mine;save();if(got.length){tone(880,.12,'square',.08,1320);var t='На всемирном рынке купили: '+got.join(', ')+'.';if(cur=='market')mkMsg(t);else if(cur!='game'){if($('modal').className=='hide')mOpen('💎 Продажа!','<p>'+esc(t)+'</p>');else MQ.push(function(){mOpen('💎 Продажа!','<p>'+esc(t)+'</p>')})}}}
 async function onLoad(){var q=ON.q.trim().toUpperCase(),r=q?await db('market',{q:qs('orderBy','c')+'&'+qs('equalTo',q)}):await db('market',{q:qs('orderBy','t')+'&'+qs('limitToLast',80)});
  if(!r.ok){ON.st='Не удалось загрузить рынок.';return}var a=[];for(var id in(r.j||{})){var l=r.j[id];if(l&&!l.b&&itOk(l.u))a.push(Object.assign({id:id},l))}a.sort(function(x,y){return y.t-x.t});ON.lots=a;ON.ll=Date.now();
