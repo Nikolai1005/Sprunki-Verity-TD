@@ -2555,7 +2555,8 @@ async function busAdm(a,msg){var r;try{if(a=='busgo'){var hp=Math.max(1000,Math.
  var t0=r&&r.ok?'✔ Готово!':'Не получилось ('+(r&&r.st)+'). Проверь правила Firebase.';await busPoll();admPanel();var m3=$('adm2')||msg;if(m3)m3.textContent=t0}catch(e){msg.textContent='Нет связи с сервером.'}}
 /* --- админ-панель остаётся открытой --- */
 var ADMNOW=0;(function(){var a0=admPanel;admPanel=function(){var mc=$('mc'),bx=$('modal')&&$('modal').firstElementChild,s1=mc?mc.scrollTop:0,s2=bx?bx.scrollTop:0,was=$('modal')&&$('modal').className!='hide'&&ADMNOW;ADMNOW=1;a0.apply(this,arguments);if(was){if(mc)mc.scrollTop=s1;if(bx)bx.scrollTop=s2}}})();
-(function(){var o0=mOpen;mOpen=function(t,h,bt){if(ADMNOW&&$('modal').className!='hide'&&!/Админ/i.test(t)){if(/Админ/i.test($('mt').textContent)){MQ.push(function(){o0(t,h,bt)});return}}if(!/Админ/i.test(t))ADMNOW=0;return o0(t,h,bt)}})();
+var ADMCL=0;document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('#modal'))ADMCL=Date.now()},true);
+(function(){var o0=mOpen;mOpen=function(t,h,bt){if(ADMNOW&&$('modal').className!='hide'&&!/Админ/i.test(t)&&Date.now()-ADMCL>1500){if(/Админ/i.test($('mt').textContent)){MQ.push(function(){o0(t,h,bt)});return}}if(!/Админ/i.test(t))ADMNOW=0;return o0(t,h,bt)}})();
 (function(){var c0=mClose;mClose=function(){ADMNOW=0;return c0()}})();
 /* ---------- админ-пульт ---------- */
 function hlAdmin(){var h='<h3 class="adh">💚🎃 Лимитка Hackoluinity</h3><p class="mu">Освободи слот, и Hackoluinity вернётся в сток. У игрока он пропадёт, когда тот откроет игру.</p><div class="row" id="admhl">';['a','b'].forEach(function(s,i){var o=HL.st&&HL.st[s];h+='<button data-a="hlfree" data-s="'+s+'"'+(o?'':' disabled')+'>Слот '+(i+1)+': '+(o?esc(o.n||'?')+' — забрать':HL.st?'свободен':'…')+'</button>'});return h+'<button data-a="hlref">🔄 Обновить</button></div>'}
