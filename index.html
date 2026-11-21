@@ -657,7 +657,7 @@ body.ap-arena #modal {z-index:500}
 #account-status:empty {display:none}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.70</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.71</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -1157,10 +1157,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.70',VOL=.8,MQ=[],CI=0;
+var VER='1.71',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.71',t:'Плавное движение на Арене',a:['🎪 Позиции игроков приходят по отдельному потоку. Движение между полученными позициями сглаживается.']},
 {v:'1.70',t:'Лимитки и удары на Арене',a:['🦃 Админ открывает два лимитированных стока на рынке. Туркинити стоит 20 жетонов, Hacke-Turkity — 28.','🏏 Попади дубинкой по боссу вблизи. Удар виден и сразу снимает HP.','📦 Подойди к админ-ящику и ударь один раз. Все на арене увидят, кто забрал дроп.']},
 {v:'1.69',t:'Рынок Арены абьюза',a:['🎟 За трофеи Вечеринки Админити начисляются админ-жетоны. Их можно обменять на Верити, Turkey-ящик, рамку и Элемент админа.','🎪 Лавка работает на арене. После вечеринки участники могут потратить жетоны в лобби.']},
 {v:'1.68',t:'Автообновление на Android',a:['📲 Приложение при открытии проверяет, появилась ли новая версия игры на сайте, и загружает её автоматически.','💾 Последняя загруженная версия доступна без интернета. Обновления игры сохраняют твой прогресс.']},
@@ -3259,6 +3260,7 @@ function mcOpen(){if((M.gem||0)<MCPRICE)return shMsg('Не хватает гем
 /* ===== v1.56: Арена абьюза ===== */
 var AW=2000,AH=1400,APT={x:1000,y:1230,r:95},ADK={c:{e:'🍬',n:'конфета',p:1,col:'#ff4d8d'},g:{e:'💎',n:'гем',p:3,col:'#33c3ff'},b:{e:'🎁',n:'подарок',p:5,col:'#ffd21f'}};
 var AR_SWING_TIME=.32, AR_CLUB_REACH=70;
+var AR_MOVE_SEND=100, AR_PLAYER_POLL=170, AR_PLAYER_DELAY=235;
 var AR={cfg:null,me:null,oth:{},drops:{},boss:null,bd:{},sc:{},cut:null,hseen:{},pend:{},lastPut:0,raf:0,poll:0,keys:{},joy:null,bdm:0,bdSent:0,pts:0,toasts:[],wv:{},fx:[],lt:0};
 function arOpenNow(){
   var config=AR.cfg;
@@ -3300,19 +3302,21 @@ async function arEnter(){
   AR.entry=(AR.entry||0)+1;
   AR.party=apLive();
   AR.me={x:900+Math.random()*200,y:1050+Math.random()*80,carry:[],stun:0,sw:0,cd:0,face:1,mv:0};
-  AR.oth={};AR.drops={};AR.toasts=[];AR.fx=[];AR.pend={};AR.keys={};AR.joy=null;AR.lastPut=0;
+  AR.oth=Object.create(null);AR.drops={};AR.toasts=[];AR.fx=[];AR.pend={};AR.keys={};AR.joy=null;AR.lastPut=0;
+  AR.sentMoving=false;AR.forcePut=false;AR.lastPlayerSnapshot=-Infinity;AR.streamRetry=0;
   AR.beatWrites=new Set();AR.beatScore=null;AR.beatCue=null;
   AR.dropClaims=new Set();AR.dropsSynced=false;
   arUseBoss(null,{});
   scr('arn');arSize();AR.lt=0;
   if(!AR.raf)AR.raf=requestAnimationFrame(arLoop);
-  arPut(1);arPoll();
+  arPut(1);arPollPlayers();arPoll();
   arToast(AR.party?'🎉 Подойди к админ-ящику и ударь дубинкой, чтобы открыть его.':'Добро пожаловать на арену! Собирай дроп и неси в точку СБОРА 📦');
 }
 function arExit(message){
   if(cur!=='arn')return;
   arSendDamage();
   var uid=ON.uid, entry=++AR.entry;
+  arClosePlayers();
   if(uid&&onOk())Promise.resolve(AR.putTask).then(function(){
     if(cur!=='arn'&&AR.entry===entry)return db('arena/p/'+uid,{m:'DELETE'});
   }).catch(function(){});
@@ -3331,18 +3335,121 @@ function arSize(){
 addEventListener('resize',function(){if(cur==='arn')arSize()});
 function arPut(force){
   var player=AR.me, now=Date.now();
-  if(cur!=='arn'||!player||!ON.uid||!onOk()||AR.putTask||!force&&now-AR.lastPut<(player.mv?260:1500))return;
+  if(cur!=='arn'||!player||!ON.uid||!onOk())return;
+  if(force)AR.forcePut=true;
+  if(AR.putTask||!AR.forcePut&&now-AR.lastPut<(player.mv||AR.sentMoving?AR_MOVE_SEND:1500))return;
+  AR.forcePut=false;
   AR.lastPut=now;
   var data={x:Math.round(player.x),y:Math.round(player.y),a:M.fb.fav||'verity',n:M.fb.nick,
     cs:typeof csStr==='function'?csStr():'',c:player.carry.length,s:player.sw>0?1:0,st:player.stun>0?1:0,f:player.face,t:{'.sv':'timestamp'}};
   if(AR.party)data.pa=AP_EVENT;
   if(apWearCrown())data.cr=1;
-  var uid=ON.uid;
+  var uid=ON.uid, moving=player.mv, entry=AR.entry;
   AR.putTask=db('arena/p/'+uid,{m:'PUT',b:data}).then(function(result){
+    if(result.ok&&entry===AR.entry)AR.sentMoving=moving;
     if(result.ok&&data.pa===AP_EVENT&&ON.uid===uid&&apLive(result.j?.t??now))apEarnTrophy('apguest');
   }).catch(function(){}).finally(function(){AR.putTask=null});
   return AR.putTask;
 }
+function arReadPlayer(uid,row,received,now){
+  if(uid===ON.uid)return;
+  if(!row||!Number.isFinite(row.x)||!Number.isFinite(row.y)||!Number.isFinite(row.t)||
+    (AR.party?!apIsAttendee(row,now):row.pa||now-row.t>=12000)){
+    delete AR.oth[uid];return;
+  }
+  var player=AR.oth[uid];
+  if(player&&row.t<player.at)return;
+  if(!player)player=AR.oth[uid]={x:row.x,y:row.y,sw:0,frames:[]};
+  var frames=player.frames, last=frames[frames.length-1];
+  if(!last||row.t!==player.at||row.x!==last.x||row.y!==last.y){
+    var at=received;
+    if(last){
+      if(row.t>player.at)at=Math.min(received,Math.max(received-70,last.at+row.t-player.at));
+      at=Math.max(last.at+1,at);
+      if(at-last.at>420)frames.push({x:last.x,y:last.y,at:at-AR_MOVE_SEND});
+    }
+    frames.push({x:row.x,y:row.y,at:at});
+    if(frames.length>9)frames.splice(0,frames.length-9);
+  }
+  if(row.s&&now-row.t<800&&(!player.row?.s||row.t-player.lastSwing>420)){
+    player.sw=AR_SWING_TIME;player.lastSwing=row.t;
+  }
+  Object.assign(player,{row:row,at:row.t,n:row.n,a:row.a,cs:row.cs,c:row.c,st:row.st,f:row.f,cr:!!row.cr});
+}
+function arReadPlayers(rows){
+  rows=rows||{};
+  var received=performance.now(), now=Date.now();
+  Object.keys(AR.oth).forEach(function(uid){if(!rows[uid])delete AR.oth[uid]});
+  Object.keys(rows).forEach(function(uid){arReadPlayer(uid,rows[uid],received,now)});
+  AR.lastPlayerSnapshot=received;
+}
+function arMovePeers(t,now,dt){
+  var renderAt=t-AR_PLAYER_DELAY, blend=1-Math.exp(-dt*32);
+  for(var uid in AR.oth){
+    var player=AR.oth[uid], frames=player.frames;
+    if(now-player.at>=12000){delete AR.oth[uid];continue}
+    while(frames.length>2&&frames[1].at<=renderAt)frames.shift();
+    var a=frames[0], b=frames[1]||a, span=b.at-a.at;
+    var dx=b.x-a.x, dy=b.y-a.y, fraction=span>0?Math.max(0,Math.min(1,(renderAt-a.at)/span)):0;
+    var x=Math.max(30,Math.min(AW-30,a.x+dx*fraction)), y=Math.max(30,Math.min(AH-30,a.y+dy*fraction));
+    player.x+=(x-player.x)*blend;player.y+=(y-player.y)*blend;
+    player.sw=Math.max(0,player.sw-dt);
+  }
+}
+function arClosePlayers(){
+  AR.playerStream?.close();
+  AR.playerStream=null;AR.playersLive=false;AR.streamRetry=performance.now()+5000;
+}
+function arConnectPlayers(){
+  if(!window.EventSource||AR.playerStream||AR.streamConnecting||performance.now()<AR.streamRetry)return;
+  var entry=AR.entry;
+  AR.streamConnecting=true;
+  onAuth().then(function(token){
+    if(cur!=='arn'||entry!==AR.entry)return;
+    var url=FBC.databaseURL.replace(/\/$/,'')+'/arena/p.json?auth='+encodeURIComponent(token);
+    var stream=AR.playerStream=new EventSource(url);
+    function active(){return cur==='arn'&&entry===AR.entry&&AR.playerStream===stream}
+    function update(path,data){
+      var parts=path.split('/').filter(Boolean), uid=parts[0], field=parts[1];
+      AR.playerStreamAt=performance.now();
+      if(!uid){arReadPlayers(data);AR.playersLive=true;return}
+      if(parts.length>2)return;
+      var row=field?{...AR.oth[uid]?.row,[field]:data}:data;
+      arReadPlayer(uid,row,performance.now(),Date.now());
+    }
+    stream.addEventListener('put',function(event){
+      if(!active())return;
+      try{var message=JSON.parse(event.data);update(message.path,message.data)}catch(e){}
+    });
+    stream.addEventListener('patch',function(event){
+      if(!active())return;
+      try{
+        var message=JSON.parse(event.data), path=message.path.replace(/\/$/,'');
+        Object.entries(message.data||{}).forEach(function(pair){update(path+'/'+pair[0],pair[1])});
+      }catch(e){}
+    });
+    stream.onerror=function(){if(active())arClosePlayers()};
+    stream.addEventListener('cancel',stream.onerror);
+    stream.addEventListener('auth_revoked',function(){
+      if(!active())return;
+      if(ON.tok===token)ON.exp=0;
+      arClosePlayers();
+    });
+  }).catch(function(){if(entry===AR.entry)arClosePlayers()}).finally(function(){AR.streamConnecting=false});
+}
+async function arPollPlayers(){
+  if(cur!=='arn'||!onOk())return;
+  if(AR.playersLive&&performance.now()-AR.playerStreamAt>4300)arClosePlayers();
+  arConnectPlayers();
+  if(AR.playersLive||AR.playerPolling)return;
+  var entry=AR.entry;
+  AR.playerPolling=true;
+  try{
+    var result=await db('arena/p');
+    if(result.ok&&cur==='arn'&&entry===AR.entry&&!AR.playersLive)arReadPlayers(result.j);
+  }catch(e){}finally{AR.playerPolling=false}
+}
+setInterval(arPollPlayers,AR_PLAYER_POLL);
 async function arPoll(){
   if(cur!=='arn'||!onOk()||AR.polling)return;
   var entry=AR.entry;
@@ -3358,16 +3465,8 @@ async function arPoll(){
     if(AR.party){apArenaFrame(now);apBeatSync(now)}
     else arUseBoss(arena.boss?.on?arena.boss:null,AR.bd);
 
-    var players=arena.p||{}, others={};
-    Object.keys(players).forEach(function(uid){
-      var p=players[uid];
-      if(uid===ON.uid||!p||!Number.isFinite(p.x)||!Number.isFinite(p.y))return;
-      if(AR.party?!apIsAttendee(p,now):p.pa||now-p.t>12000)return;
-      var old=AR.oth[uid];
-      var sw=p.s&&p.t!==old?.at&&now-p.t<800?AR_SWING_TIME:old?.sw||0;
-      others[uid]={x:old?old.x:p.x,y:old?old.y:p.y,tx:p.x,ty:p.y,n:p.n,a:p.a,cs:p.cs,c:p.c,
-        sw:sw,at:p.t,st:p.st,f:p.f,cr:!!p.cr};
-    });
+    var players=arena.p||{};
+    if(!AR.playersLive&&performance.now()-AR.lastPlayerSnapshot>410)arReadPlayers(players);
     var drops={};
     Object.keys(arena.drops||{}).forEach(function(id){
       var d=arena.drops[id];
@@ -3381,7 +3480,6 @@ async function arPoll(){
       }else drops[id]=d;
     });
     AR.dropsSynced=true;
-    AR.oth=others;
     AR.drops=drops;
     if(AR.party)apReadStocks(arena.drops||{});
     AR.sc=AR.party?{}:arena.sc||{};
@@ -3488,10 +3586,10 @@ function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){retu
  var B=arBossState(), blocked=apArenaBlocked(), beat=apBeatState(now);
  // управление
  var vx=0,vy=0;if(AR.keys.a||AR.keys.arrowleft)vx--;if(AR.keys.d||AR.keys.arrowright)vx++;if(AR.keys.w||AR.keys.arrowup)vy--;if(AR.keys.s||AR.keys.arrowdown)vy++;if(AR.joy&&AR.joy.on){vx=AR.joy.dx;vy=AR.joy.dy}
- var L=Math.hypot(vx,vy);if(L>1){vx/=L;vy/=L}if(m.stun>0){m.stun-=dt;vx=vy=0}if(blocked)vx=vy=0;
+ var L=Math.hypot(vx,vy), oldX=m.x, oldY=m.y;if(L>1){vx/=L;vy/=L}if(m.stun>0){m.stun-=dt;vx=vy=0}if(blocked)vx=vy=0;
  var sp=260*(1-.1*m.carry.length);
  if(beat?.phase==='boost')sp*=1+AP_BEAT.speed/100;
- m.x=Math.max(30,Math.min(AW-30,m.x+vx*sp*dt));m.y=Math.max(30,Math.min(AH-30,m.y+vy*sp*dt));m.mv=L>.05;if(Math.abs(vx)>.1)m.face=vx>0?1:-1;
+ m.x=Math.max(30,Math.min(AW-30,m.x+vx*sp*dt));m.y=Math.max(30,Math.min(AH-30,m.y+vy*sp*dt));if(Math.abs(vx)>.1)m.face=vx>0?1:-1;
  if(m.sw>0)m.sw-=dt;if(m.cd>0)m.cd-=dt;
  // босс: столкновения и атаки
  if(B&&B.alive&&!blocked){var dx=m.x-B.x,dy=m.y-B.y,dd=Math.hypot(dx,dy);if(dd<B.r+22){m.x=B.x+dx/(dd||1)*(B.r+22);m.y=B.y+dy/(dd||1)*(B.r+22);if(B.dash)arStun(1.5,'Титан сбил тебя с ног! 💥')}
@@ -3500,7 +3598,8 @@ function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){retu
  // Подбор обычного дропа на арене.
  if(!AR.party&&!blocked)for(var id in AR.drops){var d=AR.drops[id];if(Math.hypot(d.x-m.x,d.y-m.y)<38)arClaim(id)}
  if(m.carry.length&&Math.hypot(APT.x-m.x,APT.y-m.y)<APT.r)arDeliver();
- for(var u in AR.oth){var o=AR.oth[u];o.x+=(o.tx-o.x)*Math.min(1,dt*7);o.y+=(o.ty-o.y)*Math.min(1,dt*7);o.sw=Math.max(0,o.sw-dt)}
+ m.mv=Math.abs(m.x-oldX)+Math.abs(m.y-oldY)>.03;
+ arMovePeers(t,now,dt);
  arPut(0);arDraw(cv2,t/1000,B,beat,now);AR.toasts.forEach(function(q){q.t-=dt});AR.toasts=AR.toasts.filter(function(q){return q.t>0});AR.fx.forEach(function(q){q.t+=dt});AR.fx=AR.fx.filter(function(q){return q.t<1});
  apBeatHud(beat,now,blocked);
  AR.raf=requestAnimationFrame(arLoop)}
@@ -3602,7 +3701,9 @@ function arHud(B,t){var h=$('arhud');if(!h)return;var top=Object.keys(AR.sc).map
  if(B){s+='<div class="arbb"><b>'+(B.alive?'👑 '+esc(B.I.n):'💥 '+esc(B.I.n)+' повержен!')+'</b><i><em style="width:'+(B.left/B.hp*100)+'%;background:'+B.I.col+'"></em></i></div>'}
  if(top.length)s+='<div class="artop">🏆 '+top.map(function(q,i){return(i+1)+'. '+esc(q[0]||'?')+' '+q[1]}).join(' · ')+'</div>';
  s+=AR.toasts.map(function(q){return'<div class="artoast" style="opacity:'+Math.min(1,q.t)+'">'+esc(q.s)+'</div>'}).join('');
- if(m.stun>0)s+='<div class="arstun">💫 Оглушён!</div>';h.innerHTML=s;var sb=$('arsw');if(sb)sb.className=m.cd>0||m.stun>0?'cd':''}
+ if(m.stun>0)s+='<div class="arstun">💫 Оглушён!</div>';
+ if(AR.hudHtml!==s){h.innerHTML=s;AR.hudHtml=s}
+ $('arsw').classList.toggle('cd',m.cd>0||m.stun>0)}
 /* управление */
 (function(){addEventListener('keydown',function(e){if(cur!='arn'||apArenaBlocked())return;var k=e.key.toLowerCase();AR.keys[k]=1;if(k==' '){arSwing();e.preventDefault()}});addEventListener('keyup',function(e){AR.keys[e.key.toLowerCase()]=0});
  function jz(){return $('arjoy')}function st(x,y){var z=jz().getBoundingClientRect();AR.joy={on:1,ox:z.left+z.width/2,oy:z.top+z.height/2,dx:0,dy:0};mv(x,y)}function mv(x,y){if(!AR.joy)return;var dx=x-AR.joy.ox,dy=y-AR.joy.oy,L=Math.hypot(dx,dy),R=50;if(L>R){dx=dx/L*R;dy=dy/L*R}AR.joy.dx=dx/R;AR.joy.dy=dy/R;var k=$('arknob');if(k)k.style.transform='translate('+dx+'px,'+dy+'px)'}function en(){AR.joy=null;var k=$('arknob');if(k)k.style.transform=''}
@@ -6153,7 +6254,7 @@ function apRefreshArena(){
   }
   if(cur==='arn'&&!AR.party&&live){
     AR.party=true;
-    AR.oth={};AR.drops={};AR.me.carry=[];
+    AR.oth=Object.create(null);AR.drops={};AR.me.carry=[];
     AR.dropClaims.clear();AR.dropsSynced=false;
     arUseBoss(null,AR.bd);
     arPut(1);apNav();lmTick();
