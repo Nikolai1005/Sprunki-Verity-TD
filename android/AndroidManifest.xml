@@ -3,6 +3,7 @@
     package="io.github.nikolai1005.sprunkiveritytd">
     <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application

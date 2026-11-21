@@ -80,7 +80,7 @@ def main():
             "-A", staging / "assets", "--version-name", version, "--version-code", code,
             resources, "-o", unsigned)
         run(*javac, "-source", "8", "-target", "8", "-Xlint:-options", "-classpath", platform,
-            "-d", classes, ANDROID / "GameActivity.java")
+            "-d", classes, *sorted(ANDROID.glob("*.java")))
         run(tools / "d8", "--release", "--min-api", minimum, "--lib", platform,
             "--output", staging, *sorted(classes.rglob("*.class")))
         with ZipFile(unsigned, "a", compression=ZIP_DEFLATED) as archive:
