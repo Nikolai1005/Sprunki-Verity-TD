@@ -539,7 +539,7 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 }
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.62</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.63</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -731,7 +731,7 @@ function upd(dt){
   else if(u.k=='gumity'||u.k=='obesity'){exAtk(u,tg,d,p,P2)}
   else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='byehw'){byeAtk(u,tg,d,p,P2)}   else if(u.k=='freezity'||u.k=='bombity'||u.k=='magnetity'){nvAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
   else if(u.k=='glitch'||u.k=='fwall'||u.k=='virusv'||u.k=='hacker'){hkAtk(u,tg,d,p,P2)}
-  else if(u.k=='turkeyity'||u.k=='cranberrity'||u.k=='pieity'||u.k=='harvestity')thAttack(u,tg,d,p,P2);
+  else if(u.k=='pumpkity'||u.k=='turkeyity'||u.k=='cranberrity'||u.k=='pieity'||u.k=='harvestity')thAttack(u,tg,d,p,P2);
   else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor();hit(tg,shot);hit(tg,shot);hit(tg,shot)}
   else hit(tg,d)});
  G.cu=null;G.en.forEach(function(e){if(G.key=='harvest'&&e.dead)return;e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
@@ -753,6 +753,7 @@ function draw(){if(G.key=='harvest')thDrawBoard();else{for(var i=0;i<16;i++)for(
     x.fillStyle='rgba(0,0,0,.25)';x.fillRect(u.cx*C+4,u.cy*C+34,C-8,4);x.fillStyle='#6b4a2b';x.fillRect(u.cx*C+4,u.cy*C+22,C-8,14);x.fillStyle='#4aa83a';x.fillRect(u.cx*C+4,u.cy*C+20,C-8,6);
   }
   var im=(u.k=='gumity'&&!p2&&u.gf&&IM['gumity_f'+u.gf])?IM['gumity_f'+u.gf]:IM[u.k+(p2?2:1)];if(G.key=='harvest'&&TH_PORTRAITS[u.k+(p2?2:1)]){thDrawTowerPortrait(u,p2)}else if(u.k=='monster'&&SPRI.complete&&SPRI.naturalWidth){var fh=70,fw=fh*SFW/SFH,bb=Math.sin(Date.now()/420+u.cx*1.7)*1.2;x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(SPRI,(p2?7:6)*SFW,0,SFW,SFH,u.x-fw/2,u.cy*C+25-fh+bb,fw,fh);x.globalAlpha=1}else if(im&&im.complete&&im.naturalWidth){x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(im,u.x-18,u.y-26,36,36);x.globalAlpha=1;}else{x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26)}
+  if(u.k=='pumpkinity'){x.fillStyle='#2b7a2b';x.fillRect(u.x-2,u.y-24,4,6)}
   skinD(u,p2)});
  G.shots.forEach(function(s){x.strokeStyle=s.col;x.lineWidth=3;x.beginPath();x.moveTo(s.a,s.b-4);x.lineTo(s.c,s.e);x.stroke()});
  G.en.forEach(function(e){var p=pos(e.d),T=ET[e.ty],r=e.boss?26:T.r;if(G.key=='hw'&&hwDrawE(e,p))return;if(G.key=='harvest'){thDrawEnemy(e,p);return}x.globalAlpha=inv(e)?.3:1;x.fillStyle=e.po?'#6a1fc2':e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
@@ -994,14 +995,15 @@ $('back').onclick=function(){if(prev=='game'&&G){scr('game');shop()}else{menu();
 [].forEach.call(document.querySelectorAll('.bk'),function(b){b.onclick=$('back').onclick});
 $('c1').onclick=function(){opn(1)};$('c2').onclick=function(){opn(2)};
 $('ex').onclick=function(){M.lastExport=Date.now();save();var c=btoa(JSON.stringify(M));try{cpy(c);lm('Код скопирован. Сохрани его в заметках.')}catch(e){prompt('Скопируй код сохранения',c)}};
-$('im').onclick=function(){var c=prompt('Вставь код сохранения');if(!c)return;try{var o=JSON.parse(atob(c.trim()));if(!o||!o.own)throw 0;M=o;fix();thUpgradePass();save();lobby();lm('Сохранение загружено.')}catch(e){lm('Код не подошёл.')}};
+$('im').onclick=function(){var c=prompt('Вставь код сохранения');if(!c)return;try{var o=JSON.parse(atob(c.trim()));if(!o||!o.own)throw 0;M=o;fix();thUpgradePass();thUpgradeCrate();save();lobby();lm('Сохранение загружено.')}catch(e){lm('Код не подошёл.')}};
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.62',VOL=.8,MQ=[],CI=0;
+var VER='1.63',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.63',t:'Pumpkity и Pumpkinity',a:['🎃 Pumpkinity вернул свой хэллоуинский облик в обеих фазах','🍂 В Turkey-ящике теперь выпадает Pumpkity. Он стреляет семечками и блокирует лечение цели','🎁 Если из Turkey-ящика уже выпал Pumpkinity, Pumpkity появится в коллекции при входе']},
 {v:'1.62',t:'Музыка Дня благодарения',a:['🎵 На вкладке «День благодарения» играет праздничная мелодия. Громкость и включение музыки регулируются в настройках']},
 {v:'1.61',t:'Верити в форме шара',a:['🍂 Праздничные Верити стали круглыми, как остальные персонажи. Перерисовали лица и сохранили праздничные украшения в обеих фазах']},
 {v:'1.60',t:'Набег на застолье',a:['🍂 Новый облик Дня благодарения: иллюстрации, детальные Верити и анимация открытия Turkey-ящика','🎟 Пропуск урожая на 25 этапов, новые квесты и получение доступных наград одной кнопкой','🍽 15 гостей за деревянным столом: выбери гостя и подай ему блюдо с анимацией','🦃 Полевые рецепты, Большой тост, разные отряды и Индюк-разбойник со щитом и подкреплением']},
@@ -3495,6 +3497,8 @@ document.addEventListener('visibilitychange',lmTick);
 <script>
 /* ===== День благодарения ===== */
 var TH_UNITS = {
+  pumpkity:{n:'Pumpkity',rar:'Event',cost:170,dmg:16,rate:.74,rng:106,col:'#e9aa4f',
+    d:'День благодарения. Стреляет семечками. Каждый третий выстрел блокирует лечение цели на 1,5 с. Во второй фазе каждый второй выстрел блокирует лечение на 2,5 с.'},
   turkeyity:{n:'Turkeyity',rar:'Rare',cost:150,dmg:15,rate:.68,rng:105,col:'#df8740',light:'#ffe1a1',
     d:'Бросает перья. Каждый 3-й выстрел цепляет второго врага на 55% урона, во второй фазе — каждый 2-й.'},
   cranberrity:{n:'Cranberrity',rar:'Epic',cost:205,dmg:17,rate:.9,rng:108,col:'#be3351',light:'#ff9a90',
@@ -3508,7 +3512,7 @@ var TH_UNITS = {
 };
 /* День благодарения: пропуск, магазин и застолье */
 var TH_CRATE_COST = 10, TH_MEAL_COST = 5, TH_SEATS = 15, TH_FEAST_XP = 10;
-var TH_CRATE = [['pumpkinity',40],['turkeyity',30],['cranberrity',20],['pieity',10]];
+var TH_CRATE = [['pumpkity',40],['turkeyity',30],['cranberrity',20],['pieity',10]];
 var TH_QUESTS = [
   {id:'waves5',key:'waves',goal:5,xp:15,label:'Пройди 5 праздничных волн'},
   {id:'waves15',key:'waves',goal:15,xp:20,label:'Пройди 15 праздничных волн'},
@@ -3557,6 +3561,14 @@ function thUpgradePass(){
   });
   state.pass=migrated;
   state.passEdition=2;
+  save();
+}
+function thUpgradeCrate(){
+  var crate=M.th?.crate;
+  if(!crate?.pumpkinity)return;
+  crate.pumpkity=true;
+  delete crate.pumpkinity;
+  M.own.pumpkity=1;
   save();
 }
 function thState(){
@@ -4102,6 +4114,10 @@ function thSplash(target,point,radius,limit){
 }
 function thAttack(u,target,damage,point,phase){
   hit(target,damage);
+  if(u.k==='pumpkity'){
+    if(!target.dead&&u.n%(phase?2:3)===0)target.nul=Math.max(target.nul||0,phase?2.5:1.5);
+    return;
+  }
   if(u.k==='cranberrity'){thSlow(target,phase?.3:.2);return}
   var turkey=u.k==='turkeyity', pie=u.k==='pieity';
   if(!pie&&u.n%(turkey?(phase?2:3):4)!==0)return;
@@ -4181,7 +4197,7 @@ function thSoftBody(c,cx,cy,rx,ry,light,base,dark){
 var TH_COLORS = {
   verity:{normal:['#fff785','#ffdb2c','#c28521'],phase:['#ffe875','#f6ab29','#bd5c26']},
   lovity:{normal:['#ffb9e3','#ee71b5','#be468c'],phase:['#ffa0be','#ec5390','#b7336b']},
-  pumpkinity:{normal:['#ffce78','#f88729','#b24b21'],phase:['#ffab56','#e95d25','#a43025']},
+  pumpkity:{normal:['#fff3b6','#e7b350','#a87932'],phase:['#ffe29a','#db8c35','#974729']},
   turkeyity:{normal:['#ffdfa9','#d69257','#a15b37'],phase:['#f5bd79','#c17042','#863d32']},
   cranberrity:{normal:['#fda3ae','#d74e69','#a22548'],phase:['#ff839a','#c83153','#861938']},
   pieity:{normal:['#ffeab4','#efb672','#b77840'],phase:['#ffd18c','#e19550','#a65931']},
@@ -4270,10 +4286,11 @@ function thHorn(c){
   thBerry(c,72,50,.92);thBerry(c,61,51,.76);thBerry(c,67,56,.65);
 }
 function thHeaddress(c,key){
-  if(key==='pumpkinity'){
-    thShape(c,function(p){p.moveTo(82,46);p.lineTo(86,24);p.quadraticCurveTo(91,21,98,27);p.lineTo(95,45)},'#778049','#475237',3);
-    thLeaf(c,108,36,24,1.28,'#a9a259');
-    thShape(c,function(p){p.moveTo(89,40);p.bezierCurveTo(74,23,66,28,66,35);p.quadraticCurveTo(68,40,72,35)},null,'#687848',2.4);
+  if(key==='pumpkity'){
+    thShape(c,function(p){p.moveTo(79,45);p.quadraticCurveTo(84,27,96,22);p.lineTo(102,28);p.quadraticCurveTo(96,34,94,46)},'#8b704a','#554b32',3.5);
+    thLeaf(c,65,42,29,-1.15,'#6b8b51');
+    thLeaf(c,111,34,38,1.17,'#9bb768');
+    thShape(c,function(p){p.moveTo(88,39);p.bezierCurveTo(67,42,62,63,48,56);p.quadraticCurveTo(41,52,47,48)},null,'#5d7742',3);
   }else if(key==='cranberrity'){
     [-1,0,1].forEach(function(i){thLeaf(c,91+i*23,38+Math.abs(i)*6,28,i*.9,'#8eae70')});
     [[66,41,1.05],[82,32,1.15],[99,37,1.1],[113,44,.9],[88,49,.83]].forEach(function(berry){thBerry(c,berry[0],berry[1],berry[2])});
@@ -4313,12 +4330,13 @@ function thUnitArt(key,phase){
   if(key==='turkeyity')thFeathers(c,90,108,1.06);
   thSoftBody(c,90,100,65,65,colors[0],colors[1],colors[2]);
   thShape(c,function(p){p.arc(90,100,65,0,Math.PI*2)},null,'#291715',5);
-  if(key==='pumpkinity'){
+  if(key==='pumpkity'){
     [-1,1].forEach(function(side){
       thShape(c,function(p){
         p.moveTo(90+side*21,42);
         p.bezierCurveTo(90+side*55,62,90+side*55,139,90+side*19,156);
-      },null,phase?'#a83228':'#c7602b',3.6);
+      },null,phase?'#9d592a':'#b78338',3.6);
+      thEllipse(c,90+side*43,104,6,2.6,'#fff3bf',side*.45);
     });
   }
   thShape(c,function(p){p.arc(90,100,58,3.85,4.28)},null,'#fff4c07d',3.5);
@@ -4857,6 +4875,7 @@ function thExpire(){
 }
 thInitArt();
 thUpgradePass();
+thUpgradeCrate();
 if(thOn()){
   document.documentElement.classList.add('thanksgiving');
   if(!thState().welcome)$('th-welcome').showModal();
