@@ -588,6 +588,21 @@ body.ap-arena #modal {z-index:500}
 #ap-scene-sub:empty {visibility:hidden}
 #ap-scene-skip {position:absolute;top:calc(9px + env(safe-area-inset-top,0px));right:10px;margin:0;font-size:13px;background:#321d35;color:#ffe8bc;border-color:#9c6780}
 #ap-party-label {font-weight:900;color:#ffe6b8;background:#452344d9;border:1px solid #b96487;border-radius:7px;padding:4px 7px;align-self:flex-start}
+#ap-beat-hud {
+  position:absolute;left:50%;bottom:calc(178px + env(safe-area-inset-bottom,0px));translate:-50% 0;
+  width:min(315px,calc(100% - 24px));box-sizing:border-box;padding:9px 12px;border:1px solid #9f739e;
+  border-radius:12px;background:#1d132cf2;color:#fff5e7;text-align:center;pointer-events:none;
+}
+#ap-beat-hud[data-phase="strike"] {border-color:#8debd5;box-shadow:0 0 20px #57e6cb35}
+#ap-beat-hud[data-phase="boost"] {border-color:#ffd390;background:#352338f5}
+.ap-beat-title {display:block;font-size:14px;color:#ffdfae}
+#ap-beat-guide {display:block;font-size:12px;line-height:1.35;margin-top:3px}
+.ap-beat-pads {display:flex;justify-content:center;gap:6px;margin-top:7px}
+.ap-beat-pads b {color:var(--pad);background:#190f23;padding:3px 7px;border:1px solid var(--pad);border-radius:6px;font-size:11px}
+.ap-beat-pads b.on {background:var(--pad);color:#1e1329}
+@media(max-height:430px) {
+  #ap-beat-hud {bottom:calc(12px + env(safe-area-inset-bottom,0px));width:min(236px,calc(100% - 174px))}
+}
 @media(max-width:420px) {
   #ap-ar-tools {top:calc(144px + env(safe-area-inset-top,0px))}
   #ap-ar-tools button {font-size:11px}
@@ -595,7 +610,7 @@ body.ap-arena #modal {z-index:500}
 }
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.64</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.65</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p"><button type="button" id="ap-menu" class="hide ap-launch"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -645,6 +660,11 @@ body.ap-arena #modal {z-index:500}
 <section id="market" class="hide p mkp"><div class="mkhero"><div class="mkh1"><span class="mkgem">💎</span><div><small>Твои гемы</small><b id="mkg">0</b></div></div><button id="mkhelp" class="mkq">❓ Как это работает</button></div><div class="mkstat"><span>🤖 Продаж ботам: <b id="mks"></b>/3</span><span>⏰ Новые цены через <b id="mkt"></b></span></div><div class="mktabs"><button data-m="sell"><i>🤖</i>Боты</button><button data-m="buy"><i>🏪</i>Лавка</button><button data-m="on"><i>🌐</i>Всемирный</button></div><div id="mkm" role="status"></div><div id="mkbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="friends" class="hide p"><div class="frhero"><div class="frtt"><span>👥</span><b>Друзья</b></div><div id="frme"></div></div><div id="frtabw" class="frtabs"><button data-f="list"><i>👥</i>Друзья <em id="frtn"></em></button><button data-f="in"><i>📬</i>Входящие<em id="frtin" class="bdgi"></em></button><button data-f="add"><i>➕</i>Добавить</button></div><div id="frm" role="status"></div><div id="frbody"></div><div class="row"><button class="bk">Назад</button></div></section><div id="ftoast" role="status"></div><section id="inf" class="hide p"><div class="ifhero"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="ifm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0606"/><stop offset="1" stop-color="#0c0101"/></linearGradient><linearGradient id="ifl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".35" stop-color="#ff8a1a"/><stop offset="1" stop-color="#c0140a"/></linearGradient></defs><path d="M-10 200 L60 150 L110 170 L150 140 L190 200Z" fill="#1a0404" opacity=".8"/><path d="M230 200 L290 155 L340 175 L410 140 L410 200Z" fill="#1a0404" opacity=".8"/><path d="M70 200 L170 92 L185 98 L200 88 L215 98 L230 92 L330 200Z" fill="url(#ifm)"/><path d="M186 96 Q180 130 168 160 Q160 182 150 200 L166 200 Q178 170 190 140 Q196 118 200 96Z M208 96 Q214 126 226 150 Q236 172 248 200 L236 200 Q222 176 212 150 Q205 124 203 96Z" fill="url(#ifl)"><animate attributeName="opacity" values=".85;1;.85" dur="2s" repeatCount="indefinite"/></path><ellipse cx="200" cy="90" rx="22" ry="6" fill="#ffcf3a"><animate attributeName="rx" values="20;25;20" dur="1.6s" repeatCount="indefinite"/></ellipse><g fill="#5a3030" opacity=".55"><circle cx="196" cy="70" r="12"><animate attributeName="cy" values="74;20" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="5s" repeatCount="indefinite"/></circle><circle cx="206" cy="60" r="16"><animate attributeName="cy" values="70;10" dur="6s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="6s" begin="1.5s" repeatCount="indefinite"/></circle></g></svg><i class="ifemb" style="left:12%;--dx:14px;animation-duration:3.4s;animation-delay:0.0s"></i><i class="ifemb" style="left:24%;--dx:-10px;animation-duration:4.1s;animation-delay:1.2s"></i><i class="ifemb" style="left:38%;--dx:8px;animation-duration:3.1s;animation-delay:0.6s"></i><i class="ifemb" style="left:52%;--dx:-16px;animation-duration:4.6s;animation-delay:2.0s"></i><i class="ifemb" style="left:63%;--dx:12px;animation-duration:3.7s;animation-delay:0.3s"></i><i class="ifemb" style="left:74%;--dx:-6px;animation-duration:3.3s;animation-delay:1.6s"></i><i class="ifemb" style="left:86%;--dx:10px;animation-duration:4.2s;animation-delay:0.9s"></i><i class="ifemb" style="left:45%;--dx:-4px;animation-duration:3.9s;animation-delay:2.6s"></i><i class="ifemb" style="left:30%;--dx:16px;animation-duration:3.5s;animation-delay:3.1s"></i><i class="ifemb" style="left:70%;--dx:-14px;animation-duration:4.4s;animation-delay:2.2s"></i><div class="ifh"><span class="ifttl">ЖЕРЛО ВУЛКАНА</span><span class="ifsub">∞ БЕСКОНЕЧНЫЙ РЕЖИМ</span></div></div><div class="ifst"><div><b id="ifbest">—</b><small>🏆 рекорд</small></div><div><b id="ifgames">0</b><small>🎮 игр</small></div><div><b id="ifkills">0</b><small>💀 врагов</small></div><div><b id="ifgems">0</b><small>💎 добыто</small></div></div><div class="ifhw">🔥 Как это работает</div><div class="ifr"><div><i>♾️</i><span><b>Волны не кончаются</b><small>Каждая следующая волна сильнее. Играй, пока у базы есть жизни. Главная цель — побить свой рекорд.</small></span></div><div><i>👹</i><span><b>Босс каждые 10 волн</b><small>Магмовый Титан, Пепельный Змей, Повелитель Лавы… На половине здоровья босс впадает в ярость.</small></span></div><div><i>🌋</i><span><b>Извержение каждые 5 волн</b><small>С неба падают лавовые камни и бьют врагов. Это твой союзник!</small></span></div><div><i>⚡</i><span><b>Особые волны с 8-й</b><small>🔥 Огненные — быстрее, 🪨 Каменные — крепче, 🐜 Рой — больше врагов. Название волны видно на экране.</small></span></div><div><i>🎁</i><span><b>Награды</b><small>Монеты в банк и 🎃 за каждую волну, +1 💎 за каждые 5 волн, +2 💎 за босса.</small></span></div><div><i>❤️</i><span><b>15 жизней</b><small>Обычный враг отнимает 1 жизнь, босс — 10. Когда жизней мало, экран краснеет.</small></span></div></div><button class="ifgo" id="ifgo">🌋 В ЖЕРЛО!</button><button class="ifgo lbgo" id="iflb">🏆 Лидерборд и награды</button><div class="row"><button class="bk">Назад</button></div></section><section id="pets" class="hide p"><div class="pthero"><div class="ptsp"></div><img id="ptimg" class="ptbox bob" width="130" height="130" alt=""><div class="ptht"><span class="ptttl">ЯЩИК ПИТОМЦЕВ</span><span class="ptsub">Питомцы дают баффы твоим Верити в бою</span></div><div class="ptgem">💎 <b id="ptg">0</b></div></div><div id="ptm" role="status"></div><div class="ptbtns"><button class="ptbtn" id="pto1"><b>Открыть ×1</b><span>25 💎</span></button><button class="ptbtn x5" id="pto5"><b>Открыть ×5</b><span>110 💎 <s>125</s></span></button></div><p class="mkhint" id="ptpity"></p><div class="ifhw2">🎲 Что может выпасть</div><div class="ptdrop" id="ptdrop"></div><div class="ifhw2">📖 Коллекция <span id="ptcn"></span></div><div class="ptcol" id="ptcol"></div><div class="ifhw2">❓ Как работают питомцы</div><div class="ifr lbhow ptinfo"><div><i>⚔️</i><span><b>Возьми в бой</b><small>Перед каткой открывается «Снаряжение»: выбери до 6 Верити и до 2 питомцев.</small></span></div><div><i>👆</i><span><b>Посади на Верити</b><small>В бою нажми на питомца под полем, потом на поставленного Верити.</small></span></div><div><i>⭕</i><span><b>Зона баффа</b><small>Вокруг появится круг. Все Верити внутри получают бафф питомца.</small></span></div><div><i>💱</i><span><b>Торговля</b><small>Питомцев можно продавать и покупать на всемирном рынке. Повтор из ящика превращается в гемы.</small></span></div></div><div class="row"><button class="bk">Назад</button></div></section><div id="ptov"></div><section id="lo" class="hide p"><div class="lohero"><span>⚔️ СНАРЯЖЕНИЕ</span><b id="lomode"></b></div><div id="lom" role="status"></div><div class="losec"><div class="sech"><b>🧍 Верити в бой</b><span class="cnt" id="locn"></span></div><p class="mkhint">Выбери до 6 Верити: только они будут в магазине башен в этой катке.</p><div class="logrid" id="lou"></div></div><div class="losec"><div class="sech"><b>🐾 Питомцы</b><span class="cnt" id="lopn"></span></div><p class="mkhint">До 2 питомцев. В бою нажми на питомца, потом на Верити: вокруг него появится зона с баффом.</p><div class="logrid" id="lop"></div><div id="lopi"></div></div><button class="logo" id="logo">▶ В БОЙ!</button><div class="row"><button id="loback">Назад</button></div></section><section id="ldb" class="hide p"><div class="lbhero"><span class="lbttl">🏆 ЛИДЕРБОРД</span><span class="lbsub">🌋 Жерло вулкана · <b id="lbs"></b></span><div class="lbtm">⏳ Сброс через <b id="lbt"></b></div></div><div class="lbprize"><div id="lbpz"></div><div><b>Награда за 1 место</b><span>🐉 Божественный Дракончик</span><small>+25% урона, +10% скорости атаки и +10% дальности в большой зоне. Только за 1 место, из ящика не выбить. 🥈 2 место — 50 💎, 🥉 3 место — 25 💎.</small></div></div><div class="lbtabs"><button data-t="now">🔥 Этот сезон</button><button data-t="prev">📜 Прошлый</button></div><div id="lbbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="mail" class="hide p"><div class="mlhero"><span class="mlenv">📬</span><div><b>ПОЧТА</b><small>Фразы и подарки от друзей и подарки от автора игры</small></div></div><div id="mltw" class="mltabs"><button data-m="in">📥 Входящие <em id="mltin" class="bdgi"></em></button><button data-m="new">✉️ Написать</button></div><div id="mlm" role="status"></div><div id="mlbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="hk" class="hide p"><div class="hkhero"><canvas id="hkcv" width="640" height="380"></canvas><div class="hkht"><span class="hkttl">ВЗЛОМ СИСТЕМЫ</span><span class="hksub">&gt; хакерский ивент_</span><span class="hktm" id="hkt"></span></div></div><div class="hkbal"><span>Байты · Ключи</span><span><b id="hkb">0</b> 💾 &nbsp; <b id="hkk">0</b> 🔐</span></div><div id="hkm" role="status"></div><div class="hktabs"><button data-t="q">🎯<span>Задания</span></button><button data-t="c">📦<span>Ящик</span></button><button data-t="h">🕶<span>Хакерити</span></button><button data-t="t">💻<span>Терминал</span></button><button data-t="p">🎟<span>Пропуск</span></button></div><div id="hkbody"></div><button class="hkplay" id="hkplay">▶ ИГРАТЬ: ВЗЛОМ</button><div class="row"><button class="bk">Назад</button></div></section><div id="hkterm"></div><section id="tro" class="hide p"><div class="trhero"><b>🏅 ПОЛКА ТРОФЕЕВ</b><span>Собрано: <b id="trn" style="display:inline;font:inherit;color:#ffd23a;-webkit-text-fill-color:#ffd23a"></b></span><p class="mu" style="margin:8px 0 0">Трофеи навсегда: их нельзя купить, продать или подарить. Нажми на трофей, чтобы поставить его на витрину — его увидят друзья.</p></div><div id="trbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="shp" class="hide p"><h2>🛍 Магазин</h2><div id="shbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="rdl" class="hide p"><div id="rdbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="arn" class="hide"><canvas id="arc"></canvas><div id="arhud"></div><div id="arjoy"><div id="arknob"></div></div><button id="arsw">🏏</button><button id="arex">🚪 Выйти</button><div id="ap-ar-tools" class="hide">
   <button type="button" id="ap-ar-admin" class="hide">🛠 Пульт</button>
   <button type="button" id="ap-ar-items">🎒 Предметы <b id="ap-ar-boxes"></b></button>
+</div>
+<div id="ap-beat-hud" class="hide">
+  <strong class="ap-beat-title">♫ Бит Админити</strong>
+  <span id="ap-beat-guide"></span>
+  <div class="ap-beat-pads"><b id="ap-beat-bass" style="--pad:#7af3d2">♪ Бас</b><b id="ap-beat-synth" style="--pad:#ff9bc4">♫ Синт</b></div>
 </div>
 <div id="ap-ar-actions" class="hide">
   <button type="button" id="ap-music-btn" aria-label="Музыка вечеринки" aria-pressed="true">♫ Музыка</button>
@@ -1069,10 +1089,11 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.64',VOL=.8,MQ=[],CI=0;
+var VER='1.65',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.65',t:'Бит Админити',a:['🎉 Арена 21 ноября работает с 20:00 до 20:30 МСК','♫ Каждые три минуты DJ Админити запускает зарядку двух пультов. Ударь по обоим пультам на одной вспышке вместе с другими игроками.','⚡ Удачный бит даёт всей арене на 18 секунд +20% к скорости и +30% к урону дубинок по боссам.']},
 {v:'1.64',t:'Вечеринка Админити',a:['🎉 21 ноября с 20:00 до 20:45 МСК открыта общая Арена абьюза с дубинками и DJ Админити','🎁 Подарки участникам и админ-ящики с монетами, гемами, Turkey-ящиком и редким Элементом админа','🎬 Три катсцены, Каменный босс и 1×1×1×1. Участники финальной победы получают Корону хакера']},
 {v:'1.63',t:'Pumpkity и Pumpkinity',a:['🎃 Pumpkinity вернул свой хэллоуинский облик в обеих фазах','🍂 В Turkey-ящике теперь выпадает Pumpkity. Он стреляет семечками и блокирует лечение цели','🎁 Если из Turkey-ящика уже выпал Pumpkinity, Pumpkity появится в коллекции при входе']},
 {v:'1.62',t:'Музыка Дня благодарения',a:['🎵 На вкладке «День благодарения» играет праздничная мелодия. Громкость и включение музыки регулируются в настройках']},
@@ -3070,6 +3091,7 @@ async function arEnter(){
   AR.party=apLive();
   AR.me={x:900+Math.random()*200,y:1050+Math.random()*80,carry:[],stun:0,sw:0,cd:0,face:1,mv:0};
   AR.oth={};AR.drops={};AR.toasts=[];AR.fx=[];AR.pend={};AR.keys={};AR.joy=null;AR.lastPut=0;
+  AR.beatWrites=new Set();AR.beatScore=null;AR.beatCue=null;
   arUseBoss(null,{});
   scr('arn');arSize();AR.lt=0;
   if(!AR.raf)AR.raf=requestAnimationFrame(arLoop);
@@ -3119,7 +3141,7 @@ async function arPoll(){
     AR.bd=arena.bd||{};
     await apReadControl(AR.cfg);
     if(cur!=='arn'||entry!==AR.entry)return;
-    if(AR.party)apArenaFrame(now);
+    if(AR.party){apArenaFrame(now);apBeatSync(now)}
     else arUseBoss(arena.boss?.on?arena.boss:null,AR.bd);
 
     var players=arena.p||{}, others={};
@@ -3181,8 +3203,12 @@ function arDeliver(){var m=AR.me;if(!m.carry.length)return;arFix();var pts=0,c=0
  arToast('📦 Сдано! +'+pts+' очк.'+(c?' +'+c+' 🪙':'')+(g?' +'+g+' 💎':''));tone(660,.12,'triangle',.1,1320);AR.fx.push({x:APT.x,y:APT.y,t:0,k:'ring'});if(typeof trGive=='function'&&!(M.tro&&M.tro.arena14))try{trGive('arena14')}catch(e){}
  if(ON.uid)db('arena/sc/'+ON.uid,{m:'PUT',b:{v:M.arn.pts,n:M.fb.nick,t:{'.sv':'timestamp'}}}).catch(function(){});arPut(1)}
 function arSwing(){var m=AR.me;if(cur!=='arn'||!ON.uid||!m||m.cd>0||m.stun>0||apArenaBlocked())return;m.sw=.32;m.cd=.7;tone(240,.06,'square',.04,160);arPut(1);
+ var beat=apBeatState(Date.now());
+ if(apBeatStrike(beat,m))return;
  for(var u in AR.oth){var o=AR.oth[u];if(Math.hypot(o.x-m.x,o.y-m.y)<70){db('arena/hits/'+u+'/'+(ON.uid.slice(0,6)+Date.now().toString(36)),{m:'PUT',b:{f:ON.uid,...(AR.party?{pa:AP_EVENT}:{}),t:{'.sv':'timestamp'}}}).catch(function(){});AR.fx.push({x:o.x,y:o.y-30,t:0,k:'bonk'})}}
- var B=arBossState();if(B&&B.alive&&Math.hypot(B.x-m.x,B.y-m.y)<B.r+70){var dm=12+Math.floor(Math.random()*7)+(m.carry.length?0:3);AR.bdm+=dm;AR.fx.push({x:B.x+(Math.random()-.5)*B.r,y:B.y-B.r*.4,t:0,k:'dmg',v:dm});tone(120,.08,'square',.06,80)}}
+ var B=arBossState();if(B&&B.alive&&Math.hypot(B.x-m.x,B.y-m.y)<B.r+70){var dm=12+Math.floor(Math.random()*7)+(m.carry.length?0:3);
+  if(beat?.phase==='boost')dm=Math.round(dm*(1+AP_BEAT.damage/100));
+  AR.bdm+=dm;AR.fx.push({x:B.x+(Math.random()-.5)*B.r,y:B.y-B.r*.4,t:0,k:'dmg',v:dm});tone(120,.08,'square',.06,80)}}
 async function arSendDamage(){
   var boss=AR.boss, uid=ON.uid, value=Math.round(AR.bdm);
   if(!boss||!uid||AR.damageBusy||value<=AR.bdSent||!onOk())return;
@@ -3214,11 +3240,15 @@ function arBossCheck(){var b=AR.boss;if(!b)return;
  if(B&&!B.alive&&b.k=='hack'&&!(M.arn.cutk&&M.arn.cutk[b.id])){M.arn.cutk=M.arn.cutk||{};M.arn.cutk[b.id]=1;save();setTimeout(cutBoss,1500)}}
 /* ---- цикл ---- */
 function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){return}var t=performance.now(),dt=Math.min(.05,(t-(AR.lt||t))/1000);AR.lt=t;var m=AR.me;
- if(AR.party){if(!apLive()){arExit('Вечеринка закончилась.');return}apArenaFrame(Date.now())}
- var B=arBossState(), blocked=apArenaBlocked();
+ var now=Date.now();
+ if(AR.party){if(!apLive(now)){arExit('Вечеринка закончилась.');return}apArenaFrame(now)}
+ var B=arBossState(), blocked=apArenaBlocked(), beat=apBeatState(now);
  // управление
  var vx=0,vy=0;if(AR.keys.a||AR.keys.arrowleft)vx--;if(AR.keys.d||AR.keys.arrowright)vx++;if(AR.keys.w||AR.keys.arrowup)vy--;if(AR.keys.s||AR.keys.arrowdown)vy++;if(AR.joy&&AR.joy.on){vx=AR.joy.dx;vy=AR.joy.dy}
- var L=Math.hypot(vx,vy);if(L>1){vx/=L;vy/=L}if(m.stun>0){m.stun-=dt;vx=vy=0}if(blocked)vx=vy=0;var sp=260*(1-.1*m.carry.length);m.x=Math.max(30,Math.min(AW-30,m.x+vx*sp*dt));m.y=Math.max(30,Math.min(AH-30,m.y+vy*sp*dt));m.mv=L>.05;if(Math.abs(vx)>.1)m.face=vx>0?1:-1;
+ var L=Math.hypot(vx,vy);if(L>1){vx/=L;vy/=L}if(m.stun>0){m.stun-=dt;vx=vy=0}if(blocked)vx=vy=0;
+ var sp=260*(1-.1*m.carry.length);
+ if(beat?.phase==='boost')sp*=1+AP_BEAT.speed/100;
+ m.x=Math.max(30,Math.min(AW-30,m.x+vx*sp*dt));m.y=Math.max(30,Math.min(AH-30,m.y+vy*sp*dt));m.mv=L>.05;if(Math.abs(vx)>.1)m.face=vx>0?1:-1;
  if(m.sw>0)m.sw-=dt;if(m.cd>0)m.cd-=dt;
  // босс: столкновения и атаки
  if(B&&B.alive&&!blocked){var dx=m.x-B.x,dy=m.y-B.y,dd=Math.hypot(dx,dy);if(dd<B.r+22){m.x=B.x+dx/(dd||1)*(B.r+22);m.y=B.y+dy/(dd||1)*(B.r+22);if(B.dash)arStun(1.5,'Титан сбил тебя с ног! 💥')}
@@ -3228,7 +3258,8 @@ function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){retu
  for(var id in AR.drops){var d=AR.drops[id];if(!blocked&&Math.hypot(d.x-m.x,d.y-m.y)<38)arClaim(id)}
  if(m.carry.length&&Math.hypot(APT.x-m.x,APT.y-m.y)<APT.r)arDeliver();
  for(var u in AR.oth){var o=AR.oth[u];o.x+=(o.tx-o.x)*Math.min(1,dt*7);o.y+=(o.ty-o.y)*Math.min(1,dt*7)}
- arPut(0);arDraw(cv2,t/1000,B);AR.toasts.forEach(function(q){q.t-=dt});AR.toasts=AR.toasts.filter(function(q){return q.t>0});AR.fx.forEach(function(q){q.t+=dt});AR.fx=AR.fx.filter(function(q){return q.t<1});
+ arPut(0);arDraw(cv2,t/1000,B,beat,now);AR.toasts.forEach(function(q){q.t-=dt});AR.toasts=AR.toasts.filter(function(q){return q.t>0});AR.fx.forEach(function(q){q.t+=dt});AR.fx=AR.fx.filter(function(q){return q.t<1});
+ apBeatHud(beat,now,blocked);
  AR.raf=requestAnimationFrame(arLoop)}
 function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
  // дубинка
@@ -3239,12 +3270,13 @@ function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown){var s=56,I=IM[(k|
  c.font='800 15px system-ui';c.textAlign='center';var nm=String(nick||'?').slice(0,14),tw=c.measureText(nm).width+14;c.fillStyle=me?'rgba(255,210,31,.95)':'rgba(10,6,20,.85)';c.beginPath();c.roundRect?c.roundRect(x-tw/2,y-s/2-30+bob,tw,21,10):c.rect(x-tw/2,y-s/2-30+bob,tw,21);c.fill();c.fillStyle=me?'#1a1000':(ncc||'#fff');c.fillText(nm,x,y-s/2-14+bob);
  for(var i=0;i<carry;i++){c.font='20px serif';c.fillText('📦',x-18+i*18,y+s/2+22)}
  if(st){for(var j=0;j<3;j++){var a=t*5+j*2.1;c.fillStyle='#ffd21f';c.font='16px serif';c.fillText('⭐',x+Math.cos(a)*24,y-s/2-40+Math.sin(a)*6)}}}
-function arDraw(cv2,t,B){var c=cv2.getContext('2d'),d=AR.dpr||1,W2=cv2.width/d,H2=cv2.height/d,m=AR.me,Z=Math.max(.7,Math.min(1.2,W2/520));c.setTransform(d,0,0,d,0,0);
+function arDraw(cv2,t,B,beat,now){var c=cv2.getContext('2d'),d=AR.dpr||1,W2=cv2.width/d,H2=cv2.height/d,m=AR.me,Z=Math.max(.7,Math.min(1.2,W2/520));c.setTransform(d,0,0,d,0,0);
  var cx=Math.max(W2/2/Z,Math.min(AW-W2/2/Z,m.x)),cy=Math.max(H2/2/Z,Math.min(AH-H2/2/Z,m.y));if(AW*Z<W2)cx=AW/2;if(AH*Z<H2)cy=AH/2;
  c.fillStyle='#0c0618';c.fillRect(0,0,W2,H2);c.save();c.translate(W2/2,H2/2);c.scale(Z,Z);c.translate(-cx,-cy);
  // пол
  var T=100;for(var i=0;i<AW/T;i++)for(var j=0;j<AH/T;j++){var X=i*T,Y=j*T,inDance=X>=700&&X<1300&&Y>=400&&Y<900;if(inDance){var h=(i*47+j*31+Math.floor(t*2)*60)%360;c.fillStyle='hsl('+h+',80%,'+(30+12*((i+j+Math.floor(t*2))%2))+'%)'}else c.fillStyle=(i+j)%2?'#1c1030':'#221438';c.fillRect(X,Y,T,T)}
  c.strokeStyle='#ff4dd2';c.lineWidth=10;c.strokeRect(5,5,AW-10,AH-10);
+ if(beat)apBeatDraw(c,beat,now);
  // декор: колонки, DJ, столы, шары
  if(AR.party)apDJ(c,t);else{
    c.fillStyle='#120a20';c.fillRect(820,30,360,110);c.fillStyle='#ff4dd2';c.font='900 34px system-ui';c.textAlign='center';c.fillText('DJ АДМИН',1000,100);
@@ -3270,6 +3302,7 @@ function arDraw(cv2,t,B){var c=cv2.getContext('2d'),d=AR.dpr||1,W2=cv2.width/d,H
  c.restore();
  // мини-карта
  var mw=110,mh=77,mx=W2-mw-10,my=58;c.fillStyle='rgba(10,6,20,.75)';c.fillRect(mx,my,mw,mh);c.strokeStyle='#ff4dd2';c.lineWidth=2;c.strokeRect(mx,my,mw,mh);var sx=mw/AW,sy=mh/AH;c.fillStyle='#ffd21f';c.fillRect(mx+APT.x*sx-3,my+APT.y*sy-3,6,6);for(var id2 in AR.drops){var q=AR.drops[id2];c.fillStyle=ADK[q.k]?ADK[q.k].col:'#fff';c.fillRect(mx+q.x*sx-1,my+q.y*sy-1,2.5,2.5)}for(var u3 in AR.oth){c.fillStyle='#fff';c.fillRect(mx+AR.oth[u3].x*sx-2,my+AR.oth[u3].y*sy-2,4,4)}if(B&&B.alive){c.fillStyle=B.I.col;c.beginPath();c.arc(mx+B.x*sx,my+B.y*sy,5,0,7);c.fill()}c.fillStyle='#ffd21f';c.beginPath();c.arc(mx+m.x*sx,my+m.y*sy,3.5,0,7);c.fill();
+ if(beat)AP_PADS.forEach(function(pad){c.fillStyle=pad.color;c.fillRect(mx+pad.x*sx-2,my+pad.y*sy-2,4,4)});
  // HUD текст
  arHud(B,t)}
 function arDrawBoss(c,B,t){var I=B.I;if(B.alive){
@@ -5456,6 +5489,38 @@ function apDJ(c,t){
   c.font='900 16px system-ui';
   c.fillStyle='#ffe2aa';c.textAlign='center';c.fillText('DJ АДМИНИТИ',1000,185);
 }
+function apBeatDraw(c,beat,now){
+  var ready=beat.phase==='strike', boosted=beat.phase==='boost', still=thReducedMotion();
+  if(boosted&&!still){
+    var progress=(AP_BEAT.boost-beat.left)/1700;
+    if(progress<1){
+      c.save();c.globalAlpha=.65*(1-progress);
+      thShape(c,function(p){p.arc(1000,890,130+720*progress,0,Math.PI*2)},null,'#ffd5a5',9);
+      c.restore();
+    }
+  }
+  AP_PADS.forEach(function(pad,index){
+    var charged=apBeatCharged(beat,index);
+    var shine=ready&&!still&&!charged?Math.max(0,1-(now-beat.at)/850):0;
+    c.save();c.translate(pad.x,pad.y);
+    thShape(c,function(p){p.arc(0,0,AP_BEAT.radius,0,Math.PI*2)},
+      pad.color+(charged?'62':ready?'35':'18'),charged?'#ffe7af':pad.color,ready||charged?5:2.5);
+    if(shine>0)thGlow(c,0,0,82+16*shine,'#fff9d1'+Math.round(shine*110).toString(16).padStart(2,'0'));
+    thPoly(c,[[-51,28],[-53,-22],[-36,-44],[39,-44],[54,-25],[52,27],[43,39],[-42,39]],
+      thGradient(c,-51,-40,52,40,['#553a63','#24162f']),pad.color,3);
+    thShape(c,function(p){p.arc(-14,-4,24,0,Math.PI*2)},'#130d21',charged?'#ffdfa1':pad.color,3);
+    thShape(c,function(p){p.arc(-14,-4,17,0,Math.PI*2)},'#2c2040','#665274',1.6);
+    thEllipse(c,-14,-4,6,6,pad.color);
+    for(var bar=0;bar<4;bar++){
+      var height=charged?10+bar*4:6+bar*3;
+      c.fillStyle=charged||ready?pad.color:'#795a87';
+      c.fillRect(12+bar*6,16-height,4,height);
+    }
+    c.font='900 15px system-ui';c.textAlign='center';c.fillStyle=charged?'#fff0bc':'#fff5f4';
+    c.fillText((charged?'✓':pad.note)+' '+pad.label,0,61);
+    c.restore();
+  });
+}
 function apChest(c,x0,y0,t){
   c.save();c.translate(x0,y0);
   thGlow(c,0,0,35,'#ff9d868a');
@@ -5499,7 +5564,8 @@ function apPaintElement(c,s){
 /* Вечеринка на Арене абьюза */
 var AP_EVENT='party-20261121';
 var AP_START=Date.parse('2026-11-21T20:00:00+03:00');
-var AP_END=Date.parse('2026-11-21T20:45:00+03:00');
+var AP_END=Date.parse('2026-11-21T20:30:00+03:00');
+var AP_SCHEDULE='21 ноября · 20:00–20:30 МСК';
 var AP_CONFIG='arena/cfg/'+AP_EVENT;
 var AP_SCENES={intro:{seconds:25,title:'Возвращение Админити'},stone:{seconds:17,title:'Каменный разлом'},final:{seconds:22,title:'Последний козырь'}};
 var AP_CONTROLS=['coins','turkey','intro','stone','final'];
@@ -5507,10 +5573,108 @@ var AP_LOOT=[{name:'5 гемов',chance:55,key:'gems'},{name:'400 монет',c
   {name:'Turkey-ящик',chance:15,key:'turkey'},{name:'Элемент админа',chance:1,key:'element'}];
 var AP={commands:{},verified:new Map(),key:null,busy:false,tab:'main',boxBusy:new Set(),
   show:null,seen:new Set(),sound:true,lastCrownCheck:0};
+var AP_BEAT={first:60000,repeat:180000,notice:9000,pulses:3,gap:5200,window:2500,lag:1000,
+  radius:78,boost:18000,speed:20,damage:30};
+var AP_PADS=[
+  {x:840,y:890,label:'БАС',color:'#7af3d2',note:'♪',freq:330,hud:'ap-beat-bass'},
+  {x:1160,y:890,label:'СИНТ',color:'#ff9bc4',note:'♫',freq:550,hud:'ap-beat-synth'}
+];
 
 function apLive(now){
   now=now??Date.now();
   return now>=AP_START&&now<AP_END;
+}
+function apBeatRound(now){
+  if(!AR.party||!apLive(now))return null;
+  var first=AP_START+AP_BEAT.first;
+  var id=Math.floor((now-first+AP_BEAT.notice)/AP_BEAT.repeat);
+  if(id<0)return null;
+  var at=first+id*AP_BEAT.repeat, age=now-at;
+  var last=(AP_BEAT.pulses-1)*AP_BEAT.gap+AP_BEAT.window+AP_BEAT.lag;
+  return age<last+AP_BEAT.boost?{id:id,at:at,age:age}:null;
+}
+function apBeatKey(round,pulse,pad){
+  return AP_EVENT+'-beat-'+round+'-'+pulse+'-'+pad;
+}
+function apBeatSync(now){
+  var round=apBeatRound(now);
+  if(!round||round.age<0)return;
+  var score={id:round.id,hits:[],won:0};
+  // Используем время приёма удара из Firebase. Записи раунда остаются доступны после ухода игрока.
+  for(var pulse=0;pulse<AP_BEAT.pulses;pulse++){
+    var at=round.at+pulse*AP_BEAT.gap;
+    var hits=AP_PADS.map(function(_,pad){
+      var strikes=AR.bd[apBeatKey(round.id,pulse,pad)]||{};
+      return Object.values(strikes).reduce(function(first,strike){
+        if(strike?.v!==1||!Number.isFinite(strike.t)||strike.t<at||strike.t>=at+AP_BEAT.window+AP_BEAT.lag)return first;
+        return first?Math.min(first,strike.t):strike.t;
+      },0);
+    });
+    score.hits.push(hits);
+    if(hits.every(Boolean)){score.won=Math.max.apply(Math,hits);break}
+  }
+  AR.beatScore=score;
+}
+function apBeatState(now){
+  var round=apBeatRound(now);
+  if(!round)return null;
+  var score=AR.beatScore?.id===round.id?AR.beatScore:null;
+  if(score?.won){
+    var left=Math.min(AP_BEAT.boost,score.won+AP_BEAT.boost-now);
+    return left>0?{id:round.id,phase:'boost',left:left}:null;
+  }
+  var pulse=Math.max(0,Math.floor(round.age/AP_BEAT.gap));
+  var at=round.at+pulse*AP_BEAT.gap;
+  var phase='prepare';
+  if(now>=at+AP_BEAT.window+AP_BEAT.lag){pulse++;at+=AP_BEAT.gap}
+  if(pulse>=AP_BEAT.pulses)return null;
+  if(now>=at)phase=now<at+AP_BEAT.window?'strike':'settle';
+  return {id:round.id,pulse:pulse,at:at,phase:phase,hits:score?.hits[pulse]};
+}
+function apBeatStrike(beat,player){
+  if(beat?.phase!=='strike')return false;
+  var pad=AP_PADS.findIndex(function(item){return Math.hypot(player.x-item.x,player.y-item.y)<=AP_BEAT.radius});
+  if(pad<0)return false;
+  var key=apBeatKey(beat.id,beat.pulse,pad);
+  if(apBeatCharged(beat,pad))return true;
+  var entry=AR.entry, writes=AR.beatWrites;
+  writes.add(key);
+  if(AP.sound)tone(AP_PADS[pad].freq,.22,'sine',.11,AP_PADS[pad].freq*1.5);
+  // Каждому пульту нужен один удар. Повтор того же запроса сохраняет первый таймстамп.
+  db('arena/bd/'+key+'/'+ON.uid,{m:'PUT',ifMatch:'null_etag',
+    b:{v:1,n:M.fb.nick,t:{'.sv':'timestamp'}}}).then(function(result){
+    if(!result.ok&&result.st!==412)throw Error('beat');
+    if(cur==='arn'&&AR.entry===entry)arPoll();
+  }).catch(function(){
+    writes.delete(key);
+    if(cur==='arn'&&AR.entry===entry)arToast('Пульт не ответил. Попробуй на следующей вспышке.');
+  });
+  return true;
+}
+function apBeatCharged(beat,index){
+  return beat.phase==='boost'||!!beat.hits?.[index]||AR.beatWrites.has(apBeatKey(beat.id,beat.pulse,index));
+}
+function apBeatHud(beat,now,blocked){
+  var panel=$('ap-beat-hud');
+  panel.classList.toggle('hide',!beat);
+  if(!beat)return;
+  var phase=beat.phase;
+  var text=phase==='boost'?'Перегрузка · '+Math.ceil(beat.left/1000)+' с · +20% к скорости · +30% по боссам':
+    phase==='strike'?'Ударь по пульту! Вспышка '+(beat.pulse+1)+'/'+AP_BEAT.pulses:
+    phase==='settle'?'Проверяем удары…':'Заряди оба пульта на одной вспышке. Старт через '+Math.ceil((beat.at-now)/1000)+' с';
+  if(panel.dataset.phase!==phase)panel.dataset.phase=phase;
+  var guide=$('ap-beat-guide');
+  if(guide.textContent!==text)guide.textContent=text;
+  AP_PADS.forEach(function(pad,index){
+    $(pad.hud).classList.toggle('on',apBeatCharged(beat,index));
+  });
+  if(phase!=='strike'&&phase!=='boost'||blocked)return;
+  var cue=beat.id+'-'+phase+'-'+beat.pulse;
+  if(AR.beatCue===cue)return;
+  AR.beatCue=cue;
+  if(!AP.sound)return;
+  if(phase==='boost')tone(392,.42,'triangle',.12,784);
+  else if(now-beat.at<600)tone(243,.19,'triangle',.1,381);
 }
 function apState(){
   arFix();
@@ -5560,7 +5724,7 @@ function apRefreshArena(){
   var label=live?'🎉 Войти на вечеринку':'🎉 Вечеринка в 20:00';
   if(card.dataset.label!==label){
     card.dataset.label=label;
-    card.innerHTML='<strong>'+label+'</strong><small>21 ноября · 20:00–20:45 МСК · Арена абьюза</small>';
+    card.innerHTML='<strong>'+label+'</strong><small>'+AP_SCHEDULE+' · Арена абьюза</small>';
   }
   if(cur==='arn'&&!AR.party&&live){
     AR.party=true;
@@ -5587,7 +5751,7 @@ function apNav(){
   document.body.classList.toggle('ap-arena',arena);
   $('ap-ar-tools').classList.toggle('hide',!arena||!AR.party);
   $('ap-ar-actions').classList.toggle('hide',!arena||!AR.party);
-  if(!arena)apHideScene();
+  if(!arena){apHideScene();apBeatHud(null)}
   apRefreshItems();
 }
 
@@ -5784,7 +5948,7 @@ function apControls(message){
     var used=AP.commands[kind];
     return '<button type="button" data-ap-command="'+kind+'"'+(lock||used?' disabled':'')+'>'+text+(used?' ✓':'')+'</button>';
   }
-  return apTabs()+'<div class="ap-card"><h3>🎉 Вечеринка на Арене</h3><p>21 ноября · 20:00–20:45 МСК</p><p id="ap-panel-clock">'+
+  return apTabs()+'<div class="ap-card"><h3>🎉 Вечеринка на Арене</h3><p>'+AP_SCHEDULE+'</p><p id="ap-panel-clock">'+
     apEventStatus()+'</p><button type="button" data-ap-item="arena"'+(!live?' disabled':'')+'>'+(cur==='arn'?'Вернуться на арену':'Зайти на арену')+'</button>'+
     '<small id="ap-attendees">'+apAttendeesLabel()+'</small></div>'+
     '<div class="ap-card"><h3>Подарки участникам</h3>'+button('coins','Раздать 500 🪙 и 20 💎')+button('turkey','Раздать Turkey-ящик')+
