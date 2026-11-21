@@ -581,6 +581,8 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 .ap-market-art img {object-fit:contain;max-width:93px}
 .ap-market-card strong {font-size:14px}
 .ap-market-card small {color:#e9bfae;font-size:12px}
+.ap-market-card.ap-limited {border-color:#efad66;background:linear-gradient(150deg,#582e36,#312546)}
+.ap-market-card .ap-stock-left {color:#ffdc9a;font-weight:700}
 .ap-market-card button {margin:4px 0 0;padding:6px 8px;background:#733c4a;border:1px solid #eeb37e;color:#ffebc5;font-size:12px}
 #ap-market-status {color:var(--acc);margin:7px 0}
 #ap-market-status:empty {display:none}
@@ -609,6 +611,12 @@ body.ap-arena #modal {z-index:500}
 #ap-scene-sub:empty {visibility:hidden}
 #ap-scene-skip {position:absolute;top:calc(9px + env(safe-area-inset-top,0px));right:10px;margin:0;font-size:13px;background:#321d35;color:#ffe8bc;border-color:#9c6780}
 #ap-party-label {font-weight:900;color:#ffe6b8;background:#452344d9;border:1px solid #b96487;border-radius:7px;padding:4px 7px;align-self:flex-start}
+#ap-drop-notice {
+  position:absolute;z-index:3;top:calc(98px + env(safe-area-inset-top,0px));left:50%;translate:-50% 0;
+  box-sizing:border-box;max-width:calc(100% - 24px);padding:6px 12px;border:1px solid #ffc47b;border-radius:9px;
+  background:#302033f5;color:#ffe1a9;font:800 13px system-ui;text-align:center;pointer-events:none;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
 #ap-beat-hud {
   position:absolute;left:50%;bottom:calc(178px + env(safe-area-inset-bottom,0px));translate:-50% 0;
   width:min(315px,calc(100% - 24px));box-sizing:border-box;padding:9px 12px;border:1px solid #9f739e;
@@ -649,7 +657,7 @@ body.ap-arena #modal {z-index:500}
 #account-status:empty {display:none}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.69</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.70</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -702,11 +710,12 @@ body.ap-arena #modal {z-index:500}
 <div class="row"><button class="go" id="hwplay">Играть: Ночь Тыквенного Короля</button><button class="bk">Назад</button></div></section>
 <section id="tasks" class="hide p"><h2>Задания и ачивки</h2><p>Банк: <b id="tb"></b> 🪙 · Семечки: <b id="ts"></b> 🎃</p><div class="grid" id="tl"></div><div class="row"><button class="bk">Назад</button></div></section>
 <section id="trade" class="hide p"><h2>Обмен по коду</h2><p>Создай код и отправь другу: он введёт его у себя и получит Верити. У тебя этот юнит пропадёт. Каждый код работает один раз на устройство.</p><div class="row"><select id="tsel"></select><button id="tgo">Создать код</button></div><div id="tcode"></div><div class="row"><input id="tin" placeholder="Код от друга" autocomplete="off"><button id="tacc">Принять</button><button class="bk">Назад</button></div><div id="tmsg" role="status"></div></section>
-<section id="market" class="hide p mkp"><div class="mkhero"><div class="mkh1"><span class="mkgem">💎</span><div><small>Твои гемы</small><b id="mkg">0</b></div></div><button id="mkhelp" class="mkq">❓ Как это работает</button></div><div class="mkstat"><span>🤖 Продаж ботам: <b id="mks"></b>/3</span><span>⏰ Новые цены через <b id="mkt"></b></span></div><div class="mktabs"><button data-m="sell"><i>🤖</i>Боты</button><button data-m="buy"><i>🏪</i>Лавка</button><button data-m="on"><i>🌐</i>Всемирный</button></div><div id="mkm" role="status"></div><div id="mkbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="friends" class="hide p"><div class="frhero"><div class="frtt"><span>👥</span><b>Друзья</b></div><div id="frme"></div></div><div id="frtabw" class="frtabs"><button data-f="list"><i>👥</i>Друзья <em id="frtn"></em></button><button data-f="in"><i>📬</i>Входящие<em id="frtin" class="bdgi"></em></button><button data-f="add"><i>➕</i>Добавить</button></div><div id="frm" role="status"></div><div id="frbody"></div><div class="row"><button class="bk">Назад</button></div></section><div id="ftoast" role="status"></div><section id="inf" class="hide p"><div class="ifhero"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="ifm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0606"/><stop offset="1" stop-color="#0c0101"/></linearGradient><linearGradient id="ifl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".35" stop-color="#ff8a1a"/><stop offset="1" stop-color="#c0140a"/></linearGradient></defs><path d="M-10 200 L60 150 L110 170 L150 140 L190 200Z" fill="#1a0404" opacity=".8"/><path d="M230 200 L290 155 L340 175 L410 140 L410 200Z" fill="#1a0404" opacity=".8"/><path d="M70 200 L170 92 L185 98 L200 88 L215 98 L230 92 L330 200Z" fill="url(#ifm)"/><path d="M186 96 Q180 130 168 160 Q160 182 150 200 L166 200 Q178 170 190 140 Q196 118 200 96Z M208 96 Q214 126 226 150 Q236 172 248 200 L236 200 Q222 176 212 150 Q205 124 203 96Z" fill="url(#ifl)"><animate attributeName="opacity" values=".85;1;.85" dur="2s" repeatCount="indefinite"/></path><ellipse cx="200" cy="90" rx="22" ry="6" fill="#ffcf3a"><animate attributeName="rx" values="20;25;20" dur="1.6s" repeatCount="indefinite"/></ellipse><g fill="#5a3030" opacity=".55"><circle cx="196" cy="70" r="12"><animate attributeName="cy" values="74;20" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="5s" repeatCount="indefinite"/></circle><circle cx="206" cy="60" r="16"><animate attributeName="cy" values="70;10" dur="6s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="6s" begin="1.5s" repeatCount="indefinite"/></circle></g></svg><i class="ifemb" style="left:12%;--dx:14px;animation-duration:3.4s;animation-delay:0.0s"></i><i class="ifemb" style="left:24%;--dx:-10px;animation-duration:4.1s;animation-delay:1.2s"></i><i class="ifemb" style="left:38%;--dx:8px;animation-duration:3.1s;animation-delay:0.6s"></i><i class="ifemb" style="left:52%;--dx:-16px;animation-duration:4.6s;animation-delay:2.0s"></i><i class="ifemb" style="left:63%;--dx:12px;animation-duration:3.7s;animation-delay:0.3s"></i><i class="ifemb" style="left:74%;--dx:-6px;animation-duration:3.3s;animation-delay:1.6s"></i><i class="ifemb" style="left:86%;--dx:10px;animation-duration:4.2s;animation-delay:0.9s"></i><i class="ifemb" style="left:45%;--dx:-4px;animation-duration:3.9s;animation-delay:2.6s"></i><i class="ifemb" style="left:30%;--dx:16px;animation-duration:3.5s;animation-delay:3.1s"></i><i class="ifemb" style="left:70%;--dx:-14px;animation-duration:4.4s;animation-delay:2.2s"></i><div class="ifh"><span class="ifttl">ЖЕРЛО ВУЛКАНА</span><span class="ifsub">∞ БЕСКОНЕЧНЫЙ РЕЖИМ</span></div></div><div class="ifst"><div><b id="ifbest">—</b><small>🏆 рекорд</small></div><div><b id="ifgames">0</b><small>🎮 игр</small></div><div><b id="ifkills">0</b><small>💀 врагов</small></div><div><b id="ifgems">0</b><small>💎 добыто</small></div></div><div class="ifhw">🔥 Как это работает</div><div class="ifr"><div><i>♾️</i><span><b>Волны не кончаются</b><small>Каждая следующая волна сильнее. Играй, пока у базы есть жизни. Главная цель — побить свой рекорд.</small></span></div><div><i>👹</i><span><b>Босс каждые 10 волн</b><small>Магмовый Титан, Пепельный Змей, Повелитель Лавы… На половине здоровья босс впадает в ярость.</small></span></div><div><i>🌋</i><span><b>Извержение каждые 5 волн</b><small>С неба падают лавовые камни и бьют врагов. Это твой союзник!</small></span></div><div><i>⚡</i><span><b>Особые волны с 8-й</b><small>🔥 Огненные — быстрее, 🪨 Каменные — крепче, 🐜 Рой — больше врагов. Название волны видно на экране.</small></span></div><div><i>🎁</i><span><b>Награды</b><small>Монеты в банк и 🎃 за каждую волну, +1 💎 за каждые 5 волн, +2 💎 за босса.</small></span></div><div><i>❤️</i><span><b>15 жизней</b><small>Обычный враг отнимает 1 жизнь, босс — 10. Когда жизней мало, экран краснеет.</small></span></div></div><button class="ifgo" id="ifgo">🌋 В ЖЕРЛО!</button><button class="ifgo lbgo" id="iflb">🏆 Лидерборд и награды</button><div class="row"><button class="bk">Назад</button></div></section><section id="pets" class="hide p"><div class="pthero"><div class="ptsp"></div><img id="ptimg" class="ptbox bob" width="130" height="130" alt=""><div class="ptht"><span class="ptttl">ЯЩИК ПИТОМЦЕВ</span><span class="ptsub">Питомцы дают баффы твоим Верити в бою</span></div><div class="ptgem">💎 <b id="ptg">0</b></div></div><div id="ptm" role="status"></div><div class="ptbtns"><button class="ptbtn" id="pto1"><b>Открыть ×1</b><span>25 💎</span></button><button class="ptbtn x5" id="pto5"><b>Открыть ×5</b><span>110 💎 <s>125</s></span></button></div><p class="mkhint" id="ptpity"></p><div class="ifhw2">🎲 Что может выпасть</div><div class="ptdrop" id="ptdrop"></div><div class="ifhw2">📖 Коллекция <span id="ptcn"></span></div><div class="ptcol" id="ptcol"></div><div class="ifhw2">❓ Как работают питомцы</div><div class="ifr lbhow ptinfo"><div><i>⚔️</i><span><b>Возьми в бой</b><small>Перед каткой открывается «Снаряжение»: выбери до 6 Верити и до 2 питомцев.</small></span></div><div><i>👆</i><span><b>Посади на Верити</b><small>В бою нажми на питомца под полем, потом на поставленного Верити.</small></span></div><div><i>⭕</i><span><b>Зона баффа</b><small>Вокруг появится круг. Все Верити внутри получают бафф питомца.</small></span></div><div><i>💱</i><span><b>Торговля</b><small>Питомцев можно продавать и покупать на всемирном рынке. Повтор из ящика превращается в гемы.</small></span></div></div><div class="row"><button class="bk">Назад</button></div></section><div id="ptov"></div><section id="lo" class="hide p"><div class="lohero"><span>⚔️ СНАРЯЖЕНИЕ</span><b id="lomode"></b></div><div id="lom" role="status"></div><div class="losec"><div class="sech"><b>🧍 Верити в бой</b><span class="cnt" id="locn"></span></div><p class="mkhint">Выбери до 6 Верити: только они будут в магазине башен в этой катке.</p><div class="logrid" id="lou"></div></div><div class="losec"><div class="sech"><b>🐾 Питомцы</b><span class="cnt" id="lopn"></span></div><p class="mkhint">До 2 питомцев. В бою нажми на питомца, потом на Верити: вокруг него появится зона с баффом.</p><div class="logrid" id="lop"></div><div id="lopi"></div></div><button class="logo" id="logo">▶ В БОЙ!</button><div class="row"><button id="loback">Назад</button></div></section><section id="ldb" class="hide p"><div class="lbhero"><span class="lbttl">🏆 ЛИДЕРБОРД</span><span class="lbsub">🌋 Жерло вулкана · <b id="lbs"></b></span><div class="lbtm">⏳ Сброс через <b id="lbt"></b></div></div><div class="lbprize"><div id="lbpz"></div><div><b>Награда за 1 место</b><span>🐉 Божественный Дракончик</span><small>+25% урона, +10% скорости атаки и +10% дальности в большой зоне. Только за 1 место, из ящика не выбить. 🥈 2 место — 50 💎, 🥉 3 место — 25 💎.</small></div></div><div class="lbtabs"><button data-t="now">🔥 Этот сезон</button><button data-t="prev">📜 Прошлый</button></div><div id="lbbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="mail" class="hide p"><div class="mlhero"><span class="mlenv">📬</span><div><b>ПОЧТА</b><small>Фразы и подарки от друзей и подарки от автора игры</small></div></div><div id="mltw" class="mltabs"><button data-m="in">📥 Входящие <em id="mltin" class="bdgi"></em></button><button data-m="new">✉️ Написать</button></div><div id="mlm" role="status"></div><div id="mlbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="hk" class="hide p"><div class="hkhero"><canvas id="hkcv" width="640" height="380"></canvas><div class="hkht"><span class="hkttl">ВЗЛОМ СИСТЕМЫ</span><span class="hksub">&gt; хакерский ивент_</span><span class="hktm" id="hkt"></span></div></div><div class="hkbal"><span>Байты · Ключи</span><span><b id="hkb">0</b> 💾 &nbsp; <b id="hkk">0</b> 🔐</span></div><div id="hkm" role="status"></div><div class="hktabs"><button data-t="q">🎯<span>Задания</span></button><button data-t="c">📦<span>Ящик</span></button><button data-t="h">🕶<span>Хакерити</span></button><button data-t="t">💻<span>Терминал</span></button><button data-t="p">🎟<span>Пропуск</span></button></div><div id="hkbody"></div><button class="hkplay" id="hkplay">▶ ИГРАТЬ: ВЗЛОМ</button><div class="row"><button class="bk">Назад</button></div></section><div id="hkterm"></div><section id="tro" class="hide p"><div class="trhero"><b>🏅 ПОЛКА ТРОФЕЕВ</b><span>Собрано: <b id="trn" style="display:inline;font:inherit;color:#ffd23a;-webkit-text-fill-color:#ffd23a"></b></span><p class="mu" style="margin:8px 0 0">Трофеи навсегда: их нельзя купить, продать или подарить. Нажми на трофей, чтобы поставить его на витрину — его увидят друзья.</p></div><div id="trbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="shp" class="hide p"><h2>🛍 Магазин</h2><div id="shbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="rdl" class="hide p"><div id="rdbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="arn" class="hide"><canvas id="arc"></canvas><div id="arhud"></div><div id="arjoy"><div id="arknob"></div></div><button id="arsw">🏏</button><button id="arex">🚪 Выйти</button><div id="ap-ar-tools" class="hide">
+<section id="market" class="hide p mkp"><div class="mkhero"><div class="mkh1"><span class="mkgem">💎</span><div><small>Твои гемы</small><b id="mkg">0</b></div></div><button id="mkhelp" class="mkq">❓ Как это работает</button></div><div class="mkstat"><span>🤖 Продаж ботам: <b id="mks"></b>/3</span><span>⏰ Новые цены через <b id="mkt"></b></span></div><div class="mktabs"><button data-m="sell"><i>🤖</i>Боты</button><button data-m="buy"><i>🏪</i>Лавка</button><button data-m="on"><i>🌐</i>Всемирный</button></div><div id="mkm" role="status"></div><div id="mkbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="friends" class="hide p"><div class="frhero"><div class="frtt"><span>👥</span><b>Друзья</b></div><div id="frme"></div></div><div id="frtabw" class="frtabs"><button data-f="list"><i>👥</i>Друзья <em id="frtn"></em></button><button data-f="in"><i>📬</i>Входящие<em id="frtin" class="bdgi"></em></button><button data-f="add"><i>➕</i>Добавить</button></div><div id="frm" role="status"></div><div id="frbody"></div><div class="row"><button class="bk">Назад</button></div></section><div id="ftoast" role="status"></div><section id="inf" class="hide p"><div class="ifhero"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="ifm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0606"/><stop offset="1" stop-color="#0c0101"/></linearGradient><linearGradient id="ifl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".35" stop-color="#ff8a1a"/><stop offset="1" stop-color="#c0140a"/></linearGradient></defs><path d="M-10 200 L60 150 L110 170 L150 140 L190 200Z" fill="#1a0404" opacity=".8"/><path d="M230 200 L290 155 L340 175 L410 140 L410 200Z" fill="#1a0404" opacity=".8"/><path d="M70 200 L170 92 L185 98 L200 88 L215 98 L230 92 L330 200Z" fill="url(#ifm)"/><path d="M186 96 Q180 130 168 160 Q160 182 150 200 L166 200 Q178 170 190 140 Q196 118 200 96Z M208 96 Q214 126 226 150 Q236 172 248 200 L236 200 Q222 176 212 150 Q205 124 203 96Z" fill="url(#ifl)"><animate attributeName="opacity" values=".85;1;.85" dur="2s" repeatCount="indefinite"/></path><ellipse cx="200" cy="90" rx="22" ry="6" fill="#ffcf3a"><animate attributeName="rx" values="20;25;20" dur="1.6s" repeatCount="indefinite"/></ellipse><g fill="#5a3030" opacity=".55"><circle cx="196" cy="70" r="12"><animate attributeName="cy" values="74;20" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="5s" repeatCount="indefinite"/></circle><circle cx="206" cy="60" r="16"><animate attributeName="cy" values="70;10" dur="6s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="6s" begin="1.5s" repeatCount="indefinite"/></circle></g></svg><i class="ifemb" style="left:12%;--dx:14px;animation-duration:3.4s;animation-delay:0.0s"></i><i class="ifemb" style="left:24%;--dx:-10px;animation-duration:4.1s;animation-delay:1.2s"></i><i class="ifemb" style="left:38%;--dx:8px;animation-duration:3.1s;animation-delay:0.6s"></i><i class="ifemb" style="left:52%;--dx:-16px;animation-duration:4.6s;animation-delay:2.0s"></i><i class="ifemb" style="left:63%;--dx:12px;animation-duration:3.7s;animation-delay:0.3s"></i><i class="ifemb" style="left:74%;--dx:-6px;animation-duration:3.3s;animation-delay:1.6s"></i><i class="ifemb" style="left:86%;--dx:10px;animation-duration:4.2s;animation-delay:0.9s"></i><i class="ifemb" style="left:45%;--dx:-4px;animation-duration:3.9s;animation-delay:2.6s"></i><i class="ifemb" style="left:30%;--dx:16px;animation-duration:3.5s;animation-delay:3.1s"></i><i class="ifemb" style="left:70%;--dx:-14px;animation-duration:4.4s;animation-delay:2.2s"></i><div class="ifh"><span class="ifttl">ЖЕРЛО ВУЛКАНА</span><span class="ifsub">∞ БЕСКОНЕЧНЫЙ РЕЖИМ</span></div></div><div class="ifst"><div><b id="ifbest">—</b><small>🏆 рекорд</small></div><div><b id="ifgames">0</b><small>🎮 игр</small></div><div><b id="ifkills">0</b><small>💀 врагов</small></div><div><b id="ifgems">0</b><small>💎 добыто</small></div></div><div class="ifhw">🔥 Как это работает</div><div class="ifr"><div><i>♾️</i><span><b>Волны не кончаются</b><small>Каждая следующая волна сильнее. Играй, пока у базы есть жизни. Главная цель — побить свой рекорд.</small></span></div><div><i>👹</i><span><b>Босс каждые 10 волн</b><small>Магмовый Титан, Пепельный Змей, Повелитель Лавы… На половине здоровья босс впадает в ярость.</small></span></div><div><i>🌋</i><span><b>Извержение каждые 5 волн</b><small>С неба падают лавовые камни и бьют врагов. Это твой союзник!</small></span></div><div><i>⚡</i><span><b>Особые волны с 8-й</b><small>🔥 Огненные — быстрее, 🪨 Каменные — крепче, 🐜 Рой — больше врагов. Название волны видно на экране.</small></span></div><div><i>🎁</i><span><b>Награды</b><small>Монеты в банк и 🎃 за каждую волну, +1 💎 за каждые 5 волн, +2 💎 за босса.</small></span></div><div><i>❤️</i><span><b>15 жизней</b><small>Обычный враг отнимает 1 жизнь, босс — 10. Когда жизней мало, экран краснеет.</small></span></div></div><button class="ifgo" id="ifgo">🌋 В ЖЕРЛО!</button><button class="ifgo lbgo" id="iflb">🏆 Лидерборд и награды</button><div class="row"><button class="bk">Назад</button></div></section><section id="pets" class="hide p"><div class="pthero"><div class="ptsp"></div><img id="ptimg" class="ptbox bob" width="130" height="130" alt=""><div class="ptht"><span class="ptttl">ЯЩИК ПИТОМЦЕВ</span><span class="ptsub">Питомцы дают баффы твоим Верити в бою</span></div><div class="ptgem">💎 <b id="ptg">0</b></div></div><div id="ptm" role="status"></div><div class="ptbtns"><button class="ptbtn" id="pto1"><b>Открыть ×1</b><span>25 💎</span></button><button class="ptbtn x5" id="pto5"><b>Открыть ×5</b><span>110 💎 <s>125</s></span></button></div><p class="mkhint" id="ptpity"></p><div class="ifhw2">🎲 Что может выпасть</div><div class="ptdrop" id="ptdrop"></div><div class="ifhw2">📖 Коллекция <span id="ptcn"></span></div><div class="ptcol" id="ptcol"></div><div class="ifhw2">❓ Как работают питомцы</div><div class="ifr lbhow ptinfo"><div><i>⚔️</i><span><b>Возьми в бой</b><small>Перед каткой открывается «Снаряжение»: выбери до 6 Верити и до 2 питомцев.</small></span></div><div><i>👆</i><span><b>Посади на Верити</b><small>В бою нажми на питомца под полем, потом на поставленного Верити.</small></span></div><div><i>⭕</i><span><b>Зона баффа</b><small>Вокруг появится круг. Все Верити внутри получают бафф питомца.</small></span></div><div><i>💱</i><span><b>Торговля</b><small>Питомцев можно продавать и покупать на всемирном рынке. Повтор из ящика превращается в гемы.</small></span></div></div><div class="row"><button class="bk">Назад</button></div></section><div id="ptov"></div><section id="lo" class="hide p"><div class="lohero"><span>⚔️ СНАРЯЖЕНИЕ</span><b id="lomode"></b></div><div id="lom" role="status"></div><div class="losec"><div class="sech"><b>🧍 Верити в бой</b><span class="cnt" id="locn"></span></div><p class="mkhint">Выбери до 6 Верити: только они будут в магазине башен в этой катке.</p><div class="logrid" id="lou"></div></div><div class="losec"><div class="sech"><b>🐾 Питомцы</b><span class="cnt" id="lopn"></span></div><p class="mkhint">До 2 питомцев. В бою нажми на питомца, потом на Верити: вокруг него появится зона с баффом.</p><div class="logrid" id="lop"></div><div id="lopi"></div></div><button class="logo" id="logo">▶ В БОЙ!</button><div class="row"><button id="loback">Назад</button></div></section><section id="ldb" class="hide p"><div class="lbhero"><span class="lbttl">🏆 ЛИДЕРБОРД</span><span class="lbsub">🌋 Жерло вулкана · <b id="lbs"></b></span><div class="lbtm">⏳ Сброс через <b id="lbt"></b></div></div><div class="lbprize"><div id="lbpz"></div><div><b>Награда за 1 место</b><span>🐉 Божественный Дракончик</span><small>+25% урона, +10% скорости атаки и +10% дальности в большой зоне. Только за 1 место, из ящика не выбить. 🥈 2 место — 50 💎, 🥉 3 место — 25 💎.</small></div></div><div class="lbtabs"><button data-t="now">🔥 Этот сезон</button><button data-t="prev">📜 Прошлый</button></div><div id="lbbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="mail" class="hide p"><div class="mlhero"><span class="mlenv">📬</span><div><b>ПОЧТА</b><small>Фразы и подарки от друзей и подарки от автора игры</small></div></div><div id="mltw" class="mltabs"><button data-m="in">📥 Входящие <em id="mltin" class="bdgi"></em></button><button data-m="new">✉️ Написать</button></div><div id="mlm" role="status"></div><div id="mlbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="hk" class="hide p"><div class="hkhero"><canvas id="hkcv" width="640" height="380"></canvas><div class="hkht"><span class="hkttl">ВЗЛОМ СИСТЕМЫ</span><span class="hksub">&gt; хакерский ивент_</span><span class="hktm" id="hkt"></span></div></div><div class="hkbal"><span>Байты · Ключи</span><span><b id="hkb">0</b> 💾 &nbsp; <b id="hkk">0</b> 🔐</span></div><div id="hkm" role="status"></div><div class="hktabs"><button data-t="q">🎯<span>Задания</span></button><button data-t="c">📦<span>Ящик</span></button><button data-t="h">🕶<span>Хакерити</span></button><button data-t="t">💻<span>Терминал</span></button><button data-t="p">🎟<span>Пропуск</span></button></div><div id="hkbody"></div><button class="hkplay" id="hkplay">▶ ИГРАТЬ: ВЗЛОМ</button><div class="row"><button class="bk">Назад</button></div></section><div id="hkterm"></div><section id="tro" class="hide p"><div class="trhero"><b>🏅 ПОЛКА ТРОФЕЕВ</b><span>Собрано: <b id="trn" style="display:inline;font:inherit;color:#ffd23a;-webkit-text-fill-color:#ffd23a"></b></span><p class="mu" style="margin:8px 0 0">Трофеи навсегда: их нельзя купить, продать или подарить. Нажми на трофей, чтобы поставить его на витрину — его увидят друзья.</p></div><div id="trbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="shp" class="hide p"><h2>🛍 Магазин</h2><div id="shbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="rdl" class="hide p"><div id="rdbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="arn" class="hide"><canvas id="arc"></canvas><div id="arhud"></div><div id="arjoy"><div id="arknob"></div></div><button id="arsw" aria-label="Ударить дубинкой">🏏</button><button id="arex">🚪 Выйти</button><div id="ap-ar-tools" class="hide">
   <button type="button" id="ap-ar-admin" class="hide">🛠 Пульт</button>
   <button type="button" id="ap-ar-items">🎒 Предметы <b id="ap-ar-boxes"></b></button>
   <button type="button" id="ap-ar-market">🎟 Рынок <b id="ap-ar-tokens"></b></button>
 </div>
+<div id="ap-drop-notice" class="hide" role="status" aria-live="polite"></div>
 <div id="ap-beat-hud" class="hide">
   <strong class="ap-beat-title">♫ Бит Админити</strong>
   <span id="ap-beat-guide"></span>
@@ -877,7 +886,7 @@ function upd(dt){
   else if(u.k=='gumity'||u.k=='obesity'){exAtk(u,tg,d,p,P2)}
   else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='byehw'){byeAtk(u,tg,d,p,P2)}   else if(u.k=='freezity'||u.k=='bombity'||u.k=='magnetity'){nvAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
   else if(u.k=='glitch'||u.k=='fwall'||u.k=='virusv'||u.k=='hacker'){hkAtk(u,tg,d,p,P2)}
-  else if(u.k=='pumpkity'||u.k=='turkeyity'||u.k=='cranberrity'||u.k=='pieity'||u.k=='harvestity')thAttack(u,tg,d,p,P2);
+  else if(TH_UNITS[u.k]&&u.k!=='cornucopity')thAttack(u,tg,d,p,P2);
   else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor();hit(tg,shot);hit(tg,shot);hit(tg,shot)}
   else hit(tg,d);
   apElementAttack(u,p,d);
@@ -1148,10 +1157,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.69',VOL=.8,MQ=[],CI=0;
+var VER='1.70',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.70',t:'Лимитки и удары на Арене',a:['🦃 Админ открывает два лимитированных стока на рынке. Туркинити стоит 20 жетонов, Hacke-Turkity — 28.','🏏 Попади дубинкой по боссу вблизи. Удар виден и сразу снимает HP.','📦 Подойди к админ-ящику и ударь один раз. Все на арене увидят, кто забрал дроп.']},
 {v:'1.69',t:'Рынок Арены абьюза',a:['🎟 За трофеи Вечеринки Админити начисляются админ-жетоны. Их можно обменять на Верити, Turkey-ящик, рамку и Элемент админа.','🎪 Лавка работает на арене. После вечеринки участники могут потратить жетоны в лобби.']},
 {v:'1.68',t:'Автообновление на Android',a:['📲 Приложение при открытии проверяет, появилась ли новая версия игры на сайте, и загружает её автоматически.','💾 Последняя загруженная версия доступна без интернета. Обновления игры сохраняют твой прогресс.']},
 {v:'1.67',t:'Один аккаунт для сайта и APK',a:['👤 Сохрани личный код в разделе «Аккаунт» и войди по нему на другом устройстве. Код переносит ник, Верити, трофеи и прогресс.','📲 APK можно скачать прямо из меню игры.']},
@@ -3248,6 +3258,7 @@ function mcOpen(){if((M.gem||0)<MCPRICE)return shMsg('Не хватает гем
  if(SH.tab=='case'){Array.prototype.slice.call(B.children).forEach(function(e){if(!e.classList.contains('shtop')&&!e.classList.contains('shtabs')&&e.id!='shmsg')e.remove()});tb.insertAdjacentHTML('afterend',mcHTML());[].forEach.call(tb.querySelectorAll('button'),function(b){b.classList.toggle('on',b.dataset.sht=='case')});var g=$('mcgo');if(g)g.onclick=mcOpen}}})();
 /* ===== v1.56: Арена абьюза ===== */
 var AW=2000,AH=1400,APT={x:1000,y:1230,r:95},ADK={c:{e:'🍬',n:'конфета',p:1,col:'#ff4d8d'},g:{e:'💎',n:'гем',p:3,col:'#33c3ff'},b:{e:'🎁',n:'подарок',p:5,col:'#ffd21f'}};
+var AR_SWING_TIME=.32, AR_CLUB_REACH=70;
 var AR={cfg:null,me:null,oth:{},drops:{},boss:null,bd:{},sc:{},cut:null,hseen:{},pend:{},lastPut:0,raf:0,poll:0,keys:{},joy:null,bdm:0,bdSent:0,pts:0,toasts:[],wv:{},fx:[],lt:0};
 function arOpenNow(){
   var config=AR.cfg;
@@ -3260,6 +3271,7 @@ async function arCfgPoll(){
     if(result.ok){
       AR.cfg=result.j;
       if(typeof apReadControl==='function')await apReadControl(AR.cfg);
+      if(cur!=='arn'&&apMarketIsOpen())await apLoadStocks();
     }
     if(typeof apRefreshArena==='function')apRefreshArena();
     if(cur==='arn'&&!arOpenNow())arExit('Арена закрылась.');
@@ -3290,11 +3302,12 @@ async function arEnter(){
   AR.me={x:900+Math.random()*200,y:1050+Math.random()*80,carry:[],stun:0,sw:0,cd:0,face:1,mv:0};
   AR.oth={};AR.drops={};AR.toasts=[];AR.fx=[];AR.pend={};AR.keys={};AR.joy=null;AR.lastPut=0;
   AR.beatWrites=new Set();AR.beatScore=null;AR.beatCue=null;
+  AR.dropClaims=new Set();AR.dropsSynced=false;
   arUseBoss(null,{});
   scr('arn');arSize();AR.lt=0;
   if(!AR.raf)AR.raf=requestAnimationFrame(arLoop);
   arPut(1);arPoll();
-  arToast(AR.party?'🎉 Вечеринка началась! Ищи админ-ящики и держи дубинку наготове.':'Добро пожаловать на арену! Собирай дроп и неси в точку СБОРА 📦');
+  arToast(AR.party?'🎉 Подойди к админ-ящику и ударь дубинкой, чтобы открыть его.':'Добро пожаловать на арену! Собирай дроп и неси в точку СБОРА 📦');
 }
 function arExit(message){
   if(cur!=='arn')return;
@@ -3351,20 +3364,26 @@ async function arPoll(){
       if(uid===ON.uid||!p||!Number.isFinite(p.x)||!Number.isFinite(p.y))return;
       if(AR.party?!apIsAttendee(p,now):p.pa||now-p.t>12000)return;
       var old=AR.oth[uid];
+      var sw=p.s&&p.t!==old?.at&&now-p.t<800?AR_SWING_TIME:old?.sw||0;
       others[uid]={x:old?old.x:p.x,y:old?old.y:p.y,tx:p.x,ty:p.y,n:p.n,a:p.a,cs:p.cs,c:p.c,
-        s:p.s,st:p.st,f:p.f,cr:!!p.cr};
+        sw:sw,at:p.t,st:p.st,f:p.f,cr:!!p.cr};
     });
-    AR.oth=others;
     var drops={};
     Object.keys(arena.drops||{}).forEach(function(id){
       var d=arena.drops[id];
       if(!d||!Number.isFinite(d.x)||!Number.isFinite(d.y))return;
       if(AR.party?d.pa!==AP_EVENT:d.pa)return;
       if(d.c){
-        if(AR.party&&d.c===ON.uid)apClaimBox(id,d,true);
+        if(!AR.party)return;
+        if(d.c===ON.uid)apClaimBox(id,d,true);
+        if(AR.dropsSynced)apDropAnnounce(id,d,players[d.c]?.n||AR.oth[d.c]?.n);
+        else AR.dropClaims.add(id);
       }else drops[id]=d;
     });
+    AR.dropsSynced=true;
+    AR.oth=others;
     AR.drops=drops;
+    if(AR.party)apReadStocks(arena.drops||{});
     AR.sc=AR.party?{}:arena.sc||{};
 
     var hits=arena.hits?.[ON.uid]||{};
@@ -3399,17 +3418,42 @@ function arUseBoss(next,damage){
 function arStun(s,msg){var m=AR.me;if(!m)return;if(m.stun>0)return;m.stun=s;if(msg)arToast(msg);arDropAll();tone(160,.15,'square',.05,90)}
 function arDropAll(){var m=AR.me;if(!m||!m.carry.length)return;var ks=m.carry.slice();m.carry=[];var up={};ks.forEach(function(k,i){var a=Math.random()*6.28,id='u'+ON.uid.slice(0,6)+Date.now().toString(36)+i;up[id]={x:Math.round(Math.max(40,Math.min(AW-40,m.x+Math.cos(a)*70))),y:Math.round(Math.max(40,Math.min(AH-40,m.y+Math.sin(a)*70))),k:k,f:ON.uid};AR.drops[id]=up[id]});db('arena/drops',{m:'PATCH',b:up}).catch(function(){});arPut(1)}
 function arToast(s){AR.toasts.push({s:s,t:3.2});if(AR.toasts.length>3)AR.toasts.shift()}
-async function arClaim(id){if(AR.party)return apClaimBox(id,AR.drops[id],false);var m=AR.me;if(AR.pend[id]||m.carry.length>=3||m.stun>0)return;AR.pend[id]=1;var d=AR.drops[id];try{var r=await db('arena/drops/'+id+'/c',{m:'PUT',b:ON.uid});if(r.ok&&d){m.carry.push(d.k);delete AR.drops[id];tone(880,.06,'triangle',.06);arPut(1);db('arena/drops/'+id,{m:'DELETE'}).catch(function(){})}else{delete AR.drops[id]}}catch(e){}setTimeout(function(){delete AR.pend[id]},2000)}
+async function arClaim(id){var m=AR.me;if(AR.pend[id]||m.carry.length>=3||m.stun>0)return;AR.pend[id]=1;var d=AR.drops[id];try{var r=await db('arena/drops/'+id+'/c',{m:'PUT',b:ON.uid});if(r.ok&&d){m.carry.push(d.k);delete AR.drops[id];tone(880,.06,'triangle',.06);arPut(1);db('arena/drops/'+id,{m:'DELETE'}).catch(function(){})}else{delete AR.drops[id]}}catch(e){}setTimeout(function(){delete AR.pend[id]},2000)}
 function arDeliver(){var m=AR.me;if(!m.carry.length)return;arFix();var pts=0,c=0,g=0;m.carry.forEach(function(k){pts+=ADK[k].p;if(k=='c')c+=60;if(k=='g')g+=2;if(k=='b')g+=5});M.bank+=c;M.gem=(M.gem||0)+g;M.arn.pts+=pts;AR.pts+=pts;save();m.carry=[];
  arToast('📦 Сдано! +'+pts+' очк.'+(c?' +'+c+' 🪙':'')+(g?' +'+g+' 💎':''));tone(660,.12,'triangle',.1,1320);AR.fx.push({x:APT.x,y:APT.y,t:0,k:'ring'});if(typeof trGive=='function'&&!(M.tro&&M.tro.arena14))try{trGive('arena14')}catch(e){}
  if(ON.uid)db('arena/sc/'+ON.uid,{m:'PUT',b:{v:M.arn.pts,n:M.fb.nick,t:{'.sv':'timestamp'}}}).catch(function(){});arPut(1)}
-function arSwing(){var m=AR.me;if(cur!=='arn'||!ON.uid||!m||m.cd>0||m.stun>0||apArenaBlocked())return;m.sw=.32;m.cd=.7;tone(240,.06,'square',.04,160);arPut(1);
- var beat=apBeatState(Date.now());
- if(apBeatStrike(beat,m))return;
- for(var u in AR.oth){var o=AR.oth[u];if(Math.hypot(o.x-m.x,o.y-m.y)<70){db('arena/hits/'+u+'/'+(ON.uid.slice(0,6)+Date.now().toString(36)),{m:'PUT',b:{f:ON.uid,...(AR.party?{pa:AP_EVENT}:{}),t:{'.sv':'timestamp'}}}).catch(function(){});AR.fx.push({x:o.x,y:o.y-30,t:0,k:'bonk'})}}
- var B=arBossState();if(B&&B.alive&&Math.hypot(B.x-m.x,B.y-m.y)<B.r+70){var dm=12+Math.floor(Math.random()*7)+(m.carry.length?0:3);
-  if(beat?.phase==='boost')dm=Math.round(dm*(1+AP_BEAT.damage/100));
-  AR.bdm+=dm;AR.fx.push({x:B.x+(Math.random()-.5)*B.r,y:B.y-B.r*.4,t:0,k:'dmg',v:dm});tone(120,.08,'square',.06,80)}}
+function arSwing(){
+  var m=AR.me;
+  if(cur!=='arn'||!ON.uid||!m||m.cd>0||m.stun>0||apArenaBlocked())return;
+  var beat=apBeatState(Date.now()), pad=apBeatStrike(beat,m);
+  var box=AR.party&&!pad?apNearbyBox(m):null, boss=arBossState();
+  var distance=boss?.alive?Math.hypot(boss.x-m.x,boss.y-m.y):Infinity;
+  var bossHit=!pad&&boss?.alive&&distance<boss.r+AR_CLUB_REACH;
+  var others=pad||box||bossHit?[]:Object.entries(AR.oth).filter(function(pair){
+    return Math.hypot(pair[1].x-m.x,pair[1].y-m.y)<AR_CLUB_REACH;
+  });
+  var target=box?.[1]||(bossHit?boss:others[0]?.[1]);
+  m.aim=target?Math.atan2(target.y-m.y,target.x-m.x):m.face>0?0:Math.PI;
+  m.face=Math.cos(m.aim)<0?-1:1;
+  m.sw=AR_SWING_TIME;m.cd=.7;
+  tone(240,.06,'square',.04,160);arPut(1);
+  if(box){apClaimBox(box[0],box[1],false);return}
+  others.forEach(function(pair){
+    var uid=pair[0], player=pair[1];
+    db('arena/hits/'+uid+'/'+(ON.uid.slice(0,6)+Date.now().toString(36)),{m:'PUT',
+      b:{f:ON.uid,...(AR.party?{pa:AP_EVENT}:{}),t:{'.sv':'timestamp'}}}).catch(function(){});
+    AR.fx.push({x:player.x,y:player.y-30,t:0,k:'bonk'});
+  });
+  if(!bossHit)return;
+  var damage=12+Math.floor(Math.random()*7)+(m.carry.length?0:3);
+  if(beat?.phase==='boost')damage=Math.round(damage*(1+AP_BEAT.damage/100));
+  AR.bdm+=damage;
+  var edge=boss.r*.85/(distance||1);
+  AR.fx.push({x:boss.x+(m.x-boss.x)*edge,y:boss.y+(m.y-boss.y)*edge,t:0,k:'impact'});
+  AR.fx.push({x:boss.x,y:boss.y-boss.r*.4,t:0,k:'dmg',v:damage});
+  tone(120,.08,'square',.06,80);
+  arSendDamage();
+}
 async function arSendDamage(){
   var boss=AR.boss, uid=ON.uid, value=Math.round(AR.bdm);
   if(!boss||!uid||AR.damageBusy||value<=AR.bdSent||!onOk())return;
@@ -3453,16 +3497,26 @@ function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){retu
  if(B&&B.alive&&!blocked){var dx=m.x-B.x,dy=m.y-B.y,dd=Math.hypot(dx,dy);if(dd<B.r+22){m.x=B.x+dx/(dd||1)*(B.r+22);m.y=B.y+dy/(dd||1)*(B.r+22);if(B.dash)arStun(1.5,'Титан сбил тебя с ног! 💥')}
   if(B.wave&&!AR.wv[B.k+B.wave.id]&&Math.abs(dd-B.wave.r)<32){AR.wv[B.k+B.wave.id]=1;arStun(1.5,'Тебя накрыло ударной волной! 💫')}
   if(B.zones)B.zones.forEach(function(z){if(z.on&&!AR.wv['z'+z.id+z.x]&&Math.abs(m.x-z.x)<z.w/2&&Math.abs(m.y-z.y)<z.w/2){AR.wv['z'+z.id+z.x]=1;arStun(1.2,'Хакерский код заморозил тебя! 💾')}})}
- // подбор и сдача
- for(var id in AR.drops){var d=AR.drops[id];if(!blocked&&Math.hypot(d.x-m.x,d.y-m.y)<38)arClaim(id)}
+ // Подбор обычного дропа на арене.
+ if(!AR.party&&!blocked)for(var id in AR.drops){var d=AR.drops[id];if(Math.hypot(d.x-m.x,d.y-m.y)<38)arClaim(id)}
  if(m.carry.length&&Math.hypot(APT.x-m.x,APT.y-m.y)<APT.r)arDeliver();
- for(var u in AR.oth){var o=AR.oth[u];o.x+=(o.tx-o.x)*Math.min(1,dt*7);o.y+=(o.ty-o.y)*Math.min(1,dt*7)}
+ for(var u in AR.oth){var o=AR.oth[u];o.x+=(o.tx-o.x)*Math.min(1,dt*7);o.y+=(o.ty-o.y)*Math.min(1,dt*7);o.sw=Math.max(0,o.sw-dt)}
  arPut(0);arDraw(cv2,t/1000,B,beat,now);AR.toasts.forEach(function(q){q.t-=dt});AR.toasts=AR.toasts.filter(function(q){return q.t>0});AR.fx.forEach(function(q){q.t+=dt});AR.fx=AR.fx.filter(function(q){return q.t<1});
  apBeatHud(beat,now,blocked);
  AR.raf=requestAnimationFrame(arLoop)}
-function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
+function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
  // дубинка
- c.save();c.translate(x+face*22,y+bob);var ang=sw?(-1.6+(1-sw/.32)*2.6):-.5;c.rotate(face*ang);c.fillStyle='#8a5a2a';c.strokeStyle='#3a2410';c.lineWidth=2;c.beginPath();c.moveTo(-4,0);c.lineTo(4,0);c.lineTo(8,-40);c.lineTo(-8,-40);c.closePath();c.fill();c.stroke();c.fillStyle='#a8743a';c.beginPath();c.ellipse(0,-42,10,7,0,0,7);c.fill();c.stroke();c.restore();
+ var heading=sw?(aim??(face>0?0:Math.PI)):(face>0?0:Math.PI);
+ var gripX=x+Math.cos(heading)*25, gripY=y+bob+Math.sin(heading)*25;
+ var progress=sw?1-sw/AR_SWING_TIME:0, angle=heading+(sw?(-1.25+2.5*progress):(face>0?-1.08:1.08));
+ c.save();c.translate(gripX,gripY);
+ if(sw){
+   c.globalAlpha=(1-progress)*.8;c.lineCap='round';c.strokeStyle='#ffd487';c.lineWidth=5;
+   c.beginPath();c.arc(0,0,46,angle-.8,angle);c.stroke();c.globalAlpha=1;
+ }
+ c.rotate(angle+Math.PI/2);c.fillStyle='#8a5a2a';c.strokeStyle='#3a2410';c.lineWidth=2;
+ c.beginPath();c.moveTo(-4,0);c.lineTo(4,0);c.lineTo(8,-40);c.lineTo(-8,-40);c.closePath();c.fill();c.stroke();
+ c.fillStyle='#a8743a';c.beginPath();c.ellipse(0,-42,10,7,0,0,7);c.fill();c.stroke();c.restore();
  if(I&&I.complete&&I.naturalWidth){c.save();c.beginPath();c.arc(x,y+bob,s/2,0,7);c.clip();c.drawImage(I,x-s/2,y-s/2+bob,s,s);c.restore()}else{c.fillStyle='#ffd21f';c.beginPath();c.arc(x,y+bob,s/2,0,7);c.fill()}
  var CS=typeof csP=='function'?csP(cs):{},frc=CS.fr&&typeof cosCol=='function'?cosCol('fr',CS.fr,t*1000):null,ncc=CS.nc&&typeof cosCol=='function'?cosCol('nc',CS.nc,t*1000):null;c.lineWidth=4;c.strokeStyle=frc||(me?'#ffd21f':'#ffffff');c.beginPath();c.arc(x,y+bob,s/2,0,7);c.stroke();
  if(crown)apDrawCrown(c,x,y+bob-31,.51);
@@ -3496,17 +3550,29 @@ function arDraw(cv2,t,B,beat,now){
  var pr=APT.r+6*Math.sin(t*4);c.fillStyle='rgba(255,210,31,.18)';c.beginPath();c.arc(APT.x,APT.y,pr,0,7);c.fill();c.strokeStyle='#ffd21f';c.lineWidth=6;c.setLineDash([16,10]);c.lineDashOffset=-t*40;c.beginPath();c.arc(APT.x,APT.y,pr,0,7);c.stroke();c.setLineDash([]);c.font='44px serif';c.fillText(AR.party?'🎉':'📦',APT.x,APT.y+10);c.font='900 26px system-ui';c.fillStyle='#ffd21f';c.fillText(AR.party?'ВХОД':'СБОР',APT.x,APT.y+55);
  // дроп
  for(var id in AR.drops){var dr=AR.drops[id],K=ADK[dr.k]||ADK.c,fl=Math.sin(t*4+dr.x)*5;
- if(AR.party&&dr.pa===AP_EVENT){apChest(c,dr.x,dr.y+fl,t);continue}
+ if(AR.party&&dr.pa===AP_EVENT){
+   apChest(c,dr.x,dr.y+fl,t);
+   if(Math.hypot(dr.x-m.x,dr.y-m.y)<AR_CLUB_REACH){
+     c.font='800 13px system-ui';c.textAlign='center';c.lineWidth=4;c.strokeStyle='#301b33';c.fillStyle='#ffe7b0';
+     c.strokeText('Ударь дубинкой',dr.x,dr.y-36);c.fillText('Ударь дубинкой',dr.x,dr.y-36);
+   }
+   continue;
+ }
  c.fillStyle=K.col;c.globalAlpha=.3;c.beginPath();c.arc(dr.x,dr.y+fl,22,0,7);c.fill();c.globalAlpha=1;c.font='30px serif';c.textAlign='center';c.fillText(K.e,dr.x,dr.y+10+fl)}
  // босс
  if(B){arDrawBoss(c,B,t)}
  // эффекты
  AR.fx.forEach(function(f){c.globalAlpha=1-f.t;if(f.k=='ring'){c.strokeStyle='#ffd21f';c.lineWidth=8;c.beginPath();c.arc(f.x,f.y,APT.r+f.t*120,0,7);c.stroke()}else if(f.k==='apbox'){
  thShape(c,function(p){p.arc(f.x,f.y,20+f.t*56,0,Math.PI*2)},null,'#ffca83',4);
+ }else if(f.k==='impact'&&f.t<.38){
+   c.globalAlpha=1-f.t/.38;c.strokeStyle='#ffe4a3';c.lineWidth=3;c.beginPath();
+   for(var i=0;i<7;i++){var a=i*Math.PI*2/7,dx=Math.cos(a),dy=Math.sin(a),r=8+f.t*58;
+     c.moveTo(f.x+dx*r,f.y+dy*r);c.lineTo(f.x+dx*(r+12),f.y+dy*(r+12));}
+   c.stroke();
  }else if(f.k=='bonk'){c.font='900 30px system-ui';c.fillStyle='#fff';c.fillText('БОНК!',f.x,f.y-f.t*40)}else if(f.k=='dmg'){c.font='900 28px system-ui';c.fillStyle='#ffd21f';c.strokeStyle='#000';c.lineWidth=5;c.strokeText('-'+f.v,f.x,f.y-f.t*50);c.fillText('-'+f.v,f.x,f.y-f.t*50)}c.globalAlpha=1});
  // игроки
- var L=[];for(var u in AR.oth){var o=AR.oth[u];L.push([o.y,o.x,o.a,o.n,o.cs,0,o.c||0,o.s?.16:0,o.st,o.f||1,o.cr])}L.push([m.y,m.x,M.fb.fav,M.fb.nick,typeof csStr=='function'?csStr():'',1,m.carry.length,m.sw>0?m.sw:0,m.stun>0,m.face,apWearCrown()]);L.sort(function(a,b){return a[0]-b[0]});
- L.forEach(function(e){arAvatar(c,e[1],e[0],e[2],e[3],e[4],e[5],e[6],e[7],e[8],e[9],t,e[10])});
+ var L=[];for(var u in AR.oth){var o=AR.oth[u];L.push([o.y,o.x,o.a,o.n,o.cs,0,o.c||0,o.sw,o.st,o.f||1,o.cr])}L.push([m.y,m.x,M.fb.fav,M.fb.nick,typeof csStr=='function'?csStr():'',1,m.carry.length,m.sw>0?m.sw:0,m.stun>0,m.face,apWearCrown(),m.aim]);L.sort(function(a,b){return a[0]-b[0]});
+ L.forEach(function(e){arAvatar(c,e[1],e[0],e[2],e[3],e[4],e[5],e[6],e[7],e[8],e[9],t,e[10],e[11])});
  c.restore();
  // мини-карта
  var mw=110,mh=77,mx=W2-mw-10,my=58;c.fillStyle='rgba(10,6,20,.75)';c.fillRect(mx,my,mw,mh);c.strokeStyle='#ff4dd2';c.lineWidth=2;c.strokeRect(mx,my,mw,mh);var sx=mw/AW,sy=mh/AH;c.fillStyle='#ffd21f';c.fillRect(mx+APT.x*sx-3,my+APT.y*sy-3,6,6);for(var id2 in AR.drops){var q=AR.drops[id2];c.fillStyle=ADK[q.k]?ADK[q.k].col:'#fff';c.fillRect(mx+q.x*sx-1,my+q.y*sy-1,2.5,2.5)}for(var u3 in AR.oth){c.fillStyle='#fff';c.fillRect(mx+AR.oth[u3].x*sx-2,my+AR.oth[u3].y*sy-2,4,4)}if(B&&B.alive){c.fillStyle=B.I.col;c.beginPath();c.arc(mx+B.x*sx,my+B.y*sy,5,0,7);c.fill()}c.fillStyle='#ffd21f';c.beginPath();c.arc(mx+m.x*sx,my+m.y*sy,3.5,0,7);c.fill();
@@ -3580,7 +3646,14 @@ async function arAdm(a,msg){var r;try{
  if(apLive()&&a!=='arme'){AP.tab='party';admPanel();return}
  if(a=='aron')r=await db('arena/cfg',{m:'PATCH',b:{on:true,en:Date.now()+2*36e5}});else if(a=='aroff')r=await db('arena/cfg',{m:'PATCH',b:{on:false,en:0}});
  else if(a=='ardrop')r=await arSpawnDrops(18);else if(a=='arauto'){ARAUTO=!ARAUTO;r={ok:true};if(ARAUTO)arSpawnDrops(6).catch(function(){})}
- else if(a=='arclr'){await db('arena/sc',{m:'DELETE'});r=await db('arena/drops',{m:'DELETE'})}
+ else if(a=='arclr'){
+   await db('arena/sc',{m:'DELETE'});
+   r=await db('arena/drops');
+   if(r.ok){
+     var drops=r.j||{}, legacy=Object.keys(drops).filter(function(id){return !drops[id]?.pa});
+     if(legacy.length)r=await db('arena/drops',{m:'PATCH',b:Object.fromEntries(legacy.map(function(id){return [id,null]}))});
+   }
+ }
  else if(a=='arb1'||a=='arb2'){var hp=Math.max(500,Math.min(1000000,+$('arbhp').value||6000));r=await db('arena/boss',{m:'PUT',b:{on:true,id:'ab'+Date.now().toString(36),k:a=='arb1'?'hack':'titan',hp:a=='arb2'?Math.round(hp*1.5):hp,st:Date.now()}})}
  else if(a=='arbx')r=await db('arena/boss',{m:'DELETE'});else if(a=='arcut')r=await db('arena/cut',{m:'PUT',b:{id:'c'+Date.now().toString(36)}});
  else if(a=='arme'){mClose();arEnter();return}
@@ -3982,7 +4055,11 @@ var TH_UNITS = {
   cornucopity:{n:'Cornucopity',rar:'Legendary',cost:430,dmg:23,rate:.95,rng:109,col:'#bb6b28',light:'#ffd986',
     d:'Рог изобилия усиливает обычные атаки других Верити в радиусе 95 на 10%, во второй фазе на 15%. Ауры Cornucopity не складываются.'},
   harvestity:{n:'Harvestity',rar:'Mythic',cost:570,dmg:46,rate:1.1,rng:112,col:'#aa371d',light:'#ffbe64',
-    d:'Каждый 4-й удар поднимает вихрь из листьев: до 5 соседних врагов получают 45% урона. Во второй фазе вихрь замедляет задетых врагов на 25% на 1 с.'}
+    d:'Каждый 4-й удар поднимает вихрь из листьев: до 5 соседних врагов получают 45% урона. Во второй фазе вихрь замедляет задетых врагов на 25% на 1 с.'},
+  turkinity:{n:'Туркинити',rar:'Epic',cost:220,dmg:19,rate:.87,rng:107,col:'#e5a449',light:'#fff2b7',
+    d:'Каждый третий выстрел задевает до двух соседей цели на 40% урона и замедляет их на 25% на 1 с. Во второй фазе перья летят на каждом втором выстреле.'},
+  hacketurkity:{n:'Hacke-Turkity',rar:'Legendary',cost:340,dmg:26,rate:1,rng:112,col:'#57e89b',light:'#b9ffc5',
+    d:'Каждый четвёртый выстрел оглушает цель и одного её соседа на 0,55 с. Во второй фазе эффект срабатывает каждые три выстрела и длится 0,8 с. Боссы оглушаются на 0,2 с.'}
 };
 /* День благодарения: пропуск, магазин и застолье */
 var TH_CRATE_COST = 10, TH_MEAL_COST = 5, TH_SEATS = 15, TH_FEAST_XP = 10;
@@ -4598,6 +4675,21 @@ function thAttack(u,target,damage,point,phase){
     return;
   }
   if(u.k==='cranberrity'){thSlow(target,phase?.3:.2);return}
+  if(u.k==='turkinity'||u.k==='hacketurkity'){
+    var feathers=u.k==='turkinity';
+    if(u.n%(feathers?(phase?2:3):(phase?3:4))!==0)return;
+    var nearby=thSplash(target,point,feathers?58:46,feathers?2:1);
+    if(!feathers&&!target.dead)nearby.unshift(target);
+    nearby.forEach(function(enemy){
+      var p=pos(enemy.d);
+      if(enemy!==target)G.shots.push({a:point[0],b:point[1],c:p[0],e:p[1],t:.16,col:TY[u.k].col});
+      if(feathers){
+        hit(enemy,damage*.4);
+        if(!enemy.dead)thSlow(enemy,.25);
+      }else enemy.stun=Math.max(enemy.stun||0,enemy.boss?.2:phase?.8:.55);
+    });
+    return;
+  }
   var turkey=u.k==='turkeyity', pie=u.k==='pieity';
   if(!pie&&u.n%(turkey?(phase?2:3):4)!==0)return;
   var amount=turkey?.55:pie?(phase?.55:.35):.45;
@@ -4681,7 +4773,9 @@ var TH_COLORS = {
   cranberrity:{normal:['#fda3ae','#d74e69','#a22548'],phase:['#ff839a','#c83153','#861938']},
   pieity:{normal:['#ffeab4','#efb672','#b77840'],phase:['#ffd18c','#e19550','#a65931']},
   cornucopity:{normal:['#f7e9a8','#bfbc63','#6c783b'],phase:['#ecd58c','#a9964b','#55562d']},
-  harvestity:{normal:['#ffc083','#e36643','#a5352e'],phase:['#ffaf72','#d54b31','#872721']}
+  harvestity:{normal:['#ffc083','#e36643','#a5352e'],phase:['#ffaf72','#d54b31','#872721']},
+  turkinity:{normal:['#ffedac','#e0a357','#ad6142'],phase:['#ffe38b','#d78145','#7d354d']},
+  hacketurkity:{normal:['#b0f9b6','#528468','#2c2b3d'],phase:['#90ffb4','#397e76','#2d2550']}
 };
 function thFeathers(c,originX,originY,scale){
   c.save();
@@ -4806,6 +4900,10 @@ function thHeaddress(c,key){
 function thUnitArt(key,phase){
   var canvas=thCanvas(180,180), c=canvas.getContext('2d');
   var colors=phase?TH_COLORS[key].phase:TH_COLORS[key].normal;
+  if(key==='turkinity'||key==='hacketurkity'){
+    thStockTurkey(c,colors,phase,key==='hacketurkity');
+    return canvas;
+  }
   if(key==='turkeyity')thFeathers(c,90,108,1.06);
   thSoftBody(c,90,100,65,65,colors[0],colors[1],colors[2]);
   thShape(c,function(p){p.arc(90,100,65,0,Math.PI*2)},null,'#291715',5);
@@ -4822,6 +4920,36 @@ function thUnitArt(key,phase){
   thCharacterFace(c,key,phase);
   thHeaddress(c,key);
   return canvas;
+}
+function thStockTurkey(c,colors,phase,hacker){
+  thFeathers(c,90,110,1.09);
+  thSoftBody(c,90,102,60,60,colors[0],colors[1],colors[2]);
+  thShape(c,function(p){p.arc(90,102,60,0,7)},null,'#382128',4);
+  if(hacker){
+    var portrait=thCanvas(180,180);
+    hkUnitPaint(portrait.getContext('2d'),'hacker',180,phase);
+    c.save();
+    c.beginPath();c.arc(90,102,58,0,7);c.clip();
+    c.drawImage(portrait,16,26,148,146);
+    c.restore();
+  }else thCharacterFace(c,'turkinity',phase);
+  [-1,1].forEach(function(side){
+    var x=90+side*46, foot=90+side*24;
+    thEllipse(c,x,119,17,27,hacker?'#8a5141':'#b76a44',side*.39);
+    thShape(c,function(p){p.moveTo(x-side*3,105);p.quadraticCurveTo(x+side*8,121,x-side*1,134)},null,'#f4c18b',2);
+    thEllipse(c,foot,158,14,6,'#d58e43');
+    thPoly(c,[[foot-6,156],[foot-9,160],[foot+8,160]],null,'#f8b85e',1.8);
+  });
+  thShape(c,function(p){p.moveTo(46,68);p.quadraticCurveTo(49,32,80,31);p.quadraticCurveTo(100,17,111,39);p.quadraticCurveTo(132,43,134,69);p.quadraticCurveTo(90,57,46,68)},
+    thGradient(c,76,28,105,76,['#ffc984','#af6247','#743c37']),'#542b31',3);
+  thEllipse(c,88,29,7,12,'#c84e44',-.65);
+  thEllipse(c,99,28,6,10,'#e2674f',.38);
+  thEllipse(c,92,69,5.4,9,'#bd4745',-.27);
+  thPoly(c,[[79,59],[104,59],[94,70],[89,71]],'#ffd16c','#834227',2.1);
+  if(!hacker){
+    thPoly(c,[[79,142],[90,136],[101,142],[90,151]],phase?'#b74e55':'#d77b47','#ffdf99',2);
+    thEllipse(c,90,143,2.4,2.4,'#fff1aa');
+  }
 }
 function thPlate(c,x0,y0,scale,type){
   c.save();c.translate(x0,y0);c.scale(scale,scale);
@@ -5331,7 +5459,7 @@ Object.keys(TH_UNITS).forEach(function(key){
   TY[key]=unit;
   RA[key]=unit.rar;
   EXU.push(key);
-  MKNS[key]='награда Дня благодарения';
+  MKNS[key]=key==='turkinity'||key==='hacketurkity'?'лимитка рынка вечеринки':'награда Дня благодарения';
 });
 function thExpire(){
   if(thOn())return;
@@ -5803,21 +5931,26 @@ var AP_END=Date.parse('2026-11-21T20:30:00+03:00');
 var AP_SCHEDULE='21 ноября · 20:00–20:30 МСК';
 var AP_CONFIG='arena/cfg/'+AP_EVENT;
 var AP_SCENES={intro:{seconds:25,title:'Возвращение Админити'},stone:{seconds:17,title:'Каменный разлом'},final:{seconds:22,title:'Последний козырь'}};
-var AP_CONTROLS=['coins','turkey','intro','stone','final'];
 var AP_LOOT=[{name:'5 гемов',chance:55,key:'gems'},{name:'400 монет',chance:29,key:'coins'},
   {name:'Turkey-ящик',chance:15,key:'turkey'},{name:'Элемент админа',chance:1,key:'element'}];
 var AP_MARKET_POS={x:1290,y:1190}, AP_MARKET_TITLE='🎟 Рынок вечеринки';
 var AP_TOKEN_AWARDS=[['apguest',4],['apdrop',4],['apbeat',6],['apstone',8],['apfinal',12]];
-var AP_MARKET_OFFERS=[
+var AP_STOCK_TAG=AP_EVENT+'-stock';
+var AP_STOCK_OFFERS=[
+  {id:'turkinity',kind:'verity',name:TY.turkinity.n,cost:20,count:6,control:'stockTurkey',detail:'Веер перьев ранит и замедляет двух врагов рядом с целью.'},
+  {id:'hacketurkity',kind:'verity',name:TY.hacketurkity.n,cost:28,count:4,control:'stockHacke',detail:'Хакерити в костюме индейки. Импульс оглушает до двух врагов.'}
+];
+var AP_CONTROLS=['coins','turkey','intro','stone','final'].concat(AP_STOCK_OFFERS.map(function(offer){return offer.control}));
+var AP_MARKET_OFFERS=AP_STOCK_OFFERS.concat([
   {id:'bronze',kind:'frame',name:'Бронзовая рамка',cost:4,detail:'Косметика для аватарки.'},
   {id:'turkey',kind:'box',name:'Turkey-ящик',cost:7,detail:'Открывается в «Предметах вечеринки».'},
   {id:'pumpkity',kind:'verity',name:TY.pumpkity.n,cost:12,detail:'Семечки блокируют лечение врага.'},
   {id:'cranberrity',kind:'verity',name:TY.cranberrity.n,cost:16,detail:'Клюквенный соус замедляет врага.'},
   {id:'pieity',kind:'verity',name:TY.pieity.n,cost:24,detail:'Кусочки пирога бьют по области.'},
   {id:'adelem',kind:'pet',name:'Элемент админа',cost:34,detail:'Усиливает атаки рядом с носителем.'}
-];
+]);
 var AP={commands:{},verified:new Map(),key:null,busy:false,tab:'main',boxBusy:new Set(),
-  show:null,seen:new Set(),sound:true,lastRewardCheck:0};
+  show:null,seen:new Set(),sound:true,lastRewardCheck:0,stock:{},marketBusy:false};
 var AP_BEAT={first:60000,repeat:180000,notice:9000,pulses:3,gap:5200,window:2500,lag:1000,
   radius:78,boost:18000,speed:20,damage:30};
 var AP_PADS=[
@@ -6021,6 +6154,7 @@ function apRefreshArena(){
   if(cur==='arn'&&!AR.party&&live){
     AR.party=true;
     AR.oth={};AR.drops={};AR.me.carry=[];
+    AR.dropClaims.clear();AR.dropsSynced=false;
     arUseBoss(null,AR.bd);
     arPut(1);apNav();lmTick();
   }
@@ -6043,7 +6177,7 @@ function apNav(){
   document.body.classList.toggle('ap-arena',arena);
   $('ap-ar-tools').classList.toggle('hide',!arena||!AR.party);
   $('ap-ar-actions').classList.toggle('hide',!arena||!AR.party);
-  if(!arena){apHideScene();apBeatHud(null)}
+  if(!arena){apHideScene();apBeatHud(null);$('ap-drop-notice').classList.add('hide')}
   apRefreshItems();
 }
 
@@ -6073,10 +6207,12 @@ async function apReadControl(cfg){
   await Promise.all(AP_CONTROLS.map(async function(key){
     if(AP.commands[key]||!controls[key])return;
     var row=await apVerify(controls[key]);
-    if(!row||row.kind!==key||!Number.isFinite(row.at)||!apLive(row.at))return;
+    if(!row||row.kind!==key||!Number.isFinite(row.at)||!apControlOpen(key,row.at))return;
     if(key==='coins'||key==='turkey'){
       if(!Array.isArray(row.uids))return;
-    }else if(key!=='intro'&&(!Number.isInteger(row.hp)||row.hp<800||row.hp>30000))return;
+    }else if((key==='stone'||key==='final')&&(!Number.isInteger(row.hp)||row.hp<800||row.hp>30000))return;
+    var stock=AP_STOCK_OFFERS.find(function(offer){return offer.control===key});
+    if(stock&&row.count!==stock.count)return;
     AP.commands[key]=row;
   }));
   apPayGrants();
@@ -6194,17 +6330,42 @@ function apLootRoll(signature){
   var roll=new DataView(bytes.buffer).getUint32(0)/4294967296*100;
   return AP_LOOT.find(function(item){roll-=item.chance;return roll<0})||AP_LOOT[AP_LOOT.length-1];
 }
+function apNearbyBox(player){
+  var found=null, reach=AR_CLUB_REACH;
+  Object.entries(AR.drops).forEach(function(pair){
+    var box=pair[1], distance=Math.hypot(box.x-player.x,box.y-player.y);
+    if(box.pa!==AP_EVENT||distance>=reach||AP.boxBusy.has(pair[0]))return;
+    found=pair;reach=distance;
+  });
+  return found;
+}
+async function apBoxProof(id,drop){
+  var token=await apVerify(drop.proof);
+  return token?.kind==='box'&&token.id===id&&token.x===drop.x&&token.y===drop.y&&apLive(token.at);
+}
+async function apDropAnnounce(id,drop,nick){
+  if(cur!=='arn'||!AR.party||AR.dropClaims.has(id))return;
+  var entry=AR.entry;
+  AR.dropClaims.add(id);
+  if(!await apBoxProof(id,drop)||cur!=='arn'||!AR.party||entry!==AR.entry)return;
+  var notice=$('ap-drop-notice');
+  notice.textContent='📦 '+(nick||'Игрок')+' забрал дроп';
+  notice.classList.remove('hide');
+  clearTimeout(AP.dropTimer);
+  AP.dropTimer=setTimeout(function(){notice.classList.add('hide')},3300);
+}
 async function apClaimBox(id,drop,alreadyClaimed){
   if(!drop||drop.pa!==AP_EVENT||!ON.uid||AP.boxBusy.has(id))return;
-  var uid=ON.uid;
+  var uid=ON.uid, entry=AR.entry;
+  if(!alreadyClaimed&&(cur!=='arn'||!AR.party||AR.me.sw<=0||
+    Math.hypot(drop.x-AR.me.x,drop.y-AR.me.y)>=AR_CLUB_REACH))return;
   var state=apState();
   if(state.crates[id])return;
   AP.boxBusy.add(id);
   try{
-    var token=await apVerify(drop.proof);
-    if(!token||token.kind!=='box'||token.id!==id||token.x!==drop.x||token.y!==drop.y||!apLive(token.at))return;
+    if(!await apBoxProof(id,drop))return;
     if(!alreadyClaimed){
-      if(cur!=='arn'||!AR.party||!apLive()||AR.me.stun>0||Math.hypot(drop.x-AR.me.x,drop.y-AR.me.y)>=39)return;
+      if(cur!=='arn'||!AR.party||entry!==AR.entry||!apLive()||ON.uid!==uid)return;
       var result;
       try{result=await db('arena/drops/'+id+'/c',{m:'PUT',b:uid,ifMatch:'null_etag'})}catch(e){}
       if(!result?.ok){
@@ -6229,6 +6390,7 @@ async function apClaimBox(id,drop,alreadyClaimed){
     if(!apEarnTrophy('apdrop'))save();
     delete AR.drops[id];
     if(cur==='arn'&&AR.party){
+      if(!alreadyClaimed&&entry===AR.entry)apDropAnnounce(id,drop,M.fb.nick);
       AR.fx.push({x:drop.x,y:drop.y,t:0,k:'apbox'});
       tone(988,.12,'triangle',.06,1320);
     }
@@ -6259,6 +6421,60 @@ function apOpenTurkey(){
 function apTurkeyButton(){
   var count=apPresents();
   return count?'<button type="button" onclick="apOpenTurkey()">Подарок ×'+count+' · открыть</button>':'';
+}
+
+function apStockSlot(offer,index){
+  return AP_STOCK_TAG+'-'+offer.id+'-'+index;
+}
+function apStockOwners(offer,drops){
+  return Array.from({length:offer.count},function(_,index){
+    var slot=drops[apStockSlot(offer,index)];
+    return slot?.pa===AP_STOCK_TAG?slot.c||null:undefined;
+  });
+}
+function apReadStocks(drops){
+  var changed=false;
+  AP_STOCK_OFFERS.forEach(function(offer){
+    if(!AP.commands[offer.control])return;
+    var owners=apStockOwners(offer,drops), old=AP.stock[offer.id];
+    if(old&&owners.every(function(owner,i){return owner===old[i]}))return;
+    AP.stock[offer.id]=owners;changed=true;
+  });
+  if(changed&&apMarketIsOpen())apMarket($('ap-market-status').textContent,true);
+}
+async function apLoadStocks(){
+  if(!AP_STOCK_OFFERS.some(function(offer){return AP.commands[offer.control]}))return;
+  try{
+    var response=await db('arena/drops');
+    if(response.ok)apReadStocks(response.j||{});
+  }catch(e){}
+}
+async function apStockCreate(offer){
+  var fields={};
+  // Та же форма и условное поле владельца, что у админ-ящиков. Метка скрывает слоты с карты.
+  for(var index=0;index<offer.count;index++){
+    var slot=apStockSlot(offer,index), data={x:40,y:40,k:'b',f:'adm',pa:AP_STOCK_TAG};
+    Object.keys(data).forEach(function(key){fields[slot+'/'+key]=data[key]});
+  }
+  return db('arena/drops',{m:'PATCH',b:fields});
+}
+async function apStockReserve(offer,uid){
+  var response=await db('arena/drops');
+  if(!response.ok)throw Error('stock');
+  var drops=response.j||{}, owners=apStockOwners(offer,drops);
+  apReadStocks(drops);
+  if(owners.includes(uid))return true;
+  for(var index=0;index<owners.length;index++){
+    if(owners[index]!==null)continue;
+    var slot=apStockSlot(offer,index), path='arena/drops/'+slot+'/c', result;
+    try{result=await db(path,{m:'PUT',b:uid,ifMatch:'null_etag'})}catch(e){}
+    if(!result?.ok&&result?.st!==412)result=await db(path);
+    if((!result.ok&&result.st!==412)||!result.j)throw Error('stock');
+    drops[slot].c=result.j;
+    apReadStocks(drops);
+    if(result.j===uid)return true;
+  }
+  return false;
 }
 
 function apMarketWallet(){
@@ -6293,21 +6509,32 @@ function apMarketArt(offer){
   if(offer.kind==='frame')return cosPrev('fr',cosGet('fr','b'));
   return '<img src="'+TH_CRATE_ART+'" width="78" height="53" alt="">';
 }
-function apMarket(message){
+function apMarketIsOpen(){
+  return $('mt').textContent===AP_MARKET_TITLE&&!$('modal').classList.contains('hide');
+}
+function apOpenMarket(){
+  apMarket();
+  if(cur!=='arn'&&apMarketIsOpen())arCfgPoll();
+}
+function apMarket(message,keepScroll){
   var wallet=apMarketWallet();
   if(!apMarketAccessible(wallet))return;
-  var existing=$('mt').textContent===AP_MARKET_TITLE&&!$('modal').classList.contains('hide');
+  var existing=apMarketIsOpen();
   var scroll=existing?$('mbox').scrollTop:0, detailsOpen=existing&&$('ap-market-rules').open;
   var rules=AP_TOKEN_AWARDS.map(function(award){
     return '<li>'+esc(TROM[award[0]].n)+' · +'+award[1]+' 🎟</li>';
   }).join('');
-  var offers=AP_MARKET_OFFERS.map(function(offer){
+  var offers=AP_MARKET_OFFERS.filter(function(offer){return !offer.control||AP.commands[offer.control]}).map(function(offer){
     var bought=wallet.receipts[offer.id]>0, owned=apMarketOwned(offer);
-    var button=bought?'Получено':owned?'В коллекции':offer.cost+' 🎟';
-    return '<article class="ap-market-card"><div class="ap-market-art">'+apMarketArt(offer)+'</div>'+
-      '<strong>'+esc(offer.name)+'</strong><small>'+esc(offer.detail)+'</small>'+
+    var owners=AP.stock[offer.id], left=owners?.filter(function(owner){return owner===null}).length;
+    var reserved=!!ON.uid&&owners?.includes(ON.uid);
+    var unavailable=offer.control&&(left==null||left===0&&!reserved);
+    var button=bought?'Получено':owned?'В коллекции':left===0&&!reserved?'Распродано':offer.cost+' 🎟';
+    var stock=offer.control?'<small class="ap-stock-left">'+(left==null?'Проверяем наличие…':reserved&&!bought?'Место зарезервировано':'В наличии '+left+' из '+offer.count)+'</small>':'';
+    return '<article class="ap-market-card'+(offer.control?' ap-limited':'')+'"><div class="ap-market-art">'+apMarketArt(offer)+'</div>'+
+      '<strong>'+esc(offer.name)+'</strong>'+stock+'<small>'+esc(offer.detail)+'</small>'+
       '<button type="button" data-ap-offer="'+offer.id+'" aria-label="'+esc(offer.name+' · '+button)+'"'+
-      (bought||owned||wallet.balance<offer.cost?' disabled':'')+'>'+button+'</button></article>';
+      (AP.marketBusy||bought||owned||unavailable||wallet.balance<offer.cost?' disabled':'')+'>'+button+'</button></article>';
   }).join('');
   mOpen(AP_MARKET_TITLE,'<div class="ap-market-balance" id="ap-market-balance">'+
     '<b>Админ-жетоны</b><strong>'+wallet.balance+' 🎟</strong></div>'+
@@ -6315,14 +6542,29 @@ function apMarket(message){
     '><summary>Как заработать жетоны</summary><ul>'+rules+'</ul></details>'+
     '<p id="ap-market-status" role="status">'+esc(message||'')+'</p><div class="ap-market-grid">'+offers+'</div>',
     [['Закрыть',mClose]]);
-  $('mbox').scrollTop=message?0:scroll;
+  $('mbox').scrollTop=message&&!keepScroll?0:scroll;
 }
-function apMarketBuy(id){
+async function apMarketBuy(id){
   var offer=AP_MARKET_OFFERS.find(function(item){return item.id===id});
   var wallet=apMarketWallet();
-  if(!offer||!apMarketAccessible(wallet)||wallet.balance<offer.cost||
+  if(AP.marketBusy||!offer||!apMarketAccessible(wallet)||wallet.balance<offer.cost||
      wallet.receipts[id]>0||apMarketOwned(offer))return;
   var state=apState(), inventory=M.own, key=id, value=1;
+  if(offer.control){
+    if(!AP.commands[offer.control]||!onOk())return;
+    var uid, reserved=false, message='Этот сток уже раскупили.';
+    AP.marketBusy=true;
+    apMarket('Проверяю наличие…',true);
+    try{
+      await onAuth();uid=ON.uid;
+      reserved=await apStockReserve(offer,uid);
+    }catch(e){message='Не удалось проверить сток. Попробуй ещё раз.'}
+    finally{AP.marketBusy=false}
+    if(!reserved||ON.uid!==uid||state!==M.arn?.party){
+      if(apMarketIsOpen())apMarket(message);
+      return;
+    }
+  }
   if(offer.kind==='frame'){cosFix();inventory=M.cos.own;key='frb'}
   if(offer.kind==='pet'){petFix();inventory=M.pet}
   if(offer.kind==='box'){inventory=state;key='turkey';value=apPresents()+1}
@@ -6334,10 +6576,11 @@ function apMarketBuy(id){
     if(previous===undefined)delete inventory[key];
     else inventory[key]=previous;
     delete receipts[id];
-    return apMarket('Не удалось сохранить обмен. Попробуй ещё раз.');
+    if(apMarketIsOpen())apMarket('Не удалось сохранить обмен. Попробуй ещё раз.');
+    return;
   }
   apRefreshItems();
-  apMarket('Получено · '+offer.name);
+  if(apMarketIsOpen())apMarket('Получено · '+offer.name);
 }
 
 function apTabs(){
@@ -6347,17 +6590,24 @@ function apAttendeesLabel(){
   if(cur!=='arn'||!AR.party)return 'Участники раздачи определяются при нажатии.';
   return 'Сейчас на арене '+pl(Object.keys(AR.oth).length+1,'участник','участника','участников');
 }
+function apControlOpen(kind,now){
+  now=now??Date.now();
+  return AP_STOCK_OFFERS.some(function(offer){return offer.control===kind})?now>=AP_START:apLive(now);
+}
 function apControls(message){
-  var live=apLive(), lock=!live||AP.busy;
+  var live=apLive();
   function button(kind,text){
     var used=AP.commands[kind];
-    return '<button type="button" data-ap-command="'+kind+'"'+(lock||used?' disabled':'')+'>'+text+(used?' ✓':'')+'</button>';
+    return '<button type="button" data-ap-command="'+kind+'"'+(!apControlOpen(kind)||AP.busy||used?' disabled':'')+'>'+text+(used?' ✓':'')+'</button>';
   }
   return apTabs()+'<div class="ap-card"><h3>🎉 Вечеринка на Арене</h3><p>'+AP_SCHEDULE+'</p><p id="ap-panel-clock">'+
     apEventStatus()+'</p><button type="button" data-ap-item="arena"'+(!live?' disabled':'')+'>'+(cur==='arn'?'Вернуться на арену':'Зайти на арену')+'</button>'+
     '<small id="ap-attendees">'+apAttendeesLabel()+'</small></div>'+
     '<div class="ap-card"><h3>Подарки участникам</h3>'+button('coins','Раздать 500 🪙 и 20 💎')+button('turkey','Раздать Turkey-ящик')+
     '<p>По одной раздаче каждого вида за вечеринку.</p></div>'+
+    '<div class="ap-card"><h3>Лимитки на рынке</h3>'+AP_STOCK_OFFERS.map(function(offer){
+      return button(offer.control,'Открыть сток '+offer.name+' · '+offer.count+' шт. · '+offer.cost+' 🎟');
+    }).join('')+'</div>'+
     '<div class="ap-card"><h3>Админ-ящики на карте</h3><div class="ap-line"><label>Ящиков <input id="ap-drop-count" type="number" min="1" max="12" value="'+(AP.count||8)+'"></label>'+
     button('drop','Кинуть дроп')+'</div><small>'+AP_LOOT.map(function(reward){return reward.name+' · '+reward.chance+'%' }).join(' / ')+'</small></div>'+
     '<div class="ap-card"><h3>Катсцены и боссы</h3><div class="ap-line"><label>Каменный босс HP <input id="ap-stone-hp" type="number" min="800" max="30000" value="'+(AP.stoneHP||4500)+'"></label>'+
@@ -6381,7 +6631,7 @@ function apPanelRefresh(message){
 }
 function apSetAdminButtons(disabled){
   $('mc').querySelectorAll('[data-ap-command]').forEach(function(button){
-    button.disabled=disabled||!apLive()||!!AP.commands[button.dataset.apCommand];
+    button.disabled=disabled||!apControlOpen(button.dataset.apCommand)||!!AP.commands[button.dataset.apCommand];
   });
 }
 async function apAdminDrop(count){
@@ -6396,7 +6646,7 @@ async function apAdminDrop(count){
   return db('arena/drops',{m:'PATCH',b:drops});
 }
 async function apAdminAction(kind){
-  if(!ADM||!apLive()||AP.busy||!AP_CONTROLS.includes(kind)&&kind!=='drop')return;
+  if(!ADM||!apControlOpen(kind)||AP.busy||!AP_CONTROLS.includes(kind)&&kind!=='drop')return;
   if(!onOk())return apPanelStatus('Нет подключения к серверу.');
   AP.count=Math.max(1,Math.min(12,Math.trunc(+($('ap-drop-count')?.value||8))));
   AP.stoneHP=Math.max(800,Math.min(30000,Math.trunc(+($('ap-stone-hp')?.value||4500))));
@@ -6415,9 +6665,14 @@ async function apAdminAction(kind){
       var data=response.j||{}, now=Date.now();
       await apReadControl(data.cfg);
       if(AP.commands[kind])throw Error('Эта команда уже отправлена.');
-      if(!apLive(now))throw Error('Вечеринка завершилась.');
+      if(!apControlOpen(kind,now))throw Error('Вечеринка завершилась.');
       var command={event:AP_EVENT,kind:kind,at:now};
-      if(AP_SCENES[kind]){
+      var stock=AP_STOCK_OFFERS.find(function(offer){return offer.control===kind});
+      if(stock){
+        var created=await apStockCreate(stock);
+        if(!created.ok)throw Error('Не удалось открыть сток ('+created.st+').');
+        command.count=stock.count;
+      }else if(AP_SCENES[kind]){
         if(apSceneScheduled(now))throw Error('Дождись конца текущей катсцены.');
         if(AP.commands.final)throw Error('Финал уже начался.');
         var running=apPartyBoss(now);
@@ -6434,7 +6689,8 @@ async function apAdminAction(kind){
       if(result.ok){
         AP.commands[kind]=command;
         apPayGrants();
-        message=command.uids?'Подарок отправлен. Получателей: '+command.uids.length:'Катсцена начнётся через пару секунд.';
+        message=stock?'Сток открыт · '+stock.name+' · '+stock.count+' шт.':
+          command.uids?'Подарок отправлен. Получателей: '+command.uids.length:'Катсцена начнётся через пару секунд.';
       }
     }
     if(!result?.ok)message=result?.st===412?'Команда уже отправлена.':'Сервер отклонил команду ('+(result?.st||'нет ответа')+'). Проверь права админа в Firebase.';
@@ -6476,7 +6732,7 @@ $('mc').addEventListener('click',function(event){
 $('ap-menu').onclick=arEnter;
 $('ap-items').onclick=apItems;
 $('ap-ar-items').onclick=apItems;
-$('ap-ar-market').onclick=$('ap-lobby-market').onclick=function(){apMarket()};
+$('ap-ar-market').onclick=$('ap-lobby-market').onclick=apOpenMarket;
 $('arc').addEventListener('click',function(event){
   if(cur!=='arn'||!AR.party||!AR.me||apArenaBlocked())return;
   var rect=this.getBoundingClientRect(), view=arView(this);
