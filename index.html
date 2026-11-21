@@ -396,7 +396,7 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 #th-welcome .row {margin:0 10px}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.58</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.59</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -427,7 +427,7 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 </div><div id="modal" class="hide" role="dialog" aria-modal="true" aria-labelledby="mt"><div id="mbox" class="p"><h2 id="mt"></h2><div id="mc"></div><div id="mbtn" class="row"></div></div></div>
 <section id="th-event" class="hide p">
   <figure class="th-hero"><img id="th-hero-art" alt=""><figcaption>
-    <h2>День благодарения</h2><p>Защити праздничный стол и собери блюда</p>
+    <h2>День благодарения</h2><p>До 28 ноября, 00:00 МСК</p>
   </figcaption></figure>
   <div class="th-wallet"><strong>🍽️ <span id="th-dishes">0</span> блюд</strong><span>Рекорд защиты · <b id="th-best">0</b> волн</span></div>
   <div class="th-tabs" id="th-tabs" role="group" aria-label="Разделы события">
@@ -500,7 +500,7 @@ var HWCOVER="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYG
 function pic(k,n,s){return IMG[k+n]?'<img src="'+IMG[k+n]+'" width="'+s+'" height="'+s+'" alt="" style="border-radius:6px;vertical-align:middle;margin-right:4px">':ico(TY[k].col,k,s)}
 function ico(c,k,s){var ang=k=='cruelity'||k=='demonity',lid=k=='manipulity';return'<svg viewBox="0 0 40 40" width="'+s+'" height="'+s+'" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="'+c+'" stroke="#111" stroke-width="2.5"/><circle cx="14" cy="17" r="2.4" fill="#111"/><circle cx="26" cy="17" r="2.4" fill="#111"/>'+(ang?'<path d="M9 10l9 4M31 10l-9 4M12 29q8-6 16 0" fill="none" stroke="#111" stroke-width="2.5"/>':'<path d="M11 24q9 9 18 0" fill="none" stroke="#111" stroke-width="2.5"/>')+(lid?'<path d="M10 14h8M22 14h8" stroke="#111" stroke-width="2.5"/>':'')+'</svg>'}
 function say(t){$('msg').textContent=t}function lm(t){$('lm').textContent=t}
-function scr(n){if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market'||cur=='friends'||cur=='inf'||cur=='pets'||cur=='ldb'||cur=='lo'||cur=='mail'||cur=='hk'||cur=='tro'||cur=='pty'||cur=='shp'||cur=='rdl'||cur=='fusl'||cur=='chron'||cur=='arn'||cur=='th-event'||cur=='th-feast')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market','friends','inf','pets','ldb','lo','mail','hk','tro','pty','shp','rdl','fusl','chron','arn','th-event','th-feast'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='th-event')thRender();if(n=='th-feast')thFeastRender();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR();if(n=='friends')frOpen();if(n=='inf')infScreen();if(n=='pets')ptRender();if(n=='ldb')lbOpen();if(n=='mail')mlOpen();if(n=='hk'){hkRender();if(!HKRAF)hkRain()}if(n=='tro')trRender();if(n=='pty'){prRender();prFetch().then(prRender).catch(function(){})}}
+function scr(n){if((n=='th-event'||n=='th-feast')&&!thOn())n='lobby';if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market'||cur=='friends'||cur=='inf'||cur=='pets'||cur=='ldb'||cur=='lo'||cur=='mail'||cur=='hk'||cur=='tro'||cur=='pty'||cur=='shp'||cur=='rdl'||cur=='fusl'||cur=='chron'||cur=='arn'||cur=='th-event'||cur=='th-feast')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market','friends','inf','pets','ldb','lo','mail','hk','tro','pty','shp','rdl','fusl','chron','arn','th-event','th-feast'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='th-event')thRender();if(n=='th-feast')thFeastRender();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR();if(n=='friends')frOpen();if(n=='inf')infScreen();if(n=='pets')ptRender();if(n=='ldb')lbOpen();if(n=='mail')mlOpen();if(n=='hk'){hkRender();if(!HKRAF)hkRain()}if(n=='tro')trRender();if(n=='pty'){prRender();prFetch().then(prRender).catch(function(){})}}
 function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс 10 волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
  h='<button class="df story" data-k="story" style="background-image:linear-gradient(90deg,rgba(0,0,0,.25),transparent),url('+ST_COVER+')"><span class="nw">НОВОЕ!</span><b>История</b><small>Глава 1: сцены и вопросы Моба. Глава 2: 3D-погоня, в которой ты огромный монстр.</small><em>Награда: Monster Verity (Legendary)</em></button>'+hwCard()+(typeof prCard=='function'?prCard():'')+(typeof hkCard=='function'?hkCard():'')+(typeof infCard=='function'?infCard():'')+h;
  $('diffs').innerHTML=h;[].forEach.call($('diffs').children,function(b){b.onclick=function(){var k=b.dataset.k;if(k=='soon')return;k=='story'?sStart():start(k)}})}
@@ -523,6 +523,7 @@ function inv(e){return e.ty=='ghost'&&e.t%3>1.5}
 function startWave(){if(G.key=='harvest')return thWave();G.wave++;G.run=true;G.boss=G.wave==10;G.q=Math.round((G.boss?12:6+3*G.wave)*G.d.cn);G.sp=0;say(G.boss?'Босс: '+G.d.boss.n+'!':'Волна '+G.wave);if(G.key=='hw'){var ph=hwPh();G.ban={t:2.5,s:G.boss?'ТЫКВЕННЫЙ КОРОЛЬ':PHN[ph].toUpperCase()};if(!G.boss)say('Волна '+G.wave+': '+{dusk:'Сумерки. Враги слабее, Страх копится быстрее.',mid:'Полночь. Враги сильнее, а вторая фаза бьёт на 50% сильнее.',hour:'Час Тыквы. Конфет втрое больше, но приходят призраки.'}[ph])}}
 function endGame(w,t){G.over=w;$('et').textContent=w==2?'ПОБЕДА':'ПОРАЖЕНИЕ';$('end').className='';say(t);save()}
 function upd(dt){
+ if(G.key=='harvest'&&!thOn()){thExpire();return}
  if(G.p2){G.fear-=14*dt;if(G.fear<=0){G.fear=0;G.p2=false;G.cool=5;say('Страх кончился, юниты спят 5 секунд.')}}else{G.fear=Math.min(100,G.fear+5*dt*(hwPh()=='dusk'?1.5:1))}
  if(G.cool>0)G.cool-=dt;
  if(!G.run){G.next-=dt;if(G.next<=0)startWave()}
@@ -810,12 +811,15 @@ $('back').onclick=function(){if(prev=='game'&&G){scr('game');shop()}else{menu();
 [].forEach.call(document.querySelectorAll('.bk'),function(b){b.onclick=$('back').onclick});
 $('c1').onclick=function(){opn(1)};$('c2').onclick=function(){opn(2)};
 $('ex').onclick=function(){M.lastExport=Date.now();save();var c=btoa(JSON.stringify(M));try{cpy(c);lm('Код скопирован. Сохрани его в заметках.')}catch(e){prompt('Скопируй код сохранения',c)}};
-$('im').onclick=function(){var c=prompt('Вставь код сохранения');if(!c)return;try{var o=JSON.parse(atob(c.trim()));if(!o||!o.own)throw 0;M=o;fix();save();lobby();lm('Сохранение загружено.')}catch(e){lm('Код не подошёл.')}};
+$('im').onclick=function(){var c=prompt('Вставь код сохранения');if(!c)return;try{var o=JSON.parse(atob(c.trim()));if(!o||!o.own)throw 0;M=o;fix();thUpgradePass();save();lobby();lm('Сохранение загружено.')}catch(e){lm('Код не подошёл.')}};
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.58',VOL=.8,MQ=[],CI=0;
+var VER='1.59',VOL=.8,MQ=[],CI=0;
+var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
+function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.59',t:'Больше наград на День благодарения',a:['🍂 Событие завершится 28 ноября в 00:00 по Москве','🎟️ За весь батл-пасс теперь можно получить 4 000 🪙 и 80 💎','🎁 Если награда уже получена, при входе начислится разница']},
 {v:'1.58',t:'День благодарения',a:['🍂 Осеннее оформление и праздничная вкладка с магазином, батл-пассом и квестами','🍽️ Защищай стол в бесконечном режиме: за каждую пройденную волну получишь блюдо','🦃 Turkey-ящик за 10 блюд: Pumpkinity, Turkeyity, Cranberrity и Pieity','🎟️ Выполняй квесты и забирай монеты, гемы и Cornucopity в конце пропуска','🪑 Угости 15 Верити за столом, чтобы открыть Harvestity']},
 {v:'1.57',t:'Возвращение Админа!',a:['После долгого времени игра приуныла, но админ вернулся с новыми обновлениями и админ абьюзами! Ожидайте глобального обновления']},
 {v:'1.56',t:'Арена абьюза',a:['🎪 Большая арена: ходи джойстиком, собирай дроп и неси его в точку СБОРА','🏏 У всех есть дубинка: бонкни игрока — и он уронит весь дроп','👑 Боссы на арене: Хакерити и Титан из Клетки — бейте вместе, уворачивайтесь от волн и рывков','🎬 Катсцена «Боссы пробудились» и 📜 глава 12 Летописи']},
@@ -894,7 +898,7 @@ function remind(away){var last=M.lastExport?ago(Date.now()-M.lastExport)+' на�
 $('verb').onclick=function(){chg(0)};$('ulb').onclick=function(){chg(0)};$('setb').onclick=sets;$('setl').onclick=sets;
 $('modal').addEventListener('click',function(e){if(e.target===this)mClose()});addEventListener('keydown',function(e){if(e.key=='Escape'&&$('modal').className!='hide')mClose()});
 applySet();
-(function(){var hp=Object.keys(M.own).length>2||M.bank!=450||Object.keys(M.done).length>0,away=M.lastSeen?Date.now()-M.lastSeen:0,need=M.set.rem&&(away>=864e5||(!M.lastSeen&&hp&&!M.lastExport)),sc=hp&&M.seenVer!==VER&&(VER!=='1.58'||(M.th&&M.th.welcome));
+(function(){var hp=Object.keys(M.own).length>2||M.bank!=450||Object.keys(M.done).length>0,away=M.lastSeen?Date.now()-M.lastSeen:0,need=M.set.rem&&(away>=864e5||(!M.lastSeen&&hp&&!M.lastExport)),sc=hp&&M.seenVer!==VER&&(!thOn()||(M.th&&M.th.welcome));
  if(!hp)M.seenVer=VER;save();if(need){remind(away);if(sc)MQ.push(function(){chg(0)})}else if(sc)chg(0)})();
 
 var EV_START=Date.UTC(2026,9,30,21,0,0),EV_END=Date.UTC(2026,10,7,21,0,0);function evOn(){var n=Date.now();return n>=EV_START&&n<EV_END}function evPre(){return Date.now()<EV_START}
@@ -3269,8 +3273,20 @@ var TH_QUESTS = [
   {id:'best8',key:'best',goal:8,xp:25,label:'Пройди 8 волн за один бой'},
   {id:'fed5',key:'fed',goal:5,xp:25,label:'Накорми 5 гостей за столом'}
 ];
-var TH_PASS = [{xp:15,coins:100},{xp:35,gems:3},{xp:60,coins:150},
-  {xp:90,gems:5},{xp:120,coins:250},{xp:150,unit:'cornucopity'}];
+var TH_PASS = [{xp:15,coins:800,old:100},{xp:35,gems:30,old:3},{xp:60,coins:1200,old:150},
+  {xp:90,gems:50,old:5},{xp:120,coins:2000,old:250},{xp:150,unit:'cornucopity'}];
+function thUpgradePass(){
+  if(!M.th||!M.th.pass)return;
+  var upgraded=false;
+  TH_PASS.forEach(function(reward,index){
+    if(!reward.old||M.th.pass[index]!==true)return;
+    if(reward.coins)M.bank+=reward.coins-reward.old;
+    if(reward.gems)M.gem=(M.gem||0)+reward.gems-reward.old;
+    M.th.pass[index]=2;
+    upgraded=true;
+  });
+  if(upgraded)save();
+}
 var TH_PASS_MAX = TH_PASS[TH_PASS.length-1].xp;
 var thTab = 'shop', thPrevious = 'menu';
 
@@ -3303,6 +3319,7 @@ function thCratePool(){
   return TH_CRATE.filter(function(item){return !M.own[item[0]]&&!state.crate[item[0]]});
 }
 function thPurchase(){
+  if(!thOn())return thExpire();
   var state=thState(), pool=thCratePool();
   if(state.dishes<TH_CRATE_COST||!pool.length)return;
   var roll=Math.random()*pool.reduce(function(total,item){return total+item[1]},0);
@@ -3317,6 +3334,7 @@ function thQuestProgress(state,quest){
   return quest.key==='fed'?thFed(state):state[quest.key];
 }
 function thQuestClaim(id){
+  if(!thOn())return thExpire();
   var state=thState(), quest=TH_QUESTS.find(function(item){return item.id===id});
   if(!quest||state.quest[id]||thQuestProgress(state,quest)<quest.goal)return;
   state.quest[id]=true;
@@ -3327,9 +3345,10 @@ function thRewardName(reward){
   return reward.unit?TY[reward.unit].n:reward.coins?reward.coins+' 🪙':reward.gems+' 💎';
 }
 function thPassClaim(index){
+  if(!thOn())return thExpire();
   var state=thState(), reward=TH_PASS[index];
   if(!reward||state.pass[index]||thPassXP(state)<reward.xp)return;
-  state.pass[index]=true;
+  state.pass[index]=2;
   if(reward.coins)M.bank+=reward.coins;
   if(reward.gems)M.gem=(M.gem||0)+reward.gems;
   if(reward.unit)M.own[reward.unit]=1;
@@ -3337,6 +3356,7 @@ function thPassClaim(index){
   thRender('Получено · '+thRewardName(reward));
 }
 function thFeed(index){
+  if(!thOn())return thExpire();
   var state=thState(), guest=thGuests(state)[index];
   if(!guest||guest.fed||state.dishes<TH_MEAL_COST)return;
   state.dishes-=TH_MEAL_COST;
@@ -3411,6 +3431,7 @@ function thFeastRender(message){
   $('th-feast-status').textContent=message||(fed<TH_SEATS&&state.dishes<TH_MEAL_COST?'Собери '+TH_MEAL_COST+' блюд, чтобы угостить гостя.':'');
 }
 function thOpen(){
+  if(!thOn())return thExpire();
   if(cur!=='th-event'&&cur!=='th-feast')thPrevious=cur==='lobby'?'lobby':cur==='game'?'game':'menu';
   scr('th-event');
 }
@@ -3446,13 +3467,14 @@ $('th-back').onclick=function(){
   if(thPrevious==='menu')menu();
   scr(thPrevious);
 };
-$('th-play').onclick=function(){start('harvest')};
+$('th-play').onclick=function(){if(thOn())start('harvest');else thExpire()};
 $('th-welcome-go').onclick=function(){thWelcomeClose();thOpen()};
 $('th-welcome-close').onclick=thWelcomeClose;
 $('th-welcome').addEventListener('cancel',function(event){event.preventDefault();thWelcomeClose()});
 $('th-welcome').addEventListener('keydown',function(event){if(event.key==='Escape')event.stopPropagation()});
 
 function thWave(){
+  if(!thOn())return thExpire();
   var n=++G.wave;
   G.run=true;
   G.boss=n%10===0;
@@ -3464,6 +3486,7 @@ function thWave(){
   say(G.boss?'🦃 Индюк-разбойник идёт к столу!':'🍂 Волна '+n);
 }
 function thClear(){
+  if(!thOn())return thExpire();
   var state=thState();
   G.run=false;
   G.next=6;
@@ -3681,12 +3704,37 @@ Promise.all(['turkeyity1','cornucopity1','pieity1'].map(function(key){return IM[
   $('th-welcome-art').src=$('th-hero-art').src=thLandscape(false);
   $('th-feast-art').src=thLandscape(true);
 });
-document.documentElement.classList.add('thanksgiving');
-if(!thState().welcome)$('th-welcome').showModal();
+function thExpire(){
+  if(thOn())return;
+  var active=document.documentElement.classList.contains('thanksgiving');
+  document.documentElement.classList.remove('thanksgiving');
+  ['th-header','th-lobby','th-feast-link'].forEach(function(id){$(id).classList.add('hide')});
+  if($('th-welcome').open)$('th-welcome').close();
+  if(G&&G.key==='harvest'&&!G.over){
+    endGame(1,'День благодарения завершился.');
+    $('et').textContent='Событие завершилось · '+G.dishes+' 🍽️ за бой';
+  }
+  if(G&&G.key==='harvest')$('e1').textContent='Выбрать сложность';
+  if(cur==='th-event'||cur==='th-feast'||(cur==='lo'&&LOK==='harvest')){
+    scr('lobby');
+    lm('День благодарения завершился.');
+  }else if(active&&cur==='game'&&G&&G.key==='harvest'){
+    say('День благодарения завершился.');
+  }
+}
+thUpgradePass();
+if(thOn()){
+  document.documentElement.classList.add('thanksgiving');
+  if(!thState().welcome)$('th-welcome').showModal();
+  var thExpiryTimer=setInterval(function(){
+    if(!thOn()){clearInterval(thExpiryTimer);thExpire()}
+  },1000);
+}else thExpire();
 
 (function(){
   var launch=startNow, renderHud=hud, back=$('loback').onclick, retry=$('e1').onclick, exit=$('e2').onclick;
   startNow=function(mode){
+    if(mode==='harvest'&&!thOn())return thExpire();
     launch(mode);
     if(mode!=='harvest')return;
     setMap('harvest');
@@ -3699,14 +3747,14 @@ if(!thState().welcome)$('th-welcome').showModal();
     var active=G&&G.key==='harvest';
     $('th-chip').classList.toggle('hide',!active);
     $('th-seed-chip').classList.toggle('hide',!!active);
-    $('e1').textContent=active?'К событию':'Выбрать сложность';
+    $('e1').textContent=active&&thOn()?'К событию':'Выбрать сложность';
     if(active){
       $('wmx').textContent='/ ∞';
       $('th-chip').textContent='🍽️ '+thState().dishes+' · за бой +'+G.dishes;
     }
   };
   $('loback').onclick=function(){if(LOK==='harvest')scr('th-event');else back()};
-  $('e1').onclick=function(){if(G&&G.key==='harvest')scr('th-event');else retry()};
+  $('e1').onclick=function(){if(G&&G.key==='harvest'&&thOn())scr('th-event');else retry()};
   $('e2').onclick=function(){if(G&&G.key==='harvest')scr('lobby');else exit()};
 })();
 </script></body></html>
