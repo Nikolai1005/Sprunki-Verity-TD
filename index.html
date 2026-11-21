@@ -70,7 +70,7 @@ select{font:800 14px Nunito,sans-serif;padding:9px 12px;border:3px solid var(--l
 #mbox{width:100%;max-width:520px;max-height:86vh;overflow:auto}#mc p{margin:6px 0}#mc ul{margin:6px 0;padding-left:20px;line-height:1.55}
 .mu{color:var(--mute)}.mktabs button.on{background:var(--acc);color:#0b1230}.mkg{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.mkc{display:flex;align-items:center;gap:8px}.mkc canvas,.mkc img{flex:none}.mki{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.mkc button{flex:none}.mkon p{margin:8px 0 0}#mkm{min-height:22px;margin-top:8px;color:var(--mute)}button.sm{padding:3px 8px;font-size:12px}.onerr{color:#e5484d;font-weight:700}.onme{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.oncode{font-family:Silkscreen,monospace;letter-spacing:1px}.onct{display:flex;flex-direction:column;align-items:center;font:700 20px Silkscreen,monospace}.onct small{font:600 11px system-ui;color:var(--mute)}.onl{display:flex;flex-direction:column;gap:4px;max-height:260px;overflow:auto}.onp{background:var(--surf2);border:2px solid var(--line);border-radius:6px;padding:5px 8px;font-size:13px}#market h3{margin:16px 0 4px}.vtag{background:var(--acc);color:#0b1230;padding:1px 7px;border-radius:4px}.nwb{background:#ffd21f;color:#7a0000;padding:1px 6px;border-radius:4px;font-size:12px}
 .set{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}.set span{flex:1}.set select,.set input{flex:0 1 170px;min-width:120px}
-#mcode{width:100%;min-height:72px;font:600 12px monospace;background:var(--surf2);color:var(--ink);border:2px solid var(--line);border-radius:6px;word-break:break-all;margin-top:6px}#mbtn{justify-content:flex-end}
+#mbtn{justify-content:flex-end}
 .hwp{background:radial-gradient(circle at 50% -10%,#4a1d6b 0,#1d0c33 45%,#0b0614 100%)!important;border-color:#ff7a1a!important;box-shadow:0 0 22px rgba(255,122,26,.35),4px 4px 0 rgba(0,0,0,.4)!important;color:#ffe9d2;position:relative;overflow:hidden}
 .hwp .crp{font:400 clamp(30px,8vw,46px)/1.05 Creepster,Silkscreen,cursive;color:#ff8a1f;text-shadow:0 0 10px #ff5a00,0 0 26px #7a1fa8;letter-spacing:1px;margin:8px 0 2px;text-align:center;position:relative}
 .hwtm{text-align:center;margin:0;color:#ffb36b;position:relative}.hwp .mu{color:#c9a8e8}
@@ -608,10 +608,34 @@ body.ap-arena #modal {z-index:500}
   #ap-ar-tools button {font-size:11px}
   .ap-card {padding:9px}
 }
+.account-tools {display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.account-tools button {border-color:var(--acc)}
+.account-download {
+  display:inline-flex;align-items:center;padding:9px 12px;border:2px solid var(--line);
+  border-radius:6px;background:var(--surf2);color:var(--ink);text-decoration:none;font-weight:800;
+}
+.account-download:focus-visible {outline:3px solid var(--acc);outline-offset:2px}
+.account-profile {padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--surf2)}
+.account-profile strong {display:block;font-size:17px;overflow-wrap:anywhere}
+.account-profile small {display:block;color:var(--mute)}
+.account-label {display:block;margin:0 0 5px}
+#account-input,#mcode {
+  width:100%;min-height:100px;padding:8px;resize:vertical;box-sizing:border-box;
+  font:600 13px/1.4 monospace;overflow-wrap:anywhere;background:var(--surf2);color:var(--ink);
+  border:2px solid var(--line);border-radius:6px;
+}
+#account-status {margin:7px 0 0;color:var(--ink)}
+#account-status:empty {display:none}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.66</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
-<section id="menu" class="p"><button type="button" id="ap-menu" class="hide ap-launch"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.67</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<section id="menu" class="p">
+  <div class="account-tools">
+    <button type="button" id="account-btn">👤 Аккаунт</button>
+    <a id="apk-download" class="account-download" href="https://raw.githubusercontent.com/Nikolai1005/Sprunki-Verity-TD/android-downloads/Sprunki-Verity-TD.apk" target="_blank" rel="noopener">↓ Скачать APK</a>
+  </div>
+  <button type="button" id="ap-menu" class="hide ap-launch"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
+</section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
 <div class="cw"><canvas id="cv" width="640" height="400"></canvas><div id="end" class="hide"><b id="et"></b><div class="row"><button id="e1">Выбрать сложность</button><button id="e2">В лобби</button></div></div></div>
@@ -638,7 +662,7 @@ body.ap-arena #modal {z-index:500}
 <div id="ust" class="hide"></div><div id="shop"></div>
 <div class="row"><button id="ph">Фаза 2: выкл</button><button id="sk">Пропустить ожидание</button><button id="sp">Скорость ×1</button><span class="chip" id="cd"></span></div>
 <div id="msg" role="status"></div></section>
-<section id="lobby" class="hide p"><h2>Лобби</h2><p>Банк: <b id="bk"></b> 🪙 · Семечки: <b id="bs"></b> 🎃</p><div class="row"><button id="c1">Ящик Верити: 400 🪙</button><button id="c2">Тыквенный ящик: 60 🎃</button><button id="back">Назад</button><button id="hwl" class="hwbtn">🎃 Хэллоуинский пропуск</button><button id="ulb">📜 Обновления</button><button id="th-lobby" type="button">🍂 День благодарения</button><button id="th-feast-link" type="button">🍽️ Застолье</button><button id="ap-items" class="hide" type="button">🎒 Предметы вечеринки<b class="ap-items-count"></b></button><button id="setl">⚙ Настройки</button><button id="ex">Код сохранения</button><button id="im">Загрузить код</button></div><div id="lm" role="status"></div><div class="grid" id="col"></div><span id="hid" style="opacity:.1;cursor:pointer;float:right;user-select:none;padding:8px">🎃</span></section>
+<section id="lobby" class="hide p"><h2>Лобби</h2><p>Банк: <b id="bk"></b> 🪙 · Семечки: <b id="bs"></b> 🎃</p><div class="row"><button id="c1">Ящик Верити: 400 🪙</button><button id="c2">Тыквенный ящик: 60 🎃</button><button id="back">Назад</button><button id="hwl" class="hwbtn">🎃 Хэллоуинский пропуск</button><button id="ulb">📜 Обновления</button><button id="th-lobby" type="button">🍂 День благодарения</button><button id="th-feast-link" type="button">🍽️ Застолье</button><button id="ap-items" class="hide" type="button">🎒 Предметы вечеринки<b class="ap-items-count"></b></button><button id="setl">⚙ Настройки</button><button id="ex">Сохранить код</button><button id="im">Войти по коду</button></div><div id="lm" role="status"></div><div class="grid" id="col"></div><span id="hid" style="opacity:.1;cursor:pointer;float:right;user-select:none;padding:8px">🎃</span></section>
 <section id="story" class="hide p"><h2 id="sth">История</h2><div class="sw"><canvas id="scv" width="640" height="360"></canvas><div id="ssub"></div></div>
 <div id="sdlgw"><div id="sdlg"></div><div id="sch"></div></div>
 <div id="sctl" class="hide"><button id="sbl">◀</button><button id="sbj">Прыжок</button><button id="sbd">Рывок</button><button id="sbr">▶</button></div>
@@ -754,9 +778,20 @@ skel:{n:'Skeletonity',cost:300,dmg:40,rate:.6,rng:105,col:'#e8e2cf',d:'Хэлл�
 reaper:{n:'Reaperity',cost:700,dmg:55,rate:.9,rng:66,col:'#2a1838',d:'Ближний бой: взмах косой. Хэллоуин, Mythic, финальная награда пропуска. Взмах косы бьёт всех рядом с целью и добивает обычных врагов ниже 15% HP. Фаза 2: собирает души, на 15 душах «Жатва» бьёт всех врагов на карте. Только один на карте'}};
 var RA={verity:'Common',lovity:'Rare',sadity:'Rare',moggity:'Rare',cruelity:'Epic',falsity:'Epic',galaxity:'Legendary',demonity:'Legendary',pumpkinity:'Event',lord:'Mythic',monster:'Legendary',batv:'Common',ghostv:'Rare',vamp:'Epic',jack:'Mythic',phonk:'Secret',skel:'Legendary',reaper:'Mythic'};var RC={Common:'#9aa7b4',Rare:'#33c3ff',Epic:'#b45cff',Legendary:'#ffae1a',Mythic:'#ff2a3d',Event:'#ff8a1f',Secret:'#b48cff'};
 var M={bank:450,seeds:120,own:{verity:1,lovity:1}};
-try{var sv=JSON.parse(localStorage.getItem('vtd'));if(sv&&sv.own)M=sv}catch(e){}
+var accountReloading=false, savedGameText=null;
+try{savedGameText=localStorage.getItem('vtd');var sv=JSON.parse(savedGameText);if(sv&&sv.own)M=sv}catch(e){}
 function fix(){M.done=M.done||{};M.claimed=M.claimed||{};M.inv=M.inv||{};M.promos=M.promos||{};M.opens=M.opens||0;M.used=M.used||{}}fix();
-function save(){M.lastSeen=Date.now();try{localStorage.setItem('vtd',JSON.stringify(M))}catch(e){}}
+function save(){
+ if(accountReloading)return;
+ M.lastSeen=Date.now();
+ try{
+   var current=localStorage.getItem('vtd');
+   if(current&&current!==savedGameText&&JSON.parse(current)?.accountRevision!==M.accountRevision)return;
+   var text=JSON.stringify(M);
+   localStorage.setItem('vtd',text);
+   savedGameText=text;
+ }catch(e){}
+}
 var ET={walker:{hp:1,v:1,c:'#2a2236',r:12},runner:{hp:.55,v:1.8,c:'#2b5fd0',r:10},tank:{hp:2.8,v:.6,c:'#666b78',r:16},ghost:{hp:.9,v:1,c:'#cfd8ff',r:12},healer:{hp:1.2,v:.9,c:'#2fb36a',r:12},splitter:{hp:1.3,v:.9,c:'#8a3fd0',r:14},bat:{hp:.45,v:2.1,c:'#1a1026',r:9},mimic:{hp:1.3,v:1.25,c:'#e8741c',r:13},mini:{hp:.4,v:1.6,c:'#ff9a2e',r:8}};
 var DF={
 easy:{n:'Лёгкая',c:'#2f9e3a',ic:'verity',ic2:'#ffd21f',hp:.6,sp:.85,cn:.7,lv:30,co:400,off:0,bm:1,boss:{n:'Тыквенный Король',hp:2200,v:22,col:'#ff8a1f',sk:0},rec:['verity','lovity','moggity'],d:'Медленные враги и много жизней.'},
@@ -1084,15 +1119,17 @@ $('lb').onclick=function(){if(cur!='lobby'){lm('Монеты копятся в �
 $('back').onclick=function(){if(prev=='game'&&G){scr('game');shop()}else{menu();scr('menu')}};
 [].forEach.call(document.querySelectorAll('.bk'),function(b){b.onclick=$('back').onclick});
 $('c1').onclick=function(){opn(1)};$('c2').onclick=function(){opn(2)};
-$('ex').onclick=function(){M.lastExport=Date.now();save();var c=btoa(JSON.stringify(M));try{cpy(c);lm('Код скопирован. Сохрани его в заметках.')}catch(e){prompt('Скопируй код сохранения',c)}};
-$('im').onclick=function(){var c=prompt('Вставь код сохранения');if(!c)return;try{var o=JSON.parse(atob(c.trim()));if(!o||!o.own)throw 0;M=o;fix();thUpgradePass();thUpgradeCrate();save();lobby();lm('Сохранение загружено.')}catch(e){lm('Код не подошёл.')}};
+$('account-btn').onclick=accountMenu;
+$('ex').onclick=accountExport;
+$('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.66',VOL=.8,MQ=[],CI=0;
+var VER='1.67',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.67',t:'Один аккаунт для сайта и APK',a:['👤 Сохрани личный код в разделе «Аккаунт» и войди по нему на другом устройстве. Код переносит ник, Верити, трофеи и прогресс.','📲 APK можно скачать прямо из меню игры.']},
 {v:'1.66',t:'Трофеи вечеринки',a:['🏆 Пять трофеев Вечеринки Админити за участие, админ-дроп, совместный бит и победы над двумя боссами','🎪 У трофеев вечеринки своя полка в коллекции. Любой полученный кубок можно поставить на витрину профиля.']},
 {v:'1.65',t:'Бит Админити',a:['🎉 Арена 21 ноября работает с 20:00 до 20:30 МСК','♫ Каждые три минуты DJ Админити запускает зарядку двух пультов. Ударь по обоим пультам на одной вспышке вместе с другими игроками.','⚡ Удачный бит даёт всей арене на 18 секунд +20% к скорости и +30% к урону дубинок по боссам.']},
 {v:'1.64',t:'Вечеринка Админити',a:['🎉 21 ноября с 20:00 до 20:45 МСК открыта общая Арена абьюза с дубинками и DJ Админити','🎁 Подарки участникам и админ-ящики с монетами, гемами, Turkey-ящиком и редким Элементом админа','🎬 Три катсцены, Каменный босс и 1×1×1×1. Участники финальной победы получают Корону хакера']},
@@ -1172,10 +1209,101 @@ function sets(){var s=M.set;function opt(id,cur,l){return'<select id="'+id+'">'+
  ['snd','vol','theme','txt','spd','vib','rem','mus'].forEach(function(k){$('s_'+k).addEventListener(k=='vol'?'input':'change',function(){var v=this.value;M.set[k]=(k=='theme'||k=='txt')?v:+v;applySet();save();if((k=='vol'||k=='snd')&&SND)tone(660,.12,'sine',.2)})})}
 function pl(n,a,b2,c){var m=n%10,h=n%100;return n+' '+(m==1&&h!=11?a:m>=2&&m<=4&&(h<10||h>=20)?b2:c)}
 function ago(ms){var h=Math.floor(ms/36e5);if(h<1)return'меньше часа';if(h<24)return pl(h,'час','часа','часов');return pl(Math.floor(h/24),'день','дня','дней')}
-function cpy(c){try{var p=navigator.clipboard&&cpy(c);if(p&&p.catch)p.catch(function(){})}catch(e){}}
+async function cpy(text){
+ try{await navigator.clipboard.writeText(text);return true}catch(e){return false}
+}
+function accountProfile(data){
+ var bank=Number.isFinite(data.bank)?data.bank.toLocaleString('ru-RU'):'0';
+ return '<div class="account-profile"><strong>'+esc(data.fb?.nick||'Гость')+'</strong><small>'+
+   Object.keys(data.own).length+' Верити · '+bank+' 🪙</small></div>';
+}
+function accountMenu(){
+ mOpen('Аккаунт',accountProfile(M)+'<p>Сохрани личный код, чтобы открыть этот аккаунт в браузере или APK на другом устройстве.</p>',
+   [['Сохранить код',accountExport],['Войти по коду',accountLogin],['Закрыть',mClose]]);
+}
+function accountCode(){
+ var data={...M};delete data.accountRevision;
+ // ASCII JSON preserves old save codes and allows Cyrillic names and emoji.
+ return btoa(JSON.stringify(data).replace(/[\u0080-\uffff]/g,function(character){
+   return '\\u'+character.charCodeAt(0).toString(16).padStart(4,'0');
+ }));
+}
+function accountExport(){
+ M.lastExport=Date.now();save();
+ mOpen('Код аккаунта','<p>Храни этот код у себя. Он даёт доступ к сохранению и онлайн-аккаунту.</p>'+
+   '<label class="account-label" for="mcode">Личный код</label>'+
+   '<textarea id="mcode" readonly spellcheck="false"></textarea><p id="account-status" role="status"></p>',
+   [['Скопировать',accountCopy],['Назад',accountMenu],['Закрыть',mClose]]);
+ $('mcode').value=accountCode();
+}
+async function accountCopy(){
+ var field=$('mcode'), copied=await cpy(field.value);
+ if($('mcode')!==field)return;
+ if(!copied){
+   field.focus();field.select();
+   try{copied=document.execCommand('copy')}catch(e){}
+ }
+ $('account-status').textContent=copied?'Код скопирован.':'Скопируй выделенный код через меню устройства.';
+}
+function accountLogin(previous){
+ mOpen('Вход по коду','<p>Вставь личный код, сохранённый на другом устройстве.</p>'+
+   '<label class="account-label" for="account-input">Личный код</label>'+
+   '<textarea id="account-input" autocomplete="off" autocapitalize="off" spellcheck="false"></textarea>'+
+   '<p id="account-status" role="status"></p>',
+   [['Продолжить',accountPreview],['Назад',accountMenu],['Закрыть',mClose]]);
+ var field=$('account-input');
+ if(typeof previous==='string')field.value=previous;
+ field.focus();
+}
+function accountPreview(){
+ var code=$('account-input').value, data;
+ try{
+   data=JSON.parse(atob(code.replace(/\s/g,'')));
+   if(!data?.own||typeof data.own!=='object'||Array.isArray(data.own)||
+      !Number.isFinite(data.bank)||!Number.isFinite(data.seeds)||
+      data.fb!=null&&(typeof data.fb!=='object'||Array.isArray(data.fb)))throw Error('save');
+ }catch(e){
+   $('account-status').textContent='Код не подошёл. Скопируй личный код целиком из раздела «Аккаунт».';
+   return;
+ }
+ mOpen('Подтверди вход',accountProfile(data)+
+   '<p>На этом устройстве откроется прогресс из кода. Если нужен текущий прогресс, сначала сохрани его код.</p>'+
+   '<p id="account-status" role="status"></p>',
+   [['Войти',function(){accountRestore(data)}],['Назад',function(){accountLogin(code)}],['Отмена',mClose]]);
+}
+function accountRestore(data){
+ data.accountRevision=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+ data.lastSeen=Date.now();
+ accountReloading=true;
+ try{localStorage.setItem('vtd',JSON.stringify(data))}catch(e){
+   accountReloading=false;
+   $('account-status').textContent='На устройстве не удалось записать сохранение. Попробуй ещё раз.';
+   return;
+ }
+ try{sessionStorage.setItem('vtd-account-restored','1')}catch(e){}
+ // Reload so the online session and event caches are opened for the restored save.
+ location.reload();
+}
+addEventListener('storage',function(event){
+ if(accountReloading||event.key!=='vtd'||!event.newValue)return;
+ try{
+   if(JSON.parse(event.newValue)?.accountRevision===M.accountRevision)return;
+   accountReloading=true;
+   location.reload();
+ }catch(e){}
+});
+addEventListener('DOMContentLoaded',function(){
+ try{
+   if(sessionStorage.getItem('vtd-account-restored')!=='1')return;
+   sessionStorage.removeItem('vtd-account-restored');
+ }catch(e){return}
+ scr('lobby');
+ lm('Аккаунт загружен.');
+});
 function remind(away){var last=M.lastExport?ago(Date.now()-M.lastExport)+' назад':'ни разу';
- mOpen(away?'С возвращением!':'Сохрани аккаунт',(away?'<p>Тебя не было '+ago(away)+'.</p>':'')+'<p>Браузер иногда очищает данные сайтов, и тогда Верити пропадают. Сохрани код аккаунта в заметках: его можно вставить кнопкой «Загрузить код» в лобби на любом телефоне.</p><p class="mu">Последнее сохранение кода: '+last+'</p><textarea id="mcode" readonly class="hide"></textarea>',
- [['Сохранить код',function(){var c='';try{c=btoa(JSON.stringify(M))}catch(e){}var t=$('mcode');t.value=c;t.className='';t.focus();t.select();cpy(c);M.lastExport=Date.now();save();this.textContent='Код скопирован ✓'}],['Позже',mClose]])}
+ mOpen(away?'С возвращением!':'Сохрани аккаунт',(away?'<p>Тебя не было '+ago(away)+'.</p>':'')+
+   '<p>Личный код поможет восстановить прогресс и открыть аккаунт на другом устройстве.</p>'+
+   '<p class="mu">Последнее сохранение кода · '+last+'</p>',[['Сохранить код',accountExport],['Позже',mClose]])}
 $('verb').onclick=function(){chg(0)};$('ulb').onclick=function(){chg(0)};$('setb').onclick=sets;$('setl').onclick=sets;
 $('modal').addEventListener('click',function(e){if(e.target===this)mClose()});addEventListener('keydown',function(e){if(e.key=='Escape'&&$('modal').className!='hide')mClose()});
 applySet();
@@ -1448,19 +1576,45 @@ $('mkb').onclick=function(){mkMsg('');scr('market')};mkFix();
 <script>
 /* ===== Всемирный рынок и онлайн (Firebase Realtime Database через REST) ===== */
 var FBC={apiKey:"AIzaSyBQU9DThOL8OiMTSMkz4RRFtrh1HAENTH4",authDomain:"sprunki-verity-td.firebaseapp.com",databaseURL:"https://sprunki-verity-td-default-rtdb.europe-west1.firebasedatabase.app",projectId:"sprunki-verity-td"};/*FBC*/
-var ON={tok:null,exp:0,uid:null,adm:0,ban:0,lots:[],mine:[],online:[],q:'',st:'',busy:0,last:0,tm:null};
+var ON={tok:null,auth:null,exp:0,uid:null,adm:0,ban:0,lots:[],mine:[],online:[],q:'',st:'',busy:0,last:0,tm:null};
 var ONLIM={act:3,day:5,buy:5};
 function onOk(){return!!(FBC&&FBC.apiKey&&FBC.databaseURL)}
 function onFix(){M.fb=M.fb||{};M.esc=M.esc||{};M.mkLock=M.mkLock||{};if(!M.ond||M.ond.d!==dKey())M.ond={d:dKey(),l:0,b:0}}
 function onCode(u){var h=0;for(var i=0;i<u.length;i++)h=(h*31+u.charCodeAt(i))>>>0;var a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='';for(i=0;i<6;i++){s+=a[h%a.length];h=Math.floor(h/a.length)^(u.charCodeAt(i%u.length)*7919)}return'VT-'+s}
 var ONBAD=['хуй','хуе','хуё','пизд','еба','ебу','ёба','бля','сука','суки','пидор','пидар','гандон','мудак','шлюх','дебил','даун','нацис','гитлер','fuck','shit','bitch','dick','cunt','nigg','nazi','hitler','porn','sex','секс','порн','admin','админ','модер'];
 function onNickBad(n){var l=n.toLowerCase().replace(/0/g,'о').replace(/3/g,'з').replace(/[_\-]/g,'');for(var i=0;i<ONBAD.length;i++)if(l.indexOf(ONBAD[i])>=0)return 1;return 0}
-async function onAuth(){if(ON.tok&&Date.now()<ON.exp-6e4)return ON.tok;onFix();
- var A=FBC.authBase||'https://identitytoolkit.googleapis.com',T=FBC.tokenBase||'https://securetoken.googleapis.com',r,j;
- if(M.fb.rt){r=await fetch(T+'/v1/token?key='+FBC.apiKey,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(M.fb.rt)});
-  if(r.ok){j=await r.json();ON.tok=j.id_token;ON.uid=j.user_id;ON.exp=Date.now()+(+j.expires_in||3600)*1e3;M.fb.rt=j.refresh_token;M.fb.uid=ON.uid;save();return ON.tok}}
- r=await fetch(A+'/v1/accounts:signUp?key='+FBC.apiKey,{method:'POST',headers:{'Content-Type':'application/json'},body:'{"returnSecureToken":true}'});
- if(!r.ok)throw Error('auth '+r.status);j=await r.json();ON.tok=j.idToken;ON.uid=j.localId;ON.exp=Date.now()+(+j.expiresIn||3600)*1e3;M.fb.rt=j.refreshToken;M.fb.uid=ON.uid;save();return ON.tok}
+async function onAuth(){
+ if(ON.tok&&Date.now()<ON.exp-6e4)return ON.tok;
+ if(!ON.auth)ON.auth=onOpenSession().finally(function(){ON.auth=null});
+ return ON.auth;
+}
+async function onOpenSession(){
+ onFix();
+ var authBase=FBC.authBase||'https://identitytoolkit.googleapis.com',
+     tokenBase=FBC.tokenBase||'https://securetoken.googleapis.com';
+ var response,result,token,uid,refresh,expires;
+ if(M.fb.rt){
+   response=await fetch(tokenBase+'/v1/token?key='+FBC.apiKey,{
+     method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+     body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(M.fb.rt)
+   });
+   if(!response.ok)throw Error('Не удалось подтвердить сохранённый аккаунт');
+   result=await response.json();
+   token=result.id_token;uid=result.user_id;refresh=result.refresh_token;expires=result.expires_in;
+   if(M.fb.uid&&uid!==M.fb.uid)throw Error('Не совпал онлайн-аккаунт из сохранения');
+ }else{
+   response=await fetch(authBase+'/v1/accounts:signUp?key='+FBC.apiKey,{
+     method:'POST',headers:{'Content-Type':'application/json'},body:'{"returnSecureToken":true}'
+   });
+   if(!response.ok)throw Error('auth '+response.status);
+   result=await response.json();
+   token=result.idToken;uid=result.localId;refresh=result.refreshToken;expires=result.expiresIn;
+ }
+ if(!token||!uid||!refresh)throw Error('Не получены данные для входа');
+ ON.tok=token;ON.uid=uid;ON.exp=Date.now()+(+expires||3600)*1000;
+ M.fb.rt=refresh;M.fb.uid=uid;save();
+ return ON.tok;
+}
 async function db(path,o){o=o||{};var t=await onAuth(),q=(o.q?o.q+'&':'')+'auth='+encodeURIComponent(t),init={method:o.m||'GET'};
  if(o.b!==undefined){init.body=JSON.stringify(o.b);init.headers={'Content-Type':'application/json'}}
  if(o.ifMatch)init.headers=Object.assign({},init.headers,{'If-Match':o.ifMatch});
