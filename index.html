@@ -310,97 +310,260 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 #cutbx{position:absolute;right:12px;top:12px;font-size:13px;padding:6px 10px}
 </style><style>
 :root.thanksgiving, :root.thanksgiving[data-theme="light"], :root.thanksgiving[data-theme="dark"] {
-  --bg:#23100d; --bg2:#572017; --surf:#371a16; --surf2:#50271e;
-  --ink:#fff2e0; --mute:#e8c2a3; --line:#a15d40; --acc:#ffc47c;
+  --bg:#1d0e0d; --bg2:#532019; --surf:#321917; --surf2:#4b2620;
+  --ink:#fff1dc; --mute:#e3ba9d; --line:#90503c; --acc:#ffd18e;
   color-scheme:dark;
 }
 .thanksgiving body {
-  background:radial-gradient(ellipse at 75% 0%, #a13e243d, transparent 36rem),
-    radial-gradient(ellipse at 0% 35%, #9d542634, transparent 32rem), var(--bg);
+  background:radial-gradient(ellipse at 75% 0%, #aa3d2442, transparent 37rem),
+    radial-gradient(ellipse at 0% 35%, #a6522730, transparent 32rem),var(--bg);
 }
-#th-header, #th-lobby, #th-feast-link {color:#ffdb9e;border-color:#cd7652;background:linear-gradient(#693024,#3a1a14)}
+#th-header,#th-lobby,#th-feast-link {
+  color:#ffe0af;border-color:#b87051;background:linear-gradient(#6b3527,#3c1f19);
+}
 #th-header {font-size:20px;line-height:1}
-#th-event, #th-feast {padding:12px}
-.th-hero {position:relative;margin:0 0 12px;border:1px solid #c5774a;border-radius:14px;overflow:hidden;background:#491e17}
-.th-hero img {display:block;width:100%;height:clamp(126px,28vw,190px);object-fit:cover}
-.th-hero figcaption {position:absolute;inset:auto 0 0;padding:24px 14px 10px;background:linear-gradient(transparent,#2a100bf5)}
-.th-hero h2 {font-size:clamp(21px,5vw,33px);line-height:1.05;margin:0;color:#ffda95;text-shadow:0 2px #3a140d}
-.th-hero p {margin:5px 0 0;color:#ffedd0}
-.th-wallet {display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:10px 0;font-size:13px;color:var(--mute)}
-.th-wallet strong {color:#ffce83;font-variant-numeric:tabular-nums}
-.th-tabs {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:10px 0}
-.th-tabs button {margin:0;min-width:0;padding:9px 3px;font-size:clamp(11px,3.4vw,15px);line-height:1.15}
-.th-tabs button[aria-pressed="true"], #th-play {
-  background:linear-gradient(#ffc778,#e77e38);border-color:#ffdc9d;color:#32160c;
+#th-event,#th-feast {
+  --th-gold:#ffd496;
+  padding:14px;background:linear-gradient(160deg,#381c18,#291411);
+  border-color:#854a33;border-radius:17px;
 }
-#th-play {display:block;width:100%;margin:12px 0 0;font-size:17px;font-weight:900}
-.th-card {background:linear-gradient(150deg,#52271c,#351914);border:1px solid #a25c3e;border-radius:12px;padding:10px;margin:8px 0}
-.th-card p {margin:4px 0;color:var(--mute);font-size:13px}
-.th-card h3 {margin:0;color:#ffce83}
-.th-feature {display:flex;align-items:center;gap:12px}
-.th-feature img {flex:none;max-width:24%;height:auto}
-.th-feature button {margin:7px 0 0}
-.th-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(114px,1fr));gap:6px}
-.th-grid > div {display:grid;justify-items:center;align-content:start;gap:3px;text-align:center;padding:7px 3px;border:1px solid #7d4631;border-radius:9px;background:#3b1a13;overflow-wrap:anywhere}
-.th-grid small, .th-card small {color:var(--mute)}
-.th-grid img, .th-prize img, .th-place img {margin:0!important;object-fit:contain}
-.th-track {display:grid;grid-auto-columns:minmax(118px,1fr);grid-auto-flow:column;gap:6px;overflow:auto;padding:3px 2px 8px;scroll-snap-type:x proximity}
-.th-prize {display:grid;grid-template-rows:auto 62px 1fr auto;gap:4px;justify-items:center;text-align:center;padding:8px 4px;border:1px solid #96573a;border-radius:9px;background:#48241a;scroll-snap-align:start}
-.th-prize.th-final {border-color:#f7b763;background:linear-gradient(#6e3520,#482318)}
-.th-prize > span {align-self:center;font-size:24px}
-.th-prize button {font-size:12px;margin:0;padding:5px 4px}
-.th-quest {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 10px}
-.th-quest small, .th-quest progress {grid-column:1}
-.th-quest button {grid-column:2;grid-row:1 / span 3;margin:0;font-size:12px}
-.th-progress {width:100%;height:8px;appearance:none;border:0;border-radius:8px;background:#26110e;overflow:hidden}
-.th-progress::-webkit-progress-bar {background:#26110e}
-.th-progress::-webkit-progress-value {background:linear-gradient(90deg,#c6502e,#ffbc69)}
-.th-progress::-moz-progress-bar {background:#e58743}
-#th-status, #th-feast-status {min-height:1.3em;margin:8px 0;color:#ffce83;font-size:13px}
-.th-table {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:11px 7px;border:3px solid #a45e39;border-radius:24px;box-shadow:0 4px #240f0a,inset 0 0 14px #240f0a;background:repeating-linear-gradient(0deg,#632f20 0 29px,#542318 30px 32px)}
-.th-place {display:grid;grid-template-rows:42px minmax(26px,auto) auto;align-items:center;justify-items:center;gap:3px;margin:0;min-width:0;padding:5px 2px;font-size:11px;line-height:1.1;text-align:center;overflow-wrap:anywhere;border-radius:11px;background:#3c1c13;color:#fff1d4;border:1px solid #d18b58;box-shadow:none}
-.th-place.th-fed {background:#592b19;border-color:#e8ab6b;color:#ffdc97}
-.th-place:disabled {opacity:.78}
-.th-place img {max-width:100%;height:auto}
-.th-place span {background:#59291e;border-radius:10px;padding:3px 5px}
-.th-feast-reward {display:flex;align-items:center;gap:8px}
-.th-feast-reward img {flex:none}
+.th-hero {
+  position:relative;margin:0;border:1px solid #9c5f3a;border-radius:14px;
+  overflow:hidden;background:#4f291d;isolation:isolate;
+}
+.th-hero::after {
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,#29120cef 0%,#30160ec9 29%,#30160e00 77%),
+    linear-gradient(0deg,#29130e87,transparent 50%);
+}
+.th-hero img {display:block;width:100%;height:clamp(165px,34vw,250px);object-fit:cover;object-position:60% 55%}
+.th-hero figcaption {position:absolute;z-index:1;inset:auto 0 0;padding:clamp(11px,4vw,25px)}
+.th-hero h2,.th-feast-heading h2 {
+  margin:0;color:#ffdfad;font:700 clamp(27px,6.6vw,49px)/.99 Georgia,serif;
+  text-shadow:0 2px #35170f;
+}
+.th-hero figcaption span {
+  display:inline-block;margin-bottom:8px;padding:4px 9px;border:1px solid #bd895e;
+  border-radius:100px;background:#2c170fba;color:#ffe5b7;font-size:11px;
+}
+.th-summary {
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  margin:10px 0 12px;border:1px solid #784731;border-radius:10px;
+  overflow:hidden;background:#784731;
+}
+.th-summary > div {min-width:0;padding:8px 9px;background:#311a16}
+.th-summary small,.th-play-panel small,.th-feast-heading p,.th-serve-bar small {
+  display:block;color:var(--mute);font-size:12px;
+}
+.th-summary strong {display:block;font-size:clamp(13px,4vw,20px);color:var(--th-gold);font-variant-numeric:tabular-nums}
+.th-tabs {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:11px 0}
+.th-tabs button,.th-chapters button {
+  margin:0;min-width:0;padding:9px 3px;font-size:clamp(11px,3.4vw,15px);line-height:1.15;
+  border:1px solid #8b5039;background:#3d2019;
+}
+.th-tabs button[aria-pressed="true"],.th-chapters button[aria-pressed="true"],
+#th-play,#th-serve:not(:disabled),#th-wave-go:not(:disabled),.th-feature button:not(:disabled) {
+  background:linear-gradient(#ffce83,#e9904a);border-color:#ffd69b;color:#36190f;
+}
+.th-card {
+  background:linear-gradient(150deg,#4c261c,#351b16);border:1px solid #874e35;
+  border-radius:12px;padding:11px;margin:8px 0;
+}
+.th-card p,.th-card small {margin:4px 0;color:var(--mute);font-size:12px}
+.th-card h3 {margin:0;color:var(--th-gold);font-size:19px}
+.th-feature {
+  display:grid;grid-template-columns:minmax(118px,42%) minmax(0,1fr);align-items:center;
+  gap:clamp(6px,2.6vw,15px);min-height:150px;overflow:hidden;
+  background:radial-gradient(ellipse at 23% 63%,#b560333d,transparent 53%),linear-gradient(140deg,#4b251a,#301714);
+}
+.th-feature img {display:block;width:100%;max-width:235px;height:auto;justify-self:center;filter:drop-shadow(0 7px 9px #1c0e0b)}
+.th-feature button {margin:8px 0 0;padding:8px 10px;font-size:13px}
+.th-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:10px 0}
+.th-collectible {
+  display:grid;align-content:start;justify-items:center;gap:3px;padding:8px 3px;min-width:0;
+  text-align:center;overflow-wrap:anywhere;border:1px solid color-mix(in srgb,var(--rarity) 38%,#64392b);
+  border-radius:11px;background:radial-gradient(ellipse at 50% 20%,color-mix(in srgb,var(--rarity) 21%,#381e18),#301813 72%);
+}
+.th-collectible img,.th-prize img,.th-pass-card img,.th-seat img,.th-feast-reward img,.th-reveal img {
+  margin:0!important;object-fit:contain;
+}
+.th-collectible img {max-width:95%;height:auto}
+.th-collectible small {color:var(--rarity);font-size:10px}
+.th-collectible span {font-size:12px;color:#f6d4a9}
+.th-reveal {
+  display:grid;justify-items:center;padding:3px 0 9px;border-radius:13px;
+  background:radial-gradient(ellipse at 50% 44%,#86502980,transparent 68%),#301714;
+}
+.th-reveal canvas {width:min(300px,100%);height:auto;display:block;background:transparent;border:0;box-shadow:none}
+.th-reveal > div {display:grid;grid-template-columns:auto auto;gap:2px 9px;align-items:center;padding:4px 8px}
+.th-reveal > div[hidden] {display:none}
+.th-reveal img {grid-row:span 2}
+.th-reveal strong {color:#ffe0a7}
+.th-reveal small {color:var(--rarity)}
+.th-pass-card {
+  display:grid;grid-template-columns:1fr minmax(72px,21%);gap:3px 13px;align-items:center;
+  background:radial-gradient(ellipse at 87% 46%,#a66733ad,transparent 43%),linear-gradient(160deg,#56271a,#301815);
+}
+.th-pass-card img {width:100%;height:auto;grid-column:2;grid-row:1 / span 2}
+.th-pass-card p {margin:3px 0 7px}
+.th-pass-card b {color:var(--th-gold)}
+.th-pass-card button {justify-self:start;margin:5px 0 0;padding:6px 9px;font-size:12px}
+.th-chapters {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:10px 0 6px}
+.th-chapters button {display:grid;justify-items:center;gap:4px;font-size:12px}
+.th-chapters small {color:inherit;opacity:.84;font-size:10px}
+.th-pass-strip {
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:6px 0 0;
+}
+.th-pass-strip[hidden] {display:none}
+.th-prize {
+  display:grid;grid-template-rows:auto 43px 1fr auto;align-items:center;justify-items:center;gap:3px;
+  min-width:0;padding:7px 3px;border:1px solid #764834;border-radius:9px;
+  text-align:center;background:#371e18;overflow-wrap:anywhere;
+}
+.th-prize > small {color:#f1c4a1;font-size:10px}
+.th-prize > b {color:#ffe2b4;font-size:12px}
+.th-prize > span {font-size:24px}
+.th-prize.th-ready {border-color:#f0b86f;background:linear-gradient(#68361f,#3b2018)}
+.th-prize.th-claimed {border-color:#738052;background:linear-gradient(#424329,#29271d)}
+.th-prize.th-final {box-shadow:inset 0 0 15px #ffb76047;border-color:#dda35f}
+.th-prize.th-final b {font-size:clamp(8px,2.35vw,12px)}
+.th-prize img {max-width:100%;height:auto}
+.th-prize button {padding:5px 2px;font-size:10px;margin:0;width:100%;border-width:1px}
+.th-prize button:disabled {opacity:.65}
+.th-quest-heading {color:var(--th-gold);font-size:15px;margin:13px 0 5px}
+.th-quest {
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 10px;
+  margin:5px 0;padding:8px 10px;
+}
+.th-quest small,.th-quest progress {grid-column:1}
+.th-quest small {margin:0}
+.th-quest button {grid-column:2;grid-row:1 / span 3;margin:0;font-size:12px;padding:6px;border-width:1px}
+.th-progress {
+  display:block;width:100%;height:8px;appearance:none;border:0;border-radius:8px;
+  background:#251410;overflow:hidden;
+}
+.th-progress::-webkit-progress-bar {background:#251410}
+.th-progress::-webkit-progress-value {background:linear-gradient(90deg,#c35733,#ffc578)}
+.th-progress::-moz-progress-bar {background:#ed9150}
+#th-status,#th-feast-status {margin:8px 0;color:#ffc98c;font-size:13px}
+#th-status:empty,#th-feast-status:empty {margin:0}
+.th-play-panel,.th-serve-bar {
+  display:flex;align-items:center;justify-content:space-between;gap:8px;margin:11px 0 0;
+  padding:10px;border:1px solid #a3613e;border-radius:11px;
+  background:linear-gradient(115deg,#5d2c20,#351d18);
+}
+.th-play-panel b {display:block;color:var(--th-gold);font-size:17px}
+#th-play,#th-serve {flex:none;margin:0;padding:8px 11px;font-size:14px;border-width:1px}
+#th-play span {margin-inline-start:5px;font-size:10px}
+.th-bottom {margin-top:10px}
+.th-feast-heading {display:flex;align-items:center;justify-content:space-between;gap:8px;margin:3px 0 10px}
+.th-feast-heading h2 {font-size:clamp(28px,7vw,47px)}
+.th-feast-heading p {margin:6px 0 0}
+.th-feast-heading > strong {color:var(--th-gold);padding:6px 10px;border:1px solid #985b3a;border-radius:9px;background:#4d281c}
+.th-feast-reward {display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:center}
+.th-feast-reward b {display:block;color:#ffe1ae}
+.th-feast-reward .th-progress {margin-top:6px}
+.th-table {position:relative;border:1px solid #915734;border-radius:14px;overflow:hidden;background:#23120f}
+#th-table-scene {display:block;width:100%;height:auto;border:0}
+#th-guests,#th-serving-layer {position:absolute;inset:0;pointer-events:none}
+.th-seat {
+  pointer-events:auto;position:absolute;left:var(--sx);top:var(--sy);translate:-50% -50%;
+  display:grid;place-items:center;width:11.8%;aspect-ratio:1;margin:0;padding:0;
+  border-radius:50%;border:1px solid #bf8759;background:#44241e;box-shadow:0 3px 6px #1b0d0acb;
+  color:#fff2d5;
+}
+.th-seat img {width:94%;height:auto;max-width:72px;border-radius:50%!important}
+.th-seat[aria-pressed="true"] {outline:2px solid #ffd08d;border-color:#ffe2ad}
+.th-seat:hover {border-color:#ffe2ad}
+.th-seat span {
+  position:absolute;right:-4%;bottom:-2%;display:grid;place-items:center;width:clamp(16px,4.7vw,24px);aspect-ratio:1;
+  border-radius:50%;background:#552a20;color:#ffd49d;border:1px solid #b77546;font-size:clamp(10px,2.8vw,14px);
+}
+.th-seat.th-fed span {background:#40533a;color:#ffd69b;border-color:#bc9860}
+.th-meal-flight,.th-meal-spark {position:absolute;width:12%;height:auto;translate:-50% -50%;filter:drop-shadow(0 5px 5px #22100d)}
+.th-meal-spark {width:auto;font-size:20px;color:#ffdb8d;font-weight:900}
+.th-serve-bar b {color:#ffdb9e}
 .th-chip {color:#ffcf8d;border-color:#b66a41}
-@media(max-width:600px) {
-  body:has(#th-event:not(.hide), #th-feast:not(.hide), #th-chip:not(.hide)) header {
-    display:block;
-  }
-  body:has(#th-event:not(.hide), #th-feast:not(.hide), #th-chip:not(.hide)) header > .row {
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    padding:6px 1px;
-    scrollbar-width:thin;
-    scrollbar-color:#a15d40 #371a16;
-  }
-  body:has(#th-event:not(.hide), #th-feast:not(.hide), #th-chip:not(.hide)) header > .row > button {
-    flex:none;
-    margin:0;
-    white-space:nowrap;
-  }
+#game:has(#th-battle-panel:not(.hide)) #cv {border-color:#a66544}
+#th-battle-panel {background:#341a15;border:1px solid #89513a;border-radius:13px;padding:8px 10px;margin:7px 0}
+.th-wave-preview {display:flex;align-items:center;gap:8px;padding:4px 0}
+.th-wave-preview img {flex:none;object-fit:contain;background:#241310;border-radius:9px}
+.th-wave-preview div {display:grid;gap:1px}
+.th-wave-preview b {color:#ffdc9f;font-size:17px}
+.th-wave-preview small,#th-kitchen-hint,#th-toast-hint,.th-wave-preview span {color:var(--mute);font-size:12px}
+#th-boss-hud {margin:4px 0 10px}
+#th-boss-hud > div {display:flex;justify-content:space-between;gap:5px;color:#ffcea2;font-size:12px}
+#th-boss-health {margin-top:3px}
+.th-kitchen {padding-top:6px;border-top:1px solid #74432e}
+.th-kitchen-head {display:flex;justify-content:space-between;gap:8px;align-items:center;margin:2px 0 6px}
+.th-kitchen-head b {color:#ffe0aa}
+.th-recipes {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.th-recipes button {
+  display:grid;grid-template-columns:31px minmax(0,1fr);gap:3px;align-items:center;text-align:left;
+  font-size:12px;line-height:1.15;min-width:0;margin:0;padding:5px 4px;border:1px solid #8e5336;
 }
-@media(max-width:430px) {
-  .th-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
-  .th-table {gap:4px;padding:8px 4px}
-  .th-place {font-size:10px}
-  .th-place img {width:34px}
+.th-recipes button[aria-pressed="true"] {background:#673b23;border-color:#f8c782}
+.th-recipes button:disabled {opacity:.64}
+.th-recipes img {width:100%;height:auto}
+.th-recipes small {display:block;line-height:1.17;color:#ffd094;margin-top:3px}
+.th-battle-actions {display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:7px 0 3px}
+.th-battle-actions button {margin:0;padding:6px 7px;border-width:1px;font-size:12px}
+.th-battle-actions label {font-size:12px;color:#efd0ae;display:flex;align-items:center;gap:4px}
+.th-battle-actions input {accent-color:#dc9149}
+#th-wave-go {margin-left:auto}
+#th-welcome {
+  width:min(485px,92vw);max-height:90dvh;overflow:auto;padding:0 0 12px;color:var(--ink);
+  background:#391c17;border:2px solid #d48a54;border-radius:17px;box-shadow:0 12px 40px #120805;
 }
-#th-welcome {width:min(485px,92vw);max-height:90dvh;overflow:auto;padding:0 0 12px;color:var(--ink);background:#391c17;border:2px solid #d48a54;border-radius:17px;box-shadow:0 12px 40px #120805}
 #th-welcome::backdrop {background:#1a090cba}
 #th-welcome .th-hero {margin:0;border:0;border-radius:13px 13px 0 0}
+#th-welcome h2 {font-size:clamp(22px,6.3vw,37px)}
 #th-welcome > p {padding:0 14px}
 #th-welcome .row {margin:0 10px}
+@media(max-width:600px) {
+  body:has(#th-event:not(.hide),#th-feast:not(.hide),#game:not(.hide) #th-battle-panel:not(.hide)) header {display:block}
+  body:has(#th-event:not(.hide),#th-feast:not(.hide),#game:not(.hide) #th-battle-panel:not(.hide)) header > .row {
+    flex-wrap:nowrap;overflow-x:auto;padding:6px 1px;scrollbar-width:thin;scrollbar-color:#a15d40 #371a16;
+  }
+  body:has(#th-event:not(.hide),#th-feast:not(.hide),#game:not(.hide) #th-battle-panel:not(.hide)) header > .row > button {
+    flex:none;margin:0;white-space:nowrap;
+  }
+}
+@media(max-width:460px) {
+  #th-event,#th-feast {padding:9px}
+  .th-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .th-summary > div {padding:6px}
+  .th-summary small,.th-play-panel small {font-size:10px}
+  .th-recipes button {grid-template-columns:1fr;text-align:center;font-size:11px;justify-items:center}
+  .th-recipes img {width:38px}
+}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.59</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.60</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
 <div class="cw"><canvas id="cv" width="640" height="400"></canvas><div id="end" class="hide"><b id="et"></b><div class="row"><button id="e1">Выбрать сложность</button><button id="e2">В лобби</button></div></div></div>
+<section id="th-battle-panel" class="hide" aria-label="Набег на застолье">
+  <div id="th-wave-preview" class="th-wave-preview">
+    <img id="th-wave-portrait" width="56" height="56" alt="">
+    <div><small id="th-wave-label"></small><b id="th-wave-name"></b><span id="th-wave-detail"></span></div>
+  </div>
+  <div id="th-boss-hud" class="hide">
+    <div><b>Индюк-разбойник</b><span id="th-boss-phase"></span></div>
+    <progress id="th-boss-health" class="th-progress" max="100" value="100" aria-label="Здоровье Индюка-разбойника"></progress>
+  </div>
+  <div class="th-kitchen">
+    <div class="th-kitchen-head"><b>Полевая кухня</b><small id="th-kitchen-hint"></small></div>
+    <div id="th-recipes" class="th-recipes" role="group" aria-label="Блюдо для следующей волны"></div>
+    <div class="th-battle-actions">
+      <button type="button" id="th-toast">🥂 Большой тост</button>
+      <label><input type="checkbox" id="th-auto-wave"> Автоволны</label>
+      <button type="button" id="th-wave-go">Начать волну ▶</button>
+    </div>
+    <small id="th-toast-hint"></small>
+  </div>
+</section>
 <div id="ust" class="hide"></div><div id="shop"></div>
 <div class="row"><button id="ph">Фаза 2: выкл</button><button id="sk">Пропустить ожидание</button><button id="sp">Скорость ×1</button><span class="chip" id="cd"></span></div>
 <div id="msg" role="status"></div></section>
@@ -426,37 +589,54 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 <section id="market" class="hide p mkp"><div class="mkhero"><div class="mkh1"><span class="mkgem">💎</span><div><small>Твои гемы</small><b id="mkg">0</b></div></div><button id="mkhelp" class="mkq">❓ Как это работает</button></div><div class="mkstat"><span>🤖 Продаж ботам: <b id="mks"></b>/3</span><span>⏰ Новые цены через <b id="mkt"></b></span></div><div class="mktabs"><button data-m="sell"><i>🤖</i>Боты</button><button data-m="buy"><i>🏪</i>Лавка</button><button data-m="on"><i>🌐</i>Всемирный</button></div><div id="mkm" role="status"></div><div id="mkbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="friends" class="hide p"><div class="frhero"><div class="frtt"><span>👥</span><b>Друзья</b></div><div id="frme"></div></div><div id="frtabw" class="frtabs"><button data-f="list"><i>👥</i>Друзья <em id="frtn"></em></button><button data-f="in"><i>📬</i>Входящие<em id="frtin" class="bdgi"></em></button><button data-f="add"><i>➕</i>Добавить</button></div><div id="frm" role="status"></div><div id="frbody"></div><div class="row"><button class="bk">Назад</button></div></section><div id="ftoast" role="status"></div><section id="inf" class="hide p"><div class="ifhero"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="ifm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0606"/><stop offset="1" stop-color="#0c0101"/></linearGradient><linearGradient id="ifl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".35" stop-color="#ff8a1a"/><stop offset="1" stop-color="#c0140a"/></linearGradient></defs><path d="M-10 200 L60 150 L110 170 L150 140 L190 200Z" fill="#1a0404" opacity=".8"/><path d="M230 200 L290 155 L340 175 L410 140 L410 200Z" fill="#1a0404" opacity=".8"/><path d="M70 200 L170 92 L185 98 L200 88 L215 98 L230 92 L330 200Z" fill="url(#ifm)"/><path d="M186 96 Q180 130 168 160 Q160 182 150 200 L166 200 Q178 170 190 140 Q196 118 200 96Z M208 96 Q214 126 226 150 Q236 172 248 200 L236 200 Q222 176 212 150 Q205 124 203 96Z" fill="url(#ifl)"><animate attributeName="opacity" values=".85;1;.85" dur="2s" repeatCount="indefinite"/></path><ellipse cx="200" cy="90" rx="22" ry="6" fill="#ffcf3a"><animate attributeName="rx" values="20;25;20" dur="1.6s" repeatCount="indefinite"/></ellipse><g fill="#5a3030" opacity=".55"><circle cx="196" cy="70" r="12"><animate attributeName="cy" values="74;20" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="5s" repeatCount="indefinite"/></circle><circle cx="206" cy="60" r="16"><animate attributeName="cy" values="70;10" dur="6s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="6s" begin="1.5s" repeatCount="indefinite"/></circle></g></svg><i class="ifemb" style="left:12%;--dx:14px;animation-duration:3.4s;animation-delay:0.0s"></i><i class="ifemb" style="left:24%;--dx:-10px;animation-duration:4.1s;animation-delay:1.2s"></i><i class="ifemb" style="left:38%;--dx:8px;animation-duration:3.1s;animation-delay:0.6s"></i><i class="ifemb" style="left:52%;--dx:-16px;animation-duration:4.6s;animation-delay:2.0s"></i><i class="ifemb" style="left:63%;--dx:12px;animation-duration:3.7s;animation-delay:0.3s"></i><i class="ifemb" style="left:74%;--dx:-6px;animation-duration:3.3s;animation-delay:1.6s"></i><i class="ifemb" style="left:86%;--dx:10px;animation-duration:4.2s;animation-delay:0.9s"></i><i class="ifemb" style="left:45%;--dx:-4px;animation-duration:3.9s;animation-delay:2.6s"></i><i class="ifemb" style="left:30%;--dx:16px;animation-duration:3.5s;animation-delay:3.1s"></i><i class="ifemb" style="left:70%;--dx:-14px;animation-duration:4.4s;animation-delay:2.2s"></i><div class="ifh"><span class="ifttl">ЖЕРЛО ВУЛКАНА</span><span class="ifsub">∞ БЕСКОНЕЧНЫЙ РЕЖИМ</span></div></div><div class="ifst"><div><b id="ifbest">—</b><small>🏆 рекорд</small></div><div><b id="ifgames">0</b><small>🎮 игр</small></div><div><b id="ifkills">0</b><small>💀 врагов</small></div><div><b id="ifgems">0</b><small>💎 добыто</small></div></div><div class="ifhw">🔥 Как это работает</div><div class="ifr"><div><i>♾️</i><span><b>Волны не кончаются</b><small>Каждая следующая волна сильнее. Играй, пока у базы есть жизни. Главная цель — побить свой рекорд.</small></span></div><div><i>👹</i><span><b>Босс каждые 10 волн</b><small>Магмовый Титан, Пепельный Змей, Повелитель Лавы… На половине здоровья босс впадает в ярость.</small></span></div><div><i>🌋</i><span><b>Извержение каждые 5 волн</b><small>С неба падают лавовые камни и бьют врагов. Это твой союзник!</small></span></div><div><i>⚡</i><span><b>Особые волны с 8-й</b><small>🔥 Огненные — быстрее, 🪨 Каменные — крепче, 🐜 Рой — больше врагов. Название волны видно на экране.</small></span></div><div><i>🎁</i><span><b>Награды</b><small>Монеты в банк и 🎃 за каждую волну, +1 💎 за каждые 5 волн, +2 💎 за босса.</small></span></div><div><i>❤️</i><span><b>15 жизней</b><small>Обычный враг отнимает 1 жизнь, босс — 10. Когда жизней мало, экран краснеет.</small></span></div></div><button class="ifgo" id="ifgo">🌋 В ЖЕРЛО!</button><button class="ifgo lbgo" id="iflb">🏆 Лидерборд и награды</button><div class="row"><button class="bk">Назад</button></div></section><section id="pets" class="hide p"><div class="pthero"><div class="ptsp"></div><img id="ptimg" class="ptbox bob" width="130" height="130" alt=""><div class="ptht"><span class="ptttl">ЯЩИК ПИТОМЦЕВ</span><span class="ptsub">Питомцы дают баффы твоим Верити в бою</span></div><div class="ptgem">💎 <b id="ptg">0</b></div></div><div id="ptm" role="status"></div><div class="ptbtns"><button class="ptbtn" id="pto1"><b>Открыть ×1</b><span>25 💎</span></button><button class="ptbtn x5" id="pto5"><b>Открыть ×5</b><span>110 💎 <s>125</s></span></button></div><p class="mkhint" id="ptpity"></p><div class="ifhw2">🎲 Что может выпасть</div><div class="ptdrop" id="ptdrop"></div><div class="ifhw2">📖 Коллекция <span id="ptcn"></span></div><div class="ptcol" id="ptcol"></div><div class="ifhw2">❓ Как работают питомцы</div><div class="ifr lbhow ptinfo"><div><i>⚔️</i><span><b>Возьми в бой</b><small>Перед каткой открывается «Снаряжение»: выбери до 6 Верити и до 2 питомцев.</small></span></div><div><i>👆</i><span><b>Посади на Верити</b><small>В бою нажми на питомца под полем, потом на поставленного Верити.</small></span></div><div><i>⭕</i><span><b>Зона баффа</b><small>Вокруг появится круг. Все Верити внутри получают бафф питомца.</small></span></div><div><i>💱</i><span><b>Торговля</b><small>Питомцев можно продавать и покупать на всемирном рынке. Повтор из ящика превращается в гемы.</small></span></div></div><div class="row"><button class="bk">Назад</button></div></section><div id="ptov"></div><section id="lo" class="hide p"><div class="lohero"><span>⚔️ СНАРЯЖЕНИЕ</span><b id="lomode"></b></div><div id="lom" role="status"></div><div class="losec"><div class="sech"><b>🧍 Верити в бой</b><span class="cnt" id="locn"></span></div><p class="mkhint">Выбери до 6 Верити: только они будут в магазине башен в этой катке.</p><div class="logrid" id="lou"></div></div><div class="losec"><div class="sech"><b>🐾 Питомцы</b><span class="cnt" id="lopn"></span></div><p class="mkhint">До 2 питомцев. В бою нажми на питомца, потом на Верити: вокруг него появится зона с баффом.</p><div class="logrid" id="lop"></div><div id="lopi"></div></div><button class="logo" id="logo">▶ В БОЙ!</button><div class="row"><button id="loback">Назад</button></div></section><section id="ldb" class="hide p"><div class="lbhero"><span class="lbttl">🏆 ЛИДЕРБОРД</span><span class="lbsub">🌋 Жерло вулкана · <b id="lbs"></b></span><div class="lbtm">⏳ Сброс через <b id="lbt"></b></div></div><div class="lbprize"><div id="lbpz"></div><div><b>Награда за 1 место</b><span>🐉 Божественный Дракончик</span><small>+25% урона, +10% скорости атаки и +10% дальности в большой зоне. Только за 1 место, из ящика не выбить. 🥈 2 место — 50 💎, 🥉 3 место — 25 💎.</small></div></div><div class="lbtabs"><button data-t="now">🔥 Этот сезон</button><button data-t="prev">📜 Прошлый</button></div><div id="lbbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="mail" class="hide p"><div class="mlhero"><span class="mlenv">📬</span><div><b>ПОЧТА</b><small>Фразы и подарки от друзей и подарки от автора игры</small></div></div><div id="mltw" class="mltabs"><button data-m="in">📥 Входящие <em id="mltin" class="bdgi"></em></button><button data-m="new">✉️ Написать</button></div><div id="mlm" role="status"></div><div id="mlbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="hk" class="hide p"><div class="hkhero"><canvas id="hkcv" width="640" height="380"></canvas><div class="hkht"><span class="hkttl">ВЗЛОМ СИСТЕМЫ</span><span class="hksub">&gt; хакерский ивент_</span><span class="hktm" id="hkt"></span></div></div><div class="hkbal"><span>Байты · Ключи</span><span><b id="hkb">0</b> 💾 &nbsp; <b id="hkk">0</b> 🔐</span></div><div id="hkm" role="status"></div><div class="hktabs"><button data-t="q">🎯<span>Задания</span></button><button data-t="c">📦<span>Ящик</span></button><button data-t="h">🕶<span>Хакерити</span></button><button data-t="t">💻<span>Терминал</span></button><button data-t="p">🎟<span>Пропуск</span></button></div><div id="hkbody"></div><button class="hkplay" id="hkplay">▶ ИГРАТЬ: ВЗЛОМ</button><div class="row"><button class="bk">Назад</button></div></section><div id="hkterm"></div><section id="tro" class="hide p"><div class="trhero"><b>🏅 ПОЛКА ТРОФЕЕВ</b><span>Собрано: <b id="trn" style="display:inline;font:inherit;color:#ffd23a;-webkit-text-fill-color:#ffd23a"></b></span><p class="mu" style="margin:8px 0 0">Трофеи навсегда: их нельзя купить, продать или подарить. Нажми на трофей, чтобы поставить его на витрину — его увидят друзья.</p></div><div id="trbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="shp" class="hide p"><h2>🛍 Магазин</h2><div id="shbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="rdl" class="hide p"><div id="rdbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="arn" class="hide"><canvas id="arc"></canvas><div id="arhud"></div><div id="arjoy"><div id="arknob"></div></div><button id="arsw">🏏</button><button id="arex">🚪 Выйти</button></section><section id="chron" class="hide p"><div id="lrbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="fusl" class="hide p"><div id="flbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="pty" class="hide p"><div class="prhero"><span class="prconf"></span><div class="prht">Прощай, Хэллоуин!</div><span class="prhs">🎉 Прощальная вечеринка · 7 ноября 20:00–20:30</span><span class="prtmw" id="prtm"></span></div><div class="prme"><span>Твои спасённые конфеты</span><span><b id="prc">0</b> 🍭</span></div><div id="pz" class="hide"><div class="pzh"><span id="pzn">👥 На площади: 1</span><span id="pzt"></span></div><canvas id="pzc"></canvas><div class="pzhint">Нажми на площадь, чтобы пойти туда</div></div><div id="pzgo"><b></b></div><div id="prbody"></div><div class="row"><button class="bk">Назад</button></div></section><div id="prbar" class="hide"></div><div id="prban" role="status"></div><div id="prain"></div><div id="cutov"></div><div id="anb" role="status"></div><section id="promo" class="hide p"><h2>Промокоды</h2><div class="row"><input id="pi" placeholder="Введи промокод" autocomplete="off"><button id="pb">Активировать</button><button class="bk">Назад</button></div><div id="pmm" role="status"></div></section>
 </div><div id="modal" class="hide" role="dialog" aria-modal="true" aria-labelledby="mt"><div id="mbox" class="p"><h2 id="mt"></h2><div id="mc"></div><div id="mbtn" class="row"></div></div></div>
 <section id="th-event" class="hide p">
-  <figure class="th-hero"><img id="th-hero-art" alt=""><figcaption>
-    <h2>День благодарения</h2><p>До 28 ноября, 00:00 МСК</p>
-  </figcaption></figure>
-  <div class="th-wallet"><strong>🍽️ <span id="th-dishes">0</span> блюд</strong><span>Рекорд защиты · <b id="th-best">0</b> волн</span></div>
+  <figure class="th-hero">
+    <img id="th-hero-art" alt="">
+    <figcaption>
+      <span>До 28 ноября · 00:00 МСК</span>
+      <h2>День<br>благодарения</h2>
+    </figcaption>
+  </figure>
+  <div class="th-summary">
+    <div><small>Твои блюда</small><strong>🍽 <b id="th-dishes">0</b></strong></div>
+    <div><small>Рекорд защиты</small><strong><b id="th-best">0</b> волн</strong></div>
+    <div><small>Этап пропуска</small><strong><b id="th-pass-level">0</b> / 25</strong></div>
+  </div>
   <div class="th-tabs" id="th-tabs" role="group" aria-label="Разделы события">
     <button type="button" data-th-tab="shop" aria-pressed="true">🦃 Магазин</button>
-    <button type="button" data-th-tab="pass" aria-pressed="false">🎟️ Батл-пасс</button>
+    <button type="button" data-th-tab="pass" aria-pressed="false">🎟 Батл-пасс</button>
     <button type="button" data-th-tab="quests" aria-pressed="false">📜 Квесты</button>
   </div>
   <div id="th-content"></div>
   <p id="th-status" role="status"></p>
-  <button type="button" id="th-play">▶ Защитить стол</button>
-  <div class="th-wallet"><span>∞ Волны · 1 🍽️ за каждую пройденную волну</span></div>
-  <div class="row"><button type="button" id="th-to-feast">🍽️ Застолье</button><button type="button" id="th-back">Назад</button></div>
+  <div class="th-play-panel">
+    <div><b>Защита стола</b><small>Бесконечные волны · 1 блюдо за каждую</small></div>
+    <button type="button" id="th-play">Играть <span aria-hidden="true">▶</span></button>
+  </div>
+  <div class="row th-bottom"><button type="button" id="th-to-feast">🍽 Застолье</button><button type="button" id="th-back">Назад</button></div>
 </section>
 <section id="th-feast" class="hide p">
-  <figure class="th-hero"><img id="th-feast-art" alt=""><figcaption>
-    <h2>Застолье</h2><p>По 5 блюд каждому гостю</p>
-  </figcaption></figure>
-  <div class="th-wallet"><strong>🍽️ <span id="th-feast-dishes">0</span> блюд</strong><span id="th-fed-count"></span></div>
-  <progress class="th-progress" id="th-feast-progress" max="150" value="0" aria-label="XP застолья"></progress>
+  <div class="th-feast-heading">
+    <div><h2>Застолье</h2><p>Выбери гостя и подай ему 5 блюд.</p></div>
+    <strong>🍽 <b id="th-feast-dishes">0</b></strong>
+  </div>
   <div class="th-card th-feast-reward" id="th-feast-reward"></div>
-  <div class="th-table" id="th-guests" role="group" aria-label="Гости за столом"></div>
+  <div class="th-table">
+    <canvas id="th-table-scene" width="620" height="678" aria-hidden="true"></canvas>
+    <div id="th-guests" role="group" aria-label="Гости за столом"></div>
+    <div id="th-serving-layer" aria-hidden="true"></div>
+  </div>
+  <div class="th-serve-bar">
+    <div><b id="th-guest-name">Выбери гостя</b><small id="th-guest-detail">Сытые гости отмечены галочкой.</small></div>
+    <button type="button" id="th-serve" disabled>Подать 5 🍽</button>
+  </div>
   <p id="th-feast-status" role="status"></p>
-  <div class="row"><button type="button" id="th-from-feast">🍂 День благодарения</button><button type="button" id="th-feast-back">В лобби</button></div>
+  <div class="row th-bottom"><button type="button" id="th-from-feast">🍂 День благодарения</button><button type="button" id="th-feast-back">В лобби</button></div>
 </section>
 <dialog id="th-welcome" aria-labelledby="th-welcome-title">
   <figure class="th-hero"><img id="th-welcome-art" alt=""><figcaption>
-    <h2 id="th-welcome-title">День благодарения начался!</h2>
+    <h2 id="th-welcome-title">День благодарения<br>начался!</h2>
   </figcaption></figure>
-  <p>Защищай стол, собирай блюда и угощай своих Верити. В праздничном пропуске тебя ждёт Cornucopity!</p>
+  <p>Готовь блюда между волнами, зови Верити за стол и собирай награды праздничного пропуска.</p>
   <div class="row"><button type="button" id="th-welcome-go" autofocus>🍂 К празднику</button><button type="button" id="th-welcome-close">Позже</button></div>
 </dialog>
 <script>
@@ -504,18 +684,18 @@ function scr(n){if((n=='th-event'||n=='th-feast')&&!thOn())n='lobby';if(cur=='st
 function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс 10 волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
  h='<button class="df story" data-k="story" style="background-image:linear-gradient(90deg,rgba(0,0,0,.25),transparent),url('+ST_COVER+')"><span class="nw">НОВОЕ!</span><b>История</b><small>Глава 1: сцены и вопросы Моба. Глава 2: 3D-погоня, в которой ты огромный монстр.</small><em>Награда: Monster Verity (Legendary)</em></button>'+hwCard()+(typeof prCard=='function'?prCard():'')+(typeof hkCard=='function'?hkCard():'')+(typeof infCard=='function'?infCard():'')+h;
  $('diffs').innerHTML=h;[].forEach.call($('diffs').children,function(b){b.onclick=function(){var k=b.dataset.k;if(k=='soon')return;k=='story'?sStart():start(k)}})}
-function start(k){var d=k=='hw'?HWD:k=='hk'?HKD:k=='pr'?PRD:k=='harvest'?{...THD,boss:{...THD.boss}}:DF[k];if(k=='hw'){M.hq.plays++;save()}G={key:k,blood:0,ban:null,boom:0,d:d,coins:d.co,lives:d.lv,wave:0,fear:100,p2:false,cool:0,sel:'verity',units:[],en:[],q:0,sp:0,run:false,shots:[],over:0,boss:false,next:6,spd:+M.set.spd||1};if(k=='harvest')G.dishes=0;$('end').className='hide';scr('game');shop();hud();showU();say('Расставляй башни: волны идут сами.')}
+function start(k){var d=k=='hw'?HWD:k=='hk'?HKD:k=='pr'?PRD:k=='harvest'?{...THD,boss:{...THD.boss}}:DF[k];if(k=='hw'){M.hq.plays++;save()}G={key:k,blood:0,ban:null,boom:0,d:d,coins:d.co,lives:d.lv,wave:0,fear:100,p2:false,cool:0,sel:'verity',units:[],en:[],q:0,sp:0,run:false,shots:[],over:0,boss:false,next:6,spd:+M.set.spd||1};if(k=='harvest'){G.dishes=0;G.th=thNewBattle()}$('end').className='hide';scr('game');shop();hud();showU();say('Расставляй башни: волны идут сами.')}
 function hud(){$('c').textContent=Math.floor(G.coins);$('l').textContent=G.lives;$('w').textContent=G.wave;$('s').textContent=M.seeds;$('f').style.width=G.fear+'%';
  $('ph').textContent='Фаза 2: '+(G.p2?'вкл':'выкл');$('ph').className=G.p2?'on':'';$('sk').disabled=G.run||!!G.over;$('sp').textContent='Скорость ×'+G.spd;
  var hwm=G.key=='hw';$('cdy').className=hwm?'chip':'chip hide';$('phz').className=hwm?'chip ph':'chip hide';if(hwm){$('cdyv').textContent=M.candy;$('phz').textContent='🌙 '+PHN[hwPh()]}$('cd').textContent=G.over?'Конец':(G.run?'Волна идёт':'Следующая волна: '+Math.ceil(G.next)+' с')}
-function shop(){var h=$('shop');h.innerHTML='';for(var k in TY){if(G&&G.lo&&G.lo.indexOf(k)<0)continue;if(k=='pumpkinity'&&!M.own[k]&&!evOn())continue;if((HWU.indexOf(k)>=0||(typeof HKU!='undefined'&&HKU.indexOf(k)>=0)||(typeof EXU!='undefined'&&EXU.indexOf(k)>=0))&&!M.own[k])continue;var t=TY[k],b=document.createElement('button');b.innerHTML=pic(k,1,34)+'<span>'+t.n+'</span><small>'+(M.own[k]?t.cost+' 🪙':(k=='pumpkinity'?'🔥 акция':'🔒 ящик'))+'</small>';b.title=t.d;
+function shop(){var h=$('shop');h.innerHTML='';for(var k in TY){if(G&&G.lo&&G.lo.indexOf(k)<0)continue;if(k=='pumpkinity'&&!M.own[k]&&!evOn())continue;if((HWU.indexOf(k)>=0||(typeof HKU!='undefined'&&HKU.indexOf(k)>=0)||(typeof EXU!='undefined'&&EXU.indexOf(k)>=0))&&!M.own[k])continue;var t=TY[k],b=document.createElement('button');b.innerHTML=(G.key=='harvest'?thEventPic(k,1,34):pic(k,1,34))+'<span>'+t.n+'</span><small>'+(M.own[k]?t.cost+' 🪙':(k=='pumpkinity'?'🔥 акция':'🔒 ящик'))+'</small>';b.title=t.d;
  if(!M.own[k]&&k!='pumpkinity')b.disabled=true;b.className=(G.sel===k?'on ':'')+'fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'');b.style.setProperty('--rc',RC[RA[k]]);(function(k){b.onclick=function(){if(!M.own[k]){if(k=='pumpkinity')pkOffer();return}G.sel=k;shop();say(TY[k].n+': '+TY[k].d)}})(k);h.appendChild(b)}}
 
 $('sk').onclick=function(){if(!G.run)G.next=0};
 $('sp').onclick=function(){G.spd=G.spd==1?2:1;hud()};
 $('ph').onclick=function(){if(G.p2){G.p2=false}else if(G.fear>=20&&G.cool<=0){G.p2=true}else say('Страх ещё не накопился.');hud()};
 function mk(ty,d){var h=25+G.wave*6;return{d:d,hp:h,max:h,v:60,sl:0,burn:0,vul:0,t:0,ty:ty,boss:0,bt:0}}
-function hit(e,d){if(e.vul>0)d*=(e.vm||1.25);e.hp-=d;if(e.hp<=0&&!e.dead){e.dead=1;G.coins+=e.boss?300:(e.ty=='tank'?15:8);if(e.boss&&G.key!='harvest')M.seeds+=50;if(G.key=='hw')hwKill(e);if(e.ty=='splitter'){G.en.push(mk('runner',e.d),mk('runner',e.d))}}}
+function hit(e,d){if(e.thBoss&&e.hp>e.max*.72)d*=.82;if(e.vul>0)d*=(e.vm||1.25);e.hp-=d;if(e.hp<=0&&!e.dead){e.dead=1;G.coins+=e.boss?300:(e.ty=='tank'?15:8);if(e.boss&&G.key!='harvest')M.seeds+=50;if(G.key=='harvest')thEnemyKilled(e);if(G.key=='hw')hwKill(e);if(e.ty=='splitter'){G.en.push(mk('runner',e.d),mk('runner',e.d))}}}
 function aoe(cx,cy,r,d){G.en.forEach(function(e){if(e.po)return;var p=pos(e.d);if(Math.hypot(p[0]-cx,p[1]-cy)<=r)hit(e,d)})}
 function pick(){var w=G.wave+G.d.off,l=['walker'];if(w>=2)l.push('runner');if(w>=3)l.push('tank');if(w>=4)l.push('ghost');if(w>=5)l.push('healer');if(w>=6)l.push('splitter');if(G.key=='hw'){if(G.wave>=2)l.push('bat','bat');if(G.wave>=3)l.push('mimic');if(hwPh()=='hour')l.push('ghost','ghost')}return l[Math.floor(Math.random()*l.length)]}
 function lordN(u){return u.k!='lord'&&G.units.some(function(l){return l.k=='lord'&&Math.hypot(l.x-u.x,l.y-u.y)<170})}
@@ -526,12 +706,12 @@ function upd(dt){
  if(G.key=='harvest'&&!thOn()){thExpire();return}
  if(G.p2){G.fear-=14*dt;if(G.fear<=0){G.fear=0;G.p2=false;G.cool=5;say('Страх кончился, юниты спят 5 секунд.')}}else{G.fear=Math.min(100,G.fear+5*dt*(hwPh()=='dusk'?1.5:1))}
  if(G.cool>0)G.cool-=dt;
- if(!G.run){G.next-=dt;if(G.next<=0)startWave()}
- if(G.run&&G.q>0){G.sp-=dt;if(G.sp<=0){G.sp=G.boss?1.4:.8;G.q--;var b=G.boss&&G.q==0,ty=b?'walker':pick(),T=ET[ty],B=G.d.boss,h=b?B.hp:(30+G.wave*18)*T.hp*G.d.hp;G.en.push({d:0,hp:h,max:h,v:b?B.v:(38+G.wave*2)*T.v*G.d.sp,sl:0,burn:0,vul:0,t:0,ty:ty,boss:b,bt:0});if(G.key=='hw')hwSpawn(G.en[G.en.length-1])}}
+ if(G.key=='harvest')thTick(dt);else if(!G.run){G.next-=dt;if(G.next<=0)startWave()}
+ if(G.key=='harvest'){if(G.run&&G.q>0)thSpawn(dt)}else if(G.run&&G.q>0){G.sp-=dt;if(G.sp<=0){G.sp=G.boss?1.4:.8;G.q--;var b=G.boss&&G.q==0,ty=b?'walker':pick(),T=ET[ty],B=G.d.boss,h=b?B.hp:(30+G.wave*18)*T.hp*G.d.hp;G.en.push({d:0,hp:h,max:h,v:b?B.v:(38+G.wave*2)*T.v*G.d.sp,sl:0,burn:0,vul:0,t:0,ty:ty,boss:b,bt:0});if(G.key=='hw')hwSpawn(G.en[G.en.length-1])}}
  G.units.forEach(function(u){var t=TY[u.k],P2=G.p2||u.inf>0;if(u.inf>0)u.inf-=dt;if(u.dr>0)u.dr-=dt;if(u.wl>0)u.wl-=dt;if(u.deb>0)u.deb-=dt;if(u.po&&u.po.dead){u.po=null;u.cd=4;say('Demonity вернулся в свою форму.')}if(u.po)return;if(u.curse>0){u.curse-=dt;return}if(u.k=='lord'&&P2){u.it=(u.it||0)+dt;if(u.it>6){u.it=0;var os=G.units.filter(function(o){return o!==u&&Math.hypot(o.x-u.x,o.y-u.y)<160});if(os.length){var o=os[Math.floor(Math.random()*os.length)];if(Math.random()<.8)o.inf=8;else o.deb=5}}}u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
  if(u.k=='demonity'&&P2){var c2=null;G.en.forEach(function(e){if(e.po||e.boss||inv(e))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=140&&(!c2||e.max>c2.max))c2=e});if(c2){c2.po=1;c2.pt=0;c2.hp*=2;c2.max*=2;u.po=c2;say('Demonity вселился во врага!');return}}
   G.en.forEach(function(e){if(e.po||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
-  G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u);G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
+  G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
   if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(P2)aoe(p[0],p[1],50,d);else hit(tg,d)}
   else if(u.k=='lovity'){tg.sl=1.5;tg.slp=P2?.8:.5;if(P2&&!tg.boss)tg.d=Math.max(0,tg.d-70);else if(u.n%12==0&&G.lives<G.d.lv)G.lives++;hit(tg,d)}
   else if(u.k=='pumpkinity'){if(P2)aoe(p[0],p[1],70,d*1.4);else{tg.burn=3;hit(tg,d)}}
@@ -552,13 +732,13 @@ function upd(dt){
   else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='byehw'){byeAtk(u,tg,d,p,P2)}   else if(u.k=='freezity'||u.k=='bombity'||u.k=='magnetity'){nvAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
   else if(u.k=='glitch'||u.k=='fwall'||u.k=='virusv'||u.k=='hacker'){hkAtk(u,tg,d,p,P2)}
   else if(u.k=='turkeyity'||u.k=='cranberrity'||u.k=='pieity'||u.k=='harvestity')thAttack(u,tg,d,p,P2);
-  else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u);hit(tg,shot);hit(tg,shot);hit(tg,shot)}
+  else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor();hit(tg,shot);hit(tg,shot);hit(tg,shot)}
   else hit(tg,d)});
- G.cu=null;G.en.forEach(function(e){e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
-  var sk=G.d.boss.sk;if(e.boss){if(sk==4)king(e,dt);if((sk==1||sk==3)&&!(e.nul>0))e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
+ G.cu=null;G.en.forEach(function(e){if(G.key=='harvest'&&e.dead)return;e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
+  var sk=G.d.boss.sk;if(G.key=='harvest'&&e.dead)return;if(e.boss){if(e.thBoss)thBossThink(e);if(sk==4)king(e,dt);if((sk==1||sk==3)&&!(e.nul>0))e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
   if(e.ty=='healer')G.en.forEach(function(o){if(o!==e&&Math.abs(o.d-e.d)<70)if(!(o.nul>0))o.hp=Math.min(o.max,o.hp+5*dt)});
   if(e.stun>0){e.stun-=dt;return}
-  var s=e.sl>0&&e.ty!='bat'?(e.sl-=dt,1-(e.slp||0)):1,rg=e.boss&&sk>=2&&sk<4&&e.hp<e.max*.5?1.8:1;e.d+=e.v*s*rg*dt;if(e.d>=tot){e.dead=1;G.lives-=e.boss?10:1}});
+  var s=e.sl>0&&e.ty!='bat'?(e.sl-=dt,1-(e.slp||0)):1,rg=e.boss&&sk>=2&&sk<4&&e.hp<e.max*.5?1.8:1;e.d+=e.v*s*rg*dt*thMoveFactor();if(e.d>=tot){e.dead=1;G.lives-=e.boss?10:1;if(G.key=='harvest')thOnLeak(e)}});
  G.en=G.en.filter(function(e){return!e.dead});G.shots=G.shots.filter(function(s){return(s.t-=dt)>0});
  if(G.god&&G.lives<1)G.lives=1;if(G.lives<=0){G.lives=0;if(G.key=='harvest'){thLose();hud();return}M.bank+=Math.floor(G.coins/2);return endGame(1,'База пала. Половина монет ушла в банк.')}
  if(G.run&&G.q==0&&!G.en.length){if(G.key=='harvest'){thClear();hud();return}G.run=false;G.next=6;G.coins+=60;M.seeds+=5;M.bank+=Math.round(80*G.d.bm)*(typeof prOn=='function'&&prOn()?2:1);if(G.key=='hw'){addCandy(10);bpTrack('waves',1);bpAdd(8)}if(G.key=='hk'&&G.wave<10)hkWave();if(G.key=='pr')prAdd(8,1);
@@ -566,17 +746,20 @@ function upd(dt){
  hud()}
 function face(u,p2,s){var c=u.x,y=u.y-s*.3;x.fillStyle='#111';x.beginPath();x.arc(c-s*.35,y-s*.2,s*.12,0,7);x.arc(c+s*.35,y-s*.2,s*.12,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.beginPath();
  if(p2){x.moveTo(c-s*.5,y+s*.35);x.lineTo(c-s*.25,y+s*.15);x.lineTo(c,y+s*.35);x.lineTo(c+s*.25,y+s*.15);x.lineTo(c+s*.5,y+s*.35)}else x.arc(c,y+s*.05,s*.45,.2,2.9);x.stroke()}
-function draw(){for(var i=0;i<16;i++)for(var j=0;j<10;j++){x.fillStyle=G.key=='hw'?((i+j)%2?'#26402a':'#2b472e'):G.key=='inf'?((i+j)%2?'#2a0d0b':'#33110e'):G.key=='hk'?((i+j)%2?'#03120a':'#05180d'):G.key=='pr'?((i+j)%2?'#2a1238':'#321642'):(G.map&&MP[G.map]?MP[G.map].g[(i+j)%2]:((i+j)%2?'#5aa646':'#63b04e'));x.fillRect(i*C,j*C,C,C)}
- if(G.key=='inf')infGround();if(G.key=='harvest')thMapDecor();else if(G.map)mapGround();x.lineCap='square';x.lineJoin='miter';(G.key=='pr'?[[C+4,'rgba(255,138,31,.45)'],[C,'#1a0826'],[C-8,'#3a1a10']]:G.key=='hk'?[[C+6,'rgba(57,255,106,.35)'],[C,'#010805'],[C-8,'#0a2214']]:G.key=='inf'?[[C+6,'rgba(255,70,15,.55)'],[C,'#120404'],[C-8,'#2b120c']]:G.map&&MP[G.map]?MP[G.map].road:[[C-2,'#5b3b1f'],[C-8,'#9b6b3e']]).forEach(function(s){x.strokeStyle=s[1];x.lineWidth=s[0];x.beginPath();PT.forEach(function(p,i){i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});x.stroke()});if(G.key=='hw')hwDecor();if(G.key=='inf')infDecor();if(G.key=='hk')hkDecor();if(G.key=='pr')prDecor();if(G.key=='harvest')thDrawTable();
- G.units.forEach(function(u){var t=TY[u.k],p2=(G.p2&&G.cool<=0)||u.inf>0;x.fillStyle='rgba(0,0,0,.25)';x.fillRect(u.cx*C+4,u.cy*C+34,C-8,4);x.fillStyle='#6b4a2b';x.fillRect(u.cx*C+4,u.cy*C+22,C-8,14);x.fillStyle='#4aa83a';x.fillRect(u.cx*C+4,u.cy*C+20,C-8,6);
-  var im=(u.k=='gumity'&&!p2&&u.gf&&IM['gumity_f'+u.gf])?IM['gumity_f'+u.gf]:IM[u.k+(p2?2:1)];if(u.k=='monster'&&SPRI.complete&&SPRI.naturalWidth){var fh=70,fw=fh*SFW/SFH,bb=Math.sin(Date.now()/420+u.cx*1.7)*1.2;x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(SPRI,(p2?7:6)*SFW,0,SFW,SFH,u.x-fw/2,u.cy*C+25-fh+bb,fw,fh);x.globalAlpha=1}else if(im&&im.complete&&im.naturalWidth){x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(im,u.x-18,u.y-26,36,36);x.globalAlpha=1;}else{x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26)}
-  if(u.k=='pumpkinity'){x.fillStyle='#2b7a2b';x.fillRect(u.x-2,u.y-24,4,6)}skinD(u,p2)});
+function draw(){if(G.key=='harvest')thDrawBoard();else{for(var i=0;i<16;i++)for(var j=0;j<10;j++){x.fillStyle=G.key=='hw'?((i+j)%2?'#26402a':'#2b472e'):G.key=='inf'?((i+j)%2?'#2a0d0b':'#33110e'):G.key=='hk'?((i+j)%2?'#03120a':'#05180d'):G.key=='pr'?((i+j)%2?'#2a1238':'#321642'):(G.map&&MP[G.map]?MP[G.map].g[(i+j)%2]:((i+j)%2?'#5aa646':'#63b04e'));x.fillRect(i*C,j*C,C,C)}
+ if(G.key=='inf')infGround();if(G.map)mapGround();x.lineCap='square';x.lineJoin='miter';(G.key=='pr'?[[C+4,'rgba(255,138,31,.45)'],[C,'#1a0826'],[C-8,'#3a1a10']]:G.key=='hk'?[[C+6,'rgba(57,255,106,.35)'],[C,'#010805'],[C-8,'#0a2214']]:G.key=='inf'?[[C+6,'rgba(255,70,15,.55)'],[C,'#120404'],[C-8,'#2b120c']]:G.map&&MP[G.map]?MP[G.map].road:[[C-2,'#5b3b1f'],[C-8,'#9b6b3e']]).forEach(function(s){x.strokeStyle=s[1];x.lineWidth=s[0];x.beginPath();PT.forEach(function(p,i){i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});x.stroke()});if(G.key=='hw')hwDecor();if(G.key=='inf')infDecor();if(G.key=='hk')hkDecor();if(G.key=='pr')prDecor()}
+ G.units.forEach(function(u){var t=TY[u.k],p2=(G.p2&&G.cool<=0)||u.inf>0;
+  if(G.key=='harvest')thDrawTowerBase(u);else{
+    x.fillStyle='rgba(0,0,0,.25)';x.fillRect(u.cx*C+4,u.cy*C+34,C-8,4);x.fillStyle='#6b4a2b';x.fillRect(u.cx*C+4,u.cy*C+22,C-8,14);x.fillStyle='#4aa83a';x.fillRect(u.cx*C+4,u.cy*C+20,C-8,6);
+  }
+  var im=(u.k=='gumity'&&!p2&&u.gf&&IM['gumity_f'+u.gf])?IM['gumity_f'+u.gf]:IM[u.k+(p2?2:1)];if(G.key=='harvest'&&TH_PORTRAITS[u.k+(p2?2:1)]){thDrawTowerPortrait(u,p2)}else if(u.k=='monster'&&SPRI.complete&&SPRI.naturalWidth){var fh=70,fw=fh*SFW/SFH,bb=Math.sin(Date.now()/420+u.cx*1.7)*1.2;x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(SPRI,(p2?7:6)*SFW,0,SFW,SFH,u.x-fw/2,u.cy*C+25-fh+bb,fw,fh);x.globalAlpha=1}else if(im&&im.complete&&im.naturalWidth){x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(im,u.x-18,u.y-26,36,36);x.globalAlpha=1;}else{x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26)}
+  skinD(u,p2)});
  G.shots.forEach(function(s){x.strokeStyle=s.col;x.lineWidth=3;x.beginPath();x.moveTo(s.a,s.b-4);x.lineTo(s.c,s.e);x.stroke()});
- G.en.forEach(function(e){var p=pos(e.d),T=ET[e.ty],r=e.boss?26:T.r;if(G.key=='hw'&&hwDrawE(e,p))return;x.globalAlpha=inv(e)?.3:1;x.fillStyle=e.po?'#6a1fc2':e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
+ G.en.forEach(function(e){var p=pos(e.d),T=ET[e.ty],r=e.boss?26:T.r;if(G.key=='hw'&&hwDrawE(e,p))return;if(G.key=='harvest'){thDrawEnemy(e,p);return}x.globalAlpha=inv(e)?.3:1;x.fillStyle=e.po?'#6a1fc2':e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
   x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
   if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8)}
   x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.po?'#c08cff':e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
- phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();drawUI();if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
+ phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
 function lobby(){$('bk').textContent=Math.floor(M.bank);$('bs').textContent=M.seeds;var h='';for(var k in TY)h+='<div class="cu fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'')+(M.own[k]?'':' no')+'" style="--rc:'+RC[RA[k]]+'">'+pic(k,1,40)+pic(k,2,40)+'<br><b>'+TY[k].n+'</b><br>'+RA[k]+'<br>Урон '+(k=='demonity'?'1/6 HP':TY[k].dmg)+' · '+TY[k].rate+' с · дальн. '+TY[k].rng+'<br>'+TY[k].d+pkEx(k)+'</div>';$('col').innerHTML=h}
 function cvPos(e){var r=cv.getBoundingClientRect();return[(e.clientX-r.left)*640/r.width,(e.clientY-r.top)*400/r.height]}
 function cell(p){return[Math.floor(p[0]/C),Math.floor(p[1]/C)]}
@@ -815,10 +998,11 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.59',VOL=.8,MQ=[],CI=0;
+var VER='1.60',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.60',t:'Набег на застолье',a:['🍂 Новый облик Дня благодарения: иллюстрации, детальные Верити и анимация открытия Turkey-ящика','🎟 Пропуск урожая на 25 этапов, новые квесты и получение доступных наград одной кнопкой','🍽 15 гостей за деревянным столом: выбери гостя и подай ему блюдо с анимацией','🦃 Полевые рецепты, Большой тост, разные отряды и Индюк-разбойник со щитом и подкреплением']},
 {v:'1.59',t:'Больше наград на День благодарения',a:['🍂 Событие завершится 28 ноября в 00:00 по Москве','🎟️ За весь батл-пасс теперь можно получить 4 000 🪙 и 80 💎','🎁 Если награда уже получена, при входе начислится разница']},
 {v:'1.58',t:'День благодарения',a:['🍂 Осеннее оформление и праздничная вкладка с магазином, батл-пассом и квестами','🍽️ Защищай стол в бесконечном режиме: за каждую пройденную волну получишь блюдо','🦃 Turkey-ящик за 10 блюд: Pumpkinity, Turkeyity, Cranberrity и Pieity','🎟️ Выполняй квесты и забирай монеты, гемы и Cornucopity в конце пропуска','🪑 Угости 15 Верити за столом, чтобы открыть Harvestity']},
 {v:'1.57',t:'Возвращение Админа!',a:['После долгого времени игра приуныла, но админ вернулся с новыми обновлениями и админ абьюзами! Ожидайте глобального обновления']},
@@ -3247,11 +3431,7 @@ setInterval(function(){var w=lmWant();if(w&&!LM.on)lmStart();else if(!w&&LM.on)l
 document.addEventListener('visibilitychange',function(){if(document.hidden&&LM.on)lmStop()});
 </script>
 <script>
-/* ===== v1.58: День благодарения ===== */
-var THD = {n:'Защита стола', hp:1, sp:1, cn:1, lv:15, co:400, off:0, bm:0,
-  boss:{n:'Индюк-разбойник',hp:1900,v:29,col:'#ae452d',sk:2}};
-var TH_CRATE_COST = 10, TH_MEAL_COST = 5, TH_SEATS = 15, TH_FEAST_XP = 10;
-var TH_CRATE = [['pumpkinity',40],['turkeyity',30],['cranberrity',20],['pieity',10]];
+/* ===== День благодарения ===== */
 var TH_UNITS = {
   turkeyity:{n:'Turkeyity',rar:'Rare',cost:150,dmg:15,rate:.68,rng:105,col:'#df8740',light:'#ffe1a1',
     d:'Бросает перья. Каждый 3-й выстрел цепляет второго врага на 55% урона, во второй фазе — каждый 2-й.'},
@@ -3264,34 +3444,61 @@ var TH_UNITS = {
   harvestity:{n:'Harvestity',rar:'Mythic',cost:570,dmg:46,rate:1.1,rng:112,col:'#aa371d',light:'#ffbe64',
     d:'Каждый 4-й удар поднимает вихрь из листьев: до 5 соседних врагов получают 45% урона. Во второй фазе вихрь замедляет задетых врагов на 25% на 1 с.'}
 };
+/* День благодарения: пропуск, магазин и застолье */
+var TH_CRATE_COST = 10, TH_MEAL_COST = 5, TH_SEATS = 15, TH_FEAST_XP = 10;
+var TH_CRATE = [['pumpkinity',40],['turkeyity',30],['cranberrity',20],['pieity',10]];
 var TH_QUESTS = [
   {id:'waves5',key:'waves',goal:5,xp:15,label:'Пройди 5 праздничных волн'},
   {id:'waves15',key:'waves',goal:15,xp:20,label:'Пройди 15 праздничных волн'},
   {id:'waves30',key:'waves',goal:30,xp:25,label:'Пройди 30 праздничных волн'},
   {id:'waves50',key:'waves',goal:50,xp:30,label:'Пройди 50 праздничных волн'},
   {id:'waves75',key:'waves',goal:75,xp:35,label:'Пройди 75 праздничных волн'},
+  {id:'waves100',key:'waves',goal:100,xp:30,label:'Пройди 100 праздничных волн'},
   {id:'best8',key:'best',goal:8,xp:25,label:'Пройди 8 волн за один бой'},
-  {id:'fed5',key:'fed',goal:5,xp:25,label:'Накорми 5 гостей за столом'}
+  {id:'best15',key:'best',goal:15,xp:30,label:'Пройди 15 волн за один бой'},
+  {id:'boss3',key:'bosses',goal:3,xp:30,label:'Победи Индюка-разбойника 3 раза'},
+  {id:'cook3',key:'cooked',goal:3,xp:20,label:'Пройди 3 волны с блюдом от полевой кухни'},
+  {id:'cook12',key:'cooked',goal:12,xp:25,label:'Пройди 12 волн с блюдом от полевой кухни'},
+  {id:'fed5',key:'fed',goal:5,xp:25,label:'Накорми 5 гостей за столом'},
+  {id:'fed10',key:'fed',goal:10,xp:30,label:'Накорми 10 гостей за столом'}
 ];
-var TH_PASS = [{xp:15,coins:800,old:100},{xp:35,gems:30,old:3},{xp:60,coins:1200,old:150},
-  {xp:90,gems:50,old:5},{xp:120,coins:2000,old:250},{xp:150,unit:'cornucopity'}];
-function thUpgradePass(){
-  if(!M.th||!M.th.pass)return;
-  var upgraded=false;
-  TH_PASS.forEach(function(reward,index){
-    if(!reward.old||M.th.pass[index]!==true)return;
-    if(reward.coins)M.bank+=reward.coins-reward.old;
-    if(reward.gems)M.gem=(M.gem||0)+reward.gems-reward.old;
-    M.th.pass[index]=2;
-    upgraded=true;
-  });
-  if(upgraded)save();
-}
-var TH_PASS_MAX = TH_PASS[TH_PASS.length-1].xp;
-var thTab = 'shop', thPrevious = 'menu';
+// legacy соответствует номеру пакета наград в пропуске v1.58–1.59.
+var TH_PASS = [
+  {xp:5,coins:80,legacy:0}, {xp:10,coins:100,legacy:0}, {xp:15,coins:120,legacy:0}, {xp:20,gems:4,legacy:1}, {xp:25,coins:150,legacy:0},
+  {xp:31,coins:350,legacy:0}, {xp:37,gems:5,legacy:1}, {xp:43,coins:140,legacy:2}, {xp:50,gems:5,legacy:1}, {xp:57,gems:6,legacy:1},
+  {xp:65,coins:180,legacy:2}, {xp:73,gems:10,legacy:1}, {xp:81,coins:220,legacy:2}, {xp:90,gems:6,legacy:3}, {xp:100,coins:280,legacy:2},
+  {xp:111,gems:8,legacy:3}, {xp:122,coins:380,legacy:2}, {xp:134,gems:9,legacy:3}, {xp:146,coins:300,legacy:4}, {xp:159,gems:11,legacy:3},
+  {xp:174,coins:400,legacy:4}, {xp:190,gems:16,legacy:3}, {xp:207,coins:550,legacy:4}, {xp:225,coins:750,legacy:4}, {xp:250,unit:'cornucopity',legacy:5}
+];
+var TH_PASS_MAX = TH_PASS[TH_PASS.length-1].xp, TH_CHAPTER_SIZE = 5;
+var TH_SEATING = (function(){
+  var seats=[[310,61,310,115]];
+  for(var row=0;row<7;row++){
+    var y=139+row*74, edge=133-row*6;
+    seats.push([edge,y,edge+83,y+4],[620-edge,y,537-edge,y+4]);
+  }
+  return seats;
+})();
+var thTab='shop', thChapter=null, thPrevious='menu', thSelectedGuest=null, thServing=null;
+var TH_MOTION_QUERY=matchMedia('(prefers-reduced-motion: reduce)');
 
+function thUpgradePass(){
+  var state=M.th;
+  if(!state||state.passEdition===2)return;
+  var previous=state.pass||{}, migrated={};
+  TH_PASS.forEach(function(reward,index){if(previous[reward.legacy])migrated[index]=true});
+  // Значение true у денежных этапов v1.58 означает, что доплата v1.59 ещё не начислялась.
+  [700,27,1050,45,1750].forEach(function(bonus,index){
+    if(previous[index]!==true)return;
+    if(index===1||index===3)M.gem=(M.gem||0)+bonus;
+    else M.bank+=bonus;
+  });
+  state.pass=migrated;
+  state.passEdition=2;
+  save();
+}
 function thState(){
-  if(!M.th)M.th={dishes:0,waves:0,best:0,quest:{},pass:{},crate:{},guests:null,welcome:false};
+  if(!M.th)M.th={dishes:0,waves:0,best:0,quest:{},pass:{},passEdition:2,crate:{},guests:null,welcome:false};
   return M.th;
 }
 function thPassXP(state){
@@ -3324,14 +3531,29 @@ function thPurchase(){
   if(state.dishes<TH_CRATE_COST||!pool.length)return;
   var roll=Math.random()*pool.reduce(function(total,item){return total+item[1]},0);
   var reward=pool.find(function(item){roll-=item[1];return roll<0})||pool[pool.length-1];
+  var key=reward[0];
   state.dishes-=TH_CRATE_COST;
-  state.crate[reward[0]]=true;
-  M.own[reward[0]]=1;
+  state.crate[key]=true;
+  M.own[key]=1;
   save();
-  thRender('Получен '+TY[reward[0]].n+'!');
+  thRender('Получен '+TY[key].n+'!');
+  thRevealCrate(key);
+}
+function thRevealCrate(key){
+  mOpen('Turkey-ящик','<div class="th-reveal" style="--rarity:'+RC[RA[key]]+'"><canvas id="th-crate-reveal" width="350" height="240" aria-hidden="true"></canvas>'+
+    '<div id="th-crate-prize" hidden>'+pic(key,1,60)+'<strong>'+TY[key].n+'</strong><small>'+RA[key]+'</small></div></div>');
+  var canvas=$('th-crate-reveal'), context=canvas.getContext('2d'), begin=performance.now();
+  function frame(now){
+    if(!canvas.isConnected||$('modal').classList.contains('hide'))return;
+    var progress=thReducedMotion()?1:Math.min(1,(now-begin)/850);
+    thPaintCrate(context,progress);
+    if(progress>=.83)$('th-crate-prize').hidden=false;
+    if(progress<1)requestAnimationFrame(frame);
+  }
+  frame(begin);
 }
 function thQuestProgress(state,quest){
-  return quest.key==='fed'?thFed(state):state[quest.key];
+  return quest.key==='fed'?thFed(state):(state[quest.key]||0);
 }
 function thQuestClaim(id){
   if(!thOn())return thExpire();
@@ -3342,29 +3564,73 @@ function thQuestClaim(id){
   thRender('+'+quest.xp+' XP батл-пасса');
 }
 function thRewardName(reward){
-  return reward.unit?TY[reward.unit].n:reward.coins?reward.coins+' 🪙':reward.gems+' 💎';
+  return reward.unit?TY[reward.unit].n:reward.coins?reward.coins.toLocaleString('ru-RU')+' 🪙':reward.gems+' 💎';
+}
+function thPassAvailable(state,xp){
+  return TH_PASS.map(function(reward,index){return index}).filter(function(index){
+    return !state.pass[index]&&xp>=TH_PASS[index].xp;
+  });
 }
 function thPassClaim(index){
   if(!thOn())return thExpire();
-  var state=thState(), reward=TH_PASS[index];
-  if(!reward||state.pass[index]||thPassXP(state)<reward.xp)return;
-  state.pass[index]=2;
-  if(reward.coins)M.bank+=reward.coins;
-  if(reward.gems)M.gem=(M.gem||0)+reward.gems;
-  if(reward.unit)M.own[reward.unit]=1;
+  var state=thState(), available=thPassAvailable(state,thPassXP(state));
+  var claims=index===null?available:available.filter(function(ready){return ready===index});
+  if(!claims.length)return;
+  claims.forEach(function(claim){
+    var reward=TH_PASS[claim];
+    state.pass[claim]=true;
+    if(reward.coins)M.bank+=reward.coins;
+    if(reward.gems)M.gem=(M.gem||0)+reward.gems;
+    if(reward.unit)M.own[reward.unit]=1;
+  });
   save();
-  thRender('Получено · '+thRewardName(reward));
+  thRender(claims.length===1?'Получено · '+thRewardName(TH_PASS[claims[0]]):'Наград получено: '+claims.length);
 }
+function thReducedMotion(){return TH_MOTION_QUERY.matches}
 function thFeed(index){
   if(!thOn())return thExpire();
   var state=thState(), guest=thGuests(state)[index];
-  if(!guest||guest.fed||state.dishes<TH_MEAL_COST)return;
+  if(thServing!==null||!guest||guest.fed||state.dishes<TH_MEAL_COST)return;
   state.dishes-=TH_MEAL_COST;
   guest.fed=true;
   var complete=thFed(state)===TH_SEATS;
   if(complete)M.own.harvestity=1;
   save();
-  thFeastRender(complete?'Все гости сыты! Harvestity присоединился к коллекции.':'+'+TH_FEAST_XP+' XP застолья');
+  thServing=index;
+  var message=complete?'Все 15 гостей сыты! Harvestity присоединился к коллекции.':'+'+TH_FEAST_XP+' XP застолья';
+  thFeastRender('');
+  thAnimateServing(index,function(){
+    thServing=null;
+    if(cur==='th-feast')thFeastRender(message);
+  });
+}
+function thAnimateServing(index,finish){
+  if(thReducedMotion()||!Element.prototype.animate){finish();return}
+  var seat=TH_SEATING[index], layer=$('th-serving-layer'), canvas=$('th-table-scene');
+  var food=document.createElement('img');
+  food.className='th-meal-flight';
+  food.alt='';
+  food.src=TH_DISH_ART[index%3];
+  var arrivalX=seat[2]/canvas.width*100+'%', arrivalY=seat[3]/canvas.height*100+'%';
+  layer.append(food);
+  food.animate([
+    {left:'50%',top:'89%',transform:'scale(.72)',opacity:0},
+    {left:'50%',top:'82%',transform:'scale(1.13)',opacity:1,offset:.18},
+    {left:arrivalX,top:(seat[3]-24)/canvas.height*100+'%',transform:'scale(1.15)',offset:.78},
+    {left:arrivalX,top:arrivalY,transform:'scale(.82)'}
+  ],{duration:620,easing:'cubic-bezier(.2,.55,.28,1)',fill:'forwards'}).finished.then(function(){
+    food.remove();
+    finish();
+    if(cur!=='th-feast')return;
+    var spark=document.createElement('span');
+    spark.className='th-meal-spark';
+    spark.textContent='✦';
+    spark.style.left=arrivalX;
+    spark.style.top=arrivalY;
+    layer.append(spark);
+    spark.animate([{transform:'translateY(0) scale(.75)',opacity:1},
+      {transform:'translateY(-25px) scale(1.3)',opacity:0}],{duration:420}).finished.then(function(){spark.remove()});
+  },function(){food.remove();finish()});
 }
 function thButton(label,attribute,value,disabled){
   return '<button type="button" data-th-'+attribute+'="'+value+'"'+(disabled?' disabled':'')+'>'+label+'</button>';
@@ -3374,61 +3640,84 @@ function thProgress(value,max,label){
 }
 function thShop(state){
   var pool=thCratePool(), weight=pool.reduce(function(total,item){return total+item[1]},0);
-  return '<div class="th-card th-feature"><img src="'+TH_CRATE_ART+'" width="96" height="96" alt=""><div>'+
-    '<h3>Turkey-ящик</h3><p>В каждом ящике один Верити, которого ещё нет в коллекции.</p>'+
-    thButton(pool.length?'Открыть за '+TH_CRATE_COST+' 🍽️':'Все Верити собраны','purchase',1,state.dishes<TH_CRATE_COST||!pool.length)+
+  return '<div class="th-card th-feature"><img src="'+TH_CRATE_ART+'" width="230" height="158" alt=""><div>'+
+    '<h3>Turkey-ящик</h3><p>Один новый Верити из четырёх. Шансы обновляются после открытия.</p>'+
+    thButton(pool.length?'Открыть за '+TH_CRATE_COST+' 🍽':'Все награды получены','purchase',1,state.dishes<TH_CRATE_COST||!pool.length)+
     '</div></div><div class="th-grid">'+TH_CRATE.map(function(item){
       var key=item[0], chance=weight?Math.round(item[1]/weight*1000)/10:0;
-      return '<div>'+pic(key,1,54)+'<b>'+TY[key].n+'</b><small>'+RA[key]+'</small><small>'+
-        (M.own[key]?'✓ В коллекции':state.crate[key]?'✓ Уже выпадал':chance.toLocaleString('ru-RU')+'%')+'</small></div>';
+      return '<div class="th-collectible" style="--rarity:'+RC[RA[key]]+'" title="'+esc(TY[key].d)+'">'+pic(key,1,91)+
+        '<b>'+TY[key].n+'</b><small>'+RA[key]+'</small><span>'+
+        (M.own[key]?'✓ В коллекции':state.crate[key]?'✓ Уже выпадал':chance.toLocaleString('ru-RU')+'%')+'</span></div>';
     }).join('')+'</div>';
 }
-function thPass(state){
-  var xp=thPassXP(state);
-  return '<div class="th-card"><h3>'+Math.min(xp,TH_PASS_MAX)+' / '+TH_PASS_MAX+' XP</h3>'+
-    thProgress(xp,TH_PASS_MAX,'Прогресс батл-пасса')+'</div><div class="th-track">'+
-    TH_PASS.map(function(reward,index){
-      return '<div class="th-prize'+(reward.unit?' th-final':'')+'"><small>'+reward.xp+' XP</small>'+
-        (reward.unit?pic(reward.unit,1,60):'<span aria-hidden="true">'+(reward.coins?'🪙':'💎')+'</span>')+
+function thPass(state,xp){
+  var ready=thPassAvailable(state,xp), next=TH_PASS.findIndex(function(reward,index){return !state.pass[index]});
+  if(thChapter===null)thChapter=Math.floor(Math.max(0,ready[0]??(next<0?TH_PASS.length-1:next))/TH_CHAPTER_SIZE);
+  var tabs='', strips='';
+  for(var first=0;first<TH_PASS.length;first+=TH_CHAPTER_SIZE){
+    var group=first/TH_CHAPTER_SIZE, last=first+TH_CHAPTER_SIZE, selected=group===thChapter;
+    var done=TH_PASS.slice(first,last).filter(function(reward,index){return state.pass[first+index]}).length;
+    tabs+='<button type="button" data-th-chapter="'+group+'" aria-pressed="'+selected+'"><b>'+(first+1)+'–'+last+'</b><small>'+done+' / '+TH_CHAPTER_SIZE+'</small></button>';
+    strips+='<div class="th-pass-strip"'+(selected?'':' hidden')+'>'+TH_PASS.slice(first,last).map(function(reward,offset){
+      var index=first+offset, taken=state.pass[index], available=xp>=reward.xp;
+      var style=taken?' th-claimed':available?' th-ready':'';
+      return '<div class="th-prize'+style+(reward.unit?' th-final':'')+'"><small>'+(index+1)+' · '+reward.xp+' XP</small>'+
+        (reward.unit?pic(reward.unit,1,53):'<span aria-hidden="true">'+(reward.coins?'🪙':'💎')+'</span>')+
         '<b>'+thRewardName(reward)+'</b>'+
-        thButton(state.pass[index]?'Получено':xp<reward.xp?'Закрыто':'Забрать','pass',index,state.pass[index]||xp<reward.xp)+'</div>';
+        thButton(taken?'✓ Получено':available?'Забрать':'Закрыто','pass',index,taken||!available)+'</div>';
     }).join('')+'</div>';
+  }
+  return '<div class="th-card th-pass-card"><div><h3>Пропуск урожая</h3><p><b>'+Math.min(xp,TH_PASS_MAX)+' / '+TH_PASS_MAX+' XP</b> · 4 000 🪙 · 80 💎</p>'+
+    thProgress(xp,TH_PASS_MAX,'Прогресс батл-пасса')+'</div>'+pic('cornucopity',1,96)+
+    thButton(ready.length?'Забрать доступное · '+ready.length:'Забрать доступное','pass','all',!ready.length)+
+    '</div><div class="th-chapters" role="group" aria-label="Этапы пропуска">'+tabs+'</div>'+strips;
 }
 function thQuests(state){
-  return TH_QUESTS.map(function(quest){
-    var progress=thQuestProgress(state,quest);
-    return '<div class="th-card th-quest"><b>'+quest.label+'</b><small>'+
-      Math.min(progress,quest.goal)+' / '+quest.goal+' · +'+quest.xp+' XP</small>'+
-      thProgress(progress,quest.goal,quest.label)+
-      thButton(state.quest[quest.id]?'Получено':'Забрать XP','quest',quest.id,state.quest[quest.id]||progress<quest.goal)+'</div>';
+  var groups=[
+    {title:'Оборона стола',items:TH_QUESTS.filter(function(quest){return ['waves','best','bosses'].includes(quest.key)})},
+    {title:'Кухня и застолье',items:TH_QUESTS.filter(function(quest){return ['fed','cooked'].includes(quest.key)})}
+  ];
+  return groups.map(function(group){
+    return '<h3 class="th-quest-heading">'+group.title+'</h3>'+group.items.map(function(quest){
+      var progress=thQuestProgress(state,quest);
+      return '<div class="th-card th-quest"><b>'+quest.label+'</b><small>'+
+        Math.min(progress,quest.goal)+' / '+quest.goal+' · +'+quest.xp+' XP</small>'+
+        thProgress(progress,quest.goal,quest.label)+
+        thButton(state.quest[quest.id]?'Получено':'Забрать XP','quest',quest.id,state.quest[quest.id]||progress<quest.goal)+'</div>';
+    }).join('');
   }).join('');
 }
 function thRender(message){
-  var state=thState(), content=$('th-content');
+  var state=thState(), xp=thPassXP(state);
   $('th-dishes').textContent=state.dishes;
   $('th-best').textContent=state.best;
+  $('th-pass-level').textContent=TH_PASS.filter(function(reward){return xp>=reward.xp}).length;
   $('th-status').textContent=message||'';
   $('th-tabs').querySelectorAll('button').forEach(function(button){
     button.setAttribute('aria-pressed',button.dataset.thTab===thTab);
   });
-  var offset=content.querySelector('.th-track')?.scrollLeft||0;
-  content.innerHTML=thTab==='shop'?thShop(state):thTab==='pass'?thPass(state):thQuests(state);
-  var track=content.querySelector('.th-track');
-  if(track)track.scrollLeft=offset;
+  $('th-content').innerHTML=thTab==='shop'?thShop(state):thTab==='pass'?thPass(state,xp):thQuests(state);
 }
-function thFeastRender(message){
-  var state=thState(), guests=thGuests(state), fed=thFed(state), xp=fed*TH_FEAST_XP;
+function thFeastRender(message,returnFocus){
+  var state=thState(), guests=thGuests(state), fed=thFed(state), possibleXP=TH_SEATS*TH_FEAST_XP;
+  var guest=guests[thSelectedGuest], board=$('th-table-scene');
   $('th-feast-dishes').textContent=state.dishes;
-  $('th-fed-count').textContent=fed+' / '+TH_SEATS+' гостей · '+xp+' / '+TH_SEATS*TH_FEAST_XP+' XP';
-  $('th-feast-progress').value=xp;
-  $('th-feast-reward').innerHTML=pic('harvestity',1,52)+'<div><b>Harvestity · '+RA.harvestity+'</b><br><small>'+
-    (fed===TH_SEATS?'✓ Все гости сыты. Награда получена.':'Награда за полный стол. '+TH_FEAST_XP+' XP за каждого сытого гостя.')+'</small></div>';
-  $('th-guests').innerHTML=guests.map(function(guest,index){
-    return '<button type="button" class="th-place'+(guest.fed?' th-fed':'')+'" data-th-guest="'+index+'"'+
-      (guest.fed||state.dishes<TH_MEAL_COST?' disabled':'')+'>'+pic(guest.key,1,42)+'<b>'+TY[guest.key].n+
-      '</b><span>'+(guest.fed?'✓ Сыт':TH_MEAL_COST+' 🍽️')+'</span></button>';
+  $('th-feast-reward').innerHTML=pic('harvestity',1,62)+'<div><b>'+(fed===TH_SEATS?'✓ Harvestity получен':'Harvestity за полный стол')+
+    '</b><small>'+fed+' / '+TH_SEATS+' гостей · '+fed*TH_FEAST_XP+' / '+possibleXP+' XP застолья</small>'+
+    thProgress(fed*TH_FEAST_XP,possibleXP,'XP застолья')+'</div>';
+  $('th-guest-name').textContent=guest?TY[guest.key].n+' · место '+(thSelectedGuest+1):'Выбери гостя';
+  $('th-guest-detail').textContent=guest?(guest.fed?'Гость сыт':state.dishes<TH_MEAL_COST?'Нужно ещё '+(TH_MEAL_COST-state.dishes)+' 🍽':'5 блюд · +10 XP застолья'):'Сытые гости отмечены галочкой.';
+  $('th-serve').disabled=thServing!==null||!guest||guest.fed||state.dishes<TH_MEAL_COST;
+  $('th-guests').innerHTML=guests.map(function(seated,index){
+    var seat=TH_SEATING[index], name=esc(TY[seated.key].n), served=seated.fed&&index!==thServing;
+    return '<button type="button" class="th-seat'+(served?' th-fed':'')+'" data-th-guest="'+index+
+      '" aria-pressed="'+(thSelectedGuest===index)+'" aria-label="'+name+', место '+(index+1)+(served?', сыт':'')+
+      '" style="--sx:'+seat[0]/board.width*100+'%;--sy:'+seat[1]/board.height*100+'%">'+thEventPic(seated.key,1,66)+
+      '<span aria-hidden="true">'+(served?'✓':index+1)+'</span></button>';
   }).join('');
-  $('th-feast-status').textContent=message||(fed<TH_SEATS&&state.dishes<TH_MEAL_COST?'Собери '+TH_MEAL_COST+' блюд, чтобы угостить гостя.':'');
+  thPaintFeast(board.getContext('2d'),guests,thSelectedGuest,thServing);
+  if(returnFocus)$('th-guests').querySelector('[data-th-guest="'+thSelectedGuest+'"]').focus({preventScroll:true});
+  $('th-feast-status').textContent=message||'';
 }
 function thOpen(){
   if(!thOn())return thExpire();
@@ -3451,12 +3740,20 @@ $('th-content').onclick=function(event){
   var action=button.dataset;
   if(action.thPurchase)thPurchase();
   if(action.thQuest)thQuestClaim(action.thQuest);
-  if(action.thPass!=null)thPassClaim(+action.thPass);
+  if(action.thPass!=null)thPassClaim(action.thPass==='all'?null:+action.thPass);
+  if(action.thChapter!=null){
+    thChapter=+action.thChapter;
+    thRender();
+    $('th-content').querySelector('[data-th-chapter="'+thChapter+'"]').focus({preventScroll:true});
+  }
 };
 $('th-guests').onclick=function(event){
   var button=event.target.closest('[data-th-guest]');
-  if(button&&!button.disabled)thFeed(+button.dataset.thGuest);
+  if(!button)return;
+  thSelectedGuest=+button.dataset.thGuest;
+  thFeastRender(null,event.detail===0);
 };
+$('th-serve').onclick=function(){thFeed(thSelectedGuest)};
 $('th-header').onclick=thOpen;
 $('th-lobby').onclick=thOpen;
 $('th-feast-link').onclick=function(){thPrevious='lobby';scr('th-feast')};
@@ -3473,35 +3770,254 @@ $('th-welcome-close').onclick=thWelcomeClose;
 $('th-welcome').addEventListener('cancel',function(event){event.preventDefault();thWelcomeClose()});
 $('th-welcome').addEventListener('keydown',function(event){if(event.key==='Escape')event.stopPropagation()});
 
+/* Набег на застолье */
+var THD = {n:'Защита стола',hp:1,sp:1,cn:1,lv:15,co:400,off:0,bm:0,
+  boss:{n:'Индюк-разбойник',hp:1650,v:29,col:'#ae452d',sk:2}};
+var TH_RECIPES = {
+  pumpkin:{name:'Тыквенный пирог',ingredient:'Тыква',effect:'−22% скорости врагов на 13 с',cost:2,tint:'#f5ae66'},
+  berry:{name:'Клюквенный соус',ingredient:'Клюква',effect:'+15% к темпу огня у стола',cost:2,tint:'#e78287'},
+  corn:{name:'Кукурузный хлеб',ingredient:'Кукуруза',effect:'+2 прочности стола',cost:2,tint:'#fdd48c'}
+};
+var TH_RECIPE_KEYS = Object.keys(TH_RECIPES), TH_KITCHEN_RADIUS=108, TH_TOAST_TIME=8;
+var TH_WAVES = {
+  patrol:{name:'Лесной дозор',portrait:'walker',detail:'Сборщики крошек идут одной колонной.',gap:.8},
+  rush:{name:'Быстрые лазутчики',portrait:'runner',detail:'Быстрые мыши идут плотными группами.',gap:.57},
+  escort:{name:'Тыквенные щиты',portrait:'tank',detail:'Крепкие дозорные идут впереди, за ними — лазутчики.',gap:.88},
+  flock:{name:'Пугала с поля',portrait:'splitter',detail:'Из побеждённых пугал выскакивают два лазутчика.',gap:.71},
+  boss:{name:'Индюк-разбойник',portrait:'boss',detail:'Щит смягчает удары. На половине здоровья — рывок и подкрепление.',gap:1}
+};
+function thNewBattle(){
+  return {pantry:{pumpkin:2,berry:2,corn:2},pending:null,recipe:null,menu:{},
+    toast:0,toasted:false,elapsed:0,auto:false,hitFlash:0,boss:null,banner:0,preview:null,drops:[]};
+}
+function thWavePlan(number){
+  var boss=number%10===0, round=number%5;
+  var kind=boss?'boss':round===2?'rush':round===4?'escort':round===0?'flock':'patrol';
+  var kindData=TH_WAVES[kind];
+  return {number:number,kind:kind,name:kindData.name,portrait:kindData.portrait,
+    detail:kind==='escort'&&number>=9?'Тыквенные щиты защищают знахарей, которые лечат соседей.':kindData.detail,
+    gap:kindData.gap,count:boss?12:Math.min(36,6+number*2)};
+}
+function thEnemyType(plan,index){
+  if(plan.kind==='rush')return index%4<3?'runner':'walker';
+  if(plan.kind==='escort'){
+    if(index%4===0)return 'tank';
+    if(index%4===3&&plan.number>=9)return 'healer';
+  }
+  if(plan.kind==='flock'&&index%3===2)return 'splitter';
+  if(plan.number>=13&&plan.kind==='patrol'&&index%11===8)return 'healer';
+  if(plan.number>=5&&plan.kind!=='escort'&&index%7===4)return 'tank';
+  if(plan.number>=2&&index%3===1)return 'runner';
+  return 'walker';
+}
+function thCanCook(key){
+  return Object.hasOwn(TH_RECIPES,key)&&G.th.pantry[key]>=TH_RECIPES[key].cost&&
+    (key!=='corn'||G.lives<G.d.lv);
+}
 function thWave(){
   if(!thOn())return thExpire();
-  var n=++G.wave;
+  if(G.run||G.over)return;
+  var kitchen=G.th, n=++G.wave, plan=thWavePlan(n);
+  kitchen.plan=plan;
+  kitchen.preview=null;
+  kitchen.boss=null;
+  kitchen.elapsed=0;
+  kitchen.toast=0;
+  kitchen.banner=2.6;
+  kitchen.recipe=thCanCook(kitchen.pending)?kitchen.pending:null;
+  kitchen.pending=null;
+  if(kitchen.recipe){
+    var recipe=TH_RECIPES[kitchen.recipe];
+    kitchen.pantry[kitchen.recipe]-=recipe.cost;
+    kitchen.menu[kitchen.recipe]=true;
+    if(kitchen.recipe==='corn')G.lives=Math.min(G.d.lv,G.lives+2);
+  }
   G.run=true;
-  G.boss=n%10===0;
-  G.q=G.boss?12:Math.min(36,6+n*2);
+  G.boss=plan.kind==='boss';
+  G.q=plan.count;
   G.sp=0;
-  G.d.hp=.88*Math.pow(1.072,Math.min(125,Math.max(0,n-6)));
-  G.d.sp=Math.min(1,87/(38+n*2));
-  if(G.boss)G.d.boss.hp=Math.round(1900*Math.pow(1.8,Math.min(45,n/10-1)));
-  say(G.boss?'🦃 Индюк-разбойник идёт к столу!':'🍂 Волна '+n);
+  G.d.hp=.86*Math.pow(1.072,Math.min(125,Math.max(0,n-6)));
+  G.d.sp= Math.min(1,83/(38+n*2));
+  if(G.boss)G.d.boss.hp=Math.round(THD.boss.hp*Math.pow(1.74,Math.min(45,n/10-1)));
+  say('Волна '+n+' · '+plan.name+(kitchen.recipe?' · '+recipe.name:''));
+  hud();
+}
+function thTick(dt){
+  var kitchen=G.th;
+  kitchen.hitFlash=Math.max(0,kitchen.hitFlash-dt);
+  kitchen.toast=Math.max(0,kitchen.toast-dt);
+  kitchen.banner=Math.max(0,kitchen.banner-dt);
+  if(kitchen.drops.length){
+    kitchen.drops.forEach(function(drop){drop.time-=dt});
+    kitchen.drops=kitchen.drops.filter(function(drop){return drop.time>0});
+  }
+  if(G.run){
+    kitchen.elapsed+=dt;
+  }else if(kitchen.auto){
+    G.next-=dt;
+    if(G.next<=0)startWave();
+  }
+}
+function thCreateEnemy(type,d,scale){
+  var stats=ET[type], hp=(30+G.wave*18)*stats.hp*G.d.hp*scale;
+  return {d:d,hp:hp,max:hp,v:Math.min(104,(38+G.wave*2)*stats.v*G.d.sp),
+    sl:0,burn:0,vul:0,t:0,ty:type,boss:false,bt:0};
+}
+function thSpawn(dt){
+  if((G.sp-=dt)>0)return;
+  var kitchen=G.th, plan=kitchen.plan, index=plan.count-G.q;
+  G.q--;
+  G.sp=plan.gap;
+  if(G.boss&&G.q===0){
+    var stats=G.d.boss;
+    var boss={d:0,hp:stats.hp,max:stats.hp,v:stats.v,sl:0,burn:0,vul:0,t:0,ty:'walker',boss:true,bt:0,thBoss:true};
+    kitchen.boss=boss;
+    G.en.push(boss);
+    say('Индюк-разбойник вышел на тропу!');
+    return;
+  }
+  var type=thEnemyType(plan,index);
+  var enemy=thCreateEnemy(type,0,plan.kind==='rush'?.92:1);
+  var carriers=[1,Math.floor(plan.count*.55),plan.count-2];
+  var ingredient=carriers.indexOf(index);
+  if(ingredient>=0&&(ingredient<2||plan.number>=8)){
+    enemy.ingredient=TH_RECIPE_KEYS[(plan.number-1+ingredient)%TH_RECIPE_KEYS.length];
+  }
+  G.en.push(enemy);
+}
+function thEnemyKilled(enemy){
+  var kitchen=G.th;
+  if(enemy.ingredient&&kitchen.pantry[enemy.ingredient]<9){
+    kitchen.pantry[enemy.ingredient]++;
+    if(!thReducedMotion()){
+      var point=pos(enemy.d);
+      kitchen.drops.push({x:Math.max(16,point[0]),y:Math.max(28,point[1]-14),key:enemy.ingredient,time:.85});
+    }
+  }
+  if(enemy.thBoss){
+    var state=thState();
+    state.bosses=(state.bosses||0)+1;
+    save();
+    say('Индюк-разбойник повержен!');
+  }
+}
+function thBossThink(enemy){
+  if(enemy.thRage||enemy.hp>enemy.max*.5)return;
+  enemy.thRage=true;
+  enemy.stun=Math.max(enemy.stun||0,.85);
+  G.en.push(thCreateEnemy('runner',Math.max(0,enemy.d-36),.57),
+    thCreateEnemy('runner',Math.max(0,enemy.d-67),.57));
+  say('Индюк-разбойник в ярости! Два лазутчика вышли из-за его щита.');
+}
+function thOnLeak(enemy){
+  G.th.hitFlash=.9;
+  if(enemy.boss)say('Индюк добрался до стола: −10 прочности.');
+}
+function thMoveFactor(){
+  return G.key==='harvest'&&G.th.recipe==='pumpkin'&&G.th.elapsed<13?.78:1;
+}
+function thCooldown(u){
+  if(G.key!=='harvest'||G.th.recipe!=='berry')return 1;
+  var endpoint=PT[PT.length-1];
+  return Math.hypot(u.x-endpoint[0],u.y-endpoint[1])<=TH_KITCHEN_RADIUS?1/1.15:1;
+}
+function thAttackFactor(){
+  return G.key==='harvest'&&G.th.toast>0?1.18:1;
 }
 function thClear(){
   if(!thOn())return thExpire();
-  var state=thState();
+  var state=thState(), kitchen=G.th;
   G.run=false;
-  G.next=6;
+  G.next=8;
   G.coins+=55;
   G.dishes++;
   state.dishes++;
   state.waves++;
   state.best=Math.max(state.best,G.wave);
+  if(kitchen.recipe)state.cooked=(state.cooked||0)+1;
+  kitchen.recipe=null;
+  kitchen.toast=0;
   save();
-  say('Стол устоял! +1 🍽️ · +55 🪙 на этот бой');
+  say('Стол устоял! +1 🍽 · +55 🪙 на этот бой');
 }
 function thLose(){
   endGame(1,'Блюда за пройденные волны сохранены.');
-  $('et').textContent='Стол пал · '+G.dishes+' 🍽️ за бой';
+  $('et').textContent='Стол пал · '+G.dishes+' 🍽 за бой';
 }
+function thToastReady(kitchen){
+  return G.run&&!G.over&&!kitchen.toasted&&Object.keys(kitchen.menu).length===TH_RECIPE_KEYS.length;
+}
+function thBattleControl(){
+  if(!thOn())return thExpire();
+  return !!(G&&G.key==='harvest'&&!G.over);
+}
+$('th-wave-go').onclick=function(){if(thBattleControl()&&!G.run)startWave()};
+$('th-auto-wave').onchange=function(){
+  if(!thBattleControl())return;
+  G.th.auto=this.checked;
+  G.next=8;
+  hud();
+};
+$('th-toast').onclick=function(){
+  if(!thBattleControl()||!thToastReady(G.th))return;
+  G.th.toasted=true;
+  G.th.toast=TH_TOAST_TIME;
+  say('Большой тост! +18% урона обычных атак на '+TH_TOAST_TIME+' с.');
+  hud();
+};
+$('th-recipes').onclick=function(event){
+  var button=event.target.closest('[data-th-recipe]');
+  if(!button||!thBattleControl()||G.run)return;
+  var key=button.dataset.thRecipe;
+  if(!thCanCook(key))return;
+  G.th.pending=G.th.pending===key?null:key;
+  hud();
+};
+function thBattleHud(){
+  var kitchen=G.th;
+  var plan=G.run?kitchen.plan:(kitchen.preview||(kitchen.preview=thWavePlan(G.wave+1)));
+  var boss=kitchen.boss, health=boss?Math.max(0,Math.ceil(100*boss.hp/boss.max)):0;
+  var countdown=kitchen.auto&&!G.run?Math.max(0,Math.ceil(G.next)):0;
+  var toastTime=Math.ceil(kitchen.toast);
+  $('cd').textContent=G.run?'Волна идёт':countdown?'Автостарт через '+countdown+' с':'Подготовка';
+  var status=[plan.number,G.run,health,G.lives,kitchen.recipe,kitchen.pending,countdown,kitchen.auto,
+    kitchen.toasted,toastTime,...TH_RECIPE_KEYS.map(function(key){return kitchen.pantry[key]})].join('|');
+  if(status===kitchen.hudStatus)return;
+  kitchen.hudStatus=status;
+
+  var portrait=$('th-wave-portrait'), portraitArt=TH_ENEMY_IMAGES[plan.portrait];
+  if(portrait.getAttribute('src')!==portraitArt)portrait.src=portraitArt;
+  $('th-wave-label').textContent=(G.run?'Волна ':'Следующая волна ')+plan.number+' · '+plan.count+' врагов';
+  $('th-wave-name').textContent=plan.name;
+  $('th-wave-detail').textContent=plan.detail;
+  $('th-boss-hud').classList.toggle('hide',!(G.run&&boss&&health));
+  if(boss&&health){
+    $('th-boss-health').value=health;
+    $('th-boss-phase').textContent=boss.thRage?'В ярости':health>72?'Под щитом':'Щит сломан';
+  }
+  $('th-battle-panel').querySelectorAll('[data-th-recipe]').forEach(function(button){
+    var key=button.dataset.thRecipe, recipe=TH_RECIPES[key];
+    button.disabled=G.run||!thCanCook(key);
+    button.setAttribute('aria-pressed',(G.run?kitchen.recipe:kitchen.pending)===key);
+    button.querySelector('[data-th-stock]').textContent=recipe.ingredient+' '+kitchen.pantry[key]+'/'+recipe.cost;
+  });
+  $('th-kitchen-hint').textContent=G.run?(kitchen.recipe?'Подано · '+TH_RECIPES[kitchen.recipe].name:'У врагов с корзинами есть ингредиенты'):
+    kitchen.pending?'Подготовлено · '+TH_RECIPES[kitchen.pending].name:'Выбери одно блюдо для волны';
+  $('th-toast').disabled=!thToastReady(kitchen);
+  var served=Object.keys(kitchen.menu).length;
+  $('th-toast-hint').textContent=toastTime?'Тост действует ещё '+toastTime+' с':kitchen.toasted?'Тост в этом бою уже прозвучал.':
+    served===TH_RECIPE_KEYS.length?'Тост готов. Используй его во время волны.':'Подай все три блюда за бой, чтобы открыть тост ('+served+'/3).';
+  $('th-auto-wave').checked=kitchen.auto;
+  $('th-wave-go').disabled=G.run;
+  $('th-wave-go').textContent=G.run?'Волна идёт':countdown?'Начать · '+countdown+' с':'Начать волну ▶';
+}
+cv.addEventListener('pointermove',function(event){
+  if(G&&G.key==='harvest'&&!G.over&&event.pointerType==='mouse')G.th.hover=cell(cvPos(event));
+});
+cv.addEventListener('pointerleave',function(){
+  if(G&&G.key==='harvest')G.th.hover=null;
+});
+
 function thAura(u){
   var buff=1;
   G.units.forEach(function(source){
@@ -3536,173 +4052,748 @@ function thAttack(u,target,damage,point,phase){
   });
 }
 
-function thEllipse(c,x0,y0,w,h,color,rotation){
-  c.fillStyle=color;
+/* Иллюстрации праздника */
+function thCanvas(width,height){
+  var canvas=document.createElement('canvas');
+  canvas.width=width;
+  canvas.height=height;
+  return canvas;
+}
+function thGradient(c,x0,y0,x1,y1,colors){
+  var ink=c.createLinearGradient(x0,y0,x1,y1);
+  colors.forEach(function(color,index){ink.addColorStop(index/(colors.length-1),color)});
+  return ink;
+}
+function thGlow(c,x0,y0,radius,color){
+  var glow=c.createRadialGradient(x0,y0,1,x0,y0,radius);
+  glow.addColorStop(0,color);
+  glow.addColorStop(1,'#0000');
+  c.fillStyle=glow;
+  c.fillRect(x0-radius,y0-radius,radius*2,radius*2);
+}
+function thEllipse(c,x0,y0,rx,ry,fill,angle){
+  c.fillStyle=fill;
   c.beginPath();
-  c.ellipse(x0,y0,w,h,rotation||0,0,2*Math.PI);
+  c.ellipse(x0,y0,rx,ry,angle||0,0,Math.PI*2);
   c.fill();
 }
-function thPolygon(c,points,color){
-  c.fillStyle=color;
+function thShape(c,trace,fill,stroke,width){
   c.beginPath();
-  points.forEach(function(point,index){
-    if(index===0)c.moveTo(point[0],point[1]);else c.lineTo(point[0],point[1]);
-  });
-  c.closePath();
-  c.fill();
+  trace(c);
+  if(fill){
+    c.closePath();
+    c.fillStyle=fill;
+    c.fill();
+  }
+  if(stroke){
+    c.strokeStyle=stroke;
+    c.lineWidth=width||1;
+    c.lineJoin='round';
+    c.lineCap='round';
+    c.stroke();
+  }
 }
-function thFeathers(c,cx,cy,size){
-  ['#9e3027','#e66930','#f8ad55','#cc4c29','#9d3728'].forEach(function(color,index){
-    var angle=(index-2)*.45;
-    thEllipse(c,cx+Math.sin(angle)*size*.54,cy-Math.cos(angle)*size*.57,size*.16,size*.47,color,angle);
-  });
+function thPoly(c,points,fill,stroke,width){
+  thShape(c,function(path){
+    path.moveTo(points[0][0],points[0][1]);
+    points.slice(1).forEach(function(point){path.lineTo(point[0],point[1])});
+    if(fill)path.closePath();
+  },fill,stroke,width);
 }
-function thUnitArt(key,phase){
-  var unit=TH_UNITS[key],o=document.createElement('canvas');
-  o.width=o.height=112;
-  var c=o.getContext('2d');
-  vHead(c,112,{bg:phase?'#54211a':'#331d18',c1:unit.light,c2:unit.col,pe:'#ffd071',
-    pre:function(c){if(key==='turkeyity')thFeathers(c,56,67,49)},
-    post:function(c){
-      if(key==='turkeyity'){
-        thEllipse(c,62,71,4,8,'#a92730',-.2);
-        thPolygon(c,[[48,66],[64,66],[56,73]],'#fac754');
-      }else if(key==='cranberrity'){
-        thEllipse(c,57,21,15,5,'#9eaa4c',-.26);
-        [[45,25],[60,24],[55,33]].forEach(function(p){
-          thEllipse(c,p[0],p[1],7,7,'#701c39');
-          thEllipse(c,p[0]-2,p[1]-2,3,3,'#fa767c');
-        });
-      }else if(key==='pieity'){
-        thEllipse(c,56,32,37,10,'#75301e');
-        thEllipse(c,56,28,37,10,'#ffc567');
-        for(var i=32;i<=80;i+=12)thEllipse(c,i,27,4,1.5,'#98431c',.3);
-      }else if(key==='cornucopity'){
-        thPolygon(c,[[63,17],[93,23],[103,16],[102,29],[90,40],[61,43],[49,34]],'#72351d');
-        thPolygon(c,[[64,20],[93,26],[100,22],[94,33],[69,42],[56,36]],'#c27a31');
-        thEllipse(c,59,30,15,11,'#5c2e21',-.4);
-        thEllipse(c,51,27,7,7,'#de5a35');
-        thEllipse(c,62,24,6,10,'#efba51',.5);
-        thEllipse(c,63,36,8,5,'#84944b',-.55);
-      }else{
-        thPolygon(c,[[24,34],[19,18],[36,25],[42,13],[52,22],[58,6],[66,22],[76,14],[82,25],[94,18],[88,35],[56,43]],'#693019');
-        thPolygon(c,[[27,32],[24,22],[37,28],[43,18],[54,27],[58,12],[65,27],[75,19],[80,29],[89,23],[85,33],[56,39]],'#eaa040');
-        thEllipse(c,56,31,5,6,'#b32d28');
-      }
-      if(phase)[[15,50],[96,53],[22,88],[89,91]].forEach(function(p){
-        thPolygon(c,[[p[0],p[1]-4],[p[0]+2,p[1]],[p[0],p[1]+4],[p[0]-2,p[1]]],'#ffb864');
-      });
-    }
-  },phase);
-  return o.toDataURL();
-}
-function thTable(c,cx,cy,scale){
+function thLeaf(c,x0,y0,size,angle,fill){
   c.save();
-  c.translate(cx,cy);
+  c.translate(x0,y0);
+  c.rotate(angle);
+  c.scale(size/25,size/25);
+  thPoly(c,[[0,-13],[3,-8],[8,-10],[8,-5],[13,-4],[9,0],[12,5],[5,6],[3,12],[-3,9],[-7,6],[-12,5],[-8,0],[-13,-4],[-7,-6],[-7,-10],[-3,-7]],fill);
+  thPoly(c,[[0,-10],[0,13]],null,'#704125',1);
+  thPoly(c,[[-5,0],[0,3],[7,-2]],null,'#f1bd684f',1);
+  c.restore();
+}
+function thSoftBody(c,cx,cy,rx,ry,light,base,dark){
+  var ink=c.createRadialGradient(cx-rx*.38,cy-ry*.48,2,cx,cy,Math.max(rx,ry)*1.07);
+  ink.addColorStop(0,light);ink.addColorStop(.61,base);ink.addColorStop(1,dark);
+  thEllipse(c,cx,cy,rx,ry,ink);
+}
+
+var TH_COLORS = {
+  verity:{head:['#ffed8f','#e3b544','#8d632d'],cloth:['#ad7f46','#63392a'],bg:'#876334'},
+  lovity:{head:['#ffd0ba','#e5819d','#9c4d6b'],cloth:['#ab596c','#593749'],bg:'#7f3e56'},
+  pumpkinity:{head:['#ffce78','#f5802c','#983520'],cloth:['#936a3c','#45241c'],bg:'#783225'},
+  turkeyity:{head:['#ffdfa9','#df995f','#885034'],cloth:['#7d3f31','#3e1d21'],bg:'#6f382a'},
+  cranberrity:{head:['#fda3ae','#d9576e','#772d4b'],cloth:['#95614f','#452437'],bg:'#65304a'},
+  pieity:{head:['#ffda96','#e69c58','#9c5634'],cloth:['#fff2d8','#956749'],bg:'#8d542e'},
+  cornucopity:{head:['#ffe096','#dfa751','#845f2f'],cloth:['#a3a165','#3e5140'],bg:'#635534'},
+  harvestity:{head:['#ffcc8c','#d77848','#843423'],cloth:['#bd5b41','#5e2023'],bg:'#813428'}
+};
+function thFeathers(c,originX,originY,scale){
+  c.save();
+  c.translate(originX,originY);
   c.scale(scale,scale);
-  thEllipse(c,0,9,48,15,'#2d100d77');
-  c.fillStyle='#54281b';
-  c.fillRect(-34,0,6,21);
-  c.fillRect(29,0,6,21);
-  thEllipse(c,0,2,45,13,'#522518');
-  thEllipse(c,0,-2,45,13,'#ad622f');
-  thEllipse(c,0,-4,43,11,'#d38b46');
-  thPolygon(c,[[-15,-15],[13,-15],[17,8],[-17,8]],'#9e3e31');
-  [-30,-19,22,31].forEach(function(dx){
-    thEllipse(c,dx,-4,5,2.5,'#fff2ce');
-    thEllipse(c,dx,-5,2.5,1.5,'#bc6739');
-  });
-  thEllipse(c,0,-5,13,6,'#ffe5ae');
-  thEllipse(c,-1,-8,9,6,'#8f3c20');
-  thEllipse(c,-3,-10,6,4,'#d57735');
-  thEllipse(c,7,-8,4,2.5,'#b95428',-.3);
-  [-12,13].forEach(function(dx){
-    c.fillStyle='#ffdc98';
-    c.fillRect(dx-1,-14,2,8);
-    thEllipse(c,dx,-16,1.8,3,'#ffb644');
+  var colors=[['#a04e3d','#6f2d2b'],['#e29657','#a3442c'],['#ffc578','#b65a37'],['#bd6842','#783528'],['#97503a','#633025']];
+  colors.forEach(function(paint,index){
+    c.save();
+    c.rotate((index-2)*.42);
+    thShape(c,function(p){p.moveTo(-4,3);p.bezierCurveTo(-37,-26,-30,-76,-13,-88);p.bezierCurveTo(11,-100,34,-73,26,-48);p.quadraticCurveTo(18,-16,2,4)},
+      thGradient(c,-21,-77,20,-5,paint),'#42201c',3);
+    thShape(c,function(p){p.moveTo(-8,-69);p.quadraticCurveTo(3,-37,0,-1)},null,'#f9bc7c9f',2);
+    for(var i=0;i<3;i++){
+      var ly=-52+i*12;
+      thPoly(c,[[-14,ly-11],[-1,ly],[15,ly-13]],null,'#6e2c263e',2);
+    }
+    c.restore();
   });
   c.restore();
 }
-function thLandscape(feast){
-  var o=document.createElement('canvas');
-  o.width=680;o.height=240;
-  var c=o.getContext('2d'),sky=c.createLinearGradient(0,0,0,240);
-  sky.addColorStop(0,'#722b25');sky.addColorStop(.54,'#e49a57');sky.addColorStop(1,'#57241c');
-  c.fillStyle=sky;c.fillRect(0,0,680,240);
-  thEllipse(c,380,69,47,47,'#ffc679');
-  thPolygon(c,[[0,148],[88,91],[183,132],[273,92],[362,153],[475,104],[589,126],[680,89],[680,240],[0,240]],'#944b33');
-  thPolygon(c,[[0,155],[116,136],[231,168],[346,145],[514,133],[680,149],[680,240],[0,240]],'#823925');
-  thEllipse(c,345,226,410,81,'#a6552b');
-  [43,124,551,637].forEach(function(cx,index){
-    var cy=72+index%2*18;
-    thPolygon(c,[[cx-5,cy],[cx+6,cy],[cx+14,199],[cx-10,199]],'#58281d');
-    for(var i=0;i<8;i++){
-      thEllipse(c,cx+Math.cos(i*2.4)*39,cy+Math.sin(i*2.4)*32,30,22,
-        ['#a73728','#cc572c','#e17b3b','#e79745'][i%4]);
+function thCharacterFace(c,key,phase){
+  if(key==='pumpkinity'){
+    thEllipse(c,90,82,53,41,'#753125');
+    [-32,-16,0,16,32].forEach(function(dx){
+      thSoftBody(c,90+dx,80,20,38-Math.abs(dx)*.17,'#ffd287','#ef852c','#ac4721');
+    });
+  }else{
+    var head=TH_COLORS[key].head;
+    thEllipse(c,90,80,49,44,'#522d27');
+    thSoftBody(c,90,79,46,41,head[0],head[1],head[2]);
+    thShape(c,function(p){p.moveTo(55,66);p.quadraticCurveTo(59,48,80,45)},null,'#ffedbc99',3);
+  }
+  [67,112].forEach(function(ex,index){
+    thEllipse(c,ex,78,14,16,'#633729');
+    thEllipse(c,ex,77,12,14,phase?'#ffdf9c':'#fff5d8');
+    thEllipse(c,ex+(index?0:2),79,6.4,8.6,phase?'#8b3125':'#362427');
+    thEllipse(c,ex-1+(index?0:2),75,2.8,2.9,'#fffefa');
+    thEllipse(c,ex+3,83,1.2,1.2,'#fff9daa0');
+    thEllipse(c,ex+(index?8:-8),95,9,3.5,'#c7524e7e',index?-.2:.2);
+    if(phase)thPoly(c,[[ex-13,66+(index?5:0)],[ex+12,66+(index?0:5)]],null,'#72382c',5);
+  });
+  if(key==='turkeyity'){
+    thEllipse(c,97,97,5,10,'#ae3f48',-.38);
+    thPoly(c,[[78,91],[102,91],[91,101]],'#ffb74e','#9b552b',2);
+    thPoly(c,[[83,92],[96,93]],null,'#fff1ac',2);
+  }else if(phase){
+    thShape(c,function(p){p.moveTo(80,100);p.quadraticCurveTo(91,106,102,100)},null,'#633129',3);
+  }else{
+    thShape(c,function(p){p.moveTo(79,97);p.quadraticCurveTo(90,115,103,98);p.quadraticCurveTo(91,103,79,97)},'#663733');
+    thPoly(c,[[85,101],[97,101]],null,'#ffecba',2);
+  }
+}
+function thBerry(c,x0,y0,scale){
+  thSoftBody(c,x0,y0,8*scale,8*scale,'#ffa4ab','#d74e69','#792a50');
+  thEllipse(c,x0-2*scale,y0-3*scale,1.7*scale,1.5*scale,'#fff1d9a1');
+}
+function thPie(c,x0,y0,scale){
+  c.save();c.translate(x0,y0);c.scale(scale,scale);
+  thEllipse(c,0,5,28,11,'#74402a');
+  thEllipse(c,0,1,29,11,'#a95e37');
+  thEllipse(c,0,-3,28,11,thGradient(c,-26,-14,20,7,['#ffe3a2','#ea9a4b']));
+  thEllipse(c,0,-4,22,7,'#a55033');
+  thShape(c,function(p){p.ellipse(0,-4,22,7,0,0,7)},null,'#d18143',1.4);
+  for(var i=-15;i<=15;i+=6){
+    thPoly(c,[[i-4,-9],[i+5,1]],null,'#f3b96a',2.5);
+    thPoly(c,[[i+4,-9],[i-5,1]],null,'#ffcd81',2.5);
+  }
+  for(var j=0;j<9;j++)thEllipse(c,-24+j*6,2+Math.sin(j*Math.PI/8)*5,2,1.6,'#a85d36',-.45+j*.1);
+  c.restore();
+}
+function thHorn(c){
+  thShape(c,function(p){
+    p.moveTo(63,48);p.bezierCurveTo(64,20,83,18,111,27);p.bezierCurveTo(144,33,151,28,160,13);
+    p.bezierCurveTo(164,45,146,62,120,61);p.lineTo(76,64);
+  },thGradient(c,81,23,134,63,['#f6d291','#c17a42','#6d3a29']),'#623227',3.4);
+  for(var i=0;i<7;i++){
+    var xx=92+i*8;
+    thShape(c,function(p){p.moveTo(xx,26+i*.8);p.quadraticCurveTo(xx+9,40,xx+6,59-i*1.15)},null,'#6c3c2a72',2);
+  }
+  thEllipse(c,71,44,20,17,'#f0b675',-.38);
+  thEllipse(c,69,44,16,13,'#693328',-.38);
+  thLeaf(c,59,30,22,.55,'#bbc17b');
+  thSoftBody(c,54,41,10,9,'#ffd597','#df7745','#973d2a');
+  thSoftBody(c,72,36,9,11,'#fff2a6','#eab74e','#97602d');
+  thBerry(c,72,50,.92);thBerry(c,61,51,.76);thBerry(c,67,56,.65);
+}
+function thHeaddress(c,key){
+  if(key==='pumpkinity'){
+    thShape(c,function(p){p.moveTo(82,46);p.lineTo(86,24);p.quadraticCurveTo(91,21,98,27);p.lineTo(95,45)},'#778049','#475237',3);
+    thLeaf(c,108,36,24,1.28,'#a9a259');
+    thShape(c,function(p){p.moveTo(89,40);p.bezierCurveTo(74,23,66,28,66,35);p.quadraticCurveTo(68,40,72,35)},null,'#687848',2.4);
+  }else if(key==='cranberrity'){
+    [-1,0,1].forEach(function(i){thLeaf(c,91+i*23,38+Math.abs(i)*6,28,i*.9,'#8eae70')});
+    [[66,41,1.05],[82,32,1.15],[99,37,1.1],[113,44,.9],[88,49,.83]].forEach(function(berry){thBerry(c,berry[0],berry[1],berry[2])});
+  }else if(key==='pieity'){
+    thShape(c,function(p){p.moveTo(50,53);p.lineTo(46,41);p.bezierCurveTo(25,26,43,11,64,18);
+      p.bezierCurveTo(81,0,106,4,113,19);p.bezierCurveTo(146,10,155,27,134,43);p.lineTo(132,56)},'#f6deae','#a97555',3);
+    thShape(c,function(p){p.moveTo(54,43);p.quadraticCurveTo(91,51,130,43);p.lineTo(130,55);p.quadraticCurveTo(89,61,52,54)},'#e4ae76','#9b674a',2);
+    thPie(c,91,32,.68);
+  }else if(key==='cornucopity'){
+    thHorn(c);
+  }else if(key==='harvestity'){
+    thPoly(c,[[47,46],[42,28],[65,38],[68,21],[83,34],[90,14],[100,33],[117,20],[120,37],[141,27],[135,48],[94,58]],
+      thGradient(c,82,23,100,56,['#ffe29f','#eaae57','#aa542f']),'#703629',3.8);
+    thLeaf(c,64,34,24,-.73,'#c8643f');
+    thLeaf(c,119,32,24,.7,'#e37d4a');
+    thPoly(c,[[90,34],[100,43],[91,52],[81,43]],'#9e3f3e','#ffe3a0',2.2);
+    thPoly(c,[[90,36],[94,42],[88,44],[84,42]],'#f0917b');
+  }else if(key==='verity'){
+    thShape(c,function(p){p.moveTo(47,53);p.lineTo(61,31);p.quadraticCurveTo(92,20,119,32);p.lineTo(133,51);p.quadraticCurveTo(90,58,47,53)},
+      '#956044','#603d2d',2.8);
+    thPoly(c,[[52,50],[88,48],[129,50]],null,'#e2a26c',3);
+    thLeaf(c,112,39,19,.8,'#e9b05e');
+  }else if(key==='lovity'){
+    thShape(c,function(p){p.moveTo(51,52);p.quadraticCurveTo(52,23,90,25);p.quadraticCurveTo(123,27,132,50)},
+      '#a65c77','#6d3555',3);
+    thShape(c,function(p){p.moveTo(60,43);p.quadraticCurveTo(90,26,122,43)},null,'#f2a9a8',3);
+    thLeaf(c,113,37,22,.7,'#deaa70');
+    thBerry(c,120,44,.72);
+  }else{
+    thPoly(c,[[69,44],[65,31],[80,36],[91,28],[108,35],[118,29],[113,46]],'#b17755','#79412f',2.7);
+    thLeaf(c,102,34,17,.44,'#f6bc68');
+  }
+}
+function thUnitArt(key,phase){
+  var canvas=thCanvas(180,180), c=canvas.getContext('2d'), palette=TH_COLORS[key];
+  var bg=c.createRadialGradient(92,72,9,90,80,88);
+  bg.addColorStop(0,phase?'#b95732':palette.bg);
+  bg.addColorStop(1,'#2b171b');
+  thEllipse(c,90,90,85,85,'#1d1115');
+  thEllipse(c,90,89,82,82,bg);
+  c.save();
+  c.beginPath();c.arc(90,89,79,0,Math.PI*2);c.clip();
+  for(var i=0;i<17;i++){
+    var px=(i*17+38)%154+12, py=(i*27+50)%152+10;
+    thEllipse(c,px,py,i%3+1,i%3+1,phase?'#ffd17eaa':'#ffca7770');
+  }
+  if(key==='turkeyity')thFeathers(c,90,123,.93);
+  if(key==='harvestity'||key==='cornucopity'){
+    [-1,1].forEach(function(dir){thLeaf(c,90+62*dir,119,47,dir*.85,key==='cornucopity'?'#82905c':'#cb633e')});
+  }
+  thEllipse(c,90,152,61,15,'#2013159e');
+  thShape(c,function(p){p.moveTo(35,149);p.bezierCurveTo(34,115,61,103,90,107);p.bezierCurveTo(124,105,149,118,146,149);
+    p.quadraticCurveTo(90,174,35,149)},
+    thGradient(c,66,105,110,155,palette.cloth),'#4c2525',4);
+  thPoly(c,[[43,142],[64,121],[88,133],[115,121],[140,142]],null,'#f1b57790',3);
+  thEllipse(c,56,136,11,10,palette.head[1],-.4);
+  thEllipse(c,124,136,11,10,palette.head[1],.4);
+  thEllipse(c,90,142,13,13,'#69422b');
+  thEllipse(c,90,141,10,10,phase?'#ffe09a':'#c9844a');
+  thLeaf(c,90,141,14,.26,'#ffe4a4');
+  thCharacterFace(c,key,phase);
+  thHeaddress(c,key);
+  c.restore();
+  thShape(c,function(p){p.arc(90,89,80,0,Math.PI*2)},null,phase?'#ffc573':'#d8995f',phase?3:1.4);
+  if(phase){
+    [24,155].forEach(function(px,idx){thPoly(c,[[px,73+idx*27],[px+4,82+idx*27],[px,91+idx*27],[px-4,82+idx*27]],'#ffe8ab')});
+  }
+  return canvas;
+}
+function thPlate(c,x0,y0,scale,type){
+  c.save();c.translate(x0,y0);c.scale(scale,scale);
+  thEllipse(c,0,4,26,12,'#210e0d7d');
+  thEllipse(c,0,1,25,11,'#a87548');
+  thEllipse(c,0,-1,24,10,'#f5dba6');
+  thEllipse(c,0,-1.5,18,7,type===null?'#d9b789':'#e8bc83');
+  if(type==='pumpkin')thPie(c,0,-5,.57);
+  if(type==='berry'){
+    thEllipse(c,0,-3,14,7,'#922f45');
+    thEllipse(c,0,-5,14,6,'#b84b58');
+    [-8,0,7].forEach(function(dx){thBerry(c,dx,-6,.54)});
+    thLeaf(c,4,-9,11,.62,'#a7a968');
+  }
+  if(type==='corn'){
+    for(var i=0;i<3;i++){
+      var left=(i-1)*8, top=-8+(i%2)*5;
+      thPoly(c,[[left-7,top+4],[left-2,top+10],[left+9,top+6],[left+7,top]],'#b66330','#8d472a',1);
+      thPoly(c,[[left-7,top+4],[left-3,top-3],[left+7,top],[left+4,top+5]],'#ffcf76');
+      thEllipse(c,left-1,top+1,1.9,1,'#bd743b');
+    }
+  }
+  c.restore();
+}
+function thPlatter(c,x0,y0,scale){
+  c.save();c.translate(x0,y0);c.scale(scale,scale);
+  thEllipse(c,0,7,31,14,'#28110f8c');
+  thEllipse(c,0,4,32,13,'#b28357');
+  thEllipse(c,0,1,29,11,'#efcb88');
+  for(var i=0;i<6;i++){
+    var angle=i*Math.PI/3;
+    thLeaf(c,Math.cos(angle)*23,Math.sin(angle)*7+3,10,angle,'#7f8c58');
+  }
+  thSoftBody(c,-2,-6,19,13,'#ffd298','#c37543','#793b27');
+  thSoftBody(c,3,-10,12,8,'#ffba7c','#d38a4e','#88452b');
+  [-1,1].forEach(function(dir){
+    thEllipse(c,dir*16,-3,10,5,'#a86438',dir*.25);
+    thEllipse(c,dir*24,-3,3.8,2.5,'#f1cd9a');
+  });
+  thPoly(c,[[-9,-13],[1,-15],[6,-12]],null,'#f5b276b0',1.3);
+  c.restore();
+}
+function thCandle(c,x0,y0,size){
+  c.save();c.translate(x0,y0);c.scale(size,size);
+  thGlow(c,0,-18,19,'#ffb94586');
+  thEllipse(c,0,5,7,3,'#865636');
+  c.fillStyle=thGradient(c,-4,0,5,0,['#e0aa65','#ffebae','#b67544']);
+  c.fillRect(-4,-13,8,17);
+  thEllipse(c,0,-13,4,1.8,'#ffe5ab');
+  thShape(c,function(p){p.moveTo(-3,-17);p.quadraticCurveTo(-4,-22,1,-28);p.quadraticCurveTo(5,-20,3,-17);p.quadraticCurveTo(0,-14,-3,-17)},'#ffaf55');
+  thEllipse(c,0,-18,1.5,2.7,'#fff2ac');
+  c.restore();
+}
+
+function thPaintCrate(c,progress){
+  var lift=Math.min(1,Math.max(0,(progress-.12)/.66)), open=1-Math.pow(1-lift,3), lid=105-53*open;
+  c.clearRect(0,0,350,240);
+  thGlow(c,175,133,112+23*open,'#e7984a75');
+  thEllipse(c,173,204,131,23,'#2013119c');
+  thFeathers(c,175,121,.83);
+  thPoly(c,[[62,118],[194,132],[297,105],[291,178],[193,210],[71,193]],
+    thGradient(c,73,117,217,208,['#c17a48','#9a5736','#4d2620']),'#3b211c',4.5);
+  thPoly(c,[[194,132],[297,105],[291,178],[193,210]],
+    thGradient(c,206,122,292,183,['#9b5d38','#5a3126']),'#432219',2.5);
+  thPoly(c,[[70,148],[194,164],[294,133]],null,'#522e25',3.5);
+  thPoly(c,[[73,175],[193,191],[292,160]],null,'#562d24',3.5);
+  for(var i=0;i<13;i++){
+    var xx=85+(i*17)%89, yy=139+(i*11)%45;
+    thShape(c,function(p){p.moveTo(xx,yy);p.quadraticCurveTo(xx+14,yy-3,xx+28,yy+4)},null,i%2?'#e6a47065':'#61332191',1.4);
+  }
+  if(open>0){
+    thPoly(c,[[62,118],[184,91],[294,104],[194,137]],'#4a241b','#70442b',5);
+    thPoly(c,[[80,117],[186,98],[276,106],[197,129]],'#291518');
+    thGlow(c,174,115,80*open+8,'#ffc35aeb');
+    for(var j=0;j<21;j++){
+      var angle=j*2.4, pulse=(j%7+3)*open;
+      var sx=174+Math.cos(angle)*pulse*10, sy=116-Math.abs(Math.sin(angle))*pulse*12;
+      thPoly(c,[[sx,sy-4],[sx+2,sy],[sx,sy+4],[sx-2,sy]],j%2?'#ffdd8b':'#fff0b5');
+    }
+  }
+  thPoly(c,[[55,lid+6],[162,lid-32],[297,lid-12],[193,lid+29]],
+    thGradient(c,140,lid-28,180,lid+24,['#efb777','#b56b40','#7e442c']),'#44241d',4);
+  thPoly(c,[[55,lid+6],[193,lid+27],[193,lid+41],[60,lid+22]],
+    thGradient(c,60,lid+12,209,lid+34,['#ffd190','#8c4c31']),'#63382a',2.5);
+  thPoly(c,[[193,lid+27],[297,lid-12],[298,lid+2],[193,lid+41]],'#a6643c','#543025',2.5);
+  thPoly(c,[[64,lid+5],[162,lid-23],[282,lid-10],[192,lid+20]],null,'#db995c',2);
+  thPoly(c,[[66,lid+13],[193,lid+34],[293,lid-3]],null,'#f3bc7b',2);
+  [0,1].forEach(function(side){
+    var dx=side?164:78, tilt=side?16:2;
+    thPoly(c,[[dx,132+tilt*.65],[dx+11,133+tilt*.65],[dx+9,190+tilt*.65],[dx-1,188+tilt*.65]],
+      thGradient(c,dx,145,dx+13,160,['#eeb780','#945936']),'#6b3e29',1.5);
+    [145,180].forEach(function(scr){thEllipse(c,dx+4,scr+tilt*.65,2.6,2.6,'#ffe0a8')});
+  });
+  thPoly(c,[[69,187],[193,205],[290,174]],null,'#d5945b',4.5);
+  thEllipse(c,126,152,20,23,'#5d3427',-.13);
+  thEllipse(c,126,151,17,20,'#d19154',-.13);
+  thEllipse(c,126,151,13,16,'#a34737',-.13);
+  thLeaf(c,126,145,15,.06,'#f9ca7e');
+  thEllipse(c,126,157,3,2.9,'#4e2b22');
+  thPoly(c,[[126,158],[125,162],[128,162]],'#4e2b22');
+}
+
+function thTrees(c,cx,cy,scale,color,seed){
+  c.save();c.translate(cx,cy);c.scale(scale,scale);
+  thShape(c,function(p){
+    p.moveTo(-11,74);p.quadraticCurveTo(-4,38,-7,-23);p.lineTo(5,-39);p.quadraticCurveTo(9,25,14,73);
+  },thGradient(c,-7,29,10,54,['#7b492e','#46271f']));
+  thPoly(c,[[1,37],[-24,-17],[-11,-9],[2,15],[19,-30],[26,-36],[12,18]],'#563325');
+  for(var i=0;i<23;i++){
+    var angle=i*2.4+seed, radius=10+(i%6)*8;
+    var xx=Math.cos(angle)*radius, yy=-34+Math.sin(angle)*radius*.71;
+    thSoftBody(c,xx,yy,18+(i%4)*3,12+(i%6)*2,color[0],color[1],color[2]);
+  }
+  c.restore();
+}
+function thLandscape(){
+  var canvas=thCanvas(860,332), c=canvas.getContext('2d');
+  c.fillStyle=thGradient(c,0,0,0,332,['#452333','#a15e51','#f4b86f','#7c432d']);
+  c.fillRect(0,0,860,332);
+  thGlow(c,615,78,117,'#ffbb758f');
+  thEllipse(c,615,78,42,42,'#ffe1a5');
+  for(var i=0;i<6;i++){
+    var cy=71+i*13, cx=365+(i*79)%445;
+    thEllipse(c,cx,cy,47+i*5,2.1,'#ffe1b2a8',-.04);
+  }
+  thShape(c,function(p){
+    p.moveTo(0,158);p.quadraticCurveTo(108,91,222,159);p.quadraticCurveTo(303,115,391,169);
+    p.quadraticCurveTo(545,103,660,153);p.quadraticCurveTo(774,110,860,149);p.lineTo(860,332);p.lineTo(0,332);
+  },'#865046');
+  thShape(c,function(p){p.moveTo(0,202);p.quadraticCurveTo(200,131,383,196);p.quadraticCurveTo(650,128,860,176);p.lineTo(860,332);p.lineTo(0,332)},
+    thGradient(c,0,156,0,290,['#a25d47','#66392c']));
+  thEllipse(c,541,314,469,105,thGradient(c,0,205,0,320,['#bb7544','#5b302b']));
+  var tawny=['#f1aa64','#b76040','#73392f'], red=['#dd8658','#a54f3e','#67302c'];
+  [[41,160,1.27,red],[191,151,.72,tawny],[319,157,.81,red],[757,150,.94,tawny],[850,169,1.45,red]].forEach(function(tree,index){
+    thTrees(c,tree[0],tree[1],tree[2],tree[3],index);
+  });
+  thShape(c,function(p){p.moveTo(270,45);p.quadraticCurveTo(572,137,849,42)},null,'#523325',2);
+  for(var bulb=0;bulb<17;bulb++){
+    var bx=287+bulb*33, t=(bx-270)/579, by=(1-t)*(1-t)*45+2*t*(1-t)*137+t*t*42;
+    thGlow(c,bx,by+8,14,'#fda95b75');
+    thEllipse(c,bx,by+6,3.4,4.2,bulb%2?'#ffcf7b':'#f2a967');
+  }
+  for(var leaf=0;leaf<35;leaf++){
+    thLeaf(c,(leaf*127+53)%860,22+(leaf*39)%286,3+leaf%7,leaf*.44,['#fbc885','#c67142','#d8814d'][leaf%3]);
+  }
+  ['pieity','harvestity','cornucopity'].forEach(function(key,index){
+    c.drawImage(TH_PORTRAITS[key+'1'],407+index*126,123-(index===1?20:0),111,111);
+  });
+  thTableMini(c,590,259,2.33);
+  return canvas.toDataURL();
+}
+function thTableMini(c,cx,cy,scale){
+  c.save();c.translate(cx,cy);c.scale(scale,scale);
+  thEllipse(c,0,16,51,12,'#2d14137d');
+  c.fillStyle=thGradient(c,-40,0,40,20,['#97583b','#4d2c25']);
+  c.fillRect(-36,-2,6,21);c.fillRect(31,-2,6,21);
+  thEllipse(c,0,3,47,14,'#693b29');
+  thEllipse(c,0,-3,47,13,thGradient(c,0,-16,0,12,['#d99d61','#905637']));
+  thShape(c,function(p){p.ellipse(0,-3,44,10.7,0,0,Math.PI*2)},null,'#efbd7f',1.1);
+  thPoly(c,[[-18,-15],[18,-15],[21,9],[-21,9]],'#9c4837');
+  [-31,31].forEach(function(dx){thPlate(c,dx,-4,.37,'pumpkin')});
+  thPlatter(c,0,-6,.5);
+  thCandle(c,-17,-2,.57);thCandle(c,18,-2,.57);
+  c.restore();
+}
+
+function thHallTablePath(p,drop){
+  p.moveTo(228,108+drop);
+  p.bezierCurveTo(257,78+drop,370,78+drop,392,108+drop);
+  p.bezierCurveTo(428,185+drop,485,463+drop,465,579+drop);
+  p.bezierCurveTo(447,646+drop,177,646+drop,155,579+drop);
+  p.bezierCurveTo(137,462+drop,191,185+drop,228,108+drop);
+}
+function thPaintHall(){
+  var canvas=thCanvas(620,678), c=canvas.getContext('2d');
+  c.fillStyle=thGradient(c,70,50,530,655,['#3a211d','#573327','#251714']);
+  c.fillRect(0,0,620,678);
+  thGlow(c,311,264,350,'#c47a4446');
+  for(var i=0;i<15;i++){
+    var y=11+i*47;
+    thPoly(c,[[0,y],[620,y]],null,'#2a1915',2.5);
+    thPoly(c,[[0,y+2],[620,y+2]],null,'#9b624239',1);
+    for(var j=0;j<4;j++){
+      var b=(i*53+j*197)%620;
+      thPoly(c,[[b,y+3],[b+11,y+44]],null,'#392019',1.5);
+    }
+  }
+  thEllipse(c,309,410,216,245,'#2c181479');
+  thShape(c,function(p){p.roundRect(140,68,340,571,103)},'#512c254e','#bd765250',2.7);
+  TH_SEATING.forEach(function(seat,index){
+    var cx=seat[0],cy=seat[1];
+    thEllipse(c,cx,cy+14,46,34,'#1e110f8a');
+    thEllipse(c,cx,cy+3,43,42,'#40281c');
+    thEllipse(c,cx,cy,39,39,thGradient(c,cx-18,cy-35,cx+12,cy+36,['#ac6d47','#6c422a']));
+    var trim=index===0?cy-27:cy-26;
+    thShape(c,function(p){p.arc(cx,cy,36,-2.64,-.49)},null,'#d3975d',2);
+    [cx-17,cx+17].forEach(function(pin){thEllipse(c,pin,trim,2.5,2.5,'#f0c180')});
+  });
+  c.fillStyle=thGradient(c,160,560,467,655,['#7f5036','#3d241d','#71442f']);
+  c.fillRect(175,551,23,83);c.fillRect(422,551,23,83);
+  thShape(c,function(p){thHallTablePath(p,16)},'#603824','#3e231b',3.8);
+  thShape(c,function(p){thHallTablePath(p,9)},'#9d653f');
+  thShape(c,function(p){thHallTablePath(p,0)},thGradient(c,157,83,476,620,['#a26740','#cb8d50','#6f442d']),'#5e3a28',4.5);
+  c.save();
+  c.beginPath();thHallTablePath(c,0);c.clip();
+  for(var grain=0;grain<32;grain++){
+    var a=155+grain*10;
+    thShape(c,function(p){p.moveTo(235+(a-155)*.48,77);p.bezierCurveTo(a+26,294,a-24,467,a+2,640)},
+      null,grain%4===0?'#5b352750':'#f5b67127',grain%4===0?2.6:1.3);
+  }
+  thPoly(c,[[277,92],[343,92],[371,619],[249,619]],thGradient(c,260,95,350,614,['#ab5745','#8d4238','#642c2d']));
+  for(var stripe=0;stripe<13;stripe++){
+    var sy=95+stripe*43;
+    thPoly(c,[[278-(sy-94)*.048,sy],[343+(sy-94)*.049,sy]],null,'#d78b5d56',2.2);
+  }
+  thPoly(c,[[279,89],[254,619]],null,'#d48a61',2.5);
+  thPoly(c,[[341,89],[366,619]],null,'#d48a61',2.5);
+  c.restore();
+  [210,385,553].forEach(function(yy,index){
+    [276,344].forEach(function(dx){thCandle(c,dx,yy,.72)});
+    if(index!==1)thPlate(c,310,yy,.77,index===0?'pumpkin':'corn');
+  });
+  thPlatter(c,310,370,1.38);
+  thPlate(c,310,604,.95,'pumpkin');
+  [161,256,447,507].forEach(function(y0,index){thLeaf(c,310,y0,19,index*.8,'#f0b46d')});
+  return canvas;
+}
+var TH_HALL_ART;
+function thPaintFeast(c,guests,selected,serving){
+  if(!TH_HALL_ART)TH_HALL_ART=thPaintHall();
+  c.drawImage(TH_HALL_ART,0,0);
+  TH_SEATING.forEach(function(seat,index){
+    var guest=guests[index], served=guest&&guest.fed&&index!==serving;
+    if(index===selected)thGlow(c,seat[2],seat[3],39,'#ffc6738e');
+    thPlate(c,seat[2],seat[3],index===0?.83:.9,served?TH_RECIPE_KEYS[index%3]:null);
+    if(served){
+      thShape(c,function(p){p.moveTo(seat[2]-3,seat[3]-15);p.quadraticCurveTo(seat[2]+5,seat[3]-23,seat[2]+1,seat[3]-27)},null,'#ffe3ba88',1.8);
     }
   });
-  for(var j=0;j<50;j++){
-    var left=(j*179+41)%680, top=(j*97+19)%227;
-    thEllipse(c,left,top,1+j%5,1.2,['#f6b66e','#b63e2b','#ffdb8b'][j%3],j*.5);
+}
+
+/* Поле боя и отряды */
+function thEnemyArt(key){
+  var canvas=thCanvas(88,90),c=canvas.getContext('2d');
+  if(key==='boss'||key==='rage'){
+    thFeathers(c,44,56,.39);
+    thSoftBody(c,43,59,29,24,key==='rage'?'#fa9261':'#e8bb7c','#a25b3e','#4f2a29');
+    thPoly(c,[[18,58],[44,74],[69,57],[63,75],[45,86],[27,76]],'#634136','#371b20',2);
+    thPoly(c,[[24,58],[43,69],[63,58],[58,72],[45,80],[32,72]],'#b78963');
+    thEllipse(c,44,68,5,5,'#ffe1a0');
+    thSoftBody(c,47,40,18,21,key==='rage'?'#ffb28a':'#fff1ba','#aa6550','#66342f');
+    thPoly(c,[[32,37],[30,27],[38,29],[45,17],[52,28],[63,24],[66,34]],'#e5a458','#6c3526',2);
+    thPoly(c,[[36,36],[48,41],[60,36]],null,'#683126',3);
+    [40,56].forEach(function(cx){thEllipse(c,cx,44,4,5,key==='rage'?'#ffec6c':'#fff2ce');thEllipse(c,cx,45,1.7,2.4,'#5c2929')});
+    thEllipse(c,49,56,4,7,'#af483b');
+    thPoly(c,[[42,50],[61,47],[54,56]],'#ffc768','#9f5a35',1.2);
+    return canvas;
   }
-  thTable(c,340,178,feast?3.0:2.25);
-  ['turkeyity','cornucopity','pieity'].forEach(function(key,index){
-    var portrait=IM[key+'1'];
-    if(portrait&&portrait.complete&&portrait.naturalWidth)c.drawImage(portrait,221+index*84,88-index%2*20,76,76);
+  var palettes={walker:['#e8c18d','#a77759','#593d34'],runner:['#d2ce9d','#928e61','#52513e'],
+    tank:['#ffbd72','#b6723a','#6e3b2b'],healer:['#d4d997','#8b9866','#444f41'],
+    splitter:['#f9d68f','#c2894c','#6e4940']};
+  var palette=palettes[key]||palettes.walker;
+  if(key==='runner'){
+    thEllipse(c,29,36,15,18,'#6e6a52',-.46);thEllipse(c,54,37,14,18,'#646347',.42);
+    thEllipse(c,28,34,8,10,'#cb9c79',-.54);thEllipse(c,54,35,7,10,'#cb9c79',.43);
+  }
+  thEllipse(c,43,74,26,10,'#2a1818');
+  thSoftBody(c,43,59,24,23,palette[0],palette[1],palette[2]);
+  thPoly(c,[[23,55],[64,52],[64,59],[48,68],[35,66],[20,65]],key==='healer'?'#a39f60':'#85504a','#49332a',1.5);
+  thSoftBody(c,44,47,19,13,palette[0],palette[1],palette[2]);
+  [37,52].forEach(function(cx){thEllipse(c,cx,46,5.6,7.2,'#f8e1b0');thEllipse(c,cx+1,46,2.6,3.8,'#3c2d29')});
+  thPoly(c,[[40,54],[50,54],[45,58]],'#6d3e35');
+  if(key==='walker'){
+    thPoly(c,[[21,45],[25,36],[35,25],[48,22],[63,32],[70,46],[54,42],[35,42]],'#ab7550','#533429',2);
+    thLeaf(c,49,33,13,.8,'#e2ac62');
+  }
+  if(key==='runner'){
+    thPoly(c,[[27,58],[60,51],[50,63],[22,72]],'#b96c4d','#6b3c30',1.8);
+  }
+  if(key==='tank'){
+    thSoftBody(c,40,28,25,13,'#ffd27e','#cf8544','#7b412e');
+    thPoly(c,[[15,29],[43,38],[68,29],[65,35],[43,42],[15,35]],'#a7663c','#59372a',2);
+    thPoly(c,[[40,23],[41,15],[48,18],[47,24]],'#8f8855');
+    thPoly(c,[[55,54],[75,50],[76,66],[68,76],[55,69]],'#9c6844','#5e3a2d',2);
+    thPoly(c,[[60,55],[72,53],[71,65],[67,71],[60,67]],'#d19959');
+  }
+  if(key==='healer'){
+    thPoly(c,[[15,43],[24,30],[39,20],[48,17],[56,22],[60,36],[69,45],[54,41]],'#9caa6c','#505944',2);
+    thPoly(c,[[73,39],[68,75]],null,'#6f4d33',4.1);
+    thLeaf(c,74,39,21,-.4,'#dae7a4');
+  }
+  if(key==='splitter'){
+    thPoly(c,[[16,38],[28,32],[30,22],[47,15],[55,27],[63,33],[70,40],[44,44]],'#e2ae61','#724830',2);
+    thPoly(c,[[29,29],[52,25],[56,31],[29,35]],'#a85441');
+    [[19,57],[69,58],[16,65],[72,63]].forEach(function(p){thPoly(c,[[p[0]-3,p[1]-3],[p[0]+4,p[1]+2]],null,'#e3ba76',2)});
+  }
+  return canvas;
+}
+var TH_FOE_ART={}, TH_ENEMY_IMAGES={}, TH_PANTRY_ART={};
+function thPaintBattlefield(){
+  var field=thCanvas(640,400), c=field.getContext('2d');
+  c.fillStyle=thGradient(c,0,0,640,400,['#76533b','#74583b','#4e3a30']);
+  c.fillRect(0,0,640,400);
+  thGlow(c,307,206,176,'#ce9a5d48');
+  thGlow(c,107,244,155,'#9c613037');
+  for(var k=0;k<230;k++){
+    var lx=(k*179+71)%638, ly=(k*131+21)%398;
+    var cx=Math.floor(lx/C), cy=Math.floor(ly/C);
+    if(road[cx+','+cy])continue;
+    if(k%4===0)thLeaf(c,lx,ly,3+k%6,k*.8,['#b9774c','#cf8d52','#966143','#e4ab63'][k%4]);
+    else thEllipse(c,lx,ly,2+k%4,1.1,['#664638','#d397565a','#624d375e'][k%3],k*.85);
+  }
+  c.lineCap='round';c.lineJoin='round';
+  [[43,'#3f2d2870',4],[42,'#523b30',0],[37,'#a0744c',0],[29,'#c09160',0]].forEach(function(edge){
+    thShape(c,function(p){
+      p.moveTo(PT[0][0],PT[0][1]+edge[2]);
+      PT.slice(1).forEach(function(point){p.lineTo(point[0],point[1]+edge[2])});
+    },null,edge[1],edge[0]);
   });
-  return o.toDataURL();
+  for(var d=24;d<tot-20;d+=7){
+    var roadPoint=pos(d), shift=(Math.sin(d*1.33)+Math.cos(d*.9))*9;
+    var after=pos(Math.min(tot,d+3)), angle=Math.atan2(after[1]-roadPoint[1],after[0]-roadPoint[0]);
+    var rockX=roadPoint[0]+Math.sin(angle)*shift, rockY=roadPoint[1]-Math.cos(angle)*shift;
+    thEllipse(c,rockX,rockY,d%3+1,1.15,d%2?'#dfb27e70':'#9d6a496f',angle);
+  }
+  for(var y=0;y<10;y++){
+    for(var u=0;u<16;u++){
+      if(road[u+','+y]||thTableCell(u,y))continue;
+      c.fillStyle='#e4ac6829';c.fillRect(u*C+2,y*C+2,2,2);
+    }
+  }
+  [[19,151,.40],[602,73,.42],[610,275,.39],[74,365,.44]].forEach(function(tree,index){
+    thEllipse(c,tree[0],tree[1]+18,26,13,'#402d2690');
+    thTrees(c,tree[0],tree[1]-13,tree[2],index%2?['#d08a58','#a15a40','#683c31']:['#b77b50','#9b633d','#6f4c31'],index);
+  });
+  [[163,38],[185,38],[469,315],[498,369],[546,128],[337,211],[262,213]].forEach(function(lantern){
+    thCandle(c,lantern[0],lantern[1],.72);
+  });
+  thPoly(c,[[0,40],[29,37],[39,64],[17,77],[0,75]],'#56352b','#463028',2);
+  thPoly(c,[[0,41],[29,39],[34,47],[0,53]],'#a97751');
+  thPoly(c,[[10,53],[24,50],[20,57],[26,61],[11,66]],'#e3b577');
+  thEllipse(c,301,230,45,17,'#49362d87');
+  return field;
 }
-function thCrateArt(){
-  var o=document.createElement('canvas');
-  o.width=o.height=112;
-  var c=o.getContext('2d');
-  thEllipse(c,56,94,44,9,'#1b0c0a');
-  thFeathers(c,56,60,47);
-  thPolygon(c,[[13,50],[56,42],[101,51],[98,88],[56,99],[17,89]],'#51271c');
-  thPolygon(c,[[18,54],[56,51],[96,55],[94,84],[56,94],[21,85]],'#a7562d');
-  thPolygon(c,[[18,54],[56,63],[96,55],[96,61],[56,70],[19,60]],'#e99b4c');
-  thPolygon(c,[[20,79],[56,87],[94,78],[94,84],[56,94],[21,85]],'#d17d3d');
-  thEllipse(c,56,70,12,12,'#f1b957');
-  thEllipse(c,56,68,3,3,'#69341e');
-  c.fillStyle='#69341e';c.fillRect(55,69,2,6);
-  return o.toDataURL();
+function thDrawBoard(){
+  var kitchen=G.th;
+  if(!kitchen.board)kitchen.board=thPaintBattlefield();
+  x.drawImage(kitchen.board,0,0);
+  var base=PT[PT.length-1];
+  if(kitchen.recipe==='berry'||kitchen.pending==='berry'){
+    x.save();
+    x.setLineDash([4,5]);
+    thShape(x,function(p){p.arc(base[0],base[1],TH_KITCHEN_RADIUS,0,Math.PI*2)},
+      '#e7767b12','#ffcc8e9f',1.4);
+    x.restore();
+  }
+  if(kitchen.toast>0)thGlow(x,base[0],base[1],115,'#f7b65b7c');
+  if(kitchen.hitFlash>0){
+    x.save();
+    x.globalAlpha=Math.min(1,kitchen.hitFlash*1.6);
+    thGlow(x,base[0],base[1],63,'#ed6248c9');
+    x.restore();
+  }
+  var plateHealth=G.lives/G.d.lv;
+  thTableMini(x,base[0],base[1]-1,.85);
+  x.fillStyle='#2f1c18';x.fillRect(base[0]-29,base[1]+17,58,5);
+  x.fillStyle=plateHealth>.4?'#f2bb72':'#f38064';x.fillRect(base[0]-28,base[1]+18,56*Math.max(0,plateHealth),3);
+  var hover=kitchen.hover;
+  if(!G.over&&hover&&TY[G.sel]){
+    var tx=hover[0]*C,ty=hover[1]*C,valid=okCell(hover[0],hover[1],G.mvu);
+    x.fillStyle=valid?'#ffe4a338':'#e3706550';
+    x.fillRect(tx+1,ty+1,C-2,C-2);
+    x.strokeStyle=valid?'#ffdf9d9e':'#ff9d829e';x.lineWidth=1;
+    x.strokeRect(tx+1,ty+1,C-2,C-2);
+  }
 }
-function thMapDecor(){
+function thDrawTowerBase(u){
+  thEllipse(x,u.x,u.y+13,16,6.3,'#3b261f9f');
+  thEllipse(x,u.x,u.y+10,15,6,'#6d4931');
+  thEllipse(x,u.x,u.y+8,14,5,'#b8804c');
+}
+function thDrawTowerPortrait(u,phase){
   x.save();
-  for(var i=0;i<66;i++){
-    var lx=(i*113+13)%637,ly=(i*67+7)%395;
-    if(road[Math.floor(lx/C)+','+Math.floor(ly/C)])continue;
-    thEllipse(x,lx,ly,2.5+i%4,1.5,['#c4733e','#923023','#e8a14e'][i%3],i*.7);
+  if(G.cool>0||u.po)x.globalAlpha=.48;
+  x.drawImage(TH_PORTRAITS[u.k+(phase?2:1)],u.x-22,u.y-30,44,44);
+  x.restore();
+}
+function thDrawEnemy(enemy,point){
+  var type=enemy.thBoss?(enemy.thRage?'rage':'boss'):enemy.ty;
+  var art=TH_FOE_ART[type]||TH_FOE_ART.walker, size=enemy.thBoss?69:enemy.ty==='tank'?46:37;
+  var px=point[0],py=point[1], hp=Math.max(0,enemy.hp/enemy.max);
+  x.save();
+  x.globalAlpha=inv(enemy)?.36:1;
+  thEllipse(x,px,py+9,size*.31,size*.14,'#230e0e67');
+  if(enemy.thBoss&&hp>.72)thGlow(x,px,py,38,'#f4c5738c');
+  if(enemy.thRage)thGlow(x,px,py,45,'#f66d567c');
+  if(enemy.po)thGlow(x,px,py,25,'#cd8bdb8f');
+  var step=thReducedMotion()?0:Math.sin(enemy.t*(enemy.thRage?18:9)+enemy.d/12)*1.5;
+  x.drawImage(art,px-size/2,py-size*.70+step,size,size);
+  if(enemy.burn>0)thGlow(x,px,py+2,18,'#e4652c73');
+  if(enemy.ingredient){
+    var centerX=px+size*.26, centerY=py-size*.46;
+    thEllipse(x,centerX,centerY,8,8,'#512e22');
+    x.drawImage(TH_PANTRY_ART[enemy.ingredient],centerX-9,centerY-9,18,18);
+  }
+  if(hp<1||enemy.thBoss){
+    x.fillStyle='#33201b';x.fillRect(px-size*.32,py+size*.26,size*.64,4);
+    x.fillStyle=enemy.thBoss?'#f39264':'#cbcc83';x.fillRect(px-size*.32+1,py+size*.26+1,(size*.64-2)*hp,2);
   }
   x.restore();
 }
-function thDrawTable(){
-  thTable(x,PT[PT.length-1][0],PT[PT.length-1][1],.92);
+function thDrawDrops(){
+  var drops=G.th.drops;
+  if(!drops.length)return;
+  x.save();
+  x.font='800 12px Nunito, system-ui';
+  x.fillStyle='#ffe5b0';
+  drops.forEach(function(drop){
+    var high=drop.y-(.85-drop.time)*22;
+    x.globalAlpha=Math.min(1,drop.time*2.5);
+    x.drawImage(TH_PANTRY_ART[drop.key],drop.x-10,high-11,19,19);
+    x.fillText('+1',drop.x+7,high+2);
+  });
+  x.restore();
 }
-function thTableCell(cx,cy){return G&&G.key==='harvest'&&cy===5&&cx>=6&&cx<=8}
+function thDrawBattleNotice(){
+  if(!G.th.banner||!G.run||G.over)return;
+  var plan=G.th.plan;
+  x.save();
+  x.globalAlpha=Math.min(1,G.th.banner*1.65);
+  x.font='900 16px Nunito, system-ui';
+  var label='Волна '+G.wave+' · '+plan.name;
+  var w=x.measureText(label).width+24;
+  thShape(x,function(p){p.roundRect((640-w)/2,9,w,29,8)},'#341912e8','#e3a56c',1);
+  x.fillStyle='#ffdfab';x.textAlign='center';x.fillText(label,320,29);
+  x.restore();
+}
 
-MP.harvest={n:'Защита стола',g:['#7d472c','#895132'],
-  road:[[C,'#4a281d'],[C-5,'#a36337'],[C-13,'#bc8151']],
-  pts:[[-1,1],[4,1],[4,8],[12,8],[12,3],[7,3],[7,5]]};
+MP.harvest={n:'Защита стола',pts:[[-1,1],[4,1],[4,8],[12,8],[12,3],[7,3],[7,5]]};
+function thTableCell(cx,cy){return G&&G.key==='harvest'&&cy===5&&cx>=6&&cx<=8}
+function thIngredientArt(key){
+  var canvas=thCanvas(44,44), c=canvas.getContext('2d');
+  thShape(c,function(p){p.arc(22,22,15,Math.PI,0)},null,'#d2a16c',3);
+  if(key==='pumpkin'){
+    [-6,0,6].forEach(function(dx){thSoftBody(c,22+dx,20,6,9,'#fff1a0','#e98d43','#a34c31')});
+    thLeaf(c,22,11,10,.3,'#a7ae69');
+  }else if(key==='berry'){
+    [[14,21],[24,15],[31,21],[21,24]].forEach(function(point){thBerry(c,point[0],point[1],.83)});
+  }else{
+    thEllipse(c,18,18,6,13,'#edbb59',-.33);
+    thEllipse(c,26,17,5,13,'#ffdb7f',.30);
+    thLeaf(c,18,24,13,-.75,'#a1a45c');
+  }
+  thPoly(c,[[6,22],[39,22],[34,38],[13,38]],thGradient(c,0,22,0,38,['#e0b578','#a66b40']),'#724c35',2);
+  thPoly(c,[[7,23],[39,23]],null,'#f8cd90',3);
+  [13,19,25,31].forEach(function(xx){thPoly(c,[[xx,26],[xx+4,35]],null,'#855536',1.8)});
+  return canvas;
+}
+var TH_PORTRAITS={}, TH_STARTER_ART={}, TH_DISH_ART=[], TH_CRATE_ART;
+function thEventPic(key,phase,size){
+  var special=TH_STARTER_ART[key+phase];
+  return special?'<img src="'+special+'" width="'+size+'" height="'+size+'" alt="">':pic(key,phase,size);
+}
+function thInitArt(){
+  Object.keys(TH_COLORS).forEach(function(key){
+    [1,2].forEach(function(phase){
+      var id=key+phase, portrait=thUnitArt(key,phase===2);
+      TH_PORTRAITS[id]=portrait;
+      if(key==='verity'||key==='lovity'){
+        TH_STARTER_ART[id]=portrait.toDataURL();
+        return;
+      }
+      IMG[id]=portrait.toDataURL();
+      // Холст доступен сразу, а URL используется в коллекции и меню.
+      var art=new Image();
+      art.src=IMG[id];
+      IM[id]=art;
+    });
+  });
+  if(!thOn())return;
+  var banner=thLandscape();
+  $('th-welcome-art').src=$('th-hero-art').src=banner;
+  var crate=thCanvas(350,240);
+  thPaintCrate(crate.getContext('2d'),0);
+  TH_CRATE_ART=crate.toDataURL();
+  TH_RECIPE_KEYS.forEach(function(key){
+    var icon=thCanvas(80,62);
+    thPlate(icon.getContext('2d'),40,32,1.34,key);
+    TH_DISH_ART.push(icon.toDataURL());
+    TH_PANTRY_ART[key]=thIngredientArt(key);
+  });
+  ['walker','runner','tank','healer','splitter','boss','rage'].forEach(function(key){
+    var art=thEnemyArt(key);
+    TH_FOE_ART[key]=art;
+    TH_ENEMY_IMAGES[key]=art.toDataURL();
+  });
+  $('th-recipes').innerHTML=TH_RECIPE_KEYS.map(function(key,index){
+    var recipe=TH_RECIPES[key];
+    return '<button type="button" data-th-recipe="'+key+'" aria-pressed="false" title="'+recipe.effect+'">'+
+      '<img src="'+TH_DISH_ART[index]+'" width="35" height="27" alt=""><span><b>'+recipe.name+'</b>'+
+      '<small>'+recipe.effect+'</small><small data-th-stock></small></span></button>';
+  }).join('');
+}
+
 Object.keys(TH_UNITS).forEach(function(key){
   var unit=TH_UNITS[key];
   TY[key]=unit;
   RA[key]=unit.rar;
   EXU.push(key);
   MKNS[key]='награда Дня благодарения';
-  [1,2].forEach(function(phase){
-    IMG[key+phase]=thUnitArt(key,phase===2);
-    var art=new Image();
-    art.src=IMG[key+phase];
-    IM[key+phase]=art;
-  });
-});
-var TH_CRATE_ART=thCrateArt();
-$('th-welcome-art').src=$('th-hero-art').src=thLandscape(false);
-$('th-feast-art').src=thLandscape(true);
-Promise.all(['turkeyity1','cornucopity1','pieity1'].map(function(key){return IM[key].decode().catch(function(){})})).then(function(){
-  $('th-welcome-art').src=$('th-hero-art').src=thLandscape(false);
-  $('th-feast-art').src=thLandscape(true);
 });
 function thExpire(){
   if(thOn())return;
@@ -3712,7 +4803,8 @@ function thExpire(){
   if($('th-welcome').open)$('th-welcome').close();
   if(G&&G.key==='harvest'&&!G.over){
     endGame(1,'День благодарения завершился.');
-    $('et').textContent='Событие завершилось · '+G.dishes+' 🍽️ за бой';
+    $('et').textContent='Событие завершилось · '+G.dishes+' 🍽 за бой';
+    hud();
   }
   if(G&&G.key==='harvest')$('e1').textContent='Выбрать сложность';
   if(cur==='th-event'||cur==='th-feast'||(cur==='lo'&&LOK==='harvest')){
@@ -3722,6 +4814,7 @@ function thExpire(){
     say('День благодарения завершился.');
   }
 }
+thInitArt();
 thUpgradePass();
 if(thOn()){
   document.documentElement.classList.add('thanksgiving');
@@ -3740,17 +4833,20 @@ if(thOn()){
     setMap('harvest');
     G.map='harvest';
     hud();
-    say('Расставь Верити вдоль тропы. За каждую пройденную волну — 1 🍽️.');
+    say('Расставь Верити вдоль тропы, выбери блюдо и нажми «Начать волну».');
   };
   hud=function(){
     renderHud();
     var active=G&&G.key==='harvest';
     $('th-chip').classList.toggle('hide',!active);
     $('th-seed-chip').classList.toggle('hide',!!active);
+    $('th-battle-panel').classList.toggle('hide',!active||!!G.over);
+    $('sk').classList.toggle('hide',!!active);
     $('e1').textContent=active&&thOn()?'К событию':'Выбрать сложность';
     if(active){
       $('wmx').textContent='/ ∞';
-      $('th-chip').textContent='🍽️ '+thState().dishes+' · за бой +'+G.dishes;
+      $('th-chip').textContent='🍽 '+thState().dishes+' · за бой +'+G.dishes;
+      if(!G.over)thBattleHud();
     }
   };
   $('loback').onclick=function(){if(LOK==='harvest')scr('th-event');else back()};
