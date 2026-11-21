@@ -539,7 +539,7 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 }
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.60</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.61</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p"><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -998,10 +998,11 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.60',VOL=.8,MQ=[],CI=0;
+var VER='1.61',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.61',t:'Верити в форме шара',a:['🍂 Праздничные Верити стали круглыми, как остальные персонажи. Перерисовали лица и сохранили праздничные украшения в обеих фазах']},
 {v:'1.60',t:'Набег на застолье',a:['🍂 Новый облик Дня благодарения: иллюстрации, детальные Верити и анимация открытия Turkey-ящика','🎟 Пропуск урожая на 25 этапов, новые квесты и получение доступных наград одной кнопкой','🍽 15 гостей за деревянным столом: выбери гостя и подай ему блюдо с анимацией','🦃 Полевые рецепты, Большой тост, разные отряды и Индюк-разбойник со щитом и подкреплением']},
 {v:'1.59',t:'Больше наград на День благодарения',a:['🍂 Событие завершится 28 ноября в 00:00 по Москве','🎟️ За весь батл-пасс теперь можно получить 4 000 🪙 и 80 💎','🎁 Если награда уже получена, при входе начислится разница']},
 {v:'1.58',t:'День благодарения',a:['🍂 Осеннее оформление и праздничная вкладка с магазином, батл-пассом и квестами','🍽️ Защищай стол в бесконечном режиме: за каждую пройденную волну получишь блюдо','🦃 Turkey-ящик за 10 блюд: Pumpkinity, Turkeyity, Cranberrity и Pieity','🎟️ Выполняй квесты и забирай монеты, гемы и Cornucopity в конце пропуска','🪑 Угости 15 Верити за столом, чтобы открыть Harvestity']},
@@ -4117,14 +4118,14 @@ function thSoftBody(c,cx,cy,rx,ry,light,base,dark){
 }
 
 var TH_COLORS = {
-  verity:{head:['#ffed8f','#e3b544','#8d632d'],cloth:['#ad7f46','#63392a'],bg:'#876334'},
-  lovity:{head:['#ffd0ba','#e5819d','#9c4d6b'],cloth:['#ab596c','#593749'],bg:'#7f3e56'},
-  pumpkinity:{head:['#ffce78','#f5802c','#983520'],cloth:['#936a3c','#45241c'],bg:'#783225'},
-  turkeyity:{head:['#ffdfa9','#df995f','#885034'],cloth:['#7d3f31','#3e1d21'],bg:'#6f382a'},
-  cranberrity:{head:['#fda3ae','#d9576e','#772d4b'],cloth:['#95614f','#452437'],bg:'#65304a'},
-  pieity:{head:['#ffda96','#e69c58','#9c5634'],cloth:['#fff2d8','#956749'],bg:'#8d542e'},
-  cornucopity:{head:['#ffe096','#dfa751','#845f2f'],cloth:['#a3a165','#3e5140'],bg:'#635534'},
-  harvestity:{head:['#ffcc8c','#d77848','#843423'],cloth:['#bd5b41','#5e2023'],bg:'#813428'}
+  verity:{normal:['#fff785','#ffdb2c','#c28521'],phase:['#ffe875','#f6ab29','#bd5c26']},
+  lovity:{normal:['#ffb9e3','#ee71b5','#be468c'],phase:['#ffa0be','#ec5390','#b7336b']},
+  pumpkinity:{normal:['#ffce78','#f88729','#b24b21'],phase:['#ffab56','#e95d25','#a43025']},
+  turkeyity:{normal:['#ffdfa9','#d69257','#a15b37'],phase:['#f5bd79','#c17042','#863d32']},
+  cranberrity:{normal:['#fda3ae','#d74e69','#a22548'],phase:['#ff839a','#c83153','#861938']},
+  pieity:{normal:['#ffeab4','#efb672','#b77840'],phase:['#ffd18c','#e19550','#a65931']},
+  cornucopity:{normal:['#f7e9a8','#bfbc63','#6c783b'],phase:['#ecd58c','#a9964b','#55562d']},
+  harvestity:{normal:['#ffc083','#e36643','#a5352e'],phase:['#ffaf72','#d54b31','#872721']}
 };
 function thFeathers(c,originX,originY,scale){
   c.save();
@@ -4146,35 +4147,31 @@ function thFeathers(c,originX,originY,scale){
   c.restore();
 }
 function thCharacterFace(c,key,phase){
-  if(key==='pumpkinity'){
-    thEllipse(c,90,82,53,41,'#753125');
-    [-32,-16,0,16,32].forEach(function(dx){
-      thSoftBody(c,90+dx,80,20,38-Math.abs(dx)*.17,'#ffd287','#ef852c','#ac4721');
-    });
-  }else{
-    var head=TH_COLORS[key].head;
-    thEllipse(c,90,80,49,44,'#522d27');
-    thSoftBody(c,90,79,46,41,head[0],head[1],head[2]);
-    thShape(c,function(p){p.moveTo(55,66);p.quadraticCurveTo(59,48,80,45)},null,'#ffedbc99',3);
-  }
-  [67,112].forEach(function(ex,index){
-    thEllipse(c,ex,78,14,16,'#633729');
-    thEllipse(c,ex,77,12,14,phase?'#ffdf9c':'#fff5d8');
-    thEllipse(c,ex+(index?0:2),79,6.4,8.6,phase?'#8b3125':'#362427');
-    thEllipse(c,ex-1+(index?0:2),75,2.8,2.9,'#fffefa');
-    thEllipse(c,ex+3,83,1.2,1.2,'#fff9daa0');
-    thEllipse(c,ex+(index?8:-8),95,9,3.5,'#c7524e7e',index?-.2:.2);
-    if(phase)thPoly(c,[[ex-13,66+(index?5:0)],[ex+12,66+(index?0:5)]],null,'#72382c',5);
+  var ink='#281519';
+  [68,112].forEach(function(eye,index){
+    var direction=index===0?1:-1;
+    if(key==='lovity'&&!phase){
+      thShape(c,function(p){p.moveTo(eye-8,94);p.quadraticCurveTo(eye,76,eye+8,94)},null,ink,4.5);
+    }else{
+      thEllipse(c,eye,91,6.5,phase?11.5:9.5,ink,phase?direction*.22:0);
+    }
+    if(phase){
+      thPoly(c,[[eye-11,77-direction*4],[eye+11,77+direction*4]],null,ink,4.5);
+      thEllipse(c,eye,91,3,5,'#ff593e',direction*.22);
+    }
   });
-  if(key==='turkeyity'){
-    thEllipse(c,97,97,5,10,'#ae3f48',-.38);
-    thPoly(c,[[78,91],[102,91],[91,101]],'#ffb74e','#9b552b',2);
-    thPoly(c,[[83,92],[96,93]],null,'#fff1ac',2);
-  }else if(phase){
-    thShape(c,function(p){p.moveTo(80,100);p.quadraticCurveTo(91,106,102,100)},null,'#633129',3);
+  if(key==='lovity'||key==='cranberrity'){
+    [57,123].forEach(function(cheek){thEllipse(c,cheek,107,8,3.8,'#ac304266')});
+  }
+  if(phase){
+    thShape(c,function(p){p.moveTo(53,110);p.quadraticCurveTo(90,127,127,110);p.quadraticCurveTo(90,171,53,110)},ink);
+    thPoly(c,[[58,114],[68,132],[78,124],[90,138],[102,124],[112,132],[122,114],[106,122],[74,122]],'#ffead3');
   }else{
-    thShape(c,function(p){p.moveTo(79,97);p.quadraticCurveTo(90,115,103,98);p.quadraticCurveTo(91,103,79,97)},'#663733');
-    thPoly(c,[[85,101],[97,101]],null,'#ffecba',2);
+    thShape(c,function(p){p.moveTo(54,109);p.quadraticCurveTo(90,145,126,109)},null,ink,5);
+  }
+  if(key==='turkeyity'){
+    thEllipse(c,99,107,4.5,8.5,'#b43e4a',-.38);
+    thPoly(c,[[79,98],[102,98],[91,111]],'#ffbf51','#915228',2.5);
   }
 }
 function thBerry(c,x0,y0,scale){
@@ -4250,39 +4247,22 @@ function thHeaddress(c,key){
   }
 }
 function thUnitArt(key,phase){
-  var canvas=thCanvas(180,180), c=canvas.getContext('2d'), palette=TH_COLORS[key];
-  var bg=c.createRadialGradient(92,72,9,90,80,88);
-  bg.addColorStop(0,phase?'#b95732':palette.bg);
-  bg.addColorStop(1,'#2b171b');
-  thEllipse(c,90,90,85,85,'#1d1115');
-  thEllipse(c,90,89,82,82,bg);
-  c.save();
-  c.beginPath();c.arc(90,89,79,0,Math.PI*2);c.clip();
-  for(var i=0;i<17;i++){
-    var px=(i*17+38)%154+12, py=(i*27+50)%152+10;
-    thEllipse(c,px,py,i%3+1,i%3+1,phase?'#ffd17eaa':'#ffca7770');
+  var canvas=thCanvas(180,180), c=canvas.getContext('2d');
+  var colors=phase?TH_COLORS[key].phase:TH_COLORS[key].normal;
+  if(key==='turkeyity')thFeathers(c,90,108,1.06);
+  thSoftBody(c,90,100,65,65,colors[0],colors[1],colors[2]);
+  thShape(c,function(p){p.arc(90,100,65,0,Math.PI*2)},null,'#291715',5);
+  if(key==='pumpkinity'){
+    [-1,1].forEach(function(side){
+      thShape(c,function(p){
+        p.moveTo(90+side*21,42);
+        p.bezierCurveTo(90+side*55,62,90+side*55,139,90+side*19,156);
+      },null,phase?'#a83228':'#c7602b',3.6);
+    });
   }
-  if(key==='turkeyity')thFeathers(c,90,123,.93);
-  if(key==='harvestity'||key==='cornucopity'){
-    [-1,1].forEach(function(dir){thLeaf(c,90+62*dir,119,47,dir*.85,key==='cornucopity'?'#82905c':'#cb633e')});
-  }
-  thEllipse(c,90,152,61,15,'#2013159e');
-  thShape(c,function(p){p.moveTo(35,149);p.bezierCurveTo(34,115,61,103,90,107);p.bezierCurveTo(124,105,149,118,146,149);
-    p.quadraticCurveTo(90,174,35,149)},
-    thGradient(c,66,105,110,155,palette.cloth),'#4c2525',4);
-  thPoly(c,[[43,142],[64,121],[88,133],[115,121],[140,142]],null,'#f1b57790',3);
-  thEllipse(c,56,136,11,10,palette.head[1],-.4);
-  thEllipse(c,124,136,11,10,palette.head[1],.4);
-  thEllipse(c,90,142,13,13,'#69422b');
-  thEllipse(c,90,141,10,10,phase?'#ffe09a':'#c9844a');
-  thLeaf(c,90,141,14,.26,'#ffe4a4');
+  thShape(c,function(p){p.arc(90,100,58,3.85,4.28)},null,'#fff4c07d',3.5);
   thCharacterFace(c,key,phase);
   thHeaddress(c,key);
-  c.restore();
-  thShape(c,function(p){p.arc(90,89,80,0,Math.PI*2)},null,phase?'#ffc573':'#d8995f',phase?3:1.4);
-  if(phase){
-    [24,155].forEach(function(px,idx){thPoly(c,[[px,73+idx*27],[px+4,82+idx*27],[px,91+idx*27],[px-4,82+idx*27]],'#ffe8ab')});
-  }
   return canvas;
 }
 function thPlate(c,x0,y0,scale,type){
