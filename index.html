@@ -610,7 +610,7 @@ body.ap-arena #modal {z-index:500}
 }
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.65</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.66</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p"><button type="button" id="ap-menu" class="hide ap-launch"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div></section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -1089,10 +1089,11 @@ $('im').onclick=function(){var c=prompt('Вставь код сохранени�
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.65',VOL=.8,MQ=[],CI=0;
+var VER='1.66',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.66',t:'Трофеи вечеринки',a:['🏆 Пять трофеев Вечеринки Админити за участие, админ-дроп, совместный бит и победы над двумя боссами','🎪 У трофеев вечеринки своя полка в коллекции. Любой полученный кубок можно поставить на витрину профиля.']},
 {v:'1.65',t:'Бит Админити',a:['🎉 Арена 21 ноября работает с 20:00 до 20:30 МСК','♫ Каждые три минуты DJ Админити запускает зарядку двух пультов. Ударь по обоим пультам на одной вспышке вместе с другими игроками.','⚡ Удачный бит даёт всей арене на 18 секунд +20% к скорости и +30% к урону дубинок по боссам.']},
 {v:'1.64',t:'Вечеринка Админити',a:['🎉 21 ноября с 20:00 до 20:45 МСК открыта общая Арена абьюза с дубинками и DJ Админити','🎁 Подарки участникам и админ-ящики с монетами, гемами, Turkey-ящиком и редким Элементом админа','🎬 Три катсцены, Каменный босс и 1×1×1×1. Участники финальной победы получают Корону хакера']},
 {v:'1.63',t:'Pumpkity и Pumpkinity',a:['🎃 Pumpkinity вернул свой хэллоуинский облик в обеих фазах','🍂 В Turkey-ящике теперь выпадает Pumpkity. Он стреляет семечками и блокирует лечение цели','🎁 Если из Turkey-ящика уже выпал Pumpkinity, Pumpkity появится в коллекции при входе']},
@@ -2364,7 +2365,19 @@ function trPaint(c,top,tier,s){var m=s/2,T=TRT[tier],g;c.clearRect(0,0,s,s);c.sa
  if(tier=='d'){c.strokeStyle='rgba(255,255,255,.7)';c.lineWidth=s*.008;c.beginPath();c.moveTo(s*.3,s*.42);c.lineTo(m,s*.66);c.lineTo(s*.7,s*.42);c.moveTo(m,s*.42);c.lineTo(m,s*.66);c.stroke()}
  // «голова»
  var cy=s*.22,R=s*.155;
- if(top=='volc'){g=c.createLinearGradient(0,cy-R,0,cy+R);g.addColorStop(0,'#4a1a10');g.addColorStop(1,'#1a0806');c.fillStyle=g;c.beginPath();c.moveTo(m-R*1.2,cy+R*1.1);c.lineTo(m-R*.35,cy-R*.6);c.lineTo(m+R*.35,cy-R*.6);c.lineTo(m+R*1.2,cy+R*1.1);c.closePath();c.fill();ol();c.fillStyle='#ffcf3a';c.beginPath();c.ellipse(m,cy-R*.6,R*.36,R*.12,0,0,7);c.fill();c.fillStyle='#ff6a1a';c.beginPath();c.moveTo(m-R*.15,cy-R*.6);c.quadraticCurveTo(m-R*.4,cy+R*.2,m-R*.2,cy+R*1.05);c.lineTo(m-R*.02,cy+R*1.05);c.quadraticCurveTo(m-R*.15,cy+R*.2,m+R*.05,cy-R*.6);c.fill();c.fillStyle='rgba(120,90,90,.6)';c.beginPath();c.arc(m+R*.1,cy-R*.95,R*.22,0,7);c.arc(m-R*.12,cy-R*1.18,R*.15,0,7);c.fill()}
+ if(top==='apdj')apAdminity(c,m,cy,R,0,0,false,false);
+ else if(top==='apcrate'){
+   c.save();c.translate(m,cy);c.scale(R/23,R/23);apChest(c,0,0,0);c.restore();
+ }
+ else if(top==='apdisc'){
+   thShape(c,function(p){p.arc(m,cy,R,0,Math.PI*2)},'#281939','#7af3d2',s*.022);
+   thShape(c,function(p){p.arc(m,cy,R*.69,-Math.PI*.92,Math.PI*.54)},null,'#dda0ef',s*.02);
+   thEllipse(c,m,cy,R*.3,R*.3,'#ffabd0');
+   thEllipse(c,m,cy,R*.09,R*.09,'#38223d');
+ }
+ else if(top==='apstone')apStone(c,m,cy,R,0);
+ else if(top==='apneon')apNeon(c,m,cy,R*.9,0);
+ else if(top=='volc'){g=c.createLinearGradient(0,cy-R,0,cy+R);g.addColorStop(0,'#4a1a10');g.addColorStop(1,'#1a0806');c.fillStyle=g;c.beginPath();c.moveTo(m-R*1.2,cy+R*1.1);c.lineTo(m-R*.35,cy-R*.6);c.lineTo(m+R*.35,cy-R*.6);c.lineTo(m+R*1.2,cy+R*1.1);c.closePath();c.fill();ol();c.fillStyle='#ffcf3a';c.beginPath();c.ellipse(m,cy-R*.6,R*.36,R*.12,0,0,7);c.fill();c.fillStyle='#ff6a1a';c.beginPath();c.moveTo(m-R*.15,cy-R*.6);c.quadraticCurveTo(m-R*.4,cy+R*.2,m-R*.2,cy+R*1.05);c.lineTo(m-R*.02,cy+R*1.05);c.quadraticCurveTo(m-R*.15,cy+R*.2,m+R*.05,cy-R*.6);c.fill();c.fillStyle='rgba(120,90,90,.6)';c.beginPath();c.arc(m+R*.1,cy-R*.95,R*.22,0,7);c.arc(m-R*.12,cy-R*1.18,R*.15,0,7);c.fill()}
  else if(top=='pump'){c.fillStyle='#ff8a1a';c.beginPath();c.ellipse(m,cy+R*.15,R*1.1,R*.85,0,0,7);c.fill();ol();c.strokeStyle='#c85a08';c.lineWidth=s*.012;c.beginPath();c.ellipse(m,cy+R*.15,R*.45,R*.85,0,0,7);c.stroke();c.fillStyle='#2a7a2a';c.fillRect(m-R*.1,cy-R*.95,R*.2,R*.3);c.fillStyle='#3a1a00';c.beginPath();c.moveTo(m-R*.55,cy);c.lineTo(m-R*.3,cy-R*.3);c.lineTo(m-R*.1,cy);c.moveTo(m+R*.55,cy);c.lineTo(m+R*.3,cy-R*.3);c.lineTo(m+R*.1,cy);c.fill();c.beginPath();c.moveTo(m-R*.6,cy+R*.3);c.quadraticCurveTo(m,cy+R*.8,m+R*.6,cy+R*.3);c.quadraticCurveTo(m,cy+R*.5,m-R*.6,cy+R*.3);c.fill()}
  else if(top=='mon'){c.fillStyle='#1a1d24';c.fillRect(m-R,cy-R*.75,R*2,R*1.4);c.strokeStyle='#111';c.lineWidth=s*.015;c.strokeRect(m-R,cy-R*.75,R*2,R*1.4);c.fillStyle='#04160a';c.fillRect(m-R*.85,cy-R*.6,R*1.7,R*1.1);c.fillStyle='#39ff6a';c.font='700 '+Math.round(R*.75)+'px monospace';c.textAlign='center';c.fillText('</>',m,cy+R*.2);c.fillStyle='#2a2d34';c.fillRect(m-R*.2,cy+R*.65,R*.4,R*.25)}
  else if(top=='hood'){c.fillStyle='#1a1d24';c.beginPath();c.moveTo(m-R,cy+R*1.1);c.quadraticCurveTo(m-R*1.1,cy-R*.6,m,cy-R*1.05);c.quadraticCurveTo(m+R*1.1,cy-R*.6,m+R,cy+R*1.1);c.closePath();c.fill();c.strokeStyle='#39ff6a';c.lineWidth=s*.012;c.stroke();c.fillStyle='#ffd21f';c.beginPath();c.arc(m,cy+R*.25,R*.55,0,7);c.fill();c.fillStyle='#0a0f0a';c.fillRect(m-R*.5,cy+R*.05,R,R*.25);c.fillStyle='#39ff6a';c.fillRect(m-R*.42,cy+R*.12,R*.3,R*.1);c.fillRect(m+R*.12,cy+R*.12,R*.3,R*.1)}
@@ -2413,7 +2426,13 @@ function trCheck(silent){trFix();var cl=Object.keys(M.claimed||{}).length+Object
  if(M.hk&&M.hk.c&&M.hk.c.win>0)trGive('hkwin',silent);if(M.hk&&M.hk.st>=5)trGive('hkchain',silent);
  var b=M.inf?M.inf.best||0:0;if(b>=30)trGive('v30',silent);if(b>=50)trGive('v50',silent);if(b>=80)trGive('v80',silent);
  if(M.done&&M.done.insane)trGive('insane',silent);if(cl>=5)trGive('q5',silent);if(cl>=12)trGive('q12',silent)}
-function trRender(){trFix();var n=trCount();$('trn').textContent=n+' / '+TRO.length;var h='',groups=[['🎉 Ивенты и вечеринки',TRO.filter(function(t){return t.ev})],['🌋 Режимы и задания',TRO.filter(function(t){return!t.ev})]];
+function trRender(){
+ if(typeof apRestoreTrophies==='function')apRestoreTrophies();
+ trFix();var n=trCount();$('trn').textContent=n+' / '+TRO.length;var h='',groups=[
+   ['🎪 Вечеринка Админити',TRO.filter(function(t){return t.ap})],
+   ['🎉 Ивенты и вечеринки',TRO.filter(function(t){return t.ev&&!t.ap})],
+   ['🌋 Режимы и задания',TRO.filter(function(t){return!t.ev})]
+ ];
  groups.forEach(function(g){h+='<div class="trsh"><div class="trshh">'+g[0]+'</div><div class="trrow">';g[1].forEach(function(t){var o=M.tro[t.id];h+='<button class="trc'+(o?' got t'+t.t:' no')+(M.trF==t.id?' fav':'')+'" data-tr="'+t.id+'">'+trImg(t.id,84)+(o?'':'<i>🔒</i>')+'<b>'+esc(t.n)+(o&&o.n>1?' ×'+o.n:'')+'</b><span class="trtier t'+t.t+'">'+TRT[t.t][3]+'</span>'+(M.trF==t.id?'<em>⭐ на витрине</em>':'')+'</button>'});h+='</div><div class="trplank"></div></div>'});
  $('trbody').innerHTML=h;[].forEach.call($('trbody').querySelectorAll('[data-tr]'),function(b){b.onclick=function(){var t=TROM[b.dataset.tr],o=M.tro[t.id];mOpen(t.n,'<div class="trnew t'+t.t+'">'+trImg(t.id,140,'trim')+'<span class="trtier t'+t.t+'">'+TRT[t.t][3]+'</span><p>'+esc(t.h)+'</p><p class="mu">'+(o?'Получен '+new Date(o.t).toLocaleDateString('ru-RU')+(o.n>1?' · ×'+o.n:''):'Ещё не получен')+'</p></div>',o?[['⭐ Поставить на витрину',function(){M.trF=t.id;save();mClose();trRender();if(onOk()&&ON.uid)frPing().catch(function(){})}],['Закрыть',mClose]]:[['Закрыть',mClose]])}})}
 /* ---------- трофеи у друзей и в лидерборде ---------- */
@@ -3065,7 +3084,7 @@ async function arCfgPoll(){
     }
     if(typeof apRefreshArena==='function')apRefreshArena();
     if(cur==='arn'&&!arOpenNow())arExit('Арена закрылась.');
-    if(typeof apCrownPoll==='function'&&cur!=='arn')await apCrownPoll();
+    if(result.ok&&typeof apRewardPoll==='function'&&cur!=='arn')await apRewardPoll();
   }catch(e){}
 }
 setInterval(arCfgPoll,15000);
@@ -3126,7 +3145,10 @@ function arPut(force){
     cs:typeof csStr==='function'?csStr():'',c:player.carry.length,s:player.sw>0?1:0,st:player.stun>0?1:0,f:player.face,t:{'.sv':'timestamp'}};
   if(AR.party)data.pa=AP_EVENT;
   if(apWearCrown())data.cr=1;
-  AR.putTask=db('arena/p/'+ON.uid,{m:'PUT',b:data}).catch(function(){}).finally(function(){AR.putTask=null});
+  var uid=ON.uid;
+  AR.putTask=db('arena/p/'+uid,{m:'PUT',b:data}).then(function(result){
+    if(result.ok&&data.pa===AP_EVENT&&ON.uid===uid&&apLive(result.j?.t??now))apEarnTrophy('apguest');
+  }).catch(function(){}).finally(function(){AR.putTask=null});
   return AR.putTask;
 }
 async function arPoll(){
@@ -3217,7 +3239,7 @@ async function arSendDamage(){
     var result=await db('arena/bd/'+boss.id+'/'+uid,{m:'PUT',b:{v:value,n:M.fb?.nick||'Игрок',t:{'.sv':'timestamp'}}});
     if(!result.ok)return;
     if(AR.boss?.id===boss.id)AR.bdSent=Math.max(AR.bdSent,value);
-    if(boss.k==='apfinal'&&ON.uid===uid&&!apState().fought){apState().fought=true;save()}
+    if(ON.uid===uid&&(boss.k==='apstone'||boss.k==='apfinal'))apRememberContribution(boss.k==='apstone'?'stoneFought':'fought');
   }catch(e){}finally{AR.damageBusy=false}
 }
 setInterval(arSendDamage,1050);
@@ -3230,11 +3252,9 @@ function arBossState(){var b=AR.boss;if(!b)return null;var I=BOSSI[b.k]||BOSSI.h
  var ph=t%7;st.wave=ph>5.5?{r:(ph-5.5)*480,id:Math.floor(t/7)}:null;st.warn=ph>4.3&&ph<=5.5;
  if(b.k=='hack'||b.k==='apfinal'){var cz=t%9,sd=Math.floor(t/9);if(cz>6){st.zones=[];for(var i=0;i<7;i++){var zx=200+((sd*97+i*331)%1600),zy=180+((sd*61+i*211)%950);st.zones.push({x:zx,y:zy,w:150,on:cz>7.6&&cz<8.1,id:sd})}}}
  return st}
-function arBossCheck(){var b=AR.boss;if(!b)return;
- if(AR.party){
-   if(b.k==='apfinal')apConfirmCrown(AR.bd[b.id]);
-   return;
- }
+function arBossCheck(){
+ if(AR.party){apCheckPartyResults(AR.bd);return}
+ var b=AR.boss;if(!b)return;
  var B=arBossState();arFix();if(B&&!B.alive&&AR.bdm>0&&!M.arn.got[b.id]){M.arn.got[b.id]=1;var g=b.k=='titan'?80:60;M.gem=(M.gem||0)+g;if(b.k=='titan'){M.mcfree=(M.mcfree||0)+1}save();if(typeof trGive=='function')try{trGive(b.k=='titan'?'artitan':'arhack')}catch(e){}
   arToast('🏆 '+(B.I.n)+' повержен! +'+g+' 💎'+(b.k=='titan'?' и бесплатный Мифический кейс!':''));tone(880,.3,'triangle',.12,1320)}
  if(B&&!B.alive&&b.k=='hack'&&!(M.arn.cutk&&M.arn.cutk[b.id])){M.arn.cutk=M.arn.cutk||{};M.arn.cutk[b.id]=1;save();setTimeout(cutBoss,1500)}}
@@ -5572,29 +5592,55 @@ var AP_CONTROLS=['coins','turkey','intro','stone','final'];
 var AP_LOOT=[{name:'5 гемов',chance:55,key:'gems'},{name:'400 монет',chance:29,key:'coins'},
   {name:'Turkey-ящик',chance:15,key:'turkey'},{name:'Элемент админа',chance:1,key:'element'}];
 var AP={commands:{},verified:new Map(),key:null,busy:false,tab:'main',boxBusy:new Set(),
-  show:null,seen:new Set(),sound:true,lastCrownCheck:0};
+  show:null,seen:new Set(),sound:true,lastRewardCheck:0};
 var AP_BEAT={first:60000,repeat:180000,notice:9000,pulses:3,gap:5200,window:2500,lag:1000,
   radius:78,boost:18000,speed:20,damage:30};
 var AP_PADS=[
   {x:840,y:890,label:'БАС',color:'#7af3d2',note:'♪',freq:330,hud:'ap-beat-bass'},
   {x:1160,y:890,label:'СИНТ',color:'#ff9bc4',note:'♫',freq:550,hud:'ap-beat-synth'}
 ];
+[
+  {id:'apguest',n:'Гость Админити',t:'b',top:'apdj',h:'Зайти на общую Арену абьюза во время вечеринки 21 ноября.'},
+  {id:'apdrop',n:'Ловец дропа',t:'s',top:'apcrate',h:'Подобрать админ-ящик на арене.'},
+  {id:'apbeat',n:'В такт',t:'s',top:'apdisc',h:'Ударить по пульту на вспышке, на которой зарядились оба пульта «Бита Админити».'},
+  {id:'apstone',n:'Камнелом',t:'g',top:'apstone',h:'Нанести урон Каменному боссу и победить его вместе с игроками арены.'},
+  {id:'apfinal',n:'Гроза разлома',t:'d',top:'apneon',h:'Нанести урон 1×1×1×1 и победить его вместе с игроками арены.'}
+].forEach(function(trophy){
+  trophy.ev=1;trophy.ap=1;
+  TRO.push(trophy);
+  TROM[trophy.id]=trophy;
+});
 
 function apLive(now){
   now=now??Date.now();
   return now>=AP_START&&now<AP_END;
 }
+function apBeatStart(round,pulse){
+  return AP_START+AP_BEAT.first+round*AP_BEAT.repeat+pulse*AP_BEAT.gap;
+}
 function apBeatRound(now){
   if(!AR.party||!apLive(now))return null;
-  var first=AP_START+AP_BEAT.first;
-  var id=Math.floor((now-first+AP_BEAT.notice)/AP_BEAT.repeat);
+  var id=Math.floor((now-apBeatStart(0,0)+AP_BEAT.notice)/AP_BEAT.repeat);
   if(id<0)return null;
-  var at=first+id*AP_BEAT.repeat, age=now-at;
+  var at=apBeatStart(id,0), age=now-at;
   var last=(AP_BEAT.pulses-1)*AP_BEAT.gap+AP_BEAT.window+AP_BEAT.lag;
   return age<last+AP_BEAT.boost?{id:id,at:at,age:age}:null;
 }
 function apBeatKey(round,pulse,pad){
   return AP_EVENT+'-beat-'+round+'-'+pulse+'-'+pad;
+}
+function apBeatHitTime(hit,at){
+  return hit?.v===1&&Number.isFinite(hit.t)&&hit.t>=at&&hit.t<at+AP_BEAT.window+AP_BEAT.lag?hit.t:0;
+}
+function apBeatHits(board,round,pulse){
+  var at=apBeatStart(round,pulse);
+  return AP_PADS.map(function(_,pad){
+    var strikes=board[apBeatKey(round,pulse,pad)]||{};
+    return Object.values(strikes).reduce(function(first,hit){
+      var time=apBeatHitTime(hit,at);
+      return time&&first?Math.min(first,time):first||time;
+    },0);
+  });
 }
 function apBeatSync(now){
   var round=apBeatRound(now);
@@ -5602,14 +5648,7 @@ function apBeatSync(now){
   var score={id:round.id,hits:[],won:0};
   // Используем время приёма удара из Firebase. Записи раунда остаются доступны после ухода игрока.
   for(var pulse=0;pulse<AP_BEAT.pulses;pulse++){
-    var at=round.at+pulse*AP_BEAT.gap;
-    var hits=AP_PADS.map(function(_,pad){
-      var strikes=AR.bd[apBeatKey(round.id,pulse,pad)]||{};
-      return Object.values(strikes).reduce(function(first,strike){
-        if(strike?.v!==1||!Number.isFinite(strike.t)||strike.t<at||strike.t>=at+AP_BEAT.window+AP_BEAT.lag)return first;
-        return first?Math.min(first,strike.t):strike.t;
-      },0);
-    });
+    var hits=apBeatHits(AR.bd,round.id,pulse);
     score.hits.push(hits);
     if(hits.every(Boolean)){score.won=Math.max.apply(Math,hits);break}
   }
@@ -5637,13 +5676,14 @@ function apBeatStrike(beat,player){
   if(pad<0)return false;
   var key=apBeatKey(beat.id,beat.pulse,pad);
   if(apBeatCharged(beat,pad))return true;
-  var entry=AR.entry, writes=AR.beatWrites;
+  var entry=AR.entry, writes=AR.beatWrites, uid=ON.uid;
   writes.add(key);
   if(AP.sound)tone(AP_PADS[pad].freq,.22,'sine',.11,AP_PADS[pad].freq*1.5);
   // Каждому пульту нужен один удар. Повтор того же запроса сохраняет первый таймстамп.
-  db('arena/bd/'+key+'/'+ON.uid,{m:'PUT',ifMatch:'null_etag',
+  db('arena/bd/'+key+'/'+uid,{m:'PUT',ifMatch:'null_etag',
     b:{v:1,n:M.fb.nick,t:{'.sv':'timestamp'}}}).then(function(result){
     if(!result.ok&&result.st!==412)throw Error('beat');
+    if(ON.uid===uid&&!M.tro?.apbeat)apRememberContribution('beatFought');
     if(cur==='arn'&&AR.entry===entry)arPoll();
   }).catch(function(){
     writes.delete(key);
@@ -5680,6 +5720,30 @@ function apState(){
   arFix();
   if(!M.arn.party||M.arn.party.id!==AP_EVENT)M.arn.party={id:AP_EVENT,turkey:0,grants:{},crates:{}};
   return M.arn.party;
+}
+function apRememberContribution(key){
+  var state=apState();
+  if(!state[key]){state[key]=true;save()}
+}
+function apEarnTrophy(id,silent){
+  if(M.tro?.[id])return false;
+  trGive(id,true);
+  if(!silent){
+    var message='🏆 Трофей · '+TROM[id].n;
+    if(cur==='arn')arToast(message);
+    else anShow(message);
+    if(cur==='tro')trRender();
+  }
+  return true;
+}
+function apRestoreTrophies(){
+  var state=M.arn?.party, crown=apChampion();
+  var party=state?.id===AP_EVENT;
+  var drop=party&&Object.values(state.crates||{}).some(Boolean);
+  if(crown||drop||party&&(state.fought||state.stoneFought||state.beatFought||state.grants?.coins||state.grants?.turkey))
+    apEarnTrophy('apguest',true);
+  if(drop)apEarnTrophy('apdrop',true);
+  if(crown)apEarnTrophy('apfinal',true);
 }
 function apPresents(){
   return Math.max(0,M.arn?.party?.turkey||0);
@@ -5833,22 +5897,56 @@ function apDamageTotal(damage){
     return total+(Number.isFinite(hit?.v)&&hit.v>0?hit.v:0);
   },0);
 }
+function apWonBoss(boss,damage){
+  var dealt=damage?.[ON.uid]?.v;
+  return boss&&Date.now()>=boss.st&&Number.isFinite(dealt)&&dealt>0&&apDamageTotal(damage)>=boss.hp;
+}
 function apConfirmCrown(damage){
   var boss=apBossFor(AP.commands.final);
-  if(!boss||apChampion()||Date.now()<boss.st||!(damage?.[ON.uid]?.v>0)||apDamageTotal(damage)<boss.hp)return;
+  if(!apWonBoss(boss,damage))return;
+  if(apChampion()){apEarnTrophy('apfinal');return}
   M.inv=M.inv||{};
   M.inv.hackerCrown=1;
   apState().wearCrown=true;
-  save();
+  if(!apEarnTrophy('apfinal'))save();
   apNotify('👑 Босс 1×1×1×1 повержен. Корона хакера в «Предметах»!');
 }
-async function apCrownPoll(){
-  var boss=apBossFor(AP.commands.final);
-  if(!boss||apChampion()||!ON.uid||!M.arn?.party?.fought||Date.now()<boss.st||Date.now()-AP.lastCrownCheck<15000)return;
-  AP.lastCrownCheck=Date.now();
+function apCheckBeatTrophy(board){
+  var uid=ON.uid, until=Math.min(Date.now()+1,AP_END);
+  if(!uid||M.tro?.apbeat)return;
+  for(var round=0;apBeatStart(round,0)<until;round++){
+    for(var pulse=0;pulse<AP_BEAT.pulses;pulse++){
+      var at=apBeatStart(round,pulse);
+      if(at>=until)break;
+      var tookPart=AP_PADS.some(function(_,pad){
+        return apBeatHitTime(board[apBeatKey(round,pulse,pad)]?.[uid],at)>0;
+      });
+      if(tookPart&&apBeatHits(board,round,pulse).every(Boolean)){apEarnTrophy('apbeat');return}
+    }
+  }
+}
+function apCheckPartyResults(board){
+  apCheckBeatTrophy(board);
+  var stone=apBossFor(AP.commands.stone);
+  if(stone&&!M.tro?.apstone&&apWonBoss(stone,board[stone.id]))apEarnTrophy('apstone');
+  if(!apChampion()||!M.tro?.apfinal)apConfirmCrown(board[AP_EVENT+'-final']);
+}
+async function apRewardPoll(){
+  var state=M.arn?.party, uid=ON.uid, now=Date.now();
+  if(state?.id!==AP_EVENT||!uid||now-AP.lastRewardCheck<15000)return;
+  var archive=now>=AP_END+30000;
+  var review=!state.trophiesChecked&&(archive||state.beatFought&&!M.tro?.apbeat||state.stoneFought&&!M.tro?.apstone);
+  var final=apBossFor(AP.commands.final);
+  var crownPending=final&&state.fought&&!apChampion()&&now>=final.st;
+  if(!review&&!crownPending)return;
+  AP.lastRewardCheck=now;
   try{
-    var response=await db('arena/bd/'+boss.id);
-    if(response.ok)apConfirmCrown(response.j);
+    var response=await db('arena/bd'+(review?'':'/'+final.id));
+    if(!response.ok||ON.uid!==uid||M.arn?.party!==state)return;
+    if(review){
+      apCheckPartyResults(response.j||{});
+      if(archive){state.trophiesChecked=true;save()}
+    }else apConfirmCrown(response.j);
   }catch(e){}
 }
 function apArenaFrame(now){
@@ -5900,7 +5998,7 @@ async function apClaimBox(id,drop,alreadyClaimed){
         name='5 гемов за повтор Элемента';
       }else M.pet.adelem=1;
     }
-    save();
+    if(!apEarnTrophy('apdrop'))save();
     delete AR.drops[id];
     if(cur==='arn'&&AR.party){
       AR.fx.push({x:drop.x,y:drop.y,t:0,k:'apbox'});
@@ -6075,6 +6173,7 @@ $('ap-music-btn').onclick=function(){
   lmTick();
 };
 setInterval(apRefreshArena,1000);
+apRestoreTrophies();
 apRefreshArena();
 
 /* Элемент админа использует слот и зону питомца. */
