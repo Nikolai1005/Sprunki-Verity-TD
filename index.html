@@ -563,6 +563,27 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 .ap-item img {flex:none}
 .ap-item small {display:block}
 .ap-items-count {color:var(--acc)}
+.ap-market-balance {
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 12px;border:1px solid #cf9364;border-radius:10px;
+  background:linear-gradient(120deg,#542c38,#31213e);color:#ffe5ad;
+}
+.ap-market-balance strong {font-size:19px;white-space:nowrap}
+.ap-market-rules {margin:9px 0;color:var(--mute);font-size:13px}
+.ap-market-rules summary {cursor:pointer}
+.ap-market-rules li {margin:3px 0}
+.ap-market-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,156px),1fr));gap:8px}
+.ap-market-card {
+  display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:5px;
+  padding:9px;border:1px solid #ae715f;border-radius:10px;background:#352239;color:#ffe8cb;
+}
+.ap-market-art {height:53px;display:flex;align-items:center}
+.ap-market-art img {object-fit:contain;max-width:93px}
+.ap-market-card strong {font-size:14px}
+.ap-market-card small {color:#e9bfae;font-size:12px}
+.ap-market-card button {margin:4px 0 0;padding:6px 8px;background:#733c4a;border:1px solid #eeb37e;color:#ffebc5;font-size:12px}
+#ap-market-status {color:var(--acc);margin:7px 0}
+#ap-market-status:empty {display:none}
 #ap-ar-tools {
   position:absolute;z-index:2;left:calc(8px + env(safe-area-inset-left,0px));top:calc(138px + env(safe-area-inset-top,0px));
   display:flex;flex-wrap:wrap;gap:5px;max-width:calc(100% - 142px);
@@ -628,7 +649,7 @@ body.ap-arena #modal {z-index:500}
 #account-status:empty {display:none}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.68</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.69</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -662,7 +683,7 @@ body.ap-arena #modal {z-index:500}
 <div id="ust" class="hide"></div><div id="shop"></div>
 <div class="row"><button id="ph">Фаза 2: выкл</button><button id="sk">Пропустить ожидание</button><button id="sp">Скорость ×1</button><span class="chip" id="cd"></span></div>
 <div id="msg" role="status"></div></section>
-<section id="lobby" class="hide p"><h2>Лобби</h2><p>Банк: <b id="bk"></b> 🪙 · Семечки: <b id="bs"></b> 🎃</p><div class="row"><button id="c1">Ящик Верити: 400 🪙</button><button id="c2">Тыквенный ящик: 60 🎃</button><button id="back">Назад</button><button id="hwl" class="hwbtn">🎃 Хэллоуинский пропуск</button><button id="ulb">📜 Обновления</button><button id="th-lobby" type="button">🍂 День благодарения</button><button id="th-feast-link" type="button">🍽️ Застолье</button><button id="ap-items" class="hide" type="button">🎒 Предметы вечеринки<b class="ap-items-count"></b></button><button id="setl">⚙ Настройки</button><button id="ex">Сохранить код</button><button id="im">Войти по коду</button></div><div id="lm" role="status"></div><div class="grid" id="col"></div><span id="hid" style="opacity:.1;cursor:pointer;float:right;user-select:none;padding:8px">🎃</span></section>
+<section id="lobby" class="hide p"><h2>Лобби</h2><p>Банк: <b id="bk"></b> 🪙 · Семечки: <b id="bs"></b> 🎃</p><div class="row"><button id="c1">Ящик Верити: 400 🪙</button><button id="c2">Тыквенный ящик: 60 🎃</button><button id="back">Назад</button><button id="hwl" class="hwbtn">🎃 Хэллоуинский пропуск</button><button id="ulb">📜 Обновления</button><button id="th-lobby" type="button">🍂 День благодарения</button><button id="th-feast-link" type="button">🍽️ Застолье</button><button id="ap-items" class="hide" type="button">🎒 Предметы вечеринки<b class="ap-items-count"></b></button><button id="ap-lobby-market" type="button" class="hide">🎟 Рынок вечеринки <b id="ap-lobby-tokens"></b></button><button id="setl">⚙ Настройки</button><button id="ex">Сохранить код</button><button id="im">Войти по коду</button></div><div id="lm" role="status"></div><div class="grid" id="col"></div><span id="hid" style="opacity:.1;cursor:pointer;float:right;user-select:none;padding:8px">🎃</span></section>
 <section id="story" class="hide p"><h2 id="sth">История</h2><div class="sw"><canvas id="scv" width="640" height="360"></canvas><div id="ssub"></div></div>
 <div id="sdlgw"><div id="sdlg"></div><div id="sch"></div></div>
 <div id="sctl" class="hide"><button id="sbl">◀</button><button id="sbj">Прыжок</button><button id="sbd">Рывок</button><button id="sbr">▶</button></div>
@@ -684,6 +705,7 @@ body.ap-arena #modal {z-index:500}
 <section id="market" class="hide p mkp"><div class="mkhero"><div class="mkh1"><span class="mkgem">💎</span><div><small>Твои гемы</small><b id="mkg">0</b></div></div><button id="mkhelp" class="mkq">❓ Как это работает</button></div><div class="mkstat"><span>🤖 Продаж ботам: <b id="mks"></b>/3</span><span>⏰ Новые цены через <b id="mkt"></b></span></div><div class="mktabs"><button data-m="sell"><i>🤖</i>Боты</button><button data-m="buy"><i>🏪</i>Лавка</button><button data-m="on"><i>🌐</i>Всемирный</button></div><div id="mkm" role="status"></div><div id="mkbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="friends" class="hide p"><div class="frhero"><div class="frtt"><span>👥</span><b>Друзья</b></div><div id="frme"></div></div><div id="frtabw" class="frtabs"><button data-f="list"><i>👥</i>Друзья <em id="frtn"></em></button><button data-f="in"><i>📬</i>Входящие<em id="frtin" class="bdgi"></em></button><button data-f="add"><i>➕</i>Добавить</button></div><div id="frm" role="status"></div><div id="frbody"></div><div class="row"><button class="bk">Назад</button></div></section><div id="ftoast" role="status"></div><section id="inf" class="hide p"><div class="ifhero"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><defs><linearGradient id="ifm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0606"/><stop offset="1" stop-color="#0c0101"/></linearGradient><linearGradient id="ifl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a0"/><stop offset=".35" stop-color="#ff8a1a"/><stop offset="1" stop-color="#c0140a"/></linearGradient></defs><path d="M-10 200 L60 150 L110 170 L150 140 L190 200Z" fill="#1a0404" opacity=".8"/><path d="M230 200 L290 155 L340 175 L410 140 L410 200Z" fill="#1a0404" opacity=".8"/><path d="M70 200 L170 92 L185 98 L200 88 L215 98 L230 92 L330 200Z" fill="url(#ifm)"/><path d="M186 96 Q180 130 168 160 Q160 182 150 200 L166 200 Q178 170 190 140 Q196 118 200 96Z M208 96 Q214 126 226 150 Q236 172 248 200 L236 200 Q222 176 212 150 Q205 124 203 96Z" fill="url(#ifl)"><animate attributeName="opacity" values=".85;1;.85" dur="2s" repeatCount="indefinite"/></path><ellipse cx="200" cy="90" rx="22" ry="6" fill="#ffcf3a"><animate attributeName="rx" values="20;25;20" dur="1.6s" repeatCount="indefinite"/></ellipse><g fill="#5a3030" opacity=".55"><circle cx="196" cy="70" r="12"><animate attributeName="cy" values="74;20" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0" dur="5s" repeatCount="indefinite"/></circle><circle cx="206" cy="60" r="16"><animate attributeName="cy" values="70;10" dur="6s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0" dur="6s" begin="1.5s" repeatCount="indefinite"/></circle></g></svg><i class="ifemb" style="left:12%;--dx:14px;animation-duration:3.4s;animation-delay:0.0s"></i><i class="ifemb" style="left:24%;--dx:-10px;animation-duration:4.1s;animation-delay:1.2s"></i><i class="ifemb" style="left:38%;--dx:8px;animation-duration:3.1s;animation-delay:0.6s"></i><i class="ifemb" style="left:52%;--dx:-16px;animation-duration:4.6s;animation-delay:2.0s"></i><i class="ifemb" style="left:63%;--dx:12px;animation-duration:3.7s;animation-delay:0.3s"></i><i class="ifemb" style="left:74%;--dx:-6px;animation-duration:3.3s;animation-delay:1.6s"></i><i class="ifemb" style="left:86%;--dx:10px;animation-duration:4.2s;animation-delay:0.9s"></i><i class="ifemb" style="left:45%;--dx:-4px;animation-duration:3.9s;animation-delay:2.6s"></i><i class="ifemb" style="left:30%;--dx:16px;animation-duration:3.5s;animation-delay:3.1s"></i><i class="ifemb" style="left:70%;--dx:-14px;animation-duration:4.4s;animation-delay:2.2s"></i><div class="ifh"><span class="ifttl">ЖЕРЛО ВУЛКАНА</span><span class="ifsub">∞ БЕСКОНЕЧНЫЙ РЕЖИМ</span></div></div><div class="ifst"><div><b id="ifbest">—</b><small>🏆 рекорд</small></div><div><b id="ifgames">0</b><small>🎮 игр</small></div><div><b id="ifkills">0</b><small>💀 врагов</small></div><div><b id="ifgems">0</b><small>💎 добыто</small></div></div><div class="ifhw">🔥 Как это работает</div><div class="ifr"><div><i>♾️</i><span><b>Волны не кончаются</b><small>Каждая следующая волна сильнее. Играй, пока у базы есть жизни. Главная цель — побить свой рекорд.</small></span></div><div><i>👹</i><span><b>Босс каждые 10 волн</b><small>Магмовый Титан, Пепельный Змей, Повелитель Лавы… На половине здоровья босс впадает в ярость.</small></span></div><div><i>🌋</i><span><b>Извержение каждые 5 волн</b><small>С неба падают лавовые камни и бьют врагов. Это твой союзник!</small></span></div><div><i>⚡</i><span><b>Особые волны с 8-й</b><small>🔥 Огненные — быстрее, 🪨 Каменные — крепче, 🐜 Рой — больше врагов. Название волны видно на экране.</small></span></div><div><i>🎁</i><span><b>Награды</b><small>Монеты в банк и 🎃 за каждую волну, +1 💎 за каждые 5 волн, +2 💎 за босса.</small></span></div><div><i>❤️</i><span><b>15 жизней</b><small>Обычный враг отнимает 1 жизнь, босс — 10. Когда жизней мало, экран краснеет.</small></span></div></div><button class="ifgo" id="ifgo">🌋 В ЖЕРЛО!</button><button class="ifgo lbgo" id="iflb">🏆 Лидерборд и награды</button><div class="row"><button class="bk">Назад</button></div></section><section id="pets" class="hide p"><div class="pthero"><div class="ptsp"></div><img id="ptimg" class="ptbox bob" width="130" height="130" alt=""><div class="ptht"><span class="ptttl">ЯЩИК ПИТОМЦЕВ</span><span class="ptsub">Питомцы дают баффы твоим Верити в бою</span></div><div class="ptgem">💎 <b id="ptg">0</b></div></div><div id="ptm" role="status"></div><div class="ptbtns"><button class="ptbtn" id="pto1"><b>Открыть ×1</b><span>25 💎</span></button><button class="ptbtn x5" id="pto5"><b>Открыть ×5</b><span>110 💎 <s>125</s></span></button></div><p class="mkhint" id="ptpity"></p><div class="ifhw2">🎲 Что может выпасть</div><div class="ptdrop" id="ptdrop"></div><div class="ifhw2">📖 Коллекция <span id="ptcn"></span></div><div class="ptcol" id="ptcol"></div><div class="ifhw2">❓ Как работают питомцы</div><div class="ifr lbhow ptinfo"><div><i>⚔️</i><span><b>Возьми в бой</b><small>Перед каткой открывается «Снаряжение»: выбери до 6 Верити и до 2 питомцев.</small></span></div><div><i>👆</i><span><b>Посади на Верити</b><small>В бою нажми на питомца под полем, потом на поставленного Верити.</small></span></div><div><i>⭕</i><span><b>Зона баффа</b><small>Вокруг появится круг. Все Верити внутри получают бафф питомца.</small></span></div><div><i>💱</i><span><b>Торговля</b><small>Питомцев можно продавать и покупать на всемирном рынке. Повтор из ящика превращается в гемы.</small></span></div></div><div class="row"><button class="bk">Назад</button></div></section><div id="ptov"></div><section id="lo" class="hide p"><div class="lohero"><span>⚔️ СНАРЯЖЕНИЕ</span><b id="lomode"></b></div><div id="lom" role="status"></div><div class="losec"><div class="sech"><b>🧍 Верити в бой</b><span class="cnt" id="locn"></span></div><p class="mkhint">Выбери до 6 Верити: только они будут в магазине башен в этой катке.</p><div class="logrid" id="lou"></div></div><div class="losec"><div class="sech"><b>🐾 Питомцы</b><span class="cnt" id="lopn"></span></div><p class="mkhint">До 2 питомцев. В бою нажми на питомца, потом на Верити: вокруг него появится зона с баффом.</p><div class="logrid" id="lop"></div><div id="lopi"></div></div><button class="logo" id="logo">▶ В БОЙ!</button><div class="row"><button id="loback">Назад</button></div></section><section id="ldb" class="hide p"><div class="lbhero"><span class="lbttl">🏆 ЛИДЕРБОРД</span><span class="lbsub">🌋 Жерло вулкана · <b id="lbs"></b></span><div class="lbtm">⏳ Сброс через <b id="lbt"></b></div></div><div class="lbprize"><div id="lbpz"></div><div><b>Награда за 1 место</b><span>🐉 Божественный Дракончик</span><small>+25% урона, +10% скорости атаки и +10% дальности в большой зоне. Только за 1 место, из ящика не выбить. 🥈 2 место — 50 💎, 🥉 3 место — 25 💎.</small></div></div><div class="lbtabs"><button data-t="now">🔥 Этот сезон</button><button data-t="prev">📜 Прошлый</button></div><div id="lbbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="mail" class="hide p"><div class="mlhero"><span class="mlenv">📬</span><div><b>ПОЧТА</b><small>Фразы и подарки от друзей и подарки от автора игры</small></div></div><div id="mltw" class="mltabs"><button data-m="in">📥 Входящие <em id="mltin" class="bdgi"></em></button><button data-m="new">✉️ Написать</button></div><div id="mlm" role="status"></div><div id="mlbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="hk" class="hide p"><div class="hkhero"><canvas id="hkcv" width="640" height="380"></canvas><div class="hkht"><span class="hkttl">ВЗЛОМ СИСТЕМЫ</span><span class="hksub">&gt; хакерский ивент_</span><span class="hktm" id="hkt"></span></div></div><div class="hkbal"><span>Байты · Ключи</span><span><b id="hkb">0</b> 💾 &nbsp; <b id="hkk">0</b> 🔐</span></div><div id="hkm" role="status"></div><div class="hktabs"><button data-t="q">🎯<span>Задания</span></button><button data-t="c">📦<span>Ящик</span></button><button data-t="h">🕶<span>Хакерити</span></button><button data-t="t">💻<span>Терминал</span></button><button data-t="p">🎟<span>Пропуск</span></button></div><div id="hkbody"></div><button class="hkplay" id="hkplay">▶ ИГРАТЬ: ВЗЛОМ</button><div class="row"><button class="bk">Назад</button></div></section><div id="hkterm"></div><section id="tro" class="hide p"><div class="trhero"><b>🏅 ПОЛКА ТРОФЕЕВ</b><span>Собрано: <b id="trn" style="display:inline;font:inherit;color:#ffd23a;-webkit-text-fill-color:#ffd23a"></b></span><p class="mu" style="margin:8px 0 0">Трофеи навсегда: их нельзя купить, продать или подарить. Нажми на трофей, чтобы поставить его на витрину — его увидят друзья.</p></div><div id="trbody"></div><div class="row"><button class="bk">Назад</button></div></section><section id="shp" class="hide p"><h2>🛍 Магазин</h2><div id="shbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="rdl" class="hide p"><div id="rdbody"></div><div class="row"><button class="bk shbk">Назад</button></div></section><section id="arn" class="hide"><canvas id="arc"></canvas><div id="arhud"></div><div id="arjoy"><div id="arknob"></div></div><button id="arsw">🏏</button><button id="arex">🚪 Выйти</button><div id="ap-ar-tools" class="hide">
   <button type="button" id="ap-ar-admin" class="hide">🛠 Пульт</button>
   <button type="button" id="ap-ar-items">🎒 Предметы <b id="ap-ar-boxes"></b></button>
+  <button type="button" id="ap-ar-market">🎟 Рынок <b id="ap-ar-tokens"></b></button>
 </div>
 <div id="ap-beat-hud" class="hide">
   <strong class="ap-beat-title">♫ Бит Админити</strong>
@@ -782,15 +804,16 @@ var accountReloading=false, savedGameText=null;
 try{savedGameText=localStorage.getItem('vtd');var sv=JSON.parse(savedGameText);if(sv&&sv.own)M=sv}catch(e){}
 function fix(){M.done=M.done||{};M.claimed=M.claimed||{};M.inv=M.inv||{};M.promos=M.promos||{};M.opens=M.opens||0;M.used=M.used||{}}fix();
 function save(){
- if(accountReloading)return;
+ if(accountReloading)return false;
  M.lastSeen=Date.now();
  try{
    var current=localStorage.getItem('vtd');
-   if(current&&current!==savedGameText&&JSON.parse(current)?.accountRevision!==M.accountRevision)return;
+   if(current&&current!==savedGameText&&JSON.parse(current)?.accountRevision!==M.accountRevision)return false;
    var text=JSON.stringify(M);
    localStorage.setItem('vtd',text);
    savedGameText=text;
- }catch(e){}
+   return true;
+ }catch(e){return false}
 }
 var ET={walker:{hp:1,v:1,c:'#2a2236',r:12},runner:{hp:.55,v:1.8,c:'#2b5fd0',r:10},tank:{hp:2.8,v:.6,c:'#666b78',r:16},ghost:{hp:.9,v:1,c:'#cfd8ff',r:12},healer:{hp:1.2,v:.9,c:'#2fb36a',r:12},splitter:{hp:1.3,v:.9,c:'#8a3fd0',r:14},bat:{hp:.45,v:2.1,c:'#1a1026',r:9},mimic:{hp:1.3,v:1.25,c:'#e8741c',r:13},mini:{hp:.4,v:1.6,c:'#ff9a2e',r:8}};
 var DF={
@@ -1125,10 +1148,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.68',VOL=.8,MQ=[],CI=0;
+var VER='1.69',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.69',t:'Рынок Арены абьюза',a:['🎟 За трофеи Вечеринки Админити начисляются админ-жетоны. Их можно обменять на Верити, Turkey-ящик, рамку и Элемент админа.','🎪 Лавка работает на арене. После вечеринки участники могут потратить жетоны в лобби.']},
 {v:'1.68',t:'Автообновление на Android',a:['📲 Приложение при открытии проверяет, появилась ли новая версия игры на сайте, и загружает её автоматически.','💾 Последняя загруженная версия доступна без интернета. Обновления игры сохраняют твой прогресс.']},
 {v:'1.67',t:'Один аккаунт для сайта и APK',a:['👤 Сохрани личный код в разделе «Аккаунт» и войди по нему на другом устройстве. Код переносит ник, Верити, трофеи и прогресс.','📲 APK можно скачать прямо из меню игры.']},
 {v:'1.66',t:'Трофеи вечеринки',a:['🏆 Пять трофеев Вечеринки Админити за участие, админ-дроп, совместный бит и победы над двумя боссами','🎪 У трофеев вечеринки своя полка в коллекции. Любой полученный кубок можно поставить на витрину профиля.']},
@@ -3445,15 +3469,24 @@ function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown){var s=56,I=IM[(k|
  c.font='800 15px system-ui';c.textAlign='center';var nm=String(nick||'?').slice(0,14),tw=c.measureText(nm).width+14;c.fillStyle=me?'rgba(255,210,31,.95)':'rgba(10,6,20,.85)';c.beginPath();c.roundRect?c.roundRect(x-tw/2,y-s/2-30+bob,tw,21,10):c.rect(x-tw/2,y-s/2-30+bob,tw,21);c.fill();c.fillStyle=me?'#1a1000':(ncc||'#fff');c.fillText(nm,x,y-s/2-14+bob);
  for(var i=0;i<carry;i++){c.font='20px serif';c.fillText('📦',x-18+i*18,y+s/2+22)}
  if(st){for(var j=0;j<3;j++){var a=t*5+j*2.1;c.fillStyle='#ffd21f';c.font='16px serif';c.fillText('⭐',x+Math.cos(a)*24,y-s/2-40+Math.sin(a)*6)}}}
-function arDraw(cv2,t,B,beat,now){var c=cv2.getContext('2d'),d=AR.dpr||1,W2=cv2.width/d,H2=cv2.height/d,m=AR.me,Z=Math.max(.7,Math.min(1.2,W2/520));c.setTransform(d,0,0,d,0,0);
- var cx=Math.max(W2/2/Z,Math.min(AW-W2/2/Z,m.x)),cy=Math.max(H2/2/Z,Math.min(AH-H2/2/Z,m.y));if(AW*Z<W2)cx=AW/2;if(AH*Z<H2)cy=AH/2;
- c.fillStyle='#0c0618';c.fillRect(0,0,W2,H2);c.save();c.translate(W2/2,H2/2);c.scale(Z,Z);c.translate(-cx,-cy);
+function arView(canvas){
+ var ratio=AR.dpr||1, width=canvas.width/ratio, height=canvas.height/ratio, player=AR.me;
+ var zoom=Math.max(.7,Math.min(1.2,width/520)), halfX=width/(2*zoom), halfY=height/(2*zoom);
+ return {ratio:ratio,width:width,height:height,zoom:zoom,
+   x:halfX*2>AW?AW/2:Math.max(halfX,Math.min(AW-halfX,player.x)),
+   y:halfY*2>AH?AH/2:Math.max(halfY,Math.min(AH-halfY,player.y))};
+}
+function arDraw(cv2,t,B,beat,now){
+ var c=cv2.getContext('2d'),view=arView(cv2),W2=view.width,H2=view.height,m=AR.me;
+ c.setTransform(view.ratio,0,0,view.ratio,0,0);
+ c.fillStyle='#0c0618';c.fillRect(0,0,W2,H2);c.save();c.translate(W2/2,H2/2);
+ c.scale(view.zoom,view.zoom);c.translate(-view.x,-view.y);
  // пол
  var T=100;for(var i=0;i<AW/T;i++)for(var j=0;j<AH/T;j++){var X=i*T,Y=j*T,inDance=X>=700&&X<1300&&Y>=400&&Y<900;if(inDance){var h=(i*47+j*31+Math.floor(t*2)*60)%360;c.fillStyle='hsl('+h+',80%,'+(30+12*((i+j+Math.floor(t*2))%2))+'%)'}else c.fillStyle=(i+j)%2?'#1c1030':'#221438';c.fillRect(X,Y,T,T)}
  c.strokeStyle='#ff4dd2';c.lineWidth=10;c.strokeRect(5,5,AW-10,AH-10);
  if(beat)apBeatDraw(c,beat,now);
  // декор: колонки, DJ, столы, шары
- if(AR.party)apDJ(c,t);else{
+ if(AR.party){apDJ(c,t);apMarketStall(c)}else{
    c.fillStyle='#120a20';c.fillRect(820,30,360,110);c.fillStyle='#ff4dd2';c.font='900 34px system-ui';c.textAlign='center';c.fillText('DJ АДМИН',1000,100);
  }
  [[120,120],[1880,120],[120,1280],[1880,1280]].forEach(function(p,i){c.fillStyle='#0a0a12';c.fillRect(p[0]-50,p[1]-70,100,140);c.fillStyle='#333';var pul=1+.08*Math.sin(t*12+i);c.beginPath();c.arc(p[0],p[1]-25,26*pul,0,7);c.fill();c.beginPath();c.arc(p[0],p[1]+35,18*pul,0,7);c.fill()});
@@ -3478,6 +3511,7 @@ function arDraw(cv2,t,B,beat,now){var c=cv2.getContext('2d'),d=AR.dpr||1,W2=cv2.
  // мини-карта
  var mw=110,mh=77,mx=W2-mw-10,my=58;c.fillStyle='rgba(10,6,20,.75)';c.fillRect(mx,my,mw,mh);c.strokeStyle='#ff4dd2';c.lineWidth=2;c.strokeRect(mx,my,mw,mh);var sx=mw/AW,sy=mh/AH;c.fillStyle='#ffd21f';c.fillRect(mx+APT.x*sx-3,my+APT.y*sy-3,6,6);for(var id2 in AR.drops){var q=AR.drops[id2];c.fillStyle=ADK[q.k]?ADK[q.k].col:'#fff';c.fillRect(mx+q.x*sx-1,my+q.y*sy-1,2.5,2.5)}for(var u3 in AR.oth){c.fillStyle='#fff';c.fillRect(mx+AR.oth[u3].x*sx-2,my+AR.oth[u3].y*sy-2,4,4)}if(B&&B.alive){c.fillStyle=B.I.col;c.beginPath();c.arc(mx+B.x*sx,my+B.y*sy,5,0,7);c.fill()}c.fillStyle='#ffd21f';c.beginPath();c.arc(mx+m.x*sx,my+m.y*sy,3.5,0,7);c.fill();
  if(beat)AP_PADS.forEach(function(pad){c.fillStyle=pad.color;c.fillRect(mx+pad.x*sx-2,my+pad.y*sy-2,4,4)});
+ if(AR.party){c.fillStyle='#ffb673';c.fillRect(mx+AP_MARKET_POS.x*sx-2,my+AP_MARKET_POS.y*sy-2,4,4)}
  // HUD текст
  arHud(B,t)}
 function arDrawBoss(c,B,t){var I=B.I;if(B.alive){
@@ -5664,6 +5698,32 @@ function apDJ(c,t){
   c.font='900 16px system-ui';
   c.fillStyle='#ffe2aa';c.textAlign='center';c.fillText('DJ АДМИНИТИ',1000,185);
 }
+function apMarketStall(c){
+  if(!AP.marketArt){
+    var art=thCanvas(242,176), p=art.getContext('2d');
+    p.translate(121,88);
+    thGlow(p,0,0,110,'#e777554c');
+    thEllipse(p,0,58,106,17,'#140a20b0');
+    thShape(p,function(path){path.roundRect(-88,-40,176,102,8)},'#693a48','#bf816d',3);
+    p.fillStyle='#38223a';p.fillRect(-73,-34,146,52);
+    p.strokeStyle='#f3b67b';p.lineWidth=5;
+    [-76,76].forEach(function(x){p.beginPath();p.moveTo(x,-42);p.lineTo(x,24);p.stroke()});
+    thPoly(p,[[-99,-72],[99,-72],[111,-27],[-111,-27]],'#a4474d','#ffe5a8',3);
+    for(var stripe=0;stripe<6;stripe+=2){
+      var top=-99+stripe*33, bottom=-111+stripe*37;
+      thPoly(p,[[top,-70],[top+33,-70],[bottom+37,-29],[bottom,-29]],'#ffa265');
+    }
+    apChest(p,-44,-3,0);
+    thShape(p,function(path){path.ellipse(34,3,20,11,0,0,Math.PI*2)},'#d68455','#ffc17e',2.1);
+    thShape(p,function(path){path.ellipse(34,-3,20,11,0,0,Math.PI*2)},'#ffd077','#fff0b8',2.2);
+    thShape(p,function(path){path.roundRect(-94,10,188,14,5)},'#f5ac75','#5b3040',2.5);
+    thShape(p,function(path){path.roundRect(-62,28,124,27,7)},'#3e2236','#f6b77d',2);
+    p.font='900 17px system-ui';p.textAlign='center';p.fillStyle='#ffe2a7';
+    p.fillText('РЫНОК',0,47);
+    AP.marketArt=art;
+  }
+  c.drawImage(AP.marketArt,AP_MARKET_POS.x-121,AP_MARKET_POS.y-88);
+}
 function apBeatDraw(c,beat,now){
   var ready=beat.phase==='strike', boosted=beat.phase==='boost', still=thReducedMotion();
   if(boosted&&!still){
@@ -5746,6 +5806,16 @@ var AP_SCENES={intro:{seconds:25,title:'Возвращение Админити'
 var AP_CONTROLS=['coins','turkey','intro','stone','final'];
 var AP_LOOT=[{name:'5 гемов',chance:55,key:'gems'},{name:'400 монет',chance:29,key:'coins'},
   {name:'Turkey-ящик',chance:15,key:'turkey'},{name:'Элемент админа',chance:1,key:'element'}];
+var AP_MARKET_POS={x:1290,y:1190}, AP_MARKET_TITLE='🎟 Рынок вечеринки';
+var AP_TOKEN_AWARDS=[['apguest',4],['apdrop',4],['apbeat',6],['apstone',8],['apfinal',12]];
+var AP_MARKET_OFFERS=[
+  {id:'bronze',kind:'frame',name:'Бронзовая рамка',cost:4,detail:'Косметика для аватарки.'},
+  {id:'turkey',kind:'box',name:'Turkey-ящик',cost:7,detail:'Открывается в «Предметах вечеринки».'},
+  {id:'pumpkity',kind:'verity',name:TY.pumpkity.n,cost:12,detail:'Семечки блокируют лечение врага.'},
+  {id:'cranberrity',kind:'verity',name:TY.cranberrity.n,cost:16,detail:'Клюквенный соус замедляет врага.'},
+  {id:'pieity',kind:'verity',name:TY.pieity.n,cost:24,detail:'Кусочки пирога бьют по области.'},
+  {id:'adelem',kind:'pet',name:'Элемент админа',cost:34,detail:'Усиливает атаки рядом с носителем.'}
+];
 var AP={commands:{},verified:new Map(),key:null,busy:false,tab:'main',boxBusy:new Set(),
   show:null,seen:new Set(),sound:true,lastRewardCheck:0};
 var AP_BEAT={first:60000,repeat:180000,notice:9000,pulses:3,gap:5200,window:2500,lag:1000,
@@ -5889,6 +5959,8 @@ function apEarnTrophy(id,silent){
     else anShow(message);
     if(cur==='tro')trRender();
   }
+  apMarketBadges();
+  if($('ap-market-balance')&&!$('modal').classList.contains('hide'))apMarket();
   return true;
 }
 function apRestoreTrophies(){
@@ -5930,6 +6002,7 @@ function apRefreshItems(){
   lobbyBox.querySelector('b').textContent=count?' ×'+count:'';
   $('ap-ar-boxes').textContent=count?'×'+count:'';
   $('ap-ar-admin').classList.toggle('hide',!ADM);
+  apMarketBadges();
 }
 function apRefreshArena(){
   var now=Date.now(), live=apLive(now), open=arOpenNow(), button=$('arb');
@@ -6188,6 +6261,85 @@ function apTurkeyButton(){
   return count?'<button type="button" onclick="apOpenTurkey()">Подарок ×'+count+' · открыть</button>':'';
 }
 
+function apMarketWallet(){
+  var state=M.arn?.party;
+  var receipts=state?.id===AP_EVENT?state.market||{}:{};
+  // Trophy ownership supplies each reward once, including trophies earned before the market opened.
+  var earned=AP_TOKEN_AWARDS.reduce(function(sum,award){return sum+(M.tro?.[award[0]]?award[1]:0)},0);
+  var spent=AP_MARKET_OFFERS.reduce(function(sum,offer){
+    var paid=receipts[offer.id];
+    return sum+(Number.isSafeInteger(paid)&&paid>0?paid:0);
+  },0);
+  return {earned:earned,balance:Math.max(0,earned-spent),receipts:receipts};
+}
+function apMarketAccessible(wallet){
+  return cur==='arn'?AR.party&&apLive()&&!AP.show:apLive()||wallet.earned>0;
+}
+function apMarketBadges(){
+  var wallet=apMarketWallet();
+  $('ap-lobby-market').classList.toggle('hide',!apLive()&&!wallet.earned);
+  $('ap-lobby-tokens').textContent=wallet.balance;
+  $('ap-ar-tokens').textContent=wallet.balance;
+}
+function apMarketOwned(offer){
+  if(offer.kind==='verity')return !!M.own[offer.id];
+  if(offer.kind==='pet')return !!M.pet?.adelem;
+  if(offer.kind==='frame')return !!M.cos?.own?.frb;
+  return false;
+}
+function apMarketArt(offer){
+  if(offer.kind==='verity')return pic(offer.id,1,52);
+  if(offer.kind==='pet')return petImg('adelem',52);
+  if(offer.kind==='frame')return cosPrev('fr',cosGet('fr','b'));
+  return '<img src="'+TH_CRATE_ART+'" width="78" height="53" alt="">';
+}
+function apMarket(message){
+  var wallet=apMarketWallet();
+  if(!apMarketAccessible(wallet))return;
+  var existing=$('mt').textContent===AP_MARKET_TITLE&&!$('modal').classList.contains('hide');
+  var scroll=existing?$('mbox').scrollTop:0, detailsOpen=existing&&$('ap-market-rules').open;
+  var rules=AP_TOKEN_AWARDS.map(function(award){
+    return '<li>'+esc(TROM[award[0]].n)+' · +'+award[1]+' 🎟</li>';
+  }).join('');
+  var offers=AP_MARKET_OFFERS.map(function(offer){
+    var bought=wallet.receipts[offer.id]>0, owned=apMarketOwned(offer);
+    var button=bought?'Получено':owned?'В коллекции':offer.cost+' 🎟';
+    return '<article class="ap-market-card"><div class="ap-market-art">'+apMarketArt(offer)+'</div>'+
+      '<strong>'+esc(offer.name)+'</strong><small>'+esc(offer.detail)+'</small>'+
+      '<button type="button" data-ap-offer="'+offer.id+'" aria-label="'+esc(offer.name+' · '+button)+'"'+
+      (bought||owned||wallet.balance<offer.cost?' disabled':'')+'>'+button+'</button></article>';
+  }).join('');
+  mOpen(AP_MARKET_TITLE,'<div class="ap-market-balance" id="ap-market-balance">'+
+    '<b>Админ-жетоны</b><strong>'+wallet.balance+' 🎟</strong></div>'+
+    '<details class="ap-market-rules" id="ap-market-rules"'+(detailsOpen?' open':'')+
+    '><summary>Как заработать жетоны</summary><ul>'+rules+'</ul></details>'+
+    '<p id="ap-market-status" role="status">'+esc(message||'')+'</p><div class="ap-market-grid">'+offers+'</div>',
+    [['Закрыть',mClose]]);
+  $('mbox').scrollTop=message?0:scroll;
+}
+function apMarketBuy(id){
+  var offer=AP_MARKET_OFFERS.find(function(item){return item.id===id});
+  var wallet=apMarketWallet();
+  if(!offer||!apMarketAccessible(wallet)||wallet.balance<offer.cost||
+     wallet.receipts[id]>0||apMarketOwned(offer))return;
+  var state=apState(), inventory=M.own, key=id, value=1;
+  if(offer.kind==='frame'){cosFix();inventory=M.cos.own;key='frb'}
+  if(offer.kind==='pet'){petFix();inventory=M.pet}
+  if(offer.kind==='box'){inventory=state;key='turkey';value=apPresents()+1}
+  var previous=inventory[key];
+  inventory[key]=value;
+  var receipts=state.market||(state.market={});
+  receipts[id]=offer.cost;
+  if(!save()){
+    if(previous===undefined)delete inventory[key];
+    else inventory[key]=previous;
+    delete receipts[id];
+    return apMarket('Не удалось сохранить обмен. Попробуй ещё раз.');
+  }
+  apRefreshItems();
+  apMarket('Получено · '+offer.name);
+}
+
 function apTabs(){
   return '<div class="ap-tabs" role="group" aria-label="Админ-панель"><button type="button" data-ap-tab="main" aria-pressed="'+(AP.tab==='main')+'">Основное</button><button type="button" data-ap-tab="party" aria-pressed="'+(AP.tab==='party')+'">🎉 Вечеринка</button></div>';
 }
@@ -6306,6 +6458,9 @@ async function apAdminAction(kind){
 $('mc').addEventListener('click',function(event){
   var button=event.target.closest('button');
   if(!button||button.disabled)return;
+  if(button.dataset.apOffer&&$('mt').textContent===AP_MARKET_TITLE){
+    apMarketBuy(button.dataset.apOffer);return;
+  }
   if(button.dataset.apItem==='turkey'){apOpenTurkey();return}
   if(button.dataset.apItem==='crown'&&apChampion()){
     apState().wearCrown=!apWearCrown();
@@ -6321,6 +6476,14 @@ $('mc').addEventListener('click',function(event){
 $('ap-menu').onclick=arEnter;
 $('ap-items').onclick=apItems;
 $('ap-ar-items').onclick=apItems;
+$('ap-ar-market').onclick=$('ap-lobby-market').onclick=function(){apMarket()};
+$('arc').addEventListener('click',function(event){
+  if(cur!=='arn'||!AR.party||!AR.me||apArenaBlocked())return;
+  var rect=this.getBoundingClientRect(), view=arView(this);
+  var x=view.x+((event.clientX-rect.left)/rect.width-.5)*view.width/view.zoom;
+  var y=view.y+((event.clientY-rect.top)/rect.height-.5)*view.height/view.zoom;
+  if(Math.abs(x-AP_MARKET_POS.x)<=113&&Math.abs(y-AP_MARKET_POS.y)<=75)apMarket();
+});
 $('ap-ar-admin').onclick=function(){AP.tab='party';admOpen()};
 $('ap-music-btn').onclick=function(){
   AP.sound=!AP.sound;
