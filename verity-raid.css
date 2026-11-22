@@ -50,3 +50,22 @@
   .vr-cinematic #vr-tools {top:calc(65px + env(safe-area-inset-top,0px))}
   .vr-preview {bottom:calc(6px + env(safe-area-inset-bottom,0px));left:7px;font-size:10px}
 }
+
+#vr-roster {position:relative;color:#eef6e7}
+#vr-roster[hidden] {display:none}
+#vr-roster summary {
+  font:800 12px system-ui,sans-serif;cursor:pointer;
+  padding:6px 8px;border:1px solid #6eac75;border-radius:6px;background:#172a21f5;
+  white-space:nowrap;
+}
+#vr-roster[open] summary {background:#284435;outline:1px solid #a0db89}
+#vr-roster-list {
+  box-sizing:border-box;position:absolute;right:0;top:100%;z-index:1;
+  width:min(230px,60vw);max-height:min(36vh,235px);overflow:auto;overscroll-behavior:contain;
+  margin:5px 0 0;padding:4px 9px;list-style:none;border:1px solid #537f65;border-radius:8px;
+  background:#0e1b16fa;box-shadow:0 5px 20px #0008;
+}
+#vr-roster-list li {display:flex;align-items:center;gap:8px;font:700 13px system-ui,sans-serif;padding:5px 0}
+#vr-roster-list li+li {border-top:1px solid #ffffff20}
+#vr-roster-list li span {min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#vr-roster-list li small {margin-left:auto;color:#bcf6a1}

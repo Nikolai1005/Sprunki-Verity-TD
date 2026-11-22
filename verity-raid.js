@@ -3,10 +3,11 @@
   'use strict';
   const EVENT = 'raid-20261122';
   const ROOT = 'arena/cfg/' + EVENT;
-  const INTRO = 13000, WARMUP = 300000, TEST_WARMUP = 12000, INVASION = 25000, TRANSFORM = 5200;
+  const INTRO = 13000, WARMUP = 300000, TEST_WARMUP = 60000, INVASION = 25000, TRANSFORM = 5200;
   const SETTLE = 1600, SLOT = 800, SESSION = 3600000, ENDING = 20000, EPILOGUE = 12500;
   const BOSS = '1x1x1x1', UNIT = '1x1x1x1xty', UNIT_KEY = 'raidverity';
   const EDGE = 1020;
+  const motionPreference = window.matchMedia?.('(prefers-reduced-motion: reduce)');
   const battleMusic = {data:'verity-raid.mp3',volume:.51};
   const runs = new Map(), proofs = new Map();
   const completed = new Map();
@@ -102,7 +103,7 @@
 
   function session(config) {
     return {config,hp:3,downUntil:0,seen:new Set(),clock:0,score:{},rows:[],p1:[],p2:[],hud:'',
-      writes:new Set(),shake:0,phaseAt:0,wonAt:0,lastStage:''};
+      writes:new Set(),shake:0,phaseAt:0,wonAt:0,lastStage:'',rosterMarkup:null};
   }
 
   function makeTrial(stage) {
@@ -128,6 +129,7 @@
     const match=current(), state=stateAt(match,Date.now());
     AR.hudHtml=null;
     AR.hseen={};
+    $('vr-roster').open=false;
     Object.assign(AR.me,{x:state.split?1470:1320,y:820});
   }
 
@@ -388,7 +390,8 @@
       if(state.stage==='prison'&&match.test)anShow('Тест финала · '+UNIT+' показан на экране');
     }
     if(attack&&attack.mode==='hit'&&match.impact!==attack.key) {
-      match.impact=attack.key;match.shake=attack.kind==='domino'?.14:.32;
+      match.impact=attack.key;
+      if(!motionPreference?.matches)match.shake=attack.kind==='domino'?.14:.32;
       tone(attack.kind==='down'?67:112,.22,'triangle',.09,46);
     }
     if(attack&&['hit','trail'].includes(attack.mode)&&inZone(m,attack.rect)&&!match.seen.has(attack.key)&&now>=match.downUntil) {
@@ -532,6 +535,31 @@
     c.globalAlpha=1;
   }
 
+  function sparks(c,x,y,age,reach,color,angle=0,spread=Math.PI*2) {
+    if(motionPreference?.matches||age<=0||age>=1)return;
+    c.save();
+    c.translate(x,y);c.rotate(angle);
+    c.strokeStyle=color;c.lineCap='round';
+    for(let i=0;i<22;i++){
+      const direction=(i/22-.5)*spread;
+      const distance=reach*age*(.48+(i*11%19)/19);
+      const length=(15+i%5*7)*(1-age);
+      const px=Math.cos(direction), py=Math.sin(direction);
+      c.globalAlpha=(1-age)*(.45+(i%4)*.15);
+      c.lineWidth=2+i%3;
+      c.beginPath();c.moveTo(px*distance,py*distance);
+      c.lineTo(px*(distance+length),py*(distance+length));c.stroke();
+    }
+    c.restore();
+  }
+
+  function impactRing(c,x,y,age,r,color) {
+    if(motionPreference?.matches||age<=0||age>=1)return;
+    c.save();c.globalAlpha=(1-age)*.75;c.lineWidth=9*(1-age)+1;
+    c.strokeStyle=color;c.beginPath();c.ellipse(x,y,12+r*age,6+r*age*.45,0,0,Math.PI*2);c.stroke();
+    c.restore();
+  }
+
   function renderAttack(c,attack,t) {
     if(!attack?.rect||attack.mode==='rest')return;
     const {rect:[x,y,w,h],mode,kind,tick,move}=attack;
@@ -546,8 +574,14 @@
     }
     if(mode==='hit'&&beam) {
       c.shadowColor='#6bff98';c.shadowBlur=34;c.fillStyle='#ecffe5';
-      if(w>h)c.fillRect(x,y+h*.43,w,h*.14);
-      else c.fillRect(x+w*.42,y,w*.16,h);
+      const wave=(tick-move.warn)/move.hit, wide=w>h;
+      const taper=.12+.24*Math.sin(Math.PI*wave);
+      for(const [fraction,color] of [[taper*2,'#56ff457c'],[taper,'#acff9b'],[taper*.23,'#efffe2']]){
+        c.fillStyle=color;
+        if(wide)c.fillRect(x,y+h*(1-fraction)/2,w,h*fraction);
+        else c.fillRect(x+w*(1-fraction)/2,y,w*fraction,h);
+      }
+      sparks(c,x+w/2,y+h/2,wave,w*0.62,'#c5ffad',wide?0:Math.PI/2,Math.PI*1.5);
     }
     if(mode==='hit'&&kind==='domino'){
       c.fillStyle='#b1ff8d';c.strokeStyle='#131d12';c.lineWidth=4;
@@ -555,6 +589,21 @@
       c.fillRect(x+w*.36,dy-80,w*.28,96);
       c.strokeRect(x+w*.36,dy-80,w*.28,96);
       text(c,'• •',x+w*.5,dy-36,21,'#194a1d');
+    }
+    if(mode==='hit'&&(kind==='sword'||kind==='hand')){
+      const age=(tick-move.warn)/move.hit;
+      const cx=x+w/2, cy=kind==='sword'?y+h*.46:y+h*.32;
+      impactRing(c,cx,cy,age,w*.64,kind==='sword'?'#ceff7b':'#ffb760');
+      sparks(c,cx,cy,age,w*.9,kind==='sword'?'#a9ff52':'#ffd291',Math.PI/2,Math.PI*1.6);
+    }
+    if(mode==='trail'){
+      const fade=1-(tick-move.warn-move.hit)/move.trail;
+      c.globalAlpha=fade;
+      thPoly(c,[[x+w*.24,y],[x+w*.65,y+h*.28],[x+w*.42,y+h*.51],[x+w*.71,y+h*.72],[x+w*.55,y+h]],
+        null,'#a5ff72',9);
+      for(let i=0;i<12;i++)
+        text(c,i%2?'0':'1',x+w*(.29+(i*13%9)/19),y+(i*81+(1-fade)*330)%h,18,'#acffab','monospace');
+      c.globalAlpha=1;
     }
     if(mode==='warn'){
       c.fillStyle='#ff6953';c.fillRect(x,y,Math.min(w,w*progress),8);
@@ -642,18 +691,32 @@
     const t=Math.max(0,elapsed(now,state.at)), scale=Math.min(w/950,h/525);
     c.save();c.translate((w-950*scale)/2,(h-525*scale)/2-25);c.scale(scale,scale);
     if(state.stage==='intro'){
-      const lift=ease(t/2.1), fall=ease((t-8.3)/2.6), crash=t>10.9?Math.max(0,1-(t-10.9)*2.7):0;
-      c.save();c.translate(Math.sin(t*50)*crash*8,Math.sin(t*62)*crash*6);
-      thGlow(c,475,270,205,'#fba65734');
-      if(t>8.3)sceneFloor(c,t,0,-680*(1-fall));
-      else sceneFloor(c,t,0,112);
-      apAdminity(c,475,545-300*lift,74,t,0,false,true);
-      if(fall>.87)for(let i=0;i<5;i++)guard(c,558+i*53,394+i%2*28,14,'',t);
+      const jump=clamp((t-.55)/1.55,0,1), lift=1-(1-jump)**3;
+      const land=ease((t-8.3)/1.15), settle=ease((t-1.55)/.75);
+      const y=515-305*lift+22*settle+56*land;
+      const impact=clamp((t-9.15)/1.1,0,1), shake=motionPreference?.matches?0:Math.sin(impact*Math.PI)*5;
+      c.save();c.translate(Math.sin(t*35)*shake,Math.cos(t*41)*shake);
+      thGlow(c,475,250,190,'#fba65748');
+      sceneFloor(c,t);
+      const leap=clamp((t-.54)/1.3,0,1);
+      impactRing(c,475,396,leap,199,'#ffe08c');
+      sparks(c,475,410,leap,210,'#ffd29c',-Math.PI/2,Math.PI*1.2);
+      c.save();
+      c.beginPath();c.rect(0,0,950,450);c.clip();
+      const wave=t>1.65&&t<7.9?Math.sin(t*10):0;
+      const handX=545+wave*13, handY=y-47-wave*5;
+      thPoly(c,[[510,y+17],[534,y-8],[handX,handY]],null,'#aa5736',10);
+      thEllipse(c,handX,handY,10,10,'#ffdb94');
+      apAdminity(c,475,y,74,t,0,false,false);
+      c.restore();
+      impactRing(c,475,405,impact,174,'#ffcf91');
+      sparks(c,475,405,impact,145,'#ffcf91',-Math.PI/2,Math.PI*1.4);
+      for(let i=0;i<5;i++)guard(c,558+i*53,394+i%2*28,14,'',t);
       c.restore();
     } else if(state.stage==='invasion'){
       const open=ease((t-6.9)/3.2), split=ease((t-11.2)/3.1), fall=ease((t-12.8)/3.3);
       const emerge=ease((t-10)/5.2), tremor=open*(1-split*.8);
-      c.translate(Math.sin(t*38)*tremor*11,Math.cos(t*41)*tremor*7);
+      if(!motionPreference?.matches)c.translate(Math.sin(t*38)*tremor*6,Math.cos(t*41)*tremor*4);
       if(open)apPortal(c,648,209,149*open,171*open,t,AP_PORTALS.green||AP_PORTALS.red);
       if(emerge) {
         c.save();c.globalAlpha=emerge;
@@ -661,6 +724,20 @@
         c.restore();
       }
       sceneFloor(c,t,split);
+      const rupture=clamp((t-11.2)/2.15,0,1);
+      sparks(c,484,401,rupture,227,'#ffc573',-Math.PI/2,Math.PI*1.25);
+      impactRing(c,491,412,rupture,235,'#ff7a61');
+      if(rupture>0&&rupture<1&&!motionPreference?.matches) {
+        c.save();c.globalAlpha=1-rupture;
+        for(let i=0;i<10;i++){
+          c.save();
+          c.translate(491+(i-4.5)*27*rupture,415-Math.sin(rupture*Math.PI)*(34+i%4*27));
+          c.rotate(rupture*(i%2?4:-4));
+          thPoly(c,[[-11,-4],[4,-12],[14,3],[0,9]],'#793142','#ff8272',2);
+          c.restore();
+        }
+        c.restore();
+      }
       if(t>15.7&&t<18.5){
         for(const xx of [545,755]){
           thPoly(c,[[xx-32,349],[xx-16,330],[xx+29,339],[xx+43,365],[xx+10,377],[xx-29,370]],
@@ -677,16 +754,19 @@
           thPoly(c,[[367,265],[380,273]],null,'#6d331e',3);
         }
       }
-      if(t>24.1){c.fillStyle='rgba(181,255,193,'+Math.sin(clamp((t-24.1)/.9,0,1)*Math.PI)*.63+')';c.fillRect(0,0,950,525)}
+      impactRing(c,648,388,clamp((t-24)/1.05,0,1),330,'#b5ffc1');
     } else if(state.stage==='transform'){
       sceneFloor(c,t,1);
       thGlow(c,493,215,185+50*Math.sin(t*4),'#53fd284f');
-      const change=ease(t/4.8);
+      const change=ease(t/4.8), surge=clamp((t-2.35)/1.3,0,1);
+      impactRing(c,493,352,surge,268,'#77ff4a');
+      sparks(c,493,212,surge,281,'#a6ff6b');
       for(let i=0;i<17;i++){
         const a=i/17*6.28+t*.8,r=214-90*change;
         text(c,i%2?'0':'1',494+Math.cos(a)*r,233+Math.sin(a)*r*.73,19,'#9fef6a','monospace');
       }
-      c.save();c.translate(Math.sin(t*41)*5,Math.sin(t*36)*4);
+      c.save();
+      if(!motionPreference?.matches)c.translate(Math.sin(t*32)*2,Math.sin(t*29)*2);
       model(c,496,236,1.28+change*.45,t,{phase:t>2.4?2:1,pose:'rise',glow:change});
       c.restore();
     } else if(state.stage==='ending'){
@@ -699,6 +779,9 @@
       if(t>6.1&&t<18.2){
         const drop=ease((t-6.1)/1.2), glow=52+Math.sin(t*4)*12;
         thGlow(c,659,241+138*drop,glow,'#90fc405d');apDrawCrown(c,659,241+138*drop,.9);
+        const landing=clamp((t-7.15)/1.2,0,1);
+        impactRing(c,659,389,landing,96,'#ddff84');
+        sparks(c,659,379,landing,105,'#edff98',-Math.PI/2,Math.PI*1.4);
       }
       for(let i=0;i<3;i++)guard(c,547+i*61+ease((t-8.6)/2)*35,423+i%2*31,17,i===0?lead:'',t,i===0&&t>6);
       if(t>10.6){
@@ -758,12 +841,27 @@
     }
   }
 
+  function roster(match) {
+    const self=String(M.fb?.nick||'Ты');
+    const peers=Object.values(AR.oth).map(player=>String(player.n||'Хранитель'))
+      .sort((a,b)=>a.localeCompare(b,'ru'));
+    const names=[self,...peers];
+    const markup=names.map((nick,i)=>'<li title="'+esc(nick)+'"><span>'+esc(nick)+'</span>'+
+      (i===0?'<small>Ты</small>':'')+'</li>').join('');
+    if(match.rosterMarkup!==markup) {
+      $('vr-roster-count').textContent='Игроки · '+names.length;
+      $('vr-roster-list').innerHTML=markup;
+      match.rosterMarkup=markup;
+    }
+    return names.length;
+  }
+
   function hud(match,state,attack,now) {
     const scene=dialogues[state.stage], phaseTime=elapsed(now,state.at);
     const dealtFirst=Math.min(Math.ceil(match.config.hp/2),match.p1.reduce((sum,hit)=>sum+hit.v,0));
     const damaged=dealtFirst+match.p2.reduce((sum,hit)=>sum+hit.v,0);
     const left=state.phase===1?Math.max(Math.floor(match.config.hp/2),match.config.hp-damaged):Math.max(0,match.config.hp-damaged);
-    const players=Object.keys(AR.oth).length+1;
+    const players=roster(match);
     let markup='';
     if(state.stage==='waiting') {
       markup='<div class="vr-hud-panel"><strong>Боссфайт '+BOSS+'</strong><span>Вступление через '+apClock(state.at-now)+'</span></div>';
@@ -796,6 +894,7 @@
     const container=$('arhud');
     if(container.innerHTML!==markup&&match.hud!==markup){container.innerHTML=markup;match.hud=markup}
     $('arn').classList.toggle('vr-cinematic',!!scene);
+    $('vr-roster').hidden=!!scene;
     $('arsw').classList.toggle('cd',AR.me.cd>0||AR.me.stun>0||!match.hp);
   }
 
@@ -814,7 +913,7 @@
       '<label><input type="checkbox" id="vr-contest" checked'+(live?' disabled':'')+'> Турнир дубинок</label></div>'+
       '<div class="vr-admin-grid">'+button('start','Запустить для всех',busy||live)+button('enter','Войти на общую арену',!live)+
       button('stop','Закрыть общую арену',busy||!live)+'</div><hr>'+
-      '<h3>Тест на этом устройстве</h3><p>В полном тесте вечеринка длится 12 секунд. Кнопки ниже открывают отдельные сцены и атаки.</p>'+
+      '<h3>Тест на этом устройстве</h3><p>В полном тесте вечеринка длится 1 минуту. Кнопки ниже открывают отдельные сцены и атаки.</p>'+
       '<div class="vr-admin-grid">'+[['intro','Полный тест с открытия'],['warmup','DJ и турнир'],['invasion','Портал и раскол'],['phase1','Фаза I'],['transform','Превращение'],['phase2','Фаза II'],
         ['hand','Удар рукой'],['beam','Лазер'],['sword','Меч и след'],['domino','Домино ×6'],['surge','Усиленный луч'],
         ['down','Падение босса'],['ending','Корона и награда'],['prison','Тюрьма боссов']].map(([id,label])=>button('test-'+id,label)).join('')+
@@ -905,7 +1004,7 @@
 
   window.VerityRaid={isOpen,readConfig,join,spawn,sync,frame,swing,blocked,music,battleMusic};
   $('vr-menu').onclick=()=>arEnter({raid:true});
-  $('arn').insertAdjacentHTML('beforeend','<div id="vr-tools" class="hide"><button type="button" id="vr-sound" aria-pressed="true">♫ Музыка</button><button type="button" id="vr-open-admin" class="hide">🛠 Боссфайт</button></div>');
+  $('arn').insertAdjacentHTML('beforeend','<div id="vr-tools" class="hide"><details id="vr-roster"><summary id="vr-roster-count">Игроки</summary><ul id="vr-roster-list" aria-label="Игроки на арене"></ul></details><button type="button" id="vr-sound" aria-pressed="true">♫ Музыка</button><button type="button" id="vr-open-admin" class="hide">🛠 Боссфайт</button></div>');
   $('vr-sound').onclick=function(){sound=!sound;this.setAttribute('aria-pressed',sound);lmTick()};
   $('vr-open-admin').onclick=()=>{adminTab=true;admOpen()};
   const originalTabs=apTabs, originalPanel=admPanel, originalRefresh=apRefreshArena, originalScreen=scr;
