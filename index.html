@@ -686,14 +686,15 @@ body.ap-arena #modal {z-index:500}
 #account-status {margin:7px 0 0;color:var(--ink)}
 #account-status:empty {display:none}
 </style>
+<link rel="stylesheet" href="verity-raid.css">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.72</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.73</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
     <a id="apk-download" class="account-download" href="https://raw.githubusercontent.com/Nikolai1005/Sprunki-Verity-TD/android-downloads/Sprunki-Verity-TD.apk" target="_blank" rel="noopener">↓ Скачать APK</a>
   </div>
-  <button type="button" id="ap-menu" class="hide ap-launch"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
+  <button type="button" id="ap-menu" class="hide ap-launch"></button><button type="button" id="vr-menu" class="hide"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
 </section>
 <section id="game" class="hide">
 <div class="hud"><span class="chip">🪙 <b id="c"></b></span><span class="chip">❤ <b id="l"></b></span><span class="chip">🌊 <b id="w"></b><span id="wmx">/10</span></span><span class="chip" id="th-seed-chip">🎃 <b id="s"></b></span><span class="chip th-chip hide" id="th-chip"></span><span class="chip hide" id="cdy">🍬 <b id="cdyv"></b></span><span class="chip hide" id="phz"></span><span class="chip hide" id="ifc"></span><span class="chip hide" id="coc"></span><div class="fear"><i id="f"></i><span>Страх</span></div></div><div id="petbar" class="hide"></div><div id="hkbar" class="hide"></div><div id="rdbar" class="hide"></div><div id="cobar" class="hide"></div>
@@ -1197,10 +1198,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.72',VOL=.8,MQ=[],CI=0;
+var VER='1.73',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.73',t:'Боссфайт 1x1x1x1',a:['На общей арене появился новый рейд с двумя фазами и катсценами.','Победители получают 1x1x1x1xty.']},
 {v:'1.72',t:'Катсцены Летописи',a:['📜 У всех 12 глав Летописи появились короткие катсцены с анимацией, субтитрами и звуком.','▶️ Открой главу и нажми «Смотреть катсцену». Сцену можно поставить на паузу, пропустить или пересмотреть.']},
 {v:'1.71',t:'Плавное движение на Арене',a:['🎪 Позиции игроков приходят по отдельному потоку. Движение между полученными позициями сглаживается.']},
 {v:'1.70',t:'Лимитки и удары на Арене',a:['🦃 Админ открывает два лимитированных стока на рынке. Туркинити стоит 20 жетонов, Hacke-Turkity — 28.','🏏 Попади дубинкой по боссу вблизи. Удар виден и сразу снимает HP.','📦 Подойди к админ-ящику и ударь один раз. Все на арене увидят, кто забрал дроп.']},
@@ -1694,8 +1696,9 @@ async function onOpenSession(){
 }
 async function db(path,o){o=o||{};var t=await onAuth(),q=(o.q?o.q+'&':'')+'auth='+encodeURIComponent(t),init={method:o.m||'GET'};
  if(o.b!==undefined){init.body=JSON.stringify(o.b);init.headers={'Content-Type':'application/json'}}
+ if(o.etag)init.headers=Object.assign({},init.headers,{'X-Firebase-ETag':'true'});
  if(o.ifMatch)init.headers=Object.assign({},init.headers,{'If-Match':o.ifMatch});
- var r=await fetch(FBC.databaseURL.replace(/\/$/,'')+'/'+path+'.json?'+q,init),j=null;try{j=await r.json()}catch(e){}return{ok:r.ok,st:r.status,j:j}}
+ var r=await fetch(FBC.databaseURL.replace(/\/$/,'')+'/'+path+'.json?'+q,init),j=null;try{j=await r.json()}catch(e){}return{ok:r.ok,st:r.status,j:j,etag:o.etag?r.headers.get('ETag'):null}}
 function qs(k,v){return k+'='+encodeURIComponent(JSON.stringify(v))}
 async function onPing(){if(!onOk()||!M.fb||!M.fb.nick||ON.ban)return;
  try{await db('online/'+ON.uid,{m:'PUT',b:pzBody()})}catch(e){}}
@@ -3321,7 +3324,7 @@ var AR_MOVE_SEND=100, AR_PLAYER_POLL=170, AR_PLAYER_DELAY=235;
 var AR={cfg:null,me:null,oth:{},drops:{},boss:null,bd:{},sc:{},cut:null,hseen:{},pend:{},lastPut:0,raf:0,poll:0,keys:{},joy:null,bdm:0,bdSent:0,pts:0,toasts:[],wv:{},fx:[],lt:0};
 function arOpenNow(){
   var config=AR.cfg;
-  return (typeof apLive==='function'&&apLive())||!!(config?.on&&Date.now()<config.en);
+  return !!window.VerityRaid?.isOpen()||(typeof apLive==='function'&&apLive())||!!(config?.on&&Date.now()<config.en);
 }
 async function arCfgPoll(){
   if(!onOk())return;
@@ -3330,51 +3333,64 @@ async function arCfgPoll(){
     if(result.ok){
       AR.cfg=result.j;
       if(typeof apReadControl==='function')await apReadControl(AR.cfg);
+      await window.VerityRaid?.readConfig(AR.cfg);
       if(cur!=='arn'&&apMarketIsOpen())await apLoadStocks();
     }
     if(typeof apRefreshArena==='function')apRefreshArena();
-    if(cur==='arn'&&!arOpenNow())arExit('Арена закрылась.');
+    if(cur==='arn'&&!AR.raid?.test&&!arOpenNow())arExit('Арена закрылась.');
     if(result.ok&&typeof apRewardPoll==='function'&&cur!=='arn')await apRewardPoll();
   }catch(e){}
 }
 setInterval(arCfgPoll,15000);
 setTimeout(arCfgPoll,1000);
 function arFix(){M.arn=M.arn||{pts:0,got:{}};M.arn.got=M.arn.got||{}}
-async function arEnter(){
+async function arEnter(test){
+  var raidTest=test?.raidTest===true&&ADM;
   if(AR.joining||cur==='arn')return;
-  if(!arOpenNow()){
+  if(!raidTest&&!arOpenNow()){
     mOpen('Арена',Date.now()<AP_START?'<p>Вечеринка откроется 21 ноября в 20:00 МСК.</p>':'<p>Арена сейчас закрыта.</p>');
     return;
   }
-  if(!M.fb?.nick){
+  if(!raidTest&&!M.fb?.nick){
     mOpen('Вход на арену','<p>Выбери ник во вкладке «Друзья», чтобы остальные игроки видели тебя.</p>',
       [['Открыть «Друзья»',function(){mClose();scr('friends')}],['Закрыть',mClose]]);
     return;
   }
   AR.joining=true;
-  try{await onAuth()}catch(e){mOpen('Вход на арену','<p>Сервер недоступен. Попробуй зайти ещё раз.</p>');return}
+  try{if(!raidTest)await onAuth()}catch(e){mOpen('Вход на арену','<p>Сервер недоступен. Попробуй зайти ещё раз.</p>');return}
   finally{AR.joining=false}
-  if(!arOpenNow())return;
+  if(!raidTest&&!arOpenNow())return;
   arFix();
   AR.entry=(AR.entry||0)+1;
-  AR.party=apLive();
+  var wantsRaid=raidTest||test?.raid===true||(!test?.party&&window.VerityRaid?.isOpen());
+  AR.raid=wantsRaid?window.VerityRaid?.join(raidTest?test:null)||null:null;
+  if(test?.raid&&!AR.raid){
+    mOpen('Боссфайт','<p>Общая арена боссфайта сейчас закрыта.</p>');
+    return;
+  }
+  AR.party=!AR.raid&&apLive();
   AR.me={x:900+Math.random()*200,y:1050+Math.random()*80,carry:[],stun:0,sw:0,cd:0,face:1,mv:0};
   AR.oth=Object.create(null);AR.drops={};AR.toasts=[];AR.fx=[];AR.pend={};AR.keys={};AR.joy=null;AR.lastPut=0;
   AR.sentMoving=false;AR.forcePut=false;AR.lastPlayerSnapshot=-Infinity;AR.streamRetry=0;
   AR.beatWrites=new Set();AR.beatScore=null;AR.beatCue=null;
   AR.dropClaims=new Set();AR.dropsSynced=false;
   arUseBoss(null,{});
+  if(AR.raid)VerityRaid.spawn();
   scr('arn');arSize();AR.lt=0;
   if(!AR.raf)AR.raf=requestAnimationFrame(arLoop);
+  if(AR.raid?.test)return;
   arPut(1);arPollPlayers();arPoll();
+  if(AR.raid)return;
   arToast(AR.party?'🎉 Подойди к админ-ящику и ударь дубинкой, чтобы открыть его.':'Добро пожаловать на арену! Собирай дроп и неси в точку СБОРА 📦');
 }
 function arExit(message){
   if(cur!=='arn')return;
-  arSendDamage();
+  var test=AR.raid?.test;
+  if(!AR.raid)arSendDamage();
+  AR.raid=null;
   var uid=ON.uid, entry=++AR.entry;
   arClosePlayers();
-  if(uid&&onOk())Promise.resolve(AR.putTask).then(function(){
+  if(!test&&uid&&onOk())Promise.resolve(AR.putTask).then(function(){
     if(cur!=='arn'&&AR.entry===entry)return db('arena/p/'+uid,{m:'DELETE'});
   }).catch(function(){});
   AR.party=false;
@@ -3392,14 +3408,15 @@ function arSize(){
 addEventListener('resize',function(){if(cur==='arn')arSize()});
 function arPut(force){
   var player=AR.me, now=Date.now();
-  if(cur!=='arn'||!player||!ON.uid||!onOk())return;
+  if(cur!=='arn'||AR.raid?.test||!player||!ON.uid||!onOk())return;
   if(force)AR.forcePut=true;
   if(AR.putTask||!AR.forcePut&&now-AR.lastPut<(player.mv||AR.sentMoving?AR_MOVE_SEND:1500))return;
   AR.forcePut=false;
   AR.lastPut=now;
   var data={x:Math.round(player.x),y:Math.round(player.y),a:M.fb.fav||'verity',n:M.fb.nick,
     cs:typeof csStr==='function'?csStr():'',c:player.carry.length,s:player.sw>0?1:0,st:player.stun>0?1:0,f:player.face,t:{'.sv':'timestamp'}};
-  if(AR.party)data.pa=AP_EVENT;
+  if(AR.raid)data.pa=AR.raid.config.id;
+  else if(AR.party)data.pa=AP_EVENT;
   if(apWearCrown())data.cr=1;
   var uid=ON.uid, moving=player.mv, entry=AR.entry;
   AR.putTask=db('arena/p/'+uid,{m:'PUT',b:data}).then(function(result){
@@ -3411,7 +3428,7 @@ function arPut(force){
 function arReadPlayer(uid,row,received,now){
   if(uid===ON.uid)return;
   if(!row||!Number.isFinite(row.x)||!Number.isFinite(row.y)||!Number.isFinite(row.t)||
-    (AR.party?!apIsAttendee(row,now):row.pa||now-row.t>=12000)){
+    (AR.raid?row.pa!==AR.raid.config.id||now-row.t>=12000:AR.party?!apIsAttendee(row,now):row.pa||now-row.t>=12000)){
     delete AR.oth[uid];return;
   }
   var player=AR.oth[uid];
@@ -3495,7 +3512,7 @@ function arConnectPlayers(){
   }).catch(function(){if(entry===AR.entry)arClosePlayers()}).finally(function(){AR.streamConnecting=false});
 }
 async function arPollPlayers(){
-  if(cur!=='arn'||!onOk())return;
+  if(cur!=='arn'||AR.raid?.test||!onOk())return;
   if(AR.playersLive&&performance.now()-AR.playerStreamAt>4300)arClosePlayers();
   arConnectPlayers();
   if(AR.playersLive||AR.playerPolling)return;
@@ -3508,7 +3525,7 @@ async function arPollPlayers(){
 }
 setInterval(arPollPlayers,AR_PLAYER_POLL);
 async function arPoll(){
-  if(cur!=='arn'||!onOk()||AR.polling)return;
+  if(cur!=='arn'||AR.raid?.test||!onOk()||AR.polling)return;
   var entry=AR.entry;
   AR.polling=true;
   try{
@@ -3518,7 +3535,9 @@ async function arPoll(){
     AR.cfg=arena.cfg||AR.cfg;
     AR.bd=arena.bd||{};
     await apReadControl(AR.cfg);
+    await window.VerityRaid?.readConfig(AR.cfg);
     if(cur!=='arn'||entry!==AR.entry)return;
+    if(AR.raid){VerityRaid.sync(arena,Date.now());return}
     if(AR.party){apArenaFrame(now);apBeatSync(now)}
     else arUseBoss(arena.boss?.on?arena.boss:null,AR.bd);
 
@@ -3578,6 +3597,7 @@ function arDeliver(){var m=AR.me;if(!m.carry.length)return;arFix();var pts=0,c=0
  arToast('📦 Сдано! +'+pts+' очк.'+(c?' +'+c+' 🪙':'')+(g?' +'+g+' 💎':''));tone(660,.12,'triangle',.1,1320);AR.fx.push({x:APT.x,y:APT.y,t:0,k:'ring'});if(typeof trGive=='function'&&!(M.tro&&M.tro.arena14))try{trGive('arena14')}catch(e){}
  if(ON.uid)db('arena/sc/'+ON.uid,{m:'PUT',b:{v:M.arn.pts,n:M.fb.nick,t:{'.sv':'timestamp'}}}).catch(function(){});arPut(1)}
 function arSwing(){
+  if(AR.raid)return VerityRaid.swing();
   var m=AR.me;
   if(cur!=='arn'||!ON.uid||!m||m.cd>0||m.stun>0||apArenaBlocked())return;
   var beat=apBeatState(Date.now()), pad=apBeatStrike(beat,m);
@@ -3639,6 +3659,7 @@ function arBossCheck(){
 /* ---- цикл ---- */
 function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){return}var t=performance.now(),dt=Math.min(.05,(t-(AR.lt||t))/1000);AR.lt=t;var m=AR.me;
  var now=Date.now();
+ if(AR.raid){VerityRaid.frame(cv2,t,dt,now);if(cur==='arn')AR.raf=requestAnimationFrame(arLoop);return}
  if(AR.party){if(!apLive(now)){arExit('Вечеринка закончилась.');return}apArenaFrame(now)}
  var B=arBossState(), blocked=apArenaBlocked(), beat=apBeatState(now);
  // управление
@@ -4137,6 +4158,7 @@ var LMSCR=['menu','lobby','market','friends','pets','mail','ldb','tro','tasks','
 function lmWantedTrack(){
   if(!SND||!M.set?.mus||document.hidden||VOL<=0)return null;
   if(cur==='th-event'&&thOn())return THANKSGIVING_MUSIC;
+  if(cur==='arn'&&AR.raid)return VerityRaid.music();
   if(cur==='arn'&&AR.party&&window.AP&&apLive())return AP.sound?(AP.show?.command?.kind==='final'?AP_TENSION:AP_MUSIC):null;
   if(LMSCR.includes(cur)&&!pmWant()&&!musWant()&&!prOn())return LOBBY_MUSIC;
   return null;
@@ -4145,10 +4167,16 @@ async function lmLoad(context,track){
   if(track.requested)return;
   track.requested=true;
   try{
-    var raw=atob(track.data.split(',')[1]);
-    var bytes=Uint8Array.from(raw,function(byte){return byte.charCodeAt(0)});
-    track.buffer=await context.decodeAudioData(bytes.buffer);
-  }catch(e){return}
+    if(track.data.startsWith('data:')){
+      var raw=atob(track.data.split(',')[1]);
+      var bytes=Uint8Array.from(raw,function(byte){return byte.charCodeAt(0)});
+      track.buffer=await context.decodeAudioData(bytes.buffer);
+    }else{
+      var response=await fetch(track.data);
+      if(!response.ok)throw Error('audio '+response.status);
+      track.buffer=await context.decodeAudioData(await response.arrayBuffer());
+    }
+  }catch(e){track.requested=false;return}
   lmTick();
 }
 function lmStop(){
@@ -4167,7 +4195,7 @@ function lmTick(){
   var track=lmWantedTrack();
   if(LM.track!==track)lmStop();
   if(!track)return;
-  if((track===THANKSGIVING_MUSIC||track===AP_MUSIC||track===AP_TENSION)&&PM.on)pmStop();
+  if((track===THANKSGIVING_MUSIC||track===AP_MUSIC||track===AP_TENSION||track===window.VerityRaid?.battleMusic)&&PM.on)pmStop();
   var level=track.volume*VOL;
   if(LM.src){
     if(level!==LM.level)LM.g.gain.setTargetAtTime(level,AC.currentTime,.07);
@@ -6309,7 +6337,7 @@ function apRefreshArena(){
     card.dataset.label=label;
     card.innerHTML='<strong>'+label+'</strong><small>'+AP_SCHEDULE+' · Арена абьюза</small>';
   }
-  if(cur==='arn'&&!AR.party&&live){
+  if(cur==='arn'&&!AR.raid&&!AR.party&&live){
     AR.party=true;
     AR.oth=Object.create(null);AR.drops={};AR.me.carry=[];
     AR.dropClaims.clear();AR.dropsSynced=false;
@@ -6480,7 +6508,7 @@ function apArenaFrame(now){
   arUseBoss(apPartyBoss(now),AR.bd);
 }
 function apArenaBlocked(){
-  return cur==='arn'&&(!$('modal').classList.contains('hide')||AR.party&&(!apLive()||apCurrentScene(Date.now())));
+  return cur==='arn'&&(!$('modal').classList.contains('hide')||AR.raid&&VerityRaid.blocked()||AR.party&&(!apLive()||apCurrentScene(Date.now())));
 }
 
 function apLootRoll(signature){
@@ -6884,10 +6912,10 @@ $('mc').addEventListener('click',function(event){
   }
   if(!ADM||$('mt').textContent!=='🛠 Админ-панель')return;
   if(button.dataset.apTab){AP.tab=button.dataset.apTab;admPanel();return}
-  if(button.dataset.apItem==='arena'){mClose();if(cur!=='arn')arEnter();return}
+  if(button.dataset.apItem==='arena'){mClose();if(cur!=='arn')arEnter({party:true});return}
   if(button.dataset.apCommand)apAdminAction(button.dataset.apCommand);
 });
-$('ap-menu').onclick=arEnter;
+$('ap-menu').onclick=function(){arEnter({party:true})};
 $('ap-items').onclick=apItems;
 $('ap-ar-items').onclick=apItems;
 $('ap-ar-market').onclick=$('ap-lobby-market').onclick=apOpenMarket;
@@ -7557,4 +7585,5 @@ function lrSceneCage(c,t){
   lrFade(c,1-apMove(t,4.12,4.67));
 }
 </script>
+<script src="verity-raid.js"></script>
 </body></html>
