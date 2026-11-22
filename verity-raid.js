@@ -3,8 +3,11 @@
   'use strict';
   const EVENT = 'raid-20261122';
   const ROOT = 'arena/cfg/' + EVENT;
-  const INTRO = 13000, WARMUP = 300000, TEST_WARMUP = 60000, INVASION = 25000, TRANSFORM = 5200;
-  const SETTLE = 1600, SLOT = 800, SESSION = 3600000, ENDING = 20000, EPILOGUE = 12500;
+  const TIMED_ID = EVENT+'-timed-';
+  const INTRO = 13000, WARMUP = 300000, INVASION = 25000, TRANSFORM = 5200;
+  const SETTLE = 1600, SLOT = 800, LEGACY_SESSION = 3600000, ENDING = 20000, EPILOGUE = 12500;
+  const FIGHT_MINUTES = 10;
+  const RESULT_GRACE = 5000, LOSS_SCREEN = 20000;
   const BOSS = '1x1x1x1', UNIT = '1x1x1x1xty', UNIT_KEY = 'raidverity';
   const EDGE = 1020;
   const motionPreference = window.matchMedia?.('(prefers-reduced-motion: reduce)');
@@ -52,10 +55,12 @@
   const clamp = (v,lo,hi) => Math.max(lo,Math.min(hi,v));
   const ease = v => {v=clamp(v,0,1);return v*v*(3-2*v)};
   const current = () => AR.raid;
-  const invasionAt = config => config.at+INTRO+(config.warmup??WARMUP);
+  const invasionAt = config => config.at+INTRO+WARMUP;
   const bsAt = config => invasionAt(config)+INVASION;
   const tag = (id,kind,slot) => id+'-'+kind+'-'+slot;
-  const finishesAt = (config,wonAt) => wonAt?wonAt+ENDING+EPILOGUE+60000:config.at+SESSION;
+  const fightDeadline = config => config.fightMinutes?bsAt(config)+config.fightMinutes*60000:config.at+LEGACY_SESSION;
+  const finishesAt = (config,wonAt) => wonAt?wonAt+ENDING+EPILOGUE+60000:
+    fightDeadline(config)+(config.fightMinutes?RESULT_GRACE+LOSS_SCREEN:0);
   const isOpen = (now=Date.now()) => !!active && !active.stop && now<finishesAt(active,completed.get(active.id));
   const title = () => $('mt').textContent==='🛠 Админ-панель' && !$('modal').classList.contains('hide');
   const button = (key,label,disabled=false) => '<button type="button" data-vr="'+key+'"'+(disabled?' disabled':'')+'>'+label+'</button>';
@@ -71,7 +76,12 @@
           if(!await crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},await aPub(),ub64(proof.s),u8(proof.p)))return null;
           const row = JSON.parse(new TextDecoder().decode(ub64(proof.p)));
           if(row.event!==EVENT||row.kind!==kind||row.id!==id||!Number.isSafeInteger(row.at))return null;
-          if(kind==='start'&&(id!==EVENT+'-'+row.at||!Number.isInteger(row.hp)||row.hp<200||row.hp>6000||typeof row.contest!=='boolean'||!Number.isInteger(row.seed)||row.seed<0||row.seed>0xffffffff))return null;
+          if(kind==='start'){
+            const timed=id===TIMED_ID+row.at&&row.fightMinutes===FIGHT_MINUTES;
+            const legacy=id===EVENT+'-'+row.at&&row.fightMinutes===undefined;
+            if((!timed&&!legacy)||!Number.isInteger(row.hp)||row.hp<200||row.hp>6000||
+              typeof row.contest!=='boolean'||!Number.isInteger(row.seed)||row.seed<0||row.seed>0xffffffff)return null;
+          }
           return row;
         } catch {return null}
       })());
@@ -80,14 +90,14 @@
   }
 
   async function readConfig(cfg) {
-    const list = Object.entries(cfg?.[EVENT]||{}).filter(([id]) => /^raid-20261122-\d{13}$/.test(id))
-      .sort(([a],[b]) => b.localeCompare(a)).slice(0,8);
+    const list = Object.entries(cfg?.[EVENT]||{}).filter(([id]) => /^raid-20261122-(?:timed-)?\d{13}$/.test(id))
+      .sort(([a],[b]) => b.slice(-13).localeCompare(a.slice(-13))).slice(0,8);
     for(const [id,data] of list) {
       const start = await validate(data?.start,'start',id);
       if(!start)continue;
       const stop = await validate(data.stop,'stop',id);
       const stopAt=stop?.at>=start.at?stop.at:0;
-      runs.set(id,{event:EVENT,id,at:start.at,hp:start.hp,contest:start.contest,seed:start.seed,
+      runs.set(id,{event:EVENT,id,at:start.at,hp:start.hp,contest:start.contest,seed:start.seed,fightMinutes:start.fightMinutes,
         stop:Math.max(runs.get(id)?.stop||0,stopAt)});
     }
     const latest = [...runs.values()].sort((a,b) => b.at-a.at)[0];
@@ -103,15 +113,15 @@
 
   function session(config) {
     return {config,hp:3,downUntil:0,seen:new Set(),clock:0,score:{},rows:[],p1:[],p2:[],hud:'',
-      writes:new Set(),shake:0,phaseAt:0,wonAt:0,lastStage:'',rosterMarkup:null};
+      writes:new Set(),shake:0,phaseAt:0,wonAt:0,lastStage:'',rosterMarkup:null,portraits:new Map()};
   }
 
   function makeTrial(stage) {
     const now=Date.now();
-    const match=session({id:'trial',at:now,hp:224,contest:true,seed:17,warmup:TEST_WARMUP});
+    const match=session({id:'trial',at:now,hp:224,contest:true,seed:17,fightMinutes:FIGHT_MINUTES});
     match.test=true;
-    const battle=now-INTRO-TEST_WARMUP-INVASION;
-    match.config.at=({hand:battle,beam:battle,down:battle,sword:battle-20000,domino:battle-20000,surge:battle-20000,warmup:now-INTRO,invasion:now-INTRO-TEST_WARMUP,phase1:battle,phase2:battle-20000,
+    const battle=now-INTRO-WARMUP-INVASION;
+    match.config.at=({hand:battle,beam:battle,down:battle,sword:battle-20000,domino:battle-20000,surge:battle-20000,warmup:now-INTRO,invasion:now-INTRO-WARMUP,phase1:battle,phase2:battle-20000,
       transform:battle-20000,ending:battle-50000,prison:battle-80000})[stage]??now;
     if(['phase2','transform','ending','prison','sword','domino','surge'].includes(stage)) {
       match.phaseAt=stage==='transform'?now:now-TRANSFORM;
@@ -138,7 +148,7 @@
     const config=match.config, warm=config.at+INTRO, invasion=invasionAt(config), battle=bsAt(config);
     const split=now>=invasion+12500;
     if(match.override&&elapsed(now,match.override.at)<13)
-      return {stage:'fight',split:true,phase:match.phaseAt?2:1,at:match.override.at};
+      return {stage:'fight',split:true,phase:match.phaseAt?2:1,at:match.override.at,until:fightDeadline(config)};
     if(now<warm)return {stage:'intro',at:config.at,split:false};
     if(now<invasion)return {stage:'warmup',at:warm,until:invasion,split:false};
     if(now<battle)return {stage:'invasion',at:invasion,split};
@@ -147,9 +157,15 @@
       if(now<match.wonAt+ENDING+EPILOGUE)return {stage:'prison',at:match.wonAt+ENDING,split:true};
       return {stage:'done',at:match.wonAt+ENDING+EPILOGUE,split:true};
     }
-    if(match.phaseAt&&now>=match.phaseAt&&now<match.phaseAt+TRANSFORM)return {stage:'transform',at:match.phaseAt,split:true,phase:2};
+    const until=fightDeadline(config);
+    if(now>=until){
+      const checking=now<until+RESULT_GRACE;
+      return {stage:checking?'checking':'expired',at:checking?until:until+RESULT_GRACE,split:true};
+    }
+    if(match.phaseAt&&now>=match.phaseAt&&now<match.phaseAt+TRANSFORM)
+      return {stage:'transform',at:match.phaseAt,until,split:true,phase:2};
     const second=match.phaseAt&&now>=match.phaseAt+TRANSFORM;
-    return {stage:'fight',at:second?match.phaseAt+TRANSFORM:battle,phase:second?2:1,split:true};
+    return {stage:'fight',at:second?match.phaseAt+TRANSFORM:battle,until,phase:second?2:1,split:true};
   }
 
   function records(board,config,kind,from,to,now) {
@@ -179,7 +195,8 @@
   }
 
   function resolve(match,board,now) {
-    const config=match.config, warm=config.at+INTRO, invasion=invasionAt(config), end=config.stop||config.at+SESSION;
+    const config=match.config, warm=config.at+INTRO, invasion=invasionAt(config),
+      end=Math.min(config.stop||Infinity,fightDeadline(config));
     if(config.contest&&now>=warm) {
       match.score={};
       for(const hit of records(board,config,'pvp',warm,Math.min(invasion,end),now)) {
@@ -262,6 +279,7 @@
     match.config=runs.get(match.config.id)||match.config;
     if(!AR.playersLive&&performance.now()-AR.lastPlayerSnapshot>410)arReadPlayers(arena.p);
     resolve(match,arena.bd,now);
+    presentPlayers(match);
     const state=stateAt(match,now);
     for(const [id,hit] of Object.entries(arena.hits?.[ON.uid]||{})) {
       if(hit?.pa!==match.config.id||AR.hseen[id])continue;
@@ -378,6 +396,7 @@
     const attack=attackAt(match,state,now);
     if(state.stage!==match.lastStage) {
       match.lastStage=state.stage;
+      if(state.stage==='checking'&&!match.test)arPoll();
       if(state.stage==='warmup'&&match.test)
         AR.oth.practice={x:1378,y:820,n:'Тренировочный Верити',a:'verity',f:-1};
       if(state.stage==='invasion'||state.stage==='fight') {
@@ -687,8 +706,69 @@
     if(active&&nick)text(c,nick,x,y-r-11,15,'#ffe584');
   }
 
+  function presentPlayers(match) {
+    const self=match.test?'me':ON.uid;
+    const people=[{uid:self,n:M.fb?.nick||'Ты',a:M.fb?.fav||'verity'}];
+    for(const [uid,player] of Object.entries(AR.oth)) {
+      if(uid!==self&&uid!=='practice')people.push({uid,n:player.n||'Хранитель',a:player.a||'verity'});
+    }
+    for(const player of people)match.portraits.set(player.uid,player.a);
+    return people.sort((a,b)=>String(a.uid).localeCompare(String(b.uid)));
+  }
+
+  function victoryCast(match,players) {
+    const winners=fighters(match);
+    if(!winners.length)return players;
+    const lead=(match.config.seed||0)%winners.length;
+    const ordered=winners.slice(lead).concat(winners.slice(0,lead));
+    const cast=ordered.map(([uid,n])=>players.find(p=>p.uid===uid)||
+      {uid,n,a:match.portraits.get(uid)||'verity'});
+    return cast.concat(players.filter(p=>!winners.some(([uid])=>uid===p.uid)));
+  }
+
+  function renderCast(c,players,left,right,y,t,lead=0,columns=4) {
+    const bob=motionPreference?.matches?0:1;
+    const perRow=Math.min(columns,players.length), step=(right-left)/Math.max(1,perRow-1);
+    const count=players.length;
+    if(!count)return;
+    for(let i=0;i<count;i++){
+      const player=players[i], row=Math.floor(i/perRow), col=i%perRow;
+      const rowSize=Math.min(perRow,count-row*perRow);
+      const x=(left+right-(rowSize-1)*step)/2+col*step+(i===0?lead:0);
+      const yy=y-row*60, radius=20, cy=yy+Math.sin(t*3.4+i)*3*bob;
+      const selected=lead>0&&i===0;
+      const sprite=IM[player.a+'1']||IM.verity1;
+      thEllipse(c,x,yy+radius,23,7,'#09090f9e');
+      thGlow(c,x,cy,radius*2,selected?'#efff9480':'#a9c8ff36');
+      if(sprite?.complete&&sprite.naturalWidth) {
+        c.save();c.beginPath();c.arc(x,cy,radius,0,Math.PI*2);c.clip();
+        c.drawImage(sprite,x-radius,cy-radius,radius*2,radius*2);c.restore();
+        c.strokeStyle=selected?'#f5ffb8':'#d5e4ff';c.lineWidth=2;
+        c.beginPath();c.arc(x,cy,radius,0,Math.PI*2);c.stroke();
+      } else guard(c,x,cy,radius,'',t);
+      c.font='800 23px system-ui';
+      const characters=Array.from(String(player.n));
+      const nick=characters.length>19?characters.slice(0,18).join('')+'…':characters.join('');
+      const maxText=Math.min(156,step-12);
+      const width=Math.min(maxText,c.measureText(nick).width)+14, labelY=cy-radius-31;
+      c.fillStyle=selected?'#40532a':'#0a1120ee';c.fillRect(x-width/2,labelY,width,26);
+      c.fillStyle='#f7fbff';c.textAlign='center';c.fillText(nick,x,labelY+21,maxText);
+    }
+  }
+
+  function sceneLight(c,x,y,t,intensity,color) {
+    c.save();
+    c.globalAlpha=intensity;
+    const spread=motionPreference?.matches?0:22*Math.sin(t*1.15);
+    thPoly(c,[[x-12,0],[x+12,0],[x+190+spread,y],[x-185+spread,y]],
+      thGradient(c,x,0,x,y,['#ffffff00',color,'#ffffff00']));
+    thEllipse(c,x+spread,y,140,19,color);
+    c.restore();
+  }
+
   function cinematic(c,w,h,match,state,now) {
     const t=Math.max(0,elapsed(now,state.at)), scale=Math.min(w/950,h/525);
+    const players=presentPlayers(match);
     c.save();c.translate((w-950*scale)/2,(h-525*scale)/2-25);c.scale(scale,scale);
     if(state.stage==='intro'){
       const jump=clamp((t-.55)/1.55,0,1), lift=1-(1-jump)**3;
@@ -696,6 +776,7 @@
       const y=515-305*lift+22*settle+56*land;
       const impact=clamp((t-9.15)/1.1,0,1), shake=motionPreference?.matches?0:Math.sin(impact*Math.PI)*5;
       c.save();c.translate(Math.sin(t*35)*shake,Math.cos(t*41)*shake);
+      sceneLight(c,475,394,t,.62,'#f6ba634d');
       thGlow(c,475,250,190,'#fba65748');
       sceneFloor(c,t);
       const leap=clamp((t-.54)/1.3,0,1);
@@ -711,13 +792,20 @@
       c.restore();
       impactRing(c,475,405,impact,174,'#ffcf91');
       sparks(c,475,405,impact,145,'#ffcf91',-Math.PI/2,Math.PI*1.4);
-      for(let i=0;i<5;i++)guard(c,558+i*53,394+i%2*28,14,'',t);
+      renderCast(c,players,185,765,432,t,0,5);
       c.restore();
     } else if(state.stage==='invasion'){
       const open=ease((t-6.9)/3.2), split=ease((t-11.2)/3.1), fall=ease((t-12.8)/3.3);
       const emerge=ease((t-10)/5.2), tremor=open*(1-split*.8);
       if(!motionPreference?.matches)c.translate(Math.sin(t*38)*tremor*6,Math.cos(t*41)*tremor*4);
-      if(open)apPortal(c,648,209,149*open,171*open,t,AP_PORTALS.green||AP_PORTALS.red);
+      if(open){
+        sceneLight(c,648,407,t,open*.8,'#77ff7844');
+        apPortal(c,648,209,149*open,171*open,t,AP_PORTALS.green||AP_PORTALS.red);
+        for(let i=0;i<18&&!motionPreference?.matches;i++){
+          const a=i/18*6.28+t*.95, r=(163+12*Math.sin(i+t*2))*open;
+          text(c,i%2?'0':'1',648+Math.cos(a)*r,209+Math.sin(a)*r,12+i%3*3,'#aaff897d','monospace');
+        }
+      }
       if(emerge) {
         c.save();c.globalAlpha=emerge;
         model(c,648,185+54*emerge,1.75,t,{pose:t>18.5?'draw':t>15.7?'':'rise',glow:.25*open});
@@ -745,7 +833,7 @@
           thPoly(c,[[xx-18,366],[xx-13,357],[xx-3,353],[xx+12,354],[xx+20,364]],null,'#488b26',3);
         }
       }
-      for(let i=0;i<5;i++)guard(c,549+i*65,403+(i%2)*32,13,'',t);
+      renderCast(c,players,520,860,452,t,0,3);
       if(fall<1){
         const shove=ease((t-7.2)/1.4);
         apAdminity(c,352-205*shove-132*fall,280-68*shove+340*fall,58,t,.8,true,false);
@@ -757,6 +845,7 @@
       impactRing(c,648,388,clamp((t-24)/1.05,0,1),330,'#b5ffc1');
     } else if(state.stage==='transform'){
       sceneFloor(c,t,1);
+      sceneLight(c,494,398,t,.65,'#77ff6650');
       thGlow(c,493,215,185+50*Math.sin(t*4),'#53fd284f');
       const change=ease(t/4.8), surge=clamp((t-2.35)/1.3,0,1);
       impactRing(c,493,352,surge,268,'#77ff4a');
@@ -769,9 +858,9 @@
       if(!motionPreference?.matches)c.translate(Math.sin(t*32)*2,Math.sin(t*29)*2);
       model(c,496,236,1.28+change*.45,t,{phase:t>2.4?2:1,pose:'rise',glow:change});
       c.restore();
+      renderCast(c,players,530,840,453,t,0,3);
     } else if(state.stage==='ending'){
-      const people=fighters(match);
-      const lead=people.length?people[(match.config.seed||0)%people.length][1]:'Хранитель';
+      const cast=victoryCast(match,players);
       const fall=ease((t-4.4)/2.8), zoom=ease((t-6.4)/1.9)*(1-ease((t-10.4)/1.5));
       c.translate(-230*zoom,-175*zoom);c.scale(1+zoom*.40,1+zoom*.40);
       sceneFloor(c,t,1);
@@ -783,7 +872,7 @@
         impactRing(c,659,389,landing,96,'#ddff84');
         sparks(c,659,379,landing,105,'#edff98',-Math.PI/2,Math.PI*1.4);
       }
-      for(let i=0;i<3;i++)guard(c,547+i*61+ease((t-8.6)/2)*35,423+i%2*31,17,i===0?lead:'',t,i===0&&t>6);
+      renderCast(c,cast,540,840,451,t,Math.min(cast.length>1?38:0,ease((t-8.6)/2)*38),3);
       if(t>10.6){
         const inPortal=ease((t-10.6)/1.2);
         apPortal(c,800,283,64*inPortal,82*inPortal,t,AP_PORTALS.green||AP_PORTALS.red);
@@ -875,8 +964,13 @@
       markup='<div class="vr-hud-panel vr-boss"><small>ФАЗА '+(state.phase===1?'I':'II')+' · '+players+' на арене</small><strong>'+BOSS+'</strong>'+
         '<div class="vr-meter" role="meter" aria-label="Здоровье босса" aria-valuenow="'+left+'" aria-valuemin="0" aria-valuemax="'+match.config.hp+
         '"><i style="width:'+(left/match.config.hp*100)+'%"></i></div><span>'+left+' / '+match.config.hp+' HP</span>'+
+        (state.until&&match.config.fightMinutes?'<span class="vr-clock">Осталось '+apClock(state.until-now)+'</span>':'')+
         (!scene?'<span class="vr-status">'+status+'</span><span class="vr-health">'+('♥'.repeat(Math.max(0,match.hp)))+
           ('♡'.repeat(3-Math.max(0,match.hp)))+(match.hp?'':' · Возвращение через '+apClock(match.downUntil-now))+'</span>':'')+'</div>';
+    } else if(state.stage==='checking') {
+      markup='<div class="vr-hud-panel"><strong>Время вышло</strong><span>Считаем последние удары…</span></div>';
+    } else if(state.stage==='expired') {
+      markup='<div class="vr-hud-panel"><strong>Время вышло</strong><span>1x1x1x1 остался на арене.</span></div>';
     } else if(state.stage==='done') {
       markup='<div class="vr-hud-panel"><strong>Босс повержен</strong><span>Боссы идут… · Следующее обновление</span></div>';
     }
@@ -901,19 +995,20 @@
   function music() {
     if(!sound)return null;
     const stage=stateAt(current(),Date.now()).stage;
-    return stage==='warmup'||stage==='intro'||stage==='waiting'?AP_MUSIC:stage==='done'?null:battleMusic;
+    return stage==='warmup'||stage==='intro'||stage==='waiting'?AP_MUSIC:
+      ['done','checking','expired'].includes(stage)?null:battleMusic;
   }
 
   function renderAdmin(message='') {
     if(!ADM)return;
     const live=isOpen();
     const controls='<div class="vr-admin"><h3>🟢 Боссфайт '+BOSS+'</h3>'+
-      '<p>Запуск откроет вход всем игрокам. После вступления DJ играет 5 минут, затем начинается вторжение.</p>'+
+      '<p>Запуск откроет вход всем игрокам. После вступления DJ играет 5 минут. После сцены вторжения у игроков будет 10 минут на победу.</p>'+
       '<div class="ap-line"><label>HP босса <input type="number" min="200" max="6000" step="1" id="vr-hp" value="1344"'+(live?' disabled':'')+'></label>'+
       '<label><input type="checkbox" id="vr-contest" checked'+(live?' disabled':'')+'> Турнир дубинок</label></div>'+
       '<div class="vr-admin-grid">'+button('start','Запустить для всех',busy||live)+button('enter','Войти на общую арену',!live)+
       button('stop','Закрыть общую арену',busy||!live)+'</div><hr>'+
-      '<h3>Тест на этом устройстве</h3><p>В полном тесте вечеринка длится 1 минуту. Кнопки ниже открывают отдельные сцены и атаки.</p>'+
+      '<h3>Тест на этом устройстве</h3><p>Полный тест идёт по тому же таймеру. Кнопки ниже сразу открывают отдельные сцены и атаки.</p>'+
       '<div class="vr-admin-grid">'+[['intro','Полный тест с открытия'],['warmup','DJ и турнир'],['invasion','Портал и раскол'],['phase1','Фаза I'],['transform','Превращение'],['phase2','Фаза II'],
         ['hand','Удар рукой'],['beam','Лазер'],['sword','Меч и след'],['domino','Домино ×6'],['surge','Усиленный луч'],
         ['down','Падение босса'],['ending','Корона и награда'],['prison','Тюрьма боссов']].map(([id,label])=>button('test-'+id,label)).join('')+
@@ -939,8 +1034,8 @@
       await readConfig({[EVENT]:check.j});
       if(kind==='start'&&isOpen())throw Error('Общая арена уже открыта.');
       if(kind==='stop'&&!isOpen())throw Error('Общая арена уже закрыта.');
-      const at=kind==='start'?Date.now()+15000:Date.now(), id=kind==='start'?EVENT+'-'+at:active.id;
-      const row={event:EVENT,kind,id,at,...(kind==='start'?{hp,contest,seed:crypto.getRandomValues(new Uint32Array(1))[0]}:{})};
+      const at=kind==='start'?Date.now()+15000:Date.now(), id=kind==='start'?TIMED_ID+at:active.id;
+      const row={event:EVENT,kind,id,at,...(kind==='start'?{hp,contest,fightMinutes:FIGHT_MINUTES,seed:crypto.getRandomValues(new Uint32Array(1))[0]}:{})};
       const proof=await apSign(row);
       const body={...(check.j||{})};
       body[id]={...body[id],[kind]:proof};
