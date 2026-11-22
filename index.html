@@ -272,9 +272,39 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 .lrpg{margin:12px 0;padding:12px;border-radius:12px;background:linear-gradient(180deg,#f5e6c4,#e8d2a0);color:#3a2610;border:3px solid #8a6a2a;box-shadow:0 6px 0 #4a3410,inset 0 0 30px rgba(120,80,20,.25)}
 .lrpg h3{margin:8px 0 4px;font:800 18px Georgia,serif;color:#5a2a0a}.lrpg p{margin:6px 0;font:500 15px/1.45 Georgia,serif}
 .lrpg.lk{background:#2a2016;color:#a89878;border-color:#4a3a22;box-shadow:0 6px 0 #1a120a}.lrpg.lk h3{color:#c8b088}.lrpg.lk .mu{color:#8a7a5a!important}
-.lrpg.nw{animation:lrglow 1.6s ease-in-out infinite alternate}@keyframes lrglow{to{box-shadow:0 6px 0 #4a3410,0 0 22px rgba(255,210,31,.7)}}
+.lrpg.lr-unread{animation:lrglow 1.6s ease-in-out infinite alternate}@keyframes lrglow{to{box-shadow:0 6px 0 #4a3410,0 0 22px rgba(255,210,31,.7)}}
 .lrart{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;border:2px solid #8a6a2a}
 .lrlock{font-size:34px;text-align:center}.lrnew{font-style:normal;font:800 11px system-ui;background:#d9302a;color:#fff;border-radius:6px;padding:2px 6px;vertical-align:middle}
+.lr-play{margin:6px 0 4px;min-height:44px;background:#593719;border:2px solid #9e692e;color:#fff0c9;border-radius:8px}
+#lr-scene{
+  width:min(720px,calc(100% - 24px));max-width:none;max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);
+  padding:0;overflow:auto;overscroll-behavior:contain;border:2px solid #bd9455;border-radius:14px;
+  background:#211626;color:#fff0d2;box-shadow:0 14px 70px #0e0713c7;
+}
+#lr-scene::backdrop{background:#0d0715e8}
+#lr-scene h2{
+  margin:0;padding:11px 16px;font:800 clamp(16px,4.5vw,22px) Georgia,serif;color:#ffe5ad;
+  background:linear-gradient(110deg,#624124,#352238);border-bottom:1px solid #ac8556;
+}
+#lr-scene-art{width:100%;height:auto;border:0;border-radius:0;box-shadow:none;background:#130e1e}
+#lr-scene-caption{
+  margin:0;min-height:3.6em;padding:9px 14px 7px;display:grid;place-content:center;text-align:center;
+  font:700 clamp(14px,3.85vw,18px)/1.29 Georgia,serif;color:#fff4e0;
+}
+#lr-scene-progress{display:block;width:calc(100% - 28px);height:6px;margin:0 14px;accent-color:#efbb70}
+.lr-scene-actions{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:9px 14px 12px}
+.lr-scene-actions button{min-height:44px;background:#3e2a3f;border:2px solid #976d59;color:#ffe7be;border-radius:8px}
+#lr-scene-skip{background:#643e31;border-color:#cb9a61}
+#lr-scene button:focus-visible,.lr-play:focus-visible{outline-color:#ca791c}
+@media(orientation:landscape) and (max-height:510px){
+  #lr-scene{width:min(560px,calc(100% - 24px))}
+  #lr-scene h2{padding:8px 14px;font-size:17px}
+  #lr-scene-art{
+    height:clamp(74px,calc(100vh - 196px),313px);height:clamp(74px,calc(100dvh - 196px),313px);object-fit:contain;
+  }
+  #lr-scene-caption{min-height:2.9em;padding:6px 14px;font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.lrpg.lr-unread{animation:none}}
 #lrb{background:linear-gradient(90deg,#5a3a12,#8a6a2a);color:#fff3d0;border-color:#d9a84a}
 #busbar{position:fixed;left:50%;top:6px;transform:translateX(-50%);z-index:60;display:none;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:rgba(20,12,0,.85);border:1px solid #ffc21a;color:#ffe08a;font:800 11px system-ui;pointer-events:none;max-width:92vw}
 #busbar.on{display:flex}#busbar i{width:110px;height:7px;border-radius:999px;background:rgba(255,255,255,.15);overflow:hidden}#busbar i b{display:block;height:100%;background:linear-gradient(90deg,#ff4d1a,#ffc21a)}#busbar em{font-style:normal}
@@ -657,7 +687,7 @@ body.ap-arena #modal {z-index:500}
 #account-status:empty {display:none}
 </style>
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.71</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.72</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -776,6 +806,16 @@ body.ap-arena #modal {z-index:500}
   </figcaption></figure>
   <p>Готовь блюда между волнами, зови Верити за стол и собирай награды праздничного пропуска.</p>
   <div class="row"><button type="button" id="th-welcome-go" autofocus>🍂 К празднику</button><button type="button" id="th-welcome-close">Позже</button></div>
+</dialog>
+<dialog id="lr-scene" aria-labelledby="lr-scene-title">
+  <h2 id="lr-scene-title"></h2>
+  <canvas id="lr-scene-art" width="960" height="540" aria-hidden="true"></canvas>
+  <p id="lr-scene-caption" aria-live="polite" aria-atomic="true"></p>
+  <progress id="lr-scene-progress" value="0" aria-label="Ход катсцены"></progress>
+  <div class="lr-scene-actions">
+    <button type="button" id="lr-scene-pause" autofocus>Пауза</button>
+    <button type="button" id="lr-scene-skip">Пропустить</button>
+  </div>
 </dialog>
 <section id="ap-scene" class="hide" role="dialog" aria-modal="true" aria-label="Катсцена вечеринки">
   <canvas id="ap-scene-canvas" width="960" height="540" aria-hidden="true"></canvas>
@@ -1157,10 +1197,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.71',VOL=.8,MQ=[],CI=0;
+var VER='1.72',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.72',t:'Катсцены Летописи',a:['📜 У всех 12 глав Летописи появились короткие катсцены с анимацией, субтитрами и звуком.','▶️ Открой главу и нажми «Смотреть катсцену». Сцену можно поставить на паузу, пропустить или пересмотреть.']},
 {v:'1.71',t:'Плавное движение на Арене',a:['🎪 Позиции игроков приходят по отдельному потоку. Движение между полученными позициями сглаживается.']},
 {v:'1.70',t:'Лимитки и удары на Арене',a:['🦃 Админ открывает два лимитированных стока на рынке. Туркинити стоит 20 жетонов, Hacke-Turkity — 28.','🏏 Попади дубинкой по боссу вблизи. Удар виден и сразу снимает HP.','📦 Подойди к админ-ящику и ударь один раз. Все на арене увидят, кто забрал дроп.']},
 {v:'1.69',t:'Рынок Арены абьюза',a:['🎟 За трофеи Вечеринки Админити начисляются админ-жетоны. Их можно обменять на Верити, Turkey-ящик, рамку и Элемент админа.','🎪 Лавка работает на арене. После вечеринки участники могут потратить жетоны в лобби.']},
@@ -3126,9 +3167,25 @@ function lrArt(c,id,w,h,t){c.save();c.clearRect(0,0,w,h);var r=function(s){retur
   if(M.own.phonk)im('phonk1',w/2,h/2,120,'#b45cff');else{c.fillStyle='#120818';c.beginPath();c.arc(w/2,h/2,58,0,7);c.fill();c.font='bold 70px serif';c.fillStyle='#b45cff';c.textAlign='center';c.textBaseline='middle';c.fillText('?',w/2,h/2+4)}}
  c.restore()}
 function lrOpen(){lrFix();scr('chron');lrRender()}
-function lrRender(){var B=$('lrbody');if(!B)return;lrFix();var op=LR.filter(function(q){return q.c()}).length,h='<div class="lrhero"><b>📜 ЛЕТОПИСЬ ВЕРИТИИ</b><small>История мира, Админа и Хакерити. Новые главы открываются, пока ты играешь.</small><div class="lrprog"><i style="width:'+(op/LR.length*100)+'%"></i><span>Открыто глав: '+op+' / '+LR.length+'</span></div></div>';
- LR.forEach(function(q,i){var o=q.c(),nw=o&&!M.lr.seen[q.id];h+='<div class="lrpg'+(o?'':' lk')+(nw?' nw':'')+'">'+(o?'<canvas class="lrart" data-a="'+q.a+'" width="600" height="300"></canvas><h3>'+esc(q.t)+(nw?' <i class="lrnew">НОВОЕ</i>':'')+'</h3>'+q.p.map(function(s){return'<p>'+esc(s)+'</p>'}).join(''):'<div class="lrlock">🔒</div><h3>'+esc(q.t)+'</h3><p class="mu">Глава закрыта. Как открыть: '+esc(q.h)+'.</p>')+'</div>';if(o)M.lr.seen[q.id]=1});save();lrBadge();
- B.innerHTML=h;[].forEach.call(B.querySelectorAll('canvas.lrart'),function(cv2){var c=cv2.getContext('2d'),a=cv2.dataset.a;(function fr(){if(!document.body.contains(cv2)||cur!='chron')return;lrArt(c,a,cv2.width,cv2.height,performance.now()/1000);requestAnimationFrame(fr)})()})}
+function lrRender(){
+  var body=$('lrbody');
+  lrFix();
+  var open=LR.filter(function(chapter){return chapter.c()}).length;
+  var heading='<div class="lrhero"><b>📜 ЛЕТОПИСЬ ВЕРИТИИ</b><small>История мира, Админа и Хакерити. Новые главы открываются, пока ты играешь.</small>'+
+    '<div class="lrprog"><i style="width:'+(open/LR.length*100)+'%"></i><span>Открыто глав: '+open+' / '+LR.length+'</span></div></div>';
+  body.innerHTML=heading+LR.map(function(chapter){
+    if(!chapter.c())return '<article class="lrpg lk"><div class="lrlock" aria-hidden="true">🔒</div><h3>'+esc(chapter.t)+
+      '</h3><p class="mu">Глава закрыта. Как открыть: '+esc(chapter.h)+'.</p></article>';
+    var newChapter=!M.lr.seen[chapter.id];
+    M.lr.seen[chapter.id]=1;
+    var play=LR_SCENES[chapter.id]?'<button class="lr-play" type="button" data-lr-scene="'+chapter.id+'" aria-label="Смотреть катсцену · '+
+      esc(chapter.t)+'">▶ Смотреть катсцену</button>':'';
+    return '<article class="lrpg'+(newChapter?' lr-unread':'')+'"><canvas class="lrart" data-a="'+chapter.a+
+      '" width="600" height="300" aria-hidden="true"></canvas><h3>'+esc(chapter.t)+
+      (newChapter?' <i class="lrnew">НОВОЕ</i>':'')+'</h3>'+play+chapter.p.map(function(text){return '<p>'+esc(text)+'</p>'}).join('')+'</article>';
+  }).join('');
+  save();lrBadge();lrStartPreviews();
+}
 function lrBadge(){var b=$('lrb');if(!b)return;lrFix();var n=LR.filter(function(q){return q.c()&&!M.lr.seen[q.id]}).length;b.innerHTML='Летопись 📜'+(n?' <i class="rdbd">'+n+'</i>':'')}
 (function(){var e0=endGame;endGame=function(w,t){try{if(G&&G.key!='raid'&&G.key!='harvest'){lrFix();var b=LR.filter(function(q){return q.c()}).length;M.lr.g++;if(w==2)M.lr.w++;M.lr.wv=Math.max(M.lr.wv||0,G.wave||0);var a=LR.filter(function(q){return q.c()}).length;if(a>b)t+=' 📜 Открыта новая глава Летописи!'}}catch(e){}e0(w,t);lrBadge()}})();
 (function(){if(typeof fusGo=='function'){var f0=fusGo;fusGo=async function(){lrFix();M.lr.lab=1;save();return f0.apply(this,arguments)}}if(typeof wPut=='function'){var w0=wPut;wPut=async function(o){var r=await w0(o);if(r){lrFix();M.lr.base=1;save()}return r}}})();
@@ -6892,4 +6949,612 @@ function apFireDraw(){
   });
   x.restore();
 }
-</script></body></html>
+</script>
+<script>
+/* Катсцены Летописи Веритии */
+var LR_SHOT_SECONDS=4.2;
+var LR_SCENES={
+  rift:{art:lrSceneRift,notes:[262,392,523],lines:[
+    'Обычный день в мире Майнкрафта. Вдруг над равниной треснуло небо.',
+    'Из разлома зазвучала музыка. Кто-то решился подойти ближе.',
+    'Игроки шагнули на звук и впервые увидели Веритию.'
+  ]},
+  world:{art:lrSceneWorld,notes:[330,139,440],lines:[
+    'В Веритии каждая нота могла ожить и стать Верити.',
+    'По тропам шли Шумы. Они хотели заглушить Сердце Ритма.',
+    'Верити встали вдоль дороги и встретили Шумов своим звучанием.'
+  ]},
+  admin:{art:lrSceneAdmin,notes:[196,294,392],lines:[
+    'Говорят, Веритию написал Админ, Хранитель Кода.',
+    'По субботам он открывал консоль и менял правила мира.',
+    'Падали конфеты, появлялись боссы, а Сердце Ритма набирало силу.'
+  ]},
+  heart:{art:lrSceneHeart,notes:[130,165,98],lines:[
+    'В центре Веритии бьётся Сердце Ритма.',
+    'Каждая победа Верити отзывается новым ударом. Сердце держит разлом открытым.',
+    'Если Шумы его заглушат, путь в Майнкрафт закроется.'
+  ]},
+  fall:{art:lrSceneFall,notes:[349,207,110],lines:[
+    'Админ и его помощник Хакерити вместе чинили Веритию.',
+    'Хакерити захотел управлять миром. Он забрал фрагмент исходного кода.',
+    'Он ушёл в Пустоту, за край карты, где ломаются правила.'
+  ]},
+  party:{art:lrSceneParty,notes:[294,440,123],lines:[
+    '7 ноября Верития устроила прощальную вечеринку Хэллоуина.',
+    'Конфеты сыпались под музыку. Потом экраны внезапно погасли.',
+    '«Это только начало. Я вернусь и заберу ваш мир», — сказал Хакерити.'
+  ]},
+  hack:{art:lrSceneHack,notes:[165,277,349],lines:[
+    'Хакерити запустил украденный код.',
+    'Так появился Verity.exe, копия Верити, преданная Хакерити.',
+    'Хэллоуинская магия и код создали Hackoluinity. Удалось сделать две копии.'
+  ]},
+  lab:{art:lrSceneLab,notes:[349,131,523],lines:[
+    'В старой мастерской Админ смешивал ноты и создавал Верити.',
+    'Перед уходом Хакерити стёр записи с рецептами слияния.',
+    'Теперь игроки открывают рецепты заново и вписывают имена в Книгу открытий.'
+  ]},
+  bases:{art:lrSceneBases,notes:[220,330,440],lines:[
+    'Админ назвал пришедших из Майнкрафта игроков Хранителями.',
+    'По всей Веритии появились их форпосты.',
+    'Рядом с сильными Верити крепли стены. Дерево сменяли металл, золото и алмаз.'
+  ]},
+  phonk:{art:lrScenePhonk,notes:[73,110,146],lines:[
+    'В записях о первых днях Веритии звучит загадочный бит Phonkity.',
+    'Ходят слухи, что Админ создал его раньше всех.',
+    'Он помнит мир до Шумов и знает, как открылся первый разлом.'
+  ]},
+  bus:{art:lrSceneBus,notes:[262,146,330],lines:[
+    'Школьный автобус свернул с дороги и заехал в разлом.',
+    'Шумы превратили его в босса. Хранители остановили Автобус вместе.',
+    'Из обломков мотора Админ собрал Busity, защитника дорог.'
+  ]},
+  cage:{art:lrSceneCage,notes:[123,82,62],lines:[
+    '«Я был не врагом… а замком», — признался Хакерити на арене.',
+    'Его код держал Клетку. Замки треснули, и портал открылся.',
+    'Из Клетки вышел Титан. За ним в Веритию идут другие боссы.'
+  ]}
+};
+var LR_MOVIE=null, lrPreviewFrame=0, lrPreviews=[];
+var lrDialog=$('lr-scene'), lrCanvas=$('lr-scene-art'), lrContext=lrCanvas.getContext('2d');
+
+function lrStartPreviews(){
+  cancelAnimationFrame(lrPreviewFrame);
+  lrPreviews=Array.from($('lrbody').querySelectorAll('.lrart'),function(canvas){
+    return {canvas:canvas,context:canvas.getContext('2d'),painted:false};
+  });
+  lrPreviewFrame=requestAnimationFrame(lrPreviewTick);
+}
+function lrPreviewTick(now){
+  if(cur!=='chron'||LR_MOVIE||document.hidden)return;
+  var still=thReducedMotion();
+  lrPreviews.forEach(function(preview){
+    var canvas=preview.canvas, rect=canvas.getBoundingClientRect();
+    if(rect.bottom<0||rect.top>innerHeight||still&&preview.painted)return;
+    lrArt(preview.context,canvas.dataset.a,canvas.width,canvas.height,still?1.2:now/1000);
+    preview.painted=true;
+  });
+  lrPreviewFrame=requestAnimationFrame(lrPreviewTick);
+}
+
+function lrOpenScene(id,trigger){
+  if(cur!=='chron'||LR_MOVIE)return;
+  var chapter=LR.find(function(item){return item.id===id}), scene=LR_SCENES[id];
+  if(!chapter?.c()||!scene)return;
+  var start=performance.now(), duration=scene.lines.length*LR_SHOT_SECONDS;
+  LR_MOVIE={scene:scene,trigger:trigger,start:start,elapsed:0,duration:duration,shot:-1,frame:0,still:null};
+  $('lr-scene-title').textContent=chapter.t;
+  $('lr-scene-pause').textContent='Пауза';
+  $('lr-scene-progress').max=duration;
+  $('lr-scene-progress').value=0;
+  cancelAnimationFrame(lrPreviewFrame);
+  lrDialog.showModal();
+  lrSceneTick(start);
+}
+function lrCloseScene(){
+  if(!LR_MOVIE)return;
+  var movie=LR_MOVIE;
+  LR_MOVIE=null;
+  cancelAnimationFrame(movie.frame);
+  if(lrDialog.open)lrDialog.close();
+  if(cur==='chron'){
+    if(movie.trigger?.isConnected)movie.trigger.focus({preventScroll:true});
+    lrStartPreviews();
+  }
+}
+function lrToggleScenePause(){
+  var movie=LR_MOVIE;
+  if(!movie)return;
+  var now=performance.now();
+  if(movie.start===null)movie.start=now;
+  else{
+    movie.elapsed+=Math.max(0,now-movie.start)/1000;
+    movie.start=null;
+    cancelAnimationFrame(movie.frame);
+  }
+  $('lr-scene-pause').textContent=movie.start===null?'Продолжить':'Пауза';
+  lrSceneTick(now);
+}
+function lrSceneTick(now){
+  var movie=LR_MOVIE;
+  if(!movie)return;
+  var elapsed=movie.elapsed+(movie.start===null?0:Math.max(0,now-movie.start)/1000);
+  if(cur!=='chron'||!lrDialog.open||elapsed>=movie.duration){lrCloseScene();return}
+  var shot=Math.floor(elapsed/LR_SHOT_SECONDS), changed=shot!==movie.shot, still=thReducedMotion();
+  if(changed){
+    $('lr-scene-caption').textContent=movie.scene.lines[shot];
+    if(movie.start!==null&&!document.hidden&&movie.scene.notes[shot]){
+      var note=movie.scene.notes[shot];
+      tone(note,.32,'triangle',.065,note*.99);
+    }
+    movie.shot=shot;
+  }
+  if(changed||!still||movie.still!==still){
+    var time=still?(shot+.66)*LR_SHOT_SECONDS:elapsed;
+    lrContext.save();
+    movie.scene.art(lrContext,time);
+    lrContext.restore();
+    if(!still){
+      var shade=Math.max(1-apMove(elapsed,0,.35),apMove(elapsed,movie.duration-.45,movie.duration));
+      if(shade>0)lrFade(lrContext,shade*.9);
+    }
+    movie.still=still;
+  }
+  var progress=$('lr-scene-progress'), value=Math.floor(elapsed*10)/10;
+  if(progress.value!==value)progress.value=value;
+  if(movie.start!==null)movie.frame=requestAnimationFrame(lrSceneTick);
+}
+$('lrbody').addEventListener('click',function(event){
+  var button=event.target.closest('button[data-lr-scene]');
+  if(button)lrOpenScene(button.dataset.lrScene,button);
+});
+$('lr-scene-pause').onclick=lrToggleScenePause;
+$('lr-scene-skip').onclick=lrCloseScene;
+lrDialog.addEventListener('cancel',function(event){event.preventDefault();lrCloseScene()});
+lrDialog.addEventListener('close',function(){if(!lrDialog.open)lrCloseScene()});
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden&&LR_MOVIE&&LR_MOVIE.start!==null)lrToggleScenePause();
+  if(!document.hidden&&cur==='chron'&&!LR_MOVIE)lrStartPreviews();
+});
+(function(){
+  // Кнопка «Назад» в APK вызывает кнопку текущего экрана.
+  var button=$('chron').querySelector('button.bk'), back=button.onclick;
+  button.onclick=function(event){if(LR_MOVIE)lrCloseScene();else if(back)back.call(this,event)};
+})();
+
+function lrFade(c,alpha){
+  c.save();c.globalAlpha=alpha;c.fillStyle='#100b18';c.fillRect(0,0,960,540);c.restore();
+}
+function lrSky(c,top,bottom,glow){
+  c.fillStyle=thGradient(c,0,0,0,540,[top,bottom]);
+  c.fillRect(0,0,960,540);
+  thGlow(c,508,218,424,glow);
+}
+function lrStars(c,t,ink,count){
+  c.save();
+  c.fillStyle=ink;
+  for(var i=0;i<count;i++){
+    var drift=t*(8+i%3*3), x=(i*137+99+drift)%960, y=(i*83+43)%400;
+    c.globalAlpha=.3+.34*(1+Math.sin(t*1.8+i))*.5;
+    c.fillRect(x,y,2+i%3,2+i%3);
+  }
+  c.restore();
+}
+function lrActor(c,key,x,y,r,rim){
+  c.save();
+  thEllipse(c,x,y+r*.89,r*.94,r*.21,'#150e1c71');
+  if(rim)thGlow(c,x,y,r*1.48,rim+'5d');
+  var portrait=IM[key+'1'];
+  if(portrait?.complete&&portrait.naturalWidth)c.drawImage(portrait,x-r,y-r,r*2,r*2);
+  else{
+    thSoftBody(c,x,y,r*.84,r*.84,'#fff2b9',rim||'#db9b53','#55375b');
+    [-1,1].forEach(function(side){thEllipse(c,x+side*r*.25,y-r*.08,r*.079,r*.136,'#221930')});
+  }
+  c.restore();
+}
+function lrKeeper(c,x,y,scale,shirt,t){
+  c.save();c.translate(x,y);c.scale(scale,scale);
+  var step=Math.sin(t*9)*7;
+  thEllipse(c,0,0,26,5,'#201d3590');
+  c.fillStyle='#283357';c.fillRect(-12+step,-28,10,27);c.fillRect(3-step,-28,10,27);
+  c.fillStyle=shirt;c.fillRect(-15,-59,30,33);c.fillRect(-21,-55,6,27);
+  c.fillStyle='#d68a61';c.fillRect(-9,-78,18,19);c.fillRect(15,-51,7,24);
+  c.fillStyle='#583044';c.fillRect(-11,-82,22,8);c.fillStyle='#402438';c.fillRect(3,-71,4,3);
+  c.fillStyle='#ffda9b66';c.fillRect(-15,-59,30,3);
+  c.restore();
+}
+function lrNotes(c,x,y,t,color,count,spread){
+  c.save();c.font='900 33px Georgia,serif';c.fillStyle=color;c.textAlign='center';
+  for(var n=0;n<count;n++){
+    var phase=(t*.44+n/count)%1;
+    c.globalAlpha=Math.sin(phase*Math.PI)*.88;
+    c.fillText(n%2?'♫':'♪',x+Math.cos(t*.76+n*1.7)*spread*phase,y-phase*145);
+  }
+  c.restore();
+}
+function lrNoise(c,x,y,r,t,alpha){
+  if(alpha<=0)return;
+  c.save();c.translate(x,y);c.rotate(Math.sin(t*4+x/75)*.16);c.globalAlpha=alpha;
+  var edge=Array.from({length:16},function(_,i){
+    var angle=i*Math.PI/8, scale=i%2?.74:1;
+    return [Math.cos(angle)*r*scale,Math.sin(angle)*r*scale];
+  });
+  thPoly(c,edge,'#2b1838','#160c26',2.5);
+  [-1,1].forEach(function(side){thEllipse(c,side*r*.31,-r*.11,r*.14,r*.13,'#ff6e81',side*.22)});
+  c.restore();
+}
+function lrHeart(c,x,y,r,t){
+  var beat=1+Math.pow(Math.max(0,Math.sin(t*5.6)),3)*.09;
+  c.save();c.translate(x,y);c.scale(r/80*beat,r/80*beat);
+  thGlow(c,0,0,155,'#fa649281');
+  thShape(c,function(p){
+    p.moveTo(0,67);p.bezierCurveTo(-70,23,-91,-15,-59,-44);p.quadraticCurveTo(-26,-66,0,-36);
+    p.quadraticCurveTo(28,-67,61,-45);p.bezierCurveTo(90,-15,69,26,0,67);
+  },thGradient(c,-52,-47,41,65,['#ffedb6','#f8858f','#a82b66']),'#ffcbac',3.2);
+  thPoly(c,[[-46,4],[-21,4],[-12,-13],[3,24],[14,-5],[24,4],[46,4]],null,'#fff6d1',4);
+  c.restore();
+}
+function lrRing(c,x,y,phase,radius,color){
+  if(phase<0||phase>1)return;
+  c.save();c.globalAlpha=(1-phase)*.62;
+  thShape(c,function(p){p.arc(x,y,14+phase*radius,0,Math.PI*2)},null,color,4);
+  c.restore();
+}
+function lrCandy(c,x,y,t,colors){
+  c.save();c.translate(x,y);c.rotate(t);
+  thPoly(c,[[-8,0],[-20,-8],[-22,7],[-8,5]],colors[1],'#633154',1.6);
+  thPoly(c,[[8,0],[20,-8],[22,7],[8,5]],colors[1],'#633154',1.6);
+  thShape(c,function(p){p.roundRect(-11,-8,22,16,4)},colors[0],'#633154',1.6);
+  thPoly(c,[[-4,-6],[4,6]],null,'#fff0c9',2);
+  c.restore();
+}
+function lrCandyRain(c,t,start){
+  if(t<start)return;
+  c.save();c.globalAlpha=apMove(t,start,start+1);
+  var colors=[['#f9a269','#fae18b'],['#f17aad','#ffb9a3'],['#a4d59b','#e4ed99']];
+  for(var i=0;i<19;i++){
+    lrCandy(c,60+(i*149)%840,-75+((i*119+(t-start)*(78+i%4*18))%590),t*.8+i,colors[i%colors.length]);
+  }
+  c.restore();
+}
+
+function lrSceneRift(c,t){
+  if(t>=10.35){
+    lrSky(c,'#241c54','#224b56','#b48bff7d');
+    lrStars(c,t,'#f7d19d',38);
+    thPoly(c,[[0,333],[103,270],[181,346],[278,252],[376,325],[493,229],[651,322],[768,242],[960,316],[960,540],[0,540]],'#394673');
+    thPoly(c,[[0,387],[149,352],[240,407],[381,355],[549,397],[700,344],[960,386],[960,540],[0,540]],'#216051');
+    thPoly(c,[[174,540],[408,433],[521,412],[609,438],[519,463],[372,540]],'#785071');
+    lrKeeper(c,404,445,1.22,'#db6f5f',0);
+    lrKeeper(c,504,428,1.14,'#5db2a5',0);
+    lrActor(c,'verity',618,386+Math.sin(t*3)*4,53,'#ffd16b');
+    lrNotes(c,598,344,t,'#ffe1a5',9,244);
+    lrFade(c,1-apMove(t,10.35,10.95));
+    return;
+  }
+  lrSky(c,'#668fce','#ffcd92','#fff2bd74');
+  thEllipse(c,786,109,55,55,'#ffdf99');
+  for(var i=0;i<5;i++){
+    var cloud=(i*234+t*8)%1110-130, y=70+(i*33)%128;
+    c.fillStyle='#ffe9d390';c.fillRect(cloud,y,142,23);c.fillRect(cloud+36,y-18,66,34);
+  }
+  for(var col=0;col<24;col++){
+    var top=370+20*Math.round(Math.sin(col*.52)+Math.sin(col*.24));
+    c.fillStyle='#5a434a';c.fillRect(col*40,top,41,540-top);
+    c.fillStyle='#7b8d48';c.fillRect(col*40,top,41,13);
+    c.fillStyle='#875c4c';
+    for(var row=0;row<3;row++)c.fillRect(col*40+3,top+17+row*37,33,32);
+  }
+  [166,822,912].forEach(function(x,i){
+    c.fillStyle='#583e46';c.fillRect(x,288+i*14,24,87);
+    c.fillStyle=i?'#647042':'#4c7956';c.fillRect(x-42,251+i*10,101,62);
+    c.fillStyle='#718957';c.fillRect(x-15,228+i*10,71,47);
+  });
+  var open=apMove(t,1.85,5.2);
+  if(open>0){
+    thPoly(c,[[563,93],[524,160],[559,196],[530,224],[571,276],[532,355]],null,'#ed9afa',3+open*7);
+    apPortal(c,568,252,79*open,117*open,t,AP_PORTALS.neon);
+    lrNotes(c,572,233,t,'#fff0bb',8,172);
+  }
+  var walk=apMove(t,4.35,10.2);
+  lrKeeper(c,247+221*walk,395,1.19,'#cf675f',t*walk);
+  lrKeeper(c,375+198*walk,384,1.36,'#56a298',t*walk);
+  if(t>=9.7)lrFade(c,apMove(t,9.7,10.35));
+}
+
+function lrSceneWorld(c,t){
+  lrSky(c,'#29384b','#385e49','#dec38346');
+  thPoly(c,[[0,214],[144,163],[274,228],[404,136],[561,226],[716,154],[960,241],[960,540],[0,540]],'#335b52');
+  thShape(c,function(p){p.moveTo(-30,435);p.bezierCurveTo(243,389,285,401,410,307);p.quadraticCurveTo(568,185,851,260)},
+    null,'#756052',91);
+  thShape(c,function(p){p.moveTo(-30,435);p.bezierCurveTo(243,389,285,401,410,307);p.quadraticCurveTo(568,185,851,260)},
+    null,'#b89066',69);
+  lrHeart(c,828,221,53,t);
+  var rise=apMove(t,.45,2.85);
+  var actors=[['sadity',245,287,'#b58fec'],['lovity',458,388,'#ff87b2'],['galaxity',642,163,'#a1a9ef']];
+  c.save();c.globalAlpha=rise;
+  actors.forEach(function(actor,i){
+    lrActor(c,actor[0],actor[1],actor[2]+(1-rise)*65+Math.sin(t*3.6+i)*5,57,actor[3]);
+    lrNotes(c,actor[1],actor[2]-26,t+i,actor[3],3,65);
+  });
+  c.restore();
+  for(var i=0;i<6;i++){
+    var advance=apMove(t,3.55+i*.25,9.3+i*.3);
+    var retreat=apMove(t,8.9+i*.13,11.1+i*.1);
+    lrNoise(c,-78+605*advance-i*27-146*retreat,454-160*advance+i*3,23+i%3*6,t,1-retreat);
+  }
+  if(t>8.2)actors.forEach(function(actor,i){lrRing(c,actor[1],actor[2],((t-8.2)*.9+i*.33)%1,144,actor[3])});
+}
+
+function lrSceneAdmin(c,t){
+  apBackdrop(c,t,40*(1-apMove(t,0,4.4)),false);
+  apAdminity(c,270,353+Math.sin(t*3)*5,101,t,.68,false,false);
+  var boot=apMove(t,2,4.8);
+  c.save();c.globalAlpha=.52+.48*boot;
+  thShape(c,function(p){p.roundRect(434,110,394,238,15)},'#292137','#e6b176',4);
+  c.fillStyle='#131729';c.fillRect(453,127,356,175);
+  c.font='800 22px monospace';c.textAlign='left';
+  var list=['СУББОТА','СЕРДЦЕ РИТМА','РИТУАЛ АКТИВЕН'];
+  list.forEach(function(line,i){
+    var opened=apMove(t,i*2.1+.9,i*2.1+2.35);
+    c.fillStyle=i===2?'#ffe3a9':'#7cdbbc';
+    c.fillText(line.slice(0,Math.ceil(opened*line.length)),473,166+i*48);
+  });
+  thPoly(c,[[422,345],[831,345],[878,403],[379,403]],'#382b48','#d99c69',4);
+  for(var i=0;i<13;i++){c.fillStyle=i===Math.floor(t*4)%13?'#fff0a4':'#987180';c.fillRect(421+i*29,364,19,10)}
+  c.restore();
+  if(t>7.9){
+    lrCandyRain(c,t,7.9);
+    apChest(c,717,445,t);
+    lrHeart(c,650,68,35,t);
+    lrRing(c,650,68,(t*1.06)%1,72,'#ffde9a');
+  }
+}
+
+function lrSceneHeart(c,t){
+  lrSky(c,'#2e193c','#1c1129','#a453694d');
+  thShape(c,function(p){p.moveTo(59,424);p.lineTo(59,206);p.quadraticCurveTo(477,-111,901,206);p.lineTo(901,424)},null,'#65404f',20);
+  thEllipse(c,480,425,272,52,'#2d223a');
+  var light=apMove(t,2.5,7.05), threat=apMove(t,8.65,12.5);
+  c.save();c.globalAlpha=light*(1-threat*.72);
+  thPoly(c,[[364,241],[669,227],[690,258],[370,277]],'#fda8954d');
+  for(var i=0;i<5;i++)lrRing(c,327,262,(t*.68+i*.2)%1,151,'#ffc0ab');
+  c.restore();
+  apPortal(c,744,251,32+54*light-48*threat,45+77*light-64*threat,t,AP_PORTALS.neon);
+  lrHeart(c,333,250,104-18*threat,t);
+  if(threat>0)for(var n=0;n<4;n++)lrNoise(c,-67+(160+n*26)*threat,344+n*25,29+n*5,t,threat*.82);
+  lrFade(c,threat*.25);
+}
+
+function lrSceneFall(c,t){
+  lrSky(c,'#321f44','#112929','#79c8ad36');
+  lrStars(c,t,'#aabfde',33);
+  var escape=apMove(t,7.35,11.65), theft=apMove(t,4,7.05);
+  thPoly(c,[[0,425],[168,374],[405,368],[569,393],[631,444],[960,427],[960,540],[0,540]],'#252239');
+  apPortal(c,790,284,82*escape,135*escape,t,AP_PORTALS.green);
+  apAdminity(c,233,335,81,t,.62,false,false);
+  var hackerX=448+333*escape,hackerY=334-59*escape;
+  apHacker(c,hackerX,hackerY,87-20*escape,t,false);
+  var shardX=359+(hackerX-359)*theft, shardY=245+(hackerY-58-245)*theft+Math.sin(t*3)*6;
+  thGlow(c,shardX,shardY,64,'#a8ffe768');
+  thPoly(c,[[shardX,shardY-31],[shardX+23,shardY-11],[shardX+13,shardY+26],[shardX-25,shardY+13],[shardX-17,shardY-14]],
+    '#7ae3b9','#e3ffbe',3.5);
+  thPoly(c,[[shardX-8,shardY-5],[shardX+7,shardY-14],[shardX+7,shardY+13]],null,'#3d696b',3);
+  for(var i=0;i<8;i++){
+    var y=411+((i*29)%88)-escape*(22+i*11);
+    if(escape>0)thPoly(c,[[639+i*37,y],[662+i*37,y-8],[676+i*37,y+11],[650+i*37,y+22]],i%2?'#76517b':'#4e526d','#9891a759',2);
+  }
+}
+
+function lrSceneParty(c,t){
+  var blackout=apMove(t,6.72,7.7);
+  apBackdrop(c,t,0,false);
+  c.save();c.globalAlpha=1-blackout*.96;
+  for(var i=0;i<4;i++){
+    var x=170+i*205, offset=Math.sin(t*1.8+i)*114;
+    thPoly(c,[[x-20,48],[x+21,48],[x+154+offset,472],[x-137+offset,472]],i%2?'#ee88af51':'#fec46d51');
+  }
+  lrActor(c,'byehw',355,345+Math.sin(t*4)*13,99,'#e9a463');
+  lrActor(c,'pumpkinity',614,352+Math.sin(t*4+1.2)*12,89,'#fa9559');
+  c.restore();
+  if(!blackout)lrCandyRain(c,t,.5);
+  if(blackout>0){
+    lrFade(c,blackout*.77);
+    var reveal=apMove(t,7.7,9.25);
+    c.save();c.globalAlpha=reveal;
+    thShape(c,function(p){p.roundRect(260,81,440,350,22)},'#13232d','#89d6a1',3.8);
+    thGlow(c,480,251,163,'#5abda759');
+    for(var line=0;line<5;line++){
+      var y=142+line*54+Math.sin(t*2+line)*7;
+      thPoly(c,[[279,y],[681,y]],null,'#90c6af49',2.2);
+    }
+    apHacker(c,480,267,131,t,false);
+    c.restore();
+  }
+}
+
+function lrSceneHack(c,t){
+  lrSky(c,'#17233a','#122837','#52b69062');
+  lrStars(c,t,'#a2e9cd',36);
+  thPoly(c,[[0,451],[400,361],[563,361],[960,453],[960,540],[0,540]],'#202941');
+  var assemble=apMove(t,2.45,5.62), copy=apMove(t,7.92,10.55);
+  apHacker(c,182,321,94,t,false);
+  thShape(c,function(p){p.roundRect(97,396,174,39,9)},'#313952','#70a7a4',2.5);
+  for(var i=0;i<6;i++){
+    c.fillStyle=i===Math.floor(t*4)%6?'#b7ffc4':'#54847f';
+    c.fillRect(115+i*25,410,14,9);
+  }
+  for(var j=0;j<3;j++){
+    var x=410+j*190, energy=j>0?copy:assemble, ink=j>0?'#efad6e':'#8ef2bc';
+    thShape(c,function(p){p.roundRect(x-60,133,130,255,65)},'#181e32',ink,3);
+    thEllipse(c,x+5,388,72,17,'#494367');
+    c.save();c.globalAlpha=energy;
+    thGlow(c,x+5,260,105,ink+'57');
+    lrActor(c,j===0?'vexe':'hackol',x+5,269+Math.sin(t*3+j)*9,(j===0?53:49)*(.65+.35*energy),ink);
+    c.restore();
+    c.fillStyle=ink;
+    c.fillRect(x-36,416,77*energy,5);
+  }
+  if(copy>0)lrNotes(c,708,221,t,'#ffc798',6,173);
+}
+
+function lrFlask(c,x,y,liquid,t){
+  c.save();c.translate(x,y);
+  thGlow(c,0,45,94,liquid+'38');
+  thShape(c,function(p){
+    p.moveTo(-15,-96);p.lineTo(15,-96);p.lineTo(15,-29);p.quadraticCurveTo(21,-15,63,37);
+    p.quadraticCurveTo(80,64,50,70);p.lineTo(-50,70);p.quadraticCurveTo(-80,64,-63,37);
+    p.quadraticCurveTo(-21,-15,-15,-29);
+  },'#4a454eaa','#d0b9a7',4);
+  thShape(c,function(p){
+    p.moveTo(-42,18);p.quadraticCurveTo(-13,31,18,22);p.quadraticCurveTo(30,14,43,19);
+    p.lineTo(57,40);p.quadraticCurveTo(72,65,49,64);p.lineTo(-49,64);p.quadraticCurveTo(-70,63,-57,40);
+  },liquid);
+  for(var i=0;i<4;i++){
+    var up=(t*22+i*20)%45;
+    thEllipse(c,-28+i*17+Math.sin(t+i)*4,63-up,4+i%2*2,4+i%2*2,'#fff5cdb0');
+  }
+  thPoly(c,[[-24,-96],[24,-96],[22,-87],[-22,-87]],'#80617c','#ecc9a7',2);
+  c.restore();
+}
+function lrSceneLab(c,t){
+  lrSky(c,'#362547','#543449','#efae6d56');
+  thPoly(c,[[0,399],[960,399],[960,540],[0,540]],'#382639');
+  for(var i=0;i<3;i++){
+    var x=112+i*337;
+    thShape(c,function(p){p.roundRect(x-24,91,86,241,44)},'#65475b','#88596f',3);
+  }
+  lrFlask(c,268,230,'#8ccd9d',t);lrFlask(c,690,222,'#f3a086',t+.8);
+  lrNotes(c,321,181,t,'#a4e8ad',3,94);
+  lrNotes(c,636,173,t+.8,'#ffd5a1',3,107);
+  var change=apMove(t,4.05,5.1), entries=apMove(t,8.4,11.62);
+  if(change<1){
+    c.save();c.globalAlpha=1-change;
+    lrActor(c,'fx_sweet',484,262+Math.sin(t*3)*8,87,'#ffc993');
+    c.restore();
+  }
+  if(change<=0)return;
+  c.save();c.translate(480,342+(1-change)*46);c.globalAlpha=change;
+  thPoly(c,[[-188,-42],[-92,-70],[0,-39],[93,-70],[187,-42],[163,94],[0,97],[-162,94]],
+    '#914a56','#f0ad7b',5);
+  thPoly(c,[[-171,-53],[-82,-76],[0,-47],[86,-76],[172,-55],[156,77],[0,86],[-150,75]],
+    thGradient(c,-158,-39,120,75,['#f4c998','#ffe8b9','#c28c72']),'#bf8863',3);
+  thPoly(c,[[0,-44],[0,85]],null,'#987067',3.5);
+  var ink=Math.max(1-apMove(t,5.05,7.1),entries);
+  c.globalAlpha=ink*change;
+  for(var j=0;j<5;j++){
+    var y=-25+j*16;
+    thPoly(c,[[-140,y],[-20-j*4,y+7]],null,'#9b6555',2.5);
+    thPoly(c,[[24,y+7],[24+entries*(115-j*6),y]],null,'#8d4e5a',3);
+  }
+  c.restore();
+}
+
+function lrSceneBases(c,t){
+  lrSky(c,'#3d3771','#5e5a64','#f8b99959');
+  thPoly(c,[[0,174],[194,124],[388,207],[514,152],[719,171],[960,66],[960,540],[0,540]],'#595783');
+  thPoly(c,[[0,219],[179,175],[370,281],[180,441],[0,379]],'#9eacae','#c6c6bb',4);
+  thPoly(c,[[216,191],[465,155],[578,265],[507,433],[375,473],[180,408],[370,276]],'#527d66','#8f9f7f',4);
+  thPoly(c,[[492,156],[720,203],[815,352],[634,483],[503,433],[578,263]],'#b3906b','#c6a87d',4);
+  thPoly(c,[[728,201],[960,141],[960,480],[632,486],[815,352]],'#59446e','#906c9e',4);
+  thPoly(c,[[107,394],[269,327],[454,351],[614,306],[771,376],[889,317]],null,'#efd1a284',7);
+  var intro=apMove(t,0,3.3);
+  apAdminity(c,138-42*intro,118,56,t,.6,false,false);
+  lrKeeper(c,235+90*intro,183,.85,'#c9676e',t);
+  var camps=[[205,348,'wood'],[383,314,'metal'],[576,374,'gold'],[754,302,'diamond']];
+  camps.forEach(function(camp,i){
+    var appear=apMove(t,2.9+i*1.52,4.65+i*1.52);
+    if(appear<=0)return;
+    c.save();c.globalAlpha=appear;
+    baseDraw(c,camp[0],camp[1]+(1-appear)*46,99,camp[2],t,0);
+    if(t>8.5)lrRing(c,camp[0],camp[1]-18,(t*.61+i*.23)%1,94,'#ffeec4');
+    c.restore();
+  });
+}
+
+function lrScenePhonk(c,t){
+  lrSky(c,'#151634','#24183c','#8158bd72');
+  lrStars(c,t,'#e4d2ff',43);
+  thEllipse(c,478,429,264,55,'#1b1e37');
+  var approach=apMove(t,0,4.42), memory=apMove(t,7.75,10.4);
+  for(var i=0;i<4;i++){
+    lrRing(c,480,285,(t*.55+i*.25)%1,152+memory*110,'#c798ef');
+  }
+  apPortal(c,727,244,35+54*memory,74+64*memory,t,AP_PORTALS.neon);
+  var orbX=438-60*memory, orbY=300-12*approach+Math.sin(t*2.4)*6;
+  if(M.own.phonk){
+    lrActor(c,'phonk',orbX,orbY,110,'#bf8cef');
+  }else{
+    thGlow(c,orbX,orbY,162,'#ad80fb7e');
+    thShape(c,function(p){p.arc(orbX,orbY,103,0,7)},'#201631','#bba0dd',3);
+    thShape(c,function(p){p.arc(orbX,orbY,90,3.6,5.0)},null,'#a374ba',3);
+    c.font='800 83px Georgia,serif';c.fillStyle='#c598ee';c.textAlign='center';c.fillText('?',orbX,orbY+26);
+  }
+  lrNotes(c,orbX,orbY-64,t,'#dbb2f9',8,174);
+}
+
+var LR_BUS_ART=[];
+function lrSceneBus(c,t){
+  lrSky(c,'#456587','#a9a191','#ffc58c65');
+  thPoly(c,[[0,292],[154,229],[298,273],[420,225],[576,295],[725,211],[960,264],[960,540],[0,540]],'#577366');
+  thPoly(c,[[0,368],[960,345],[960,540],[0,467]],'#514352','#80646a',5);
+  c.fillStyle='#d4b68a';
+  for(var i=0;i<9;i++)c.fillRect((i*137+985-t*94)%1100-70,415,57,5);
+  var roll=apMove(t,.62,5), change=apMove(t,3.5,6), stop=apMove(t,6.8,8.86), repaired=apMove(t,9.05,11.15);
+  apPortal(c,660,315,62*(1-change),104*(1-change),t,AP_PORTALS.neon);
+  var busX=182+475*roll-160*stop+80*repaired, busY=356+Math.sin(t*5)*3;
+  var kind=repaired>.56?2:change>.54?1:0;
+  if(!LR_BUS_ART[kind]){
+    var art=thCanvas(314,314);
+    var paint=art.getContext('2d');
+    busPaint(paint,314,kind===1,1,kind===1);
+    if(kind===0){
+      paint.fillStyle='#8fd0e8';paint.fillRect(222,103,58,72);
+      thPoly(paint,[[226,106],[253,106],[231,172],[224,172]],'#d6f5f5b0');
+    }
+    LR_BUS_ART[kind]=art;
+  }
+  var size=kind===1?335:281;
+  c.drawImage(LR_BUS_ART[kind],busX-size/2,busY-size/2,size,size);
+  if(change>0&&stop<1)for(var n=0;n<5;n++){
+    var angle=t*2+n*1.55;
+    lrNoise(c,busX+Math.cos(angle)*128,busY+Math.sin(angle)*82,20+n%2*7,t,change*(1-stop));
+  }
+  if(t>=6.1){
+    var guard=apMove(t,6.1,8.5);
+    lrActor(c,'lovity',882-117*guard,386,57,'#e892b3');
+    lrActor(c,'verity',844-92*guard,464,49,'#f1cc72');
+    if(t>8.8){
+      apAdminity(c,276,312,66,t,.74,false,false);
+      lrRing(c,busX,338,(t*.9)%1,124,'#ffe1a8');
+    }
+  }
+}
+function lrSceneCage(c,t){
+  if(t<4.12){
+    apBackdrop(c,t,0,true);
+    apHacker(c,455,264+Math.sin(t*3)*5,118,t,false);
+    lrRing(c,463,259,(t*.45)%1,178,'#8edeb1');
+    lrFade(c,apMove(t,3.69,4.12));
+    return;
+  }
+  lrSky(c,'#261831','#34223a','#a8617755');
+  thPoly(c,[[0,0],[121,83],[71,228],[118,357],[62,540],[0,540]],'#4c394f','#614256',4);
+  thPoly(c,[[960,0],[839,79],[891,211],[853,370],[916,540],[960,540]],'#49374f','#614256',4);
+  thEllipse(c,491,455,303,53,'#261b30');
+  var crack=apMove(t,5.2,7.95), titan=apMove(t,8.3,11.53);
+  apPortal(c,533,284,74+59*crack,101+63*crack,t,AP_PORTALS.red);
+  for(var i=-3;i<=3;i++){
+    var x=505+i*44, lean=crack*(i<0?-1:1)*(32+12*Math.abs(i));
+    thPoly(c,[[x,140],[x+lean*.45,244],[x+lean,423-38*crack]],null,'#826b7e',12);
+    thPoly(c,[[x-2,145],[x+lean*.45-2,235]],null,'#c29498',3.7);
+  }
+  thPoly(c,[[349,138],[667,138]],null,'#89687b',14);
+  if(titan>0)arDrawBoss(c,{k:'titan',I:BOSSI.titan,alive:true,x:529+92*titan,y:346+21*titan,r:32+65*titan},t);
+  else{
+    thEllipse(c,513,260,9,6,'#f9a070');thEllipse(c,553,260,9,6,'#f9a070');
+  }
+  lrFade(c,1-apMove(t,4.12,4.67));
+}
+</script>
+</body></html>
