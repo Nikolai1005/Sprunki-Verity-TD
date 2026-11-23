@@ -1,0 +1,70 @@
+{
+  "rules": {
+    "tester": {
+      "gate": {
+        ".read": false,
+        ".write": "auth != null && root.child('admins').child(auth.uid).val() === true && newData.exists()",
+        ".validate": "newData.isString() && newData.val().matches(/^[a-f0-9]{64}$/)"
+      },
+      "access": {
+        "$uid": {
+          ".read": false,
+          ".write": "auth != null && auth.uid === $uid && root.child('bans').child(auth.uid).val() !== true && root.child('tester/gate').exists() && newData.child('proof').val() === root.child('tester/gate').val()",
+          ".validate": "newData.hasChildren(['proof', 'at'])",
+          "proof": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-f0-9]{64}$/)"
+          },
+          "at": {
+            ".validate": "newData.isNumber() && newData.val() >= now - 1000 && newData.val() <= now"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      },
+      "links": {
+        ".read": "auth != null && (root.child('admins').child(auth.uid).val() === true || (root.child('bans').child(auth.uid).val() !== true && root.child('tester/gate').exists() && root.child('tester/access').child(auth.uid).child('proof').val() === root.child('tester/gate').val() && root.child('tester/access').child(auth.uid).child('at').val() >= now - 28800000))",
+        ".write": "auth != null && root.child('admins').child(auth.uid).val() === true && newData.exists()",
+        "abuse": {
+          ".validate": "newData.isString() && newData.val().length <= 500 && (newData.val() === '' || newData.val().beginsWith('https://'))"
+        },
+        "boss": {
+          ".validate": "newData.isString() && newData.val().length <= 500 && (newData.val() === '' || newData.val().beginsWith('https://'))"
+        },
+        "$other": {
+          ".validate": false
+        }
+      },
+      "reports": {
+        ".read": "auth != null && root.child('admins').child(auth.uid).val() === true",
+        "$uid": {
+          "$unit": {
+            ".write": "auth != null && auth.uid === $uid && root.child('players').child(auth.uid).child('n').isString() && root.child('bans').child(auth.uid).val() !== true && root.child('tester/gate').exists() && root.child('tester/access').child(auth.uid).child('proof').val() === root.child('tester/gate').val() && root.child('tester/access').child(auth.uid).child('at').val() >= now - 28800000 && newData.exists() && (!data.exists() || data.child('t').val() <= now - 30000)",
+            ".validate": "newData.hasChildren(['unit', 'verdict', 'mode', 'map', 'wave', 't'])",
+            "unit": {
+              ".validate": "newData.isString() && newData.val() === $unit && newData.val().matches(/^[a-z0-9_-]{1,40}$/)"
+            },
+            "verdict": {
+              ".validate": "newData.val() === 'buff' || newData.val() === 'debuff'"
+            },
+            "mode": {
+              ".validate": "newData.isString() && newData.val().matches(/^(easy|medium|hard|insane|hw|hk|inf)$/)"
+            },
+            "map": {
+              ".validate": "newData.isString() && newData.val().matches(/^(meadow|snow|jungle|beach|void)$/)"
+            },
+            "wave": {
+              ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 30 && newData.val() % 1 === 0"
+            },
+            "t": {
+              ".validate": "newData.isNumber() && newData.val() >= now - 1000 && newData.val() <= now"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
