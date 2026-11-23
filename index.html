@@ -1391,7 +1391,7 @@ function remind(away){var last=M.lastExport?ago(Date.now()-M.lastExport)+' на�
 $('verb').onclick=function(){chg(0)};$('ulb').onclick=function(){chg(0)};$('setb').onclick=sets;$('setl').onclick=sets;
 $('modal').addEventListener('click',function(e){if(e.target===this)mClose()});addEventListener('keydown',function(e){if(e.key=='Escape'&&$('modal').className!='hide')mClose()});
 applySet();
-(function(){var hp=Object.keys(M.own).length>2||M.bank!=450||Object.keys(M.done).length>0,away=M.lastSeen?Date.now()-M.lastSeen:0,need=M.set.rem&&(away>=864e5||(!M.lastSeen&&hp&&!M.lastExport)),sc=hp&&M.seenVer!==VER&&(!thOn()||(M.th&&M.th.welcome));
+(function(){var hp=Object.keys(M.own).length>2||M.bank!=450||Object.keys(M.done).length>0,away=M.lastSeen?Date.now()-M.lastSeen:0,need=M.set.rem&&(away>=864e5||(!M.lastSeen&&hp&&!M.lastExport)),sc=hp&&CHG[0]?.v===VER&&M.seenVer!==VER&&(!thOn()||(M.th&&M.th.welcome));
  if(!hp)M.seenVer=VER;save();if(need){remind(away);if(sc)MQ.push(function(){chg(0)})}else if(sc)chg(0)})();
 
 var EV_START=Date.UTC(2026,9,30,21,0,0),EV_END=Date.UTC(2026,10,7,21,0,0);function evOn(){var n=Date.now();return n>=EV_START&&n<EV_END}function evPre(){return Date.now()<EV_START}
