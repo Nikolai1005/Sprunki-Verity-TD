@@ -966,7 +966,8 @@ function upd(dt){
   G.en.forEach(function(e){if(e.po||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
   G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
   if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(P2)aoe(p[0],p[1],50,d);else hit(tg,d)}
-   else if(u.k=='simonity')simonityAttack(u,tg,d,p,P2);
+  else if(u.k=='simonity')simonityAttack(u,tg,d,p,P2);
+  else if(G.tester&&t.testAttack)t.testAttack(u,tg,d,p,P2);
   else if(u.k=='lovity'){tg.sl=1.5;tg.slp=P2?.8:.5;if(P2&&!tg.boss)tg.d=Math.max(0,tg.d-70);else if(u.n%12==0&&G.lives<G.d.lv)G.lives++;hit(tg,d)}
   else if(u.k=='pumpkinity'){if(P2)aoe(p[0],p[1],70,d*1.4);else{tg.burn=3;hit(tg,d)}}
   else if(u.k=='sadity'){tg.vul=3;tg.vm=P2?1.5:1.25;hit(tg,d)}
@@ -7739,5 +7740,5 @@ function lrSceneCage(c,t){
   <p id="tester-status" role="status"></p>
 </section>
 <script src="verity-raid.js?v=1.74-timed"></script>
-<script src="tester.js?v=1.75"></script>
+<script src="tester.js?v=1.76-bossity"></script>
 </body></html>
