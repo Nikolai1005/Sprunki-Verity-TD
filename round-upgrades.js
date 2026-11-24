@@ -60,7 +60,7 @@
   };
 
   const originalHUD=hud;
-  hud=function(){originalHUD();refreshUpgradeButton()};
+  hud=function(){originalHUD();if(G&&ROUND_WAVES[G.key])$('wmx').textContent='/'+battleWaveLimit();refreshUpgradeButton()};
 
   const originalApply=coApply;
   coApply=function(action){
