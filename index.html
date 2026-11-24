@@ -688,14 +688,16 @@ body.ap-arena #modal {z-index:500}
 </style>
 <link rel="stylesheet" href="verity-raid.css?v=1.74">
 <link rel="stylesheet" href="tester.css?v=1.75">
+<link rel="stylesheet" href="boss-rush.css?v=1.77">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.76</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
     <a id="apk-download" class="account-download" href="https://raw.githubusercontent.com/Nikolai1005/Sprunki-Verity-TD/android-downloads/Sprunki-Verity-TD.apk" target="_blank" rel="noopener">↓ Скачать APK</a>
   </div>
-  <button type="button" id="ap-menu" class="hide ap-launch"></button><button type="button" id="vr-menu" class="hide"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
+  <button type="button" id="ap-menu" class="hide ap-launch"></button><button type="button" id="vr-menu" class="hide"></button>
+  <button type="button" id="br-menu"><img id="br-card-art" alt=""><span><strong>БОСС РАШ</strong><small>Тюрьма боссов · арена</small></span></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
 </section>
 <section id="game" class="hide">
 <div id="tester-battle" hidden><span><b>Тестовый бой</b><small id="tester-battle-title"></small></span><button type="button" id="tester-leave-battle">В Тестерку</button></div>
@@ -987,7 +989,7 @@ function upd(dt){
   else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='byehw'){byeAtk(u,tg,d,p,P2)}   else if(u.k=='freezity'||u.k=='bombity'||u.k=='magnetity'){nvAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
   else if(u.k=='glitch'||u.k=='fwall'||u.k=='virusv'||u.k=='hacker'){hkAtk(u,tg,d,p,P2)}
   else if(TH_UNITS[u.k]&&u.k!=='cornucopity')thAttack(u,tg,d,p,P2);
-  else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor();hit(tg,shot);hit(tg,shot);hit(tg,shot)}
+  else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor()*(window.RoundUpgrades?.damage(u)||1);hit(tg,shot);hit(tg,shot);hit(tg,shot)}
   else hit(tg,d);
   apElementAttack(u,p,d);
  });
@@ -1050,7 +1052,7 @@ cv.onclick=function(e){if(!G||G.over)return;var c=cell(cvPos(e)),u=G.units.filte
  G.selU=null;showU();tryPlace(G.sel,c[0],c[1])};
 function ring(x0,y0,r,c){x.beginPath();x.arc(x0,y0,r,0,7);x.globalAlpha=.16;x.fillStyle=c;x.fill();x.globalAlpha=1;x.strokeStyle=c;x.lineWidth=2;x.setLineDash([6,4]);x.stroke();x.setLineDash([])}
 function drawUI(){G.units.forEach(function(u){if(G.selU===u){x.strokeStyle='#fff';x.lineWidth=2;x.strokeRect(u.cx*C+2,u.cy*C+2,C-4,C-4)}
-  if(u.sr){ring(u.x,u.y-4,TY[u.k].rng*(lordN(u)?1.15:1),'#ffffff');if(u.k=='lord')ring(u.x,u.y-4,170,'#ff2a3d')}})}
+  if(u.sr){ring(u.x,u.y-4,TY[u.k].rng*(lordN(u)?1.15:1)*xR(u),'#ffffff');if(u.k=='lord')ring(u.x,u.y-4,170,'#ff2a3d')}})}
 function chkc(u,id){var h=7,q=u+id;for(var i=0;i<q.length;i++)h=(h*31+q.charCodeAt(i))%1679616;var r=h.toString(36).toUpperCase();while(r.length<4)r='0'+r;return r}
 function tm(t){$('tmsg').textContent=t}
 function trd(){var h='';for(var k in TY)if(M.own[k]&&k!=='simonity')h+='<option value="'+k+'">'+TY[k].n+' ('+RA[k]+')</option>';$('tsel').innerHTML=h;$('tcode').textContent='';tm('')}
@@ -1299,10 +1301,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.76',VOL=.8,MQ=[],CI=0;
+var VER='1.77',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.77',t:'Тюрьма боссов',a:['В режимах появилась арена «БОСС РАШ»: катсцена побега, 10 боссов и три ветки оружия.','В обычных боях можно улучшать поставленных Верити до 3-го уровня за монеты раунда.','Добавлены разовые награды за мастерство боссов.']},
 {v:'1.76',t:'Simonity: Сигнал в метели',a:['Выиграй бой на Средней сложности на карте «Снежная», затем забери Simonity в разделе «Задания».','Simonity — Epic за 220 монет в бою. Каждый четвёртый выстрел задевает до трёх соседних врагов. Во второй фазе импульс срабатывает каждый третий выстрел.']},
 {v:'1.74',t:'Арена боссфайта',a:['Кнопка «Игроки» показывает, кто сейчас на арене.','Вечеринка длится 5 минут. После сцены вторжения начинается 10-минутный бой.','В катсценах видны Верити игроков с никами. Обновлены эффекты атак.']},
 {v:'1.73',t:'Боссфайт 1x1x1x1',a:['На общей арене появился новый рейд с двумя фазами и катсценами.','Победители получают 1x1x1x1xty.']},
@@ -2640,7 +2643,7 @@ async function coOpen(){if(!onOk()||!M.fb||!M.fb.nick||!M.coop||!G||!coOkMode(G.
  G.coop={g:null,gn:'',hm:null};G.gc=G.d.co;G.eid=0;CO.room=ON.uid;coChip('🤝 Комната открыта · ждём друга');clearInterval(CO.iv);CO.iv=setInterval(coHostTick,500);say('Комната открыта: друзья могут подключиться через «Друзья 👥».')}catch(e){say('Нет связи с сервером: комната не открыта.')}}
 async function coClose(){clearInterval(CO.iv);CO.iv=null;var r=CO.room;CO.room=null;coChip('');if(r)try{await db('rooms/'+r,{m:'DELETE'})}catch(e){}}
 function coSnap(){var s={k:G.key,w:G.wave,adminTest:!!G.adminTest,l:G.lives,lv:G.d.lv,f:Math.round(G.fear||0),c:Math.floor(G.coins),gc:Math.floor(G.gc||0),r:G.run?1:0,nx:Math.ceil(G.next||0),ov:G.over||0,p2:G.p2?1:0,cl:G.cool>0?1:0,hn:M.fb.nick,
- u:G.units.map(function(u){return[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y)]}),
+ u:G.units.map(function(u){return[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y),u.upgradeLevel||1]}),
  e:G.en.filter(function(e){return!e.dead}).slice(0,90).map(function(e){if(!e.id)e.id=++G.eid;return[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0]}),
  s:G.shots.slice(-24).map(function(q){return[Math.round(q.a),Math.round(q.b),Math.round(q.c),Math.round(q.e),q.col||'']}),hm:G.coop&&G.coop.hm?G.coop.hm:null};return JSON.stringify(s)}
 async function coHostTick(){if(!CO.room)return;if(!G||cur!='game'||!G.coop){coClose();return}if(CO.busy)return;CO.busy=1;
@@ -2664,7 +2667,7 @@ async function coGuestTick(){if(!G||!G.guest||!CO.host)return;if(CO.busy)return;
 function coHostGone(){if(!G||!G.guest||G.over)return;G.over=1;clearInterval(CO.iv);$('end').className='';$('et').textContent=(G.hn||'Хост')+' закрыл игру. Твои монеты: '+Math.floor(G.coins/2)+' ушли в банк.';M.bank+=Math.floor(G.coins/2);save();coLeave()}
 function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/1000):.5;CO.lt=now;CO.miss=0;
  G.wave=s.w;G.lives=s.l;G.fear=s.f;G.coins=s.gc;G.run=!!s.r;G.next=s.nx;G.p2=!!s.p2;G.cool=s.cl?1:0;
- var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
+ var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
  var em={};G.en.forEach(function(e){em[e.id]=e});G.en=s.e.map(function(a){var e=em[a[0]];if(e){e.vv=Math.max(0,(a[2]-e.d)/dtS);if(Math.abs(a[2]-e.d)>60)e.d=a[2]}else e={id:a[0],ty:a[1],d:a[2],vv:0,t:0,v:0};e.ty=a[1];e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;if(!ET[e.ty])e.ty='walker';return e});
  (s.s||[]).forEach(function(q){G.shots.push({a:q[0],b:q[1],c:q[2],e:q[3],t:.12,col:q[4]||undefined})});if(G.shots.length>60)G.shots.splice(0,G.shots.length-60);
  if(s.hm&&(!CO.hmT||s.hm.t>CO.hmT)){CO.hmT=s.hm.t;if(COPH[s.hm.m])frToast('<b>'+esc(s.hn)+':</b> '+esc(COPH[s.hm.m]))}
@@ -3787,8 +3790,9 @@ function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){retu
  arPut(0);arDraw(cv2,t/1000,B,beat,now);AR.toasts.forEach(function(q){q.t-=dt});AR.toasts=AR.toasts.filter(function(q){return q.t>0});AR.fx.forEach(function(q){q.t+=dt});AR.fx=AR.fx.filter(function(q){return q.t<1});
  apBeatHud(beat,now,blocked);
  AR.raf=requestAnimationFrame(arLoop)}
-function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
+function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim,showClub){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
  // дубинка
+ if(showClub!==false){
  var heading=sw?(aim??(face>0?0:Math.PI)):(face>0?0:Math.PI);
  var gripX=x+Math.cos(heading)*25, gripY=y+bob+Math.sin(heading)*25;
  var progress=sw?1-sw/AR_SWING_TIME:0, angle=heading+(sw?(-1.25+2.5*progress):(face>0?-1.08:1.08));
@@ -3800,6 +3804,7 @@ function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim){var s=56,I=IM
  c.rotate(angle+Math.PI/2);c.fillStyle='#8a5a2a';c.strokeStyle='#3a2410';c.lineWidth=2;
  c.beginPath();c.moveTo(-4,0);c.lineTo(4,0);c.lineTo(8,-40);c.lineTo(-8,-40);c.closePath();c.fill();c.stroke();
  c.fillStyle='#a8743a';c.beginPath();c.ellipse(0,-42,10,7,0,0,7);c.fill();c.stroke();c.restore();
+ }
  if(I&&I.complete&&I.naturalWidth){c.save();c.beginPath();c.arc(x,y+bob,s/2,0,7);c.clip();c.drawImage(I,x-s/2,y-s/2+bob,s,s);c.restore()}else{c.fillStyle='#ffd21f';c.beginPath();c.arc(x,y+bob,s/2,0,7);c.fill()}
  var CS=typeof csP=='function'?csP(cs):{},frc=CS.fr&&typeof cosCol=='function'?cosCol('fr',CS.fr,t*1000):null,ncc=CS.nc&&typeof cosCol=='function'?cosCol('nc',CS.nc,t*1000):null;c.lineWidth=4;c.strokeStyle=frc||(me?'#ffd21f':'#ffffff');c.beginPath();c.arc(x,y+bob,s/2,0,7);c.stroke();
  if(crown)apDrawCrown(c,x,y+bob-31,.51);
@@ -7691,6 +7696,26 @@ function lrSceneCage(c,t){
   lrFade(c,1-apMove(t,4.12,4.67));
 }
 </script>
+<section id="boss-rush" class="hide p" aria-label="БОСС РАШ">
+  <header class="br-top">
+    <button type="button" id="br-back" data-br="back">← Режимы</button>
+    <button type="button" id="br-skip" data-br="skip" hidden>Пропустить катсцену</button>
+    <div id="br-stage" hidden>
+      <strong id="br-stage-title"></strong><span id="br-health"></span><span id="br-weapon"></span><span id="br-clock"></span>
+      <progress id="br-boss-health" aria-label="Здоровье босса" max="1" value="1" hidden></progress>
+    </div>
+  </header>
+  <div class="br-arena">
+    <canvas id="br-canvas" width="900" height="540" aria-label="Поле боя" hidden></canvas>
+    <p id="br-dialogue" aria-live="polite" hidden><span id="br-speaker"></span><span id="br-line"></span></p>
+  </div>
+  <div id="br-controls" hidden>
+    <div id="br-stick" aria-label="Джойстик движения"><span id="br-stick-dot"></span></div>
+    <button type="button" id="br-attack">Атака</button>
+  </div>
+  <div id="br-panel"></div>
+  <p id="br-status" role="status"></p>
+</section>
 <section id="tester" class="hide p" aria-label="Тестерка">
   <div class="tester-top"><h2>Тестерка</h2><button type="button" class="bk" id="tester-back">Назад</button></div>
   <form id="tester-lock">
@@ -7740,5 +7765,8 @@ function lrSceneCage(c,t){
   <p id="tester-status" role="status"></p>
 </section>
 <script src="verity-raid.js?v=1.74-timed"></script>
+<script src="boss-rush-engine.js?v=1.77"></script>
+<script src="boss-rush.js?v=1.77"></script>
+<script src="round-upgrades.js?v=1.77"></script>
 <script src="tester.js?v=1.76-bossity-boss"></script>
 </body></html>

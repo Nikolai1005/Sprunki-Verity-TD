@@ -1,0 +1,76 @@
+{
+  "rules": {
+    "bossRush": {
+      "rooms": {
+        "$room": {
+          ".read": "auth != null && !root.child('bans').child(auth.uid).exists() && (data.child('host').val() === auth.uid || data.child('allowed').child(auth.uid).val() === true)",
+          ".write": "auth != null && !root.child('bans').child(auth.uid).exists() && !data.exists() && newData.child('host').val() === auth.uid && !newData.hasChild('game') && !newData.hasChild('members') && !newData.hasChild('allowed') && !newData.hasChild('inputs')",
+          ".validate": "newData.hasChildren(['host', 'created', 'life'])",
+          "host": {
+            ".validate": "newData.isString() && newData.val() === auth.uid && (!data.exists() || newData.val() === data.val())"
+          },
+          "created": {
+            ".validate": "newData.isNumber() && newData.val() >= now - 10000 && newData.val() <= now + 5000"
+          },
+          "life": {
+            ".write": "auth != null && !root.child('bans').child(auth.uid).exists() && data.parent().child('host').val() === auth.uid && newData.exists() && !data.child('closed').exists()",
+            ".validate": "newData.hasChild('at') && (!newData.child('closed').exists() || data.exists())",
+            "at": {".validate": "newData.isNumber() && newData.val() >= now - 10000 && newData.val() <= now + 5000"},
+            "closed": {".validate": "newData.val() === true"},
+            "$other": {".validate": false}
+          },
+          "allowed": {
+            "$uid": {
+              ".write": "auth != null && !root.child('bans').child(auth.uid).exists() && data.parent().parent().child('host').val() === auth.uid && !data.parent().parent().child('game').exists() && !data.parent().parent().child('life/closed').exists() && (!newData.exists() || ($uid !== auth.uid && root.child('friends').child(auth.uid).child($uid).exists()))",
+              ".validate": "newData.val() === true"
+            }
+          },
+          "members": {
+            "$uid": {
+              ".write": "auth != null && auth.uid === $uid && !root.child('bans').child(auth.uid).exists() && (data.parent().parent().child('host').val() === auth.uid || data.parent().parent().child('allowed').child($uid).val() === true) && (!newData.exists() || !data.parent().parent().child('life/closed').exists())",
+              ".validate": "newData.hasChildren(['name', 'avatar', 't'])",
+              "name": {".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 20"},
+              "avatar": {".validate": "newData.isString() && newData.val().matches(/^[a-zA-Z0-9_-]{1,40}$/)"},
+              "t": {".validate": "newData.isNumber() && newData.val() >= now - 10000 && newData.val() <= now + 5000"},
+              "$other": {".validate": false}
+            }
+          },
+          "inputs": {
+            "$uid": {
+              ".write": "auth != null && auth.uid === $uid && !root.child('bans').child(auth.uid).exists() && data.parent().parent().child('allowed').child($uid).val() === true && data.parent().parent().child('game').exists() && !data.parent().parent().child('life/closed').exists()",
+              ".validate": "newData.hasChildren(['x', 'y', 'attack', 'choice', 'weapon', 't'])",
+              "x": {".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 1"},
+              "y": {".validate": "newData.isNumber() && newData.val() >= -1 && newData.val() <= 1"},
+              "attack": {".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= (now + 90000) * 1000"},
+              "choice": {".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= (now + 90000) * 1000"},
+              "weapon": {".validate": "newData.isString() && newData.val().matches(/^(stone|bow|pistol|automatic|hammer|spear|saw|fate|shield|spikes|swat|lord)?$/)"},
+              "t": {".validate": "newData.isNumber() && newData.val() >= now - 10000 && newData.val() <= now + 5000"},
+              "$other": {".validate": false}
+            }
+          },
+          "game": {
+            ".write": "auth != null && !root.child('bans').child(auth.uid).exists() && data.parent().child('host').val() === auth.uid && !data.parent().child('life/closed').exists() && data.parent().child('life/at').val() >= now - 30000 && newData.exists()",
+            ".validate": "newData.hasChildren(['state', 'at'])",
+            "state": {".validate": "newData.isString() && newData.val().length <= 42000"},
+            "at": {".validate": "newData.isNumber() && newData.val() >= now - 10000 && newData.val() <= now + 5000"},
+            "$other": {".validate": false}
+          },
+          "$other": {".validate": false}
+        }
+      },
+      "invites": {
+        "$uid": {
+          ".read": "auth != null && auth.uid === $uid && !root.child('bans').child(auth.uid).exists()",
+          "$room": {
+            ".write": "auth != null && !root.child('bans').child(auth.uid).exists() && ((!newData.exists() && auth.uid === $uid) || (newData.exists() && root.child('bossRush/rooms').child($room).child('host').val() === auth.uid && root.child('bossRush/rooms').child($room).child('allowed').child($uid).val() === true && root.child('friends').child(auth.uid).child($uid).exists() && !root.child('bossRush/rooms').child($room).child('game').exists()))",
+            ".validate": "newData.hasChildren(['host', 'name', 'at'])",
+            "host": {".validate": "newData.val() === auth.uid"},
+            "name": {".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 20"},
+            "at": {".validate": "newData.isNumber() && newData.val() >= now - 10000 && newData.val() <= now + 5000"},
+            "$other": {".validate": false}
+          }
+        }
+      }
+    }
+  }
+}
