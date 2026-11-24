@@ -15,31 +15,40 @@
 
   const bossity={
     n:'Bossity',cost:540,dmg:0,rate:12,rng:0,col:'#cf93ff',
-    d:'Тестовый Mythic-спавнер. Каждые 12 с призывает мини-босса с 240 HP, который движется от базы и наносит урон при столкновениях. Фаза 2: 360 HP каждые 8 с. До двух призывов на башню.',
+    d:'Тестовый Mythic-спавнер. Каждые 12 с призывает мини-босса с 240 HP. При включении фазы 2 появляется Владыка Bossity (650 HP), не чаще одного раза за 24 с. Один Владыка на карту; до двух мини-боссов на башню. Все призывы наносят урон при столкновениях.',
     testAttack(){}
   };
 
   function updateBossity(dt){
     G.bossityMinions=G.bossityMinions||[];
+    G.bossityBossCd=Math.max(0,(G.bossityBossCd||0)-dt);
     for(const unit of G.units){
       if(unit.k!=='bossity')continue;
       // Spawners use their own cooldown and do not shoot.
       unit.cd=Math.max(unit.cd||0,dt+1);
-      if(!G.run||G.cool>0||!G.en.some(enemy=>!enemy.dead&&!enemy.po))continue;
       const phaseTwo=G.p2||unit.inf>0;
-      unit.spawnCd=Math.max(0,Math.min(unit.spawnCd??3,phaseTwo?8:12)-dt);
-      if(unit.spawnCd>0||G.bossityMinions.filter(minion=>minion.owner===unit).length>=2)continue;
-      const health=phaseTwo?360:240;
+      const phaseJustActivated=phaseTwo&&!unit.bossityPhaseActive;
+      unit.bossityPhaseActive=phaseTwo;
+      if(phaseTwo){
+        if(!phaseJustActivated||G.cool>0||G.bossityBossCd>0||G.bossityMinions.some(minion=>minion.phaseTwo))continue;
+        G.bossityBossCd=24;
+      }else{
+        if(!G.run||G.cool>0||!G.en.some(enemy=>!enemy.dead&&!enemy.po))continue;
+        unit.spawnCd=Math.max(0,(unit.spawnCd??3)-dt);
+        if(unit.spawnCd>0||G.bossityMinions.filter(minion=>minion.owner===unit&&!minion.phaseTwo).length>=2)continue;
+        unit.spawnCd=12;
+      }
+      const health=phaseTwo?650:240;
       G.bossityMinions.push({owner:unit,d:tot,hp:health,max:health,phaseTwo,hits:new Set()});
-      unit.spawnCd=phaseTwo?8:12;
       const point=pos(tot);
-      (G.waves=G.waves||[]).push({x:point[0],y:point[1],t:0,c:phaseTwo?'#ff655e':'#d4a1ff',radius:38});
+      (G.waves=G.waves||[]).push({x:point[0],y:point[1],t:0,c:phaseTwo?'#ff655e':'#d4a1ff',radius:phaseTwo?65:38});
     }
     G.bossityMinions=G.bossityMinions.filter(minion=>{
       if(!G.units.includes(minion.owner))return false;
       const previous=minion.d;
-      minion.d=Math.max(0,previous-80*dt);
-      const contacts=G.en.filter(enemy=>!enemy.dead&&!enemy.po&&!minion.hits.has(enemy)&&enemy.d<=previous+14&&enemy.d>=minion.d-14)
+      const radius=minion.phaseTwo?22:14;
+      minion.d=Math.max(0,previous-(minion.phaseTwo?55:80)*dt);
+      const contacts=G.en.filter(enemy=>!enemy.dead&&!enemy.po&&!minion.hits.has(enemy)&&enemy.d<=previous+radius&&enemy.d>=minion.d-radius)
         .sort((a,b)=>b.d-a.d);
       for(const enemy of contacts){
         const damage=Math.min(minion.hp,Math.max(0,enemy.hp));
@@ -60,24 +69,27 @@
       const [px,py]=pos(minion.d);
       const [ahead]=pos(Math.max(0,minion.d-8));
       const sprite=IM['bossity'+(minion.phaseTwo?2:1)];
+      const size=minion.phaseTwo?58:34;
+      const radius=size/2-2;
       x.save();
       x.fillStyle='rgba(15,10,28,.35)';
-      x.beginPath();x.ellipse(px,py+8,13,5,0,0,Math.PI*2);x.fill();
+      x.beginPath();x.ellipse(px,py+8,radius,5,0,0,Math.PI*2);x.fill();
       x.translate(px,py-7);
       const bounce=Math.sin(performance.now()/120+minion.d/30)*2;
       x.translate(0,bounce);
       x.strokeStyle=minion.phaseTwo?'#ff655e':'#d4a1ff';
-      x.lineWidth=2;
-      x.beginPath();x.ellipse(0,6,15,7,0,0,Math.PI*2);x.stroke();
+      x.lineWidth=minion.phaseTwo?3:2;
+      x.beginPath();x.ellipse(0,6,radius,7,0,0,Math.PI*2);x.stroke();
       if(sprite?.complete&&sprite.naturalWidth){
         x.scale(ahead>px?1:-1,1);
-        x.drawImage(sprite,-17,-20,34,34);
+        x.drawImage(sprite,-size/2,-size*.6,size,size);
         x.scale(ahead>px?1:-1,1);
       }else{
-        x.fillStyle='#7552a2';x.beginPath();x.arc(0,0,11,0,Math.PI*2);x.fill();
+        x.fillStyle=minion.phaseTwo?'#9a322f':'#7552a2';x.beginPath();x.arc(0,0,radius*.75,0,Math.PI*2);x.fill();
       }
-      x.fillStyle='#19101f';x.fillRect(-14,-24,28,4);
-      x.fillStyle='#69ee9d';x.fillRect(-14,-24,28*minion.hp/minion.max,4);
+      const barWidth=size*.82, barY=-size*.7;
+      x.fillStyle='#19101f';x.fillRect(-barWidth/2,barY,barWidth,4);
+      x.fillStyle=minion.phaseTwo?'#ffbd58':'#69ee9d';x.fillRect(-barWidth/2,barY,barWidth*minion.hp/minion.max,4);
       x.restore();
     }
   }
