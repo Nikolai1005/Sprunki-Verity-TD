@@ -11,12 +11,75 @@
   const modeNames={...Object.fromEntries(Object.entries(DF).map(([id,mode])=>[id,mode.n])),
     hw:'Хэллоуинская ночь',hk:'Взлом системы',inf:'Жерло вулкана'};
   let grant=null, sandbox=null, inSimulation=false, mailRequest=0, chosen='', busy=false;
+  let adminSession=false;
+
+  const bossity={
+    n:'Bossity',cost:540,dmg:48,rate:.95,rng:110,col:'#cf93ff',
+    d:'Тестовый Mythic. Каждая четвёртая атака выпускает ударную волну по трём соседним врагам (50% урона). Фаза 2: волна каждые три атаки.',
+    testAttack(unit,target,damage,point,phaseTwo){
+      hit(target,damage);
+      if(unit.n%(phaseTwo?3:4)!==0)return;
+      const radius=60, color=phaseTwo?'#ff655e':'#d4a1ff';
+      let remaining=3;
+      for(const enemy of G.en){
+        if(enemy===target||enemy.dead||enemy.po||inv(enemy))continue;
+        const position=pos(enemy.d);
+        if(Math.hypot(position[0]-point[0],position[1]-point[1])>radius)continue;
+        hit(enemy,damage*.5);
+        G.shots.push({a:point[0],b:point[1]+4,c:position[0],e:position[1],t:.15,col:color});
+        if(--remaining===0)break;
+      }
+      (G.waves=G.waves||[]).push({x:point[0],y:point[1],t:0,c:color,radius});
+    }
+  };
+
+  function drawBossity(){
+    for(const phase of [1,2]){
+      const portrait=document.createElement('canvas');
+      portrait.width=portrait.height=128;
+      const c=portrait.getContext('2d'), fierce=phase===2;
+      const edge='#181120', accent=fierce?'#ff543c':'#b77bff';
+      c.lineJoin=c.lineCap='round';
+      function polygon(points,fill,stroke=edge,line=4){
+        c.beginPath();
+        points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));
+        c.closePath();c.fillStyle=fill;c.fill();c.strokeStyle=stroke;c.lineWidth=line;c.stroke();
+      }
+      polygon([[25,55],[5,36],[12,79],[29,92]],'#4d365b');
+      polygon([[103,55],[123,36],[116,79],[99,92]],'#4d365b');
+      const body=c.createLinearGradient(36,39,98,112);
+      body.addColorStop(0,'#8061aa');body.addColorStop(.65,'#473459');
+      body.addColorStop(1,'#251b33');
+      c.beginPath();c.arc(64,77,45,0,Math.PI*2);
+      c.fillStyle=body;c.fill();c.strokeStyle=edge;c.lineWidth=5;c.stroke();
+      polygon([[29,46],[24,13],[43,27],[64,5],[85,27],[104,13],[99,46]],'#e8b94c');
+      polygon([[29,37],[99,37],[99,46],[29,46]],'#a66c26');
+      polygon([[64,17],[73,27],[64,36],[55,27]],accent,edge,2);
+      c.strokeStyle=accent;c.lineWidth=5;
+      c.beginPath();c.moveTo(34,63);c.lineTo(49,71);c.moveTo(94,63);c.lineTo(79,71);c.stroke();
+      c.fillStyle=fierce?'#fff0be':'#f2dcff';
+      for(const eye of [46,82]){c.beginPath();c.ellipse(eye,79,5,7,0,0,Math.PI*2);c.fill()}
+      if(fierce){
+        polygon([[39,98],[51,92],[60,102],[69,93],[78,101],[89,93],[83,111],[46,112]],'#fff0da',edge,3);
+        c.strokeStyle=accent;c.lineWidth=2;
+        c.beginPath();c.moveTo(30,83);c.lineTo(23,99);c.lineTo(32,104);
+        c.moveTo(99,84);c.lineTo(106,98);c.lineTo(98,108);c.stroke();
+      }else{
+        c.strokeStyle=edge;c.lineWidth=4;
+        c.beginPath();c.moveTo(48,99);c.quadraticCurveTo(64,109,81,96);c.stroke();
+      }
+      const key='bossity'+phase, sprite=new Image();
+      IMG[key]=portrait.toDataURL();sprite.src=IMG[key];IM[key]=sprite;
+    }
+  }
+  drawBossity();
+  const testUnit=id=>id==='bossity'?bossity:TY[id];
 
   function message(text){status.textContent=text}
   function unlocked(){
     return grant&&Date.now()<grant.until&&(preview||grant.uid===ON.uid);
   }
-  function allowed(){return Boolean(unlocked())}
+  function allowed(){return Boolean(unlocked()||(adminSession&&ADM))}
   function options(choices){
     return Object.entries(choices).map(([id,name])=>'<option value="'+esc(id)+'">'+esc(name)+'</option>').join('');
   }
@@ -70,19 +133,19 @@
 
   function teamView(){
     $('tester-team').innerHTML=roster.size?[...roster].map(id=>
-      '<button type="button" data-remove="'+esc(id)+'" aria-label="Убрать '+esc(TY[id].n)+'">'+pic(id,1,23)+esc(TY[id].n)+' ×</button>'
+      '<button type="button" data-remove="'+esc(id)+'" aria-label="Убрать '+esc(testUnit(id).n)+'">'+pic(id,1,23)+esc(testUnit(id).n)+' ×</button>'
     ).join(''):'<span>Добавь хотя бы одного Верити.</span>';
     $('tester-count').textContent=roster.size+' в команде';
     $('tester-start').disabled=!roster.size;
   }
   function selectUnit(){
     chosen=$('tester-unit').value;
-    const unit=TY[chosen];
-    $('tester-unit-info').innerHTML=unit?pic(chosen,1,42)+'<span><b>'+esc(unit.n)+'</b><small>'+esc(unit.d||'')+'</small></span>':'';
+    const unit=testUnit(chosen);
+    $('tester-unit-info').innerHTML=unit?pic(chosen,1,42)+(chosen==='bossity'?pic(chosen,2,42):'')+'<span><b>'+esc(unit.n)+'</b><small>'+esc(unit.d||'')+'</small></span>':'';
   }
   function feedbackView(){
     const select=$('tester-report-unit'), last=select.value;
-    select.innerHTML=options(Object.fromEntries([...played].filter(([id])=>TY[id]).map(([id])=>[id,TY[id].n])));
+    select.innerHTML=options(Object.fromEntries([...played].filter(([id])=>testUnit(id)).map(([id])=>[id,testUnit(id).n])));
     if(played.has(last))select.value=last;
     $('tester-report').hidden=!played.size;
     $('tester-report-empty').hidden=!!played.size;
@@ -92,9 +155,9 @@
       $('tester-mode').innerHTML=options(modeNames);
       $('tester-map').innerHTML=options(Object.fromEntries(Object.entries(MP).map(([id,map])=>[id,map.n])));
     }
-    const unitKeys=Object.keys(TY).sort((a,b)=>TY[a].n.localeCompare(TY[b].n,'ru'));
-    $('tester-unit').innerHTML=options(Object.fromEntries(unitKeys.map(id=>[id,TY[id].n])));
-    $('tester-unit').value=chosen&&Object.hasOwn(TY,chosen)?chosen:'verity';
+    const unitKeys=[...Object.keys(TY),'bossity'].sort((a,b)=>testUnit(a).n.localeCompare(testUnit(b).n,'ru'));
+    $('tester-unit').innerHTML=options(Object.fromEntries(unitKeys.map(id=>[id,testUnit(id).n])));
+    $('tester-unit').value=chosen&&testUnit(chosen)?chosen:'verity';
     selectUnit();
     teamView();
     feedbackView();
@@ -117,8 +180,9 @@
     const real=M;
     M=sandbox.save;
     inSimulation=true;
+    if(M.own.bossity){TY.bossity=bossity;RA.bossity='Mythic'}
     try{return fn()}
-    finally{M=real;inSimulation=false}
+    finally{delete TY.bossity;delete RA.bossity;M=real;inSimulation=false}
   }
   function cloneBattleState(){
     return {game:G,paths:PT.slice(),segments:segs.slice(),length:tot,road:{...road},decoration:MDEC,mapNext:MAPNEXT};
@@ -141,7 +205,7 @@
     if(!allowed()){open();return}
     const mode=$('tester-mode').value, map=$('tester-map').value;
     const waves=Number($('tester-waves').value);
-    const team=[...roster].filter(id=>Object.hasOwn(TY,id));
+    const team=[...roster].filter(id=>testUnit(id));
     if(!Object.hasOwn(modeNames,mode)||!Object.hasOwn(MP,map)||!Number.isInteger(waves)||waves<1||waves>MAX_WAVES||!team.length){
       message('Выбери карту, режим, команду и от 1 до '+MAX_WAVES+' волн.');
       return;
@@ -214,7 +278,7 @@
   function emailRows(rows){
     if(!rows.length)return '<p>Отзывов пока нет.</p>';
     return '<div class="tester-reports">'+rows.map(({row,nick})=>
-      '<article><strong>'+esc(row.verdict==='buff'?'Бафф!':'Дебафф!')+' · '+esc(TY[row.unit]?.n||row.unit)+'</strong><small>'+
+      '<article><strong>'+esc(row.verdict==='buff'?'Бафф!':'Дебафф!')+' · '+esc(testUnit(row.unit)?.n||row.unit)+'</strong><small>'+
       esc(nick||'Тестер')+' · '+esc(modeNames[row.mode]||'')+' · '+esc(MP[row.map]?.n||'')+' · волна '+Number(row.wave)+
       '</small></article>').join('')+'</div>';
   }
@@ -288,6 +352,21 @@
   }
 
   window.VerityTester={isSimulating:()=>inSimulation,canPreviewRaid:allowed};
+  const originalAdminPanel=admPanel;
+  admPanel=function(){
+    originalAdminPanel.apply(this,arguments);
+    if(!ADM||!$('adk2'))return;
+    const row=$('adk2').closest('.adr');
+    row.insertAdjacentHTML('afterend','<div class="row"><button type="button" id="admin-test-bossity">'+pic('bossity',1,32)+'Тест Bossity</button></div>');
+    $('admin-test-bossity').onclick=()=>{
+      if(!ADM)return;
+      adminSession=true;
+      roster.add('bossity');
+      chosen='bossity';
+      mClose();
+      open();
+    };
+  };
   const promo=$('pb').onclick;
   $('pb').onclick=function(event){
     if($('pi').value.replace(/\s+/g,'').toLowerCase()!=='test')return promo.call(this,event);
@@ -314,7 +393,7 @@
   $('tester-demo-mail').onclick=()=>scr('mail');
 
   const originalUpdate=upd, originalDraw=draw, originalShop=shop, originalEnd=endGame;
-  const originalHUD=hud, originalClick=cv.onclick, originalScreen=scr;
+  const originalHUD=hud, originalClick=cv.onclick, originalScreen=scr, originalShowUnit=showU;
   upd=function(dt){
     if(!G?.tester)return originalUpdate(dt);
     const battle=G;
@@ -322,7 +401,17 @@
     return withTestSave(()=>{originalUpdate(dt);rememberTest(battle)});
   };
   draw=function(){return G?.tester?withTestSave(originalDraw):originalDraw()};
-  shop=function(){return G?.tester?withTestSave(originalShop):originalShop()};
+  shop=function(){
+    if(!G?.tester)return originalShop();
+    return withTestSave(()=>{
+      originalShop();
+      for(const button of $('shop').querySelectorAll('button')){
+        const click=button.onclick;
+        if(click)button.onclick=function(event){return withTestSave(()=>click.call(this,event))};
+      }
+    });
+  };
+  showU=function(){return G?.tester?withTestSave(originalShowUnit):originalShowUnit()};
   cv.onclick=function(event){
     return G?.tester?withTestSave(()=>originalClick.call(this,event)):originalClick.call(this,event);
   };
@@ -340,6 +429,7 @@
   }
   scr=function(screen){
     if(sandbox&&cur==='game'&&screen!=='game')restoreBattleState();
+    if(screen!=='tester'&&screen!=='game'&&screen!=='arn')adminSession=false;
     if(screen==='tester'&&!allowed()){form.hidden=false;builder.hidden=true}
     const result=originalScreen(screen);
     if(cur==='mail')adminMail();
