@@ -64,20 +64,23 @@
       if(tier){gems+=tier.gems;prizes.push(boss.name+' · мастерство '+wins+'/5')}
     }
     if(mask===newMask)return;
-    const priorGem=M.gem;
+    const priorGem=M.gem, priorUnit=M.own.bossity;
+    const unlocked=!priorUnit&&BOSSES.every(b=>progress.wins[b.key]>=5);
     progress.claims[session]={mask:newMask,at:Date.now()};
     for(const [id,claim] of Object.entries(progress.claims)){
       if(Date.now()-claim.at>7*86400000)delete progress.claims[id];
     }
     M.bossRush=progress;
     M.gem=(Number(priorGem)||0)+gems;
+    if(unlocked)M.own.bossity=1;
     if(!save()){
       if(previous===undefined)delete M.bossRush;else M.bossRush=previous;
       M.gem=priorGem;
+      if(priorUnit===undefined)delete M.own.bossity;else M.own.bossity=priorUnit;
       stepNote='Не удалось сохранить награду. Игра попробует снова.';
       return;
     }
-    stepNote=[gems?'Получено +'+gems+' 💎':'Победа записана в мастерство',...prizes].join(' · ');
+    stepNote=[gems?'Получено +'+gems+' 💎':'Победа записана в мастерство',...prizes,...(unlocked?['🏆 Bossity разблокирован!']:[])].join(' · ');
     tone(740,.18,'triangle',.12,1000);
   }
 
@@ -139,9 +142,15 @@
         '<div class="br-actions">'+button('reload','Обновить',onlineBusy)+(readRoom()&&mode===null?button('resume','Вернуться в комнату',onlineBusy):'')+'</div>';
     }
     if(view==='mastery'){
-      html='<h1>Мастерство боссов</h1><p>Побеждай боссов и получай разовые награды за 1, 3 и 5 побед над каждым.</p>'+
-        '<div class="br-mastery">'+BOSSES.map(boss=>'<article><b style="color:'+boss.color+'">'+boss.name+'</b><progress max="5" value="'+Math.min(5,mastery(boss.key))+'"></progress><span>'+mastery(boss.key)+' побед</span><small>'+
-        TIERS.map(tier=>(mastery(boss.key)>=tier.wins?'✓ ':'')+tier.wins+' → '+tier.gems+' 💎').join(' · ')+'</small></article>').join('')+'</div>';
+      const total=BOSSES.reduce((sum,boss)=>sum+Math.min(5,mastery(boss.key)),0);
+      const complete=BOSSES.filter(boss=>mastery(boss.key)>=5).length;
+      html='<div class="br-mastery-heading"><div><h1>Мастерство боссов</h1><p>Великая охота · '+complete+' из '+BOSSES.length+' боссов освоено</p></div><strong>'+total+' / 50</strong></div>'+
+        '<div class="br-mastery-reward'+(M.own.bossity?' claimed':'')+'"><div class="br-mastery-reward-art">'+pic('bossity',1,100)+pic('bossity',2,75)+'</div><div><span class="br-mastery-eyebrow">MYTHIC · НАГРАДА</span><h2>Bossity</h2><p>'+(M.own.bossity?'✓ Получен в коллекцию':'Победи каждого босса 5 раз и получи Bossity автоматически.')+'</p><progress max="50" value="'+total+'" aria-label="Прогресс награды Bossity"></progress><small>'+total+' из 50 побед</small></div></div>'+
+        '<div class="br-mastery">'+BOSSES.map((boss,index)=>{
+          const wins=Math.min(5,mastery(boss.key));
+          return '<article class="'+(wins===5?'mastered':'')+'" style="--boss-color:'+boss.color+'"><div class="br-mastery-image"><img src="'+masteryArt[index]+'" alt=""><span>'+String(index+1).padStart(2,'0')+'</span>'+(wins===5?'<strong>✓</strong>':'')+'</div><div class="br-mastery-body"><b>'+boss.name+'</b><div class="br-mastery-progress" aria-label="'+wins+' из 5 побед">'+Array.from({length:5},(_,i)=>'<i class="'+(i<wins?'done':'')+'"></i>').join('')+'</div><span>'+wins+' / 5 побед</span><small>'+
+          TIERS.map(tier=>'<span class="'+(wins>=tier.wins?'done':'')+'">'+tier.wins+' · '+tier.gems+' 💎</span>').join('')+'</small></div></article>';
+        }).join('')+'</div>';
     }
     if(view==='room'){
       const people=roomPlayers();
@@ -848,6 +857,16 @@
   thGlow(artContext,88,82,115,'#ff554f84');
   bossArt(artContext,0,88,91,55,.6);
   const art=cover.toDataURL();
+  const masteryArt=BOSSES.map((boss,index)=>{
+    const icon=document.createElement('canvas');icon.width=icon.height=180;
+    const c=icon.getContext('2d');
+    c.fillStyle=thGradient(c,0,0,180,180,['#160f22',boss.color+'75','#241426']);
+    c.fillRect(0,0,180,180);
+    c.strokeStyle=boss.color+'45';c.lineWidth=2;
+    for(let r=28;r<=90;r+=20){c.beginPath();c.arc(90,90,r,0,Math.PI*2);c.stroke()}
+    bossArt(c,index,90,91,51,.6);
+    return icon.toDataURL();
+  });
   $('br-card-art').src=art;
   $('br-menu').onclick=()=>{setNote('');stepNote='';scr('boss-rush')};
   screen.addEventListener('click',event=>{
