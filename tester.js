@@ -14,24 +14,73 @@
   let adminSession=false;
 
   const bossity={
-    n:'Bossity',cost:540,dmg:48,rate:.95,rng:110,col:'#cf93ff',
-    d:'Тестовый Mythic. Каждая четвёртая атака выпускает ударную волну по трём соседним врагам (50% урона). Фаза 2: волна каждые три атаки.',
-    testAttack(unit,target,damage,point,phaseTwo){
-      hit(target,damage);
-      if(unit.n%(phaseTwo?3:4)!==0)return;
-      const radius=60, color=phaseTwo?'#ff655e':'#d4a1ff';
-      let remaining=3;
-      for(const enemy of G.en){
-        if(enemy===target||enemy.dead||enemy.po||inv(enemy))continue;
-        const position=pos(enemy.d);
-        if(Math.hypot(position[0]-point[0],position[1]-point[1])>radius)continue;
-        hit(enemy,damage*.5);
-        G.shots.push({a:point[0],b:point[1]+4,c:position[0],e:position[1],t:.15,col:color});
-        if(--remaining===0)break;
-      }
-      (G.waves=G.waves||[]).push({x:point[0],y:point[1],t:0,c:color,radius});
-    }
+    n:'Bossity',cost:540,dmg:0,rate:12,rng:0,col:'#cf93ff',
+    d:'Тестовый Mythic-спавнер. Каждые 12 с призывает мини-босса с 240 HP, который движется от базы и наносит урон при столкновениях. Фаза 2: 360 HP каждые 8 с. До двух призывов на башню.',
+    testAttack(){}
   };
+
+  function updateBossity(dt){
+    G.bossityMinions=G.bossityMinions||[];
+    for(const unit of G.units){
+      if(unit.k!=='bossity')continue;
+      // Spawners use their own cooldown and do not shoot.
+      unit.cd=Math.max(unit.cd||0,dt+1);
+      if(!G.run||G.cool>0||!G.en.some(enemy=>!enemy.dead&&!enemy.po))continue;
+      const phaseTwo=G.p2||unit.inf>0;
+      unit.spawnCd=Math.max(0,Math.min(unit.spawnCd??3,phaseTwo?8:12)-dt);
+      if(unit.spawnCd>0||G.bossityMinions.filter(minion=>minion.owner===unit).length>=2)continue;
+      const health=phaseTwo?360:240;
+      G.bossityMinions.push({owner:unit,d:tot,hp:health,max:health,phaseTwo,hits:new Set()});
+      unit.spawnCd=phaseTwo?8:12;
+      const point=pos(tot);
+      (G.waves=G.waves||[]).push({x:point[0],y:point[1],t:0,c:phaseTwo?'#ff655e':'#d4a1ff',radius:38});
+    }
+    G.bossityMinions=G.bossityMinions.filter(minion=>{
+      if(!G.units.includes(minion.owner))return false;
+      const previous=minion.d;
+      minion.d=Math.max(0,previous-80*dt);
+      const contacts=G.en.filter(enemy=>!enemy.dead&&!enemy.po&&!minion.hits.has(enemy)&&enemy.d<=previous+14&&enemy.d>=minion.d-14)
+        .sort((a,b)=>b.d-a.d);
+      for(const enemy of contacts){
+        const damage=Math.min(minion.hp,Math.max(0,enemy.hp));
+        minion.hits.add(enemy);
+        minion.hp-=damage;
+        hit(enemy,damage);
+        const point=pos(enemy.d);
+        (G.waves=G.waves||[]).push({x:point[0],y:point[1],t:0,c:'#ffcf72',radius:22});
+        if(minion.hp<=0)return false;
+      }
+      return minion.d>0;
+    });
+  }
+
+  function drawBossityMinions(){
+    if(!G.bossityMinions?.length)return;
+    for(const minion of G.bossityMinions){
+      const [px,py]=pos(minion.d);
+      const [ahead]=pos(Math.max(0,minion.d-8));
+      const sprite=IM['bossity'+(minion.phaseTwo?2:1)];
+      x.save();
+      x.fillStyle='rgba(15,10,28,.35)';
+      x.beginPath();x.ellipse(px,py+8,13,5,0,0,Math.PI*2);x.fill();
+      x.translate(px,py-7);
+      const bounce=Math.sin(performance.now()/120+minion.d/30)*2;
+      x.translate(0,bounce);
+      x.strokeStyle=minion.phaseTwo?'#ff655e':'#d4a1ff';
+      x.lineWidth=2;
+      x.beginPath();x.ellipse(0,6,15,7,0,0,Math.PI*2);x.stroke();
+      if(sprite?.complete&&sprite.naturalWidth){
+        x.scale(ahead>px?1:-1,1);
+        x.drawImage(sprite,-17,-20,34,34);
+        x.scale(ahead>px?1:-1,1);
+      }else{
+        x.fillStyle='#7552a2';x.beginPath();x.arc(0,0,11,0,Math.PI*2);x.fill();
+      }
+      x.fillStyle='#19101f';x.fillRect(-14,-24,28,4);
+      x.fillStyle='#69ee9d';x.fillRect(-14,-24,28*minion.hp/minion.max,4);
+      x.restore();
+    }
+  }
 
   function drawBossity(){
     for(const phase of [1,2]){
@@ -398,9 +447,9 @@
     if(!G?.tester)return originalUpdate(dt);
     const battle=G;
     rememberTest(battle);
-    return withTestSave(()=>{originalUpdate(dt);rememberTest(battle)});
+    return withTestSave(()=>{if(!G.over)updateBossity(dt);originalUpdate(dt);rememberTest(battle)});
   };
-  draw=function(){return G?.tester?withTestSave(originalDraw):originalDraw()};
+  draw=function(){return G?.tester?withTestSave(()=>{originalDraw();drawBossityMinions()}):originalDraw()};
   shop=function(){
     if(!G?.tester)return originalShop();
     return withTestSave(()=>{
