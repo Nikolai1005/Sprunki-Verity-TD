@@ -13,11 +13,7 @@
   let grant=null, sandbox=null, inSimulation=false, mailRequest=0, chosen='', busy=false;
   let adminSession=false;
 
-  const bossity={
-    n:'Bossity',cost:540,dmg:0,rate:12,rng:0,col:'#cf93ff',
-    d:'Тестовый Mythic-спавнер. Каждые 12 с призывает мини-босса с 240 HP. При включении фазы 2 появляется Владыка Bossity (650 HP), не чаще одного раза за 24 с. Один Владыка на карту; до двух мини-боссов на башню. Все призывы наносят урон при столкновениях.',
-    testAttack(){}
-  };
+  const bossity=TY.bossity;
 
   function updateBossity(dt){
     G.bossityMinions=G.bossityMinions||[];
@@ -216,7 +212,7 @@
       $('tester-mode').innerHTML=options(modeNames);
       $('tester-map').innerHTML=options(Object.fromEntries(Object.entries(MP).map(([id,map])=>[id,map.n])));
     }
-    const unitKeys=[...Object.keys(TY),'bossity'].sort((a,b)=>testUnit(a).n.localeCompare(testUnit(b).n,'ru'));
+    const unitKeys=Object.keys(TY).sort((a,b)=>testUnit(a).n.localeCompare(testUnit(b).n,'ru'));
     $('tester-unit').innerHTML=options(Object.fromEntries(unitKeys.map(id=>[id,testUnit(id).n])));
     $('tester-unit').value=chosen&&testUnit(chosen)?chosen:'verity';
     selectUnit();
@@ -241,9 +237,8 @@
     const real=M;
     M=sandbox.save;
     inSimulation=true;
-    if(M.own.bossity){TY.bossity=bossity;RA.bossity='Mythic'}
     try{return fn()}
-    finally{delete TY.bossity;delete RA.bossity;M=real;inSimulation=false}
+    finally{M=real;inSimulation=false}
   }
   function cloneBattleState(){
     return {game:G,paths:PT.slice(),segments:segs.slice(),length:tot,road:{...road},decoration:MDEC,mapNext:MAPNEXT};
@@ -455,13 +450,30 @@
 
   const originalUpdate=upd, originalDraw=draw, originalShop=shop, originalEnd=endGame;
   const originalHUD=hud, originalClick=cv.onclick, originalScreen=scr, originalShowUnit=showU;
+  window.BossityBattle={tick:dt=>{
+    if(G&&!G.over&&!G.guest&&(G.units.some(unit=>unit.k==='bossity')||G.bossityMinions?.length))updateBossity(dt);
+  }};
   upd=function(dt){
     if(!G?.tester)return originalUpdate(dt);
     const battle=G;
     rememberTest(battle);
-    return withTestSave(()=>{if(!G.over)updateBossity(dt);originalUpdate(dt);rememberTest(battle)});
+    return withTestSave(()=>{originalUpdate(dt);rememberTest(battle)});
   };
-  draw=function(){return G?.tester?withTestSave(()=>{originalDraw();drawBossityMinions()}):originalDraw()};
+  draw=function(){
+    if(G?.tester)return withTestSave(()=>{originalDraw();drawBossityMinions()});
+    originalDraw();
+    if(G)drawBossityMinions();
+  };
+  const originalCoSnap=coSnap, originalCoApplySnap=coApplySnap;
+  coSnap=function(){
+    const state=JSON.parse(originalCoSnap());
+    state.bossityMinions=(G.bossityMinions||[]).map(minion=>[Math.round(minion.d),Math.round(minion.hp),minion.max,minion.phaseTwo?1:0]);
+    return JSON.stringify(state);
+  };
+  coApplySnap=function(state){
+    originalCoApplySnap(state);
+    if(G?.guest)G.bossityMinions=(state.bossityMinions||[]).map(row=>({d:row[0],hp:row[1],max:row[2],phaseTwo:!!row[3]}));
+  };
   shop=function(){
     if(!G?.tester)return originalShop();
     return withTestSave(()=>{

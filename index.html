@@ -688,14 +688,16 @@ body.ap-arena #modal {z-index:500}
 </style>
 <link rel="stylesheet" href="verity-raid.css?v=1.74">
 <link rel="stylesheet" href="tester.css?v=1.75">
+<link rel="stylesheet" href="boss-rush.css?v=1.77-mastery">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.76</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
     <a id="apk-download" class="account-download" href="https://raw.githubusercontent.com/Nikolai1005/Sprunki-Verity-TD/android-downloads/Sprunki-Verity-TD.apk" target="_blank" rel="noopener">↓ Скачать APK</a>
   </div>
-  <button type="button" id="ap-menu" class="hide ap-launch"></button><button type="button" id="vr-menu" class="hide"></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
+  <button type="button" id="ap-menu" class="hide ap-launch"></button><button type="button" id="vr-menu" class="hide"></button>
+  <button type="button" id="br-menu"><img id="br-card-art" alt=""><span><strong>БОСС РАШ</strong><small>Тюрьма боссов · арена</small></span></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
 </section>
 <section id="game" class="hide">
 <div id="tester-battle" hidden><span><b>Тестовый бой</b><small id="tester-battle-title"></small></span><button type="button" id="tester-leave-battle">В Тестерку</button></div>
@@ -832,6 +834,7 @@ var segs=[],tot=0,road={};
 for(var i=1;i<PT.length;i++){var a=PT[i-1],b=PT[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);segs.push([a,b,L,tot]);tot+=L;for(var t=0;t<=L;t+=8){road[Math.floor((a[0]+(b[0]-a[0])*t/L)/C)+','+Math.floor((a[1]+(b[1]-a[1])*t/L)/C)]=1}}
 function pos(d){for(var i=0;i<segs.length;i++){var s=segs[i];if(d<=s[3]+s[2]){var t=(d-s[3])/s[2];return[s[0][0]+(s[1][0]-s[0][0])*t,s[0][1]+(s[1][1]-s[0][1])*t]}}return PT[PT.length-1]}
 var TY={
+bossity:{n:'Bossity',cost:540,dmg:0,rate:12,rng:0,col:'#cf93ff',d:'Mythic-спавнер. Награда за 5 побед над каждым боссом в Босс Раше. Каждые 12 с призывает мини-босса с 240 HP. При включении фазы 2 появляется Владыка Bossity (650 HP), не чаще одного раза за 24 с. Один Владыка на карту; до двух мини-боссов на башню.',testAttack(){}},
 simonity:{n:'Simonity',cost:220,dmg:21,rate:.95,rng:100,col:'#ffe45a',d:'Награда квеста «Сигнал в метели». Каждый 4-й выстрел выпускает импульс: до 3 соседних врагов получают по 50% урона. Фаза 2: импульс каждый 3-й выстрел.'},
 monster:{n:'Monster Verity',cost:450,dmg:80,rate:.7,rng:62,col:'#d9a35a',d:'Ближний бой: бьёт рукой с когтями врагов рядом. Награда за режим «История». Каждый 5-й удар оглушает. Фаза 2: добивает слабых врагов (меньше 25% HP, кроме боссов)'},
 lord:{n:'Lord Verity',cost:600,dmg:30,rate:.8,rng:100,col:'#ffd21f',d:'Mythic. Аура рядом (170): +25% скорости атаки, +15% урона и +15% дальности башням. Фаза 2: заражает башню бесплатной второй фазой на 8 с (20% шанс дебаффа). Только один на карте'},
@@ -851,7 +854,7 @@ jack:{n:"Jack-o'-Lantern Verity",cost:650,dmg:50,rate:.7,rng:105,col:'#ff7a1a',d
 phonk:{n:'Phonkity',cost:380,dmg:20,rate:.6,rng:105,col:'#7a3cff',d:'Secret. Говорит фонком: каждый 6-й удар делает «Фонк-дроп», басовую волну, которая бьёт и замедляет всех врагов рядом. Фаза 2: дроп каждые 4 удара, башни рядом стреляют на 30% быстрее, а враги после удара не лечатся 4 с'},
 skel:{n:'Skeletonity',cost:300,dmg:40,rate:.6,rng:105,col:'#e8e2cf',d:'Хэллоуин, награда пропуска. Кость-бумеранг бьёт цель и врага за ней. Фаза 2: раз в 8 с костяная стена оглушает врагов рядом с целью на 1,5 с'},
 reaper:{n:'Reaperity',cost:700,dmg:55,rate:.9,rng:66,col:'#2a1838',d:'Ближний бой: взмах косой. Хэллоуин, Mythic, финальная награда пропуска. Взмах косы бьёт всех рядом с целью и добивает обычных врагов ниже 15% HP. Фаза 2: собирает души, на 15 душах «Жатва» бьёт всех врагов на карте. Только один на карте'}};
-var RA={simonity:'Epic',verity:'Common',lovity:'Rare',sadity:'Rare',moggity:'Rare',cruelity:'Epic',falsity:'Epic',galaxity:'Legendary',demonity:'Legendary',pumpkinity:'Event',lord:'Mythic',monster:'Legendary',batv:'Common',ghostv:'Rare',vamp:'Epic',jack:'Mythic',phonk:'Secret',skel:'Legendary',reaper:'Mythic'};var RC={Common:'#9aa7b4',Rare:'#33c3ff',Epic:'#b45cff',Legendary:'#ffae1a',Mythic:'#ff2a3d',Event:'#ff8a1f',Secret:'#b48cff'};
+var RA={bossity:'Mythic',simonity:'Epic',verity:'Common',lovity:'Rare',sadity:'Rare',moggity:'Rare',cruelity:'Epic',falsity:'Epic',galaxity:'Legendary',demonity:'Legendary',pumpkinity:'Event',lord:'Mythic',monster:'Legendary',batv:'Common',ghostv:'Rare',vamp:'Epic',jack:'Mythic',phonk:'Secret',skel:'Legendary',reaper:'Mythic'};var RC={Common:'#9aa7b4',Rare:'#33c3ff',Epic:'#b45cff',Legendary:'#ffae1a',Mythic:'#ff2a3d',Event:'#ff8a1f',Secret:'#b48cff'};
 var M={bank:450,seeds:120,own:{verity:1,lovity:1}};
 var accountReloading=false, savedGameText=null;
 try{savedGameText=localStorage.getItem('vtd');var sv=JSON.parse(savedGameText);if(sv&&sv.own)M=sv}catch(e){}
@@ -934,7 +937,7 @@ function pic(k,n,s){return IMG[k+n]?'<img src="'+IMG[k+n]+'" width="'+s+'" heigh
 function ico(c,k,s){var ang=k=='cruelity'||k=='demonity',lid=k=='manipulity';return'<svg viewBox="0 0 40 40" width="'+s+'" height="'+s+'" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="'+c+'" stroke="#111" stroke-width="2.5"/><circle cx="14" cy="17" r="2.4" fill="#111"/><circle cx="26" cy="17" r="2.4" fill="#111"/>'+(ang?'<path d="M9 10l9 4M31 10l-9 4M12 29q8-6 16 0" fill="none" stroke="#111" stroke-width="2.5"/>':'<path d="M11 24q9 9 18 0" fill="none" stroke="#111" stroke-width="2.5"/>')+(lid?'<path d="M10 14h8M22 14h8" stroke="#111" stroke-width="2.5"/>':'')+'</svg>'}
 function say(t){$('msg').textContent=t}function lm(t){$('lm').textContent=t}
 function scr(n){if((n=='th-event'||n=='th-feast')&&!thOn())n='lobby';if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market'||cur=='friends'||cur=='inf'||cur=='pets'||cur=='ldb'||cur=='lo'||cur=='mail'||cur=='hk'||cur=='tro'||cur=='pty'||cur=='shp'||cur=='rdl'||cur=='fusl'||cur=='chron'||cur=='arn'||cur=='tester'||cur=='th-event'||cur=='th-feast')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market','friends','inf','pets','ldb','lo','mail','hk','tro','pty','shp','rdl','fusl','chron','arn','tester','th-event','th-feast'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='th-event')thRender();if(n=='th-feast')thFeastRender();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR();if(n=='friends')frOpen();if(n=='inf')infScreen();if(n=='pets')ptRender();if(n=='ldb')lbOpen();if(n=='mail')mlOpen();if(n=='hk'){hkRender();if(!HKRAF)hkRain()}if(n=='tro')trRender();if(n=='pty'){prRender();prFetch().then(prRender).catch(function(){})}}
-function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс 10 волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
+function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс '+roundWaveLimit(k)+' волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
  h='<button class="df story" data-k="story" style="background-image:linear-gradient(90deg,rgba(0,0,0,.25),transparent),url('+ST_COVER+')"><span class="nw">НОВОЕ!</span><b>История</b><small>Глава 1: сцены и вопросы Моба. Глава 2: 3D-погоня, в которой ты огромный монстр.</small><em>Награда: Monster Verity (Legendary)</em></button>'+hwCard()+(typeof prCard=='function'?prCard():'')+(typeof hkCard=='function'?hkCard():'')+(typeof infCard=='function'?infCard():'')+h;
  $('diffs').innerHTML=h;[].forEach.call($('diffs').children,function(b){b.onclick=function(){var k=b.dataset.k;if(k=='soon')return;k=='story'?sStart():start(k)}})}
 function start(k){var d=k=='hw'?HWD:k=='hk'?HKD:k=='pr'?PRD:k=='harvest'?{...THD,boss:{...THD.boss}}:DF[k];if(k=='hw'){M.hq.plays++;save()}G={key:k,blood:0,ban:null,boom:0,d:d,coins:d.co,lives:d.lv,wave:0,fear:100,p2:false,cool:0,sel:'verity',units:[],en:[],q:0,sp:0,run:false,shots:[],over:0,boss:false,next:6,spd:+M.set.spd||1};if(k=='harvest'){G.dishes=0;G.th=thNewBattle()}$('end').className='hide';scr('game');shop();hud();showU();say('Расставляй башни: волны идут сами.')}
@@ -953,14 +956,27 @@ function aoe(cx,cy,r,d){G.en.forEach(function(e){if(e.po)return;var p=pos(e.d);i
 function pick(){var w=G.wave+G.d.off,l=['walker'];if(w>=2)l.push('runner');if(w>=3)l.push('tank');if(w>=4)l.push('ghost');if(w>=5)l.push('healer');if(w>=6)l.push('splitter');if(G.key=='hw'){if(G.wave>=2)l.push('bat','bat');if(G.wave>=3)l.push('mimic');if(hwPh()=='hour')l.push('ghost','ghost')}return l[Math.floor(Math.random()*l.length)]}
 function lordN(u){return u.k!='lord'&&G.units.some(function(l){return l.k=='lord'&&Math.hypot(l.x-u.x,l.y-u.y)<170})}
 function inv(e){return e.ty=='ghost'&&e.t%3>1.5}
-function startWave(){if(G.key=='harvest')return thWave();G.wave++;G.run=true;G.boss=G.wave===(G.tester?.waves??10);G.q=Math.round((G.boss?12:6+3*G.wave)*G.d.cn);G.sp=0;say(G.boss?'Босс: '+G.d.boss.n+'!':'Волна '+G.wave);if(G.key=='hw'){var ph=hwPh();G.ban={t:2.5,s:G.boss?'ТЫКВЕННЫЙ КОРОЛЬ':PHN[ph].toUpperCase()};if(!G.boss)say('Волна '+G.wave+': '+{dusk:'Сумерки. Враги слабее, Страх копится быстрее.',mid:'Полночь. Враги сильнее, а вторая фаза бьёт на 50% сильнее.',hour:'Час Тыквы. Конфет втрое больше, но приходят призраки.'}[ph])}}
+var ROUND_WAVES={easy:10,medium:15,hard:20,insane:30};
+var FINAL_HP={easy:3000,medium:6500,hard:11500,insane:26000};
+function roundWaveLimit(key){return ROUND_WAVES[key]||10}
+function battleWaveLimit(){return G.tester?.waves??roundWaveLimit(G.key)}
+function roundBossSpec(key,wave,limit){
+  if(!ROUND_WAVES[key])return null;
+  if(wave===limit)return {...DF[key].boss,hp:FINAL_HP[key],final:true};
+  if(key==='hard'&&wave===10)return {n:'Каменный страж',hp:2800,v:20,col:'#a67358',sk:0,mini:true};
+  if(key==='insane'&&wave===10)return {n:'Страж Пустоты',hp:4500,v:22,col:'#7970bd',sk:1,mini:true};
+  if(key==='insane'&&wave===20)return {n:'Титан Разлома',hp:8500,v:24,col:'#e468ad',sk:2,mini:true};
+  return null;
+}
+function startWave(){if(G.key=='harvest')return thWave();G.wave++;G.run=true;var spec=roundBossSpec(G.key,G.wave,battleWaveLimit());if(ROUND_WAVES[G.key])G.d={...G.d,boss:spec||DF[G.key].boss};G.boss=ROUND_WAVES[G.key]?!!spec:G.wave===battleWaveLimit();G.q=Math.round((G.boss?12:ROUND_WAVES[G.key]?Math.min(48,6+3*G.wave):6+3*G.wave)*G.d.cn);G.sp=0;say(G.boss?(spec?.mini?'Мини-босс: ':'Босс: ')+G.d.boss.n+'!':'Волна '+G.wave);if(G.key=='hw'){var ph=hwPh();G.ban={t:2.5,s:G.boss?'ТЫКВЕННЫЙ КОРОЛЬ':PHN[ph].toUpperCase()};if(!G.boss)say('Волна '+G.wave+': '+{dusk:'Сумерки. Враги слабее, Страх копится быстрее.',mid:'Полночь. Враги сильнее, а вторая фаза бьёт на 50% сильнее.',hour:'Час Тыквы. Конфет втрое больше, но приходят призраки.'}[ph])}}
 function endGame(w,t){if(w===2&&simonityQuestWin())t+=' Квест «Сигнал в метели» выполнен.';G.over=w;$('et').textContent=w==2?'ПОБЕДА':'ПОРАЖЕНИЕ';$('end').className='';say(t);save()}
 function upd(dt){
  if(G.key=='harvest'&&!thOn()){thExpire();return}
  if(G.p2){G.fear-=14*dt;if(G.fear<=0){G.fear=0;G.p2=false;G.cool=5;say('Страх кончился, юниты спят 5 секунд.')}}else{G.fear=Math.min(100,G.fear+5*dt*(hwPh()=='dusk'?1.5:1))}
  if(G.cool>0)G.cool-=dt;
  if(G.key=='harvest')thTick(dt);else if(!G.run){G.next-=dt;if(G.next<=0)startWave()}
- if(G.key=='harvest'){if(G.run&&G.q>0)thSpawn(dt)}else if(G.run&&G.q>0){G.sp-=dt;if(G.sp<=0){G.sp=G.boss?1.4:.8;G.q--;var b=G.boss&&G.q==0,ty=b?'walker':pick(),T=ET[ty],B=G.d.boss,h=b?B.hp:(30+G.wave*18)*T.hp*G.d.hp;G.en.push({d:0,hp:h,max:h,v:b?B.v:(38+G.wave*2)*T.v*G.d.sp,sl:0,burn:0,vul:0,t:0,ty:ty,boss:b,bt:0});if(G.key=='hw')hwSpawn(G.en[G.en.length-1])}}
+ if(G.key=='harvest'){if(G.run&&G.q>0)thSpawn(dt)}else if(G.run&&G.q>0){G.sp-=dt;if(G.sp<=0){G.sp=G.boss?1.4:.8;G.q--;var b=G.boss&&G.q==0,ty=b?'walker':pick(),T=ET[ty],B=G.d.boss,h=b?B.hp:(30+G.wave*18)*T.hp*G.d.hp;G.en.push({d:0,hp:h,max:h,v:b?B.v:(ROUND_WAVES[G.key]?Math.min(85,38+G.wave*2):38+G.wave*2)*T.v*G.d.sp,sl:0,burn:0,vul:0,t:0,ty:ty,boss:b,bt:0});if(G.key=='hw')hwSpawn(G.en[G.en.length-1])}}
+ window.BossityBattle?.tick(dt);
  G.units.forEach(function(u){var t=TY[u.k],P2=G.p2||u.inf>0;if(u.inf>0)u.inf-=dt;if(u.dr>0)u.dr-=dt;if(u.wl>0)u.wl-=dt;if(u.deb>0)u.deb-=dt;if(u.po&&u.po.dead){u.po=null;u.cd=4;say('Demonity вернулся в свою форму.')}if(u.po)return;if(u.curse>0){u.curse-=dt;return}if(u.k=='lord'&&P2){u.it=(u.it||0)+dt;if(u.it>6){u.it=0;var os=G.units.filter(function(o){return o!==u&&Math.hypot(o.x-u.x,o.y-u.y)<160});if(os.length){var o=os[Math.floor(Math.random()*os.length)];if(Math.random()<.8)o.inf=8;else o.deb=5}}}u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
  if(u.k=='demonity'&&P2){var c2=null;G.en.forEach(function(e){if(e.po||e.boss||inv(e))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=140&&(!c2||e.max>c2.max))c2=e});if(c2){c2.po=1;c2.pt=0;c2.hp*=2;c2.max*=2;u.po=c2;say('Demonity вселился во врага!');return}}
   G.en.forEach(function(e){if(e.po||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
@@ -987,7 +1003,7 @@ function upd(dt){
   else if(u.k=='vexe'){vexeAtk(u,tg,d,p,P2)}   else if(u.k=='byehw'){byeAtk(u,tg,d,p,P2)}   else if(u.k=='freezity'||u.k=='bombity'||u.k=='magnetity'){nvAtk(u,tg,d,p,P2)}   else if(u.k=='hackol'){hlAtk(u,tg,d,p,P2)}
   else if(u.k=='glitch'||u.k=='fwall'||u.k=='virusv'||u.k=='hacker'){hkAtk(u,tg,d,p,P2)}
   else if(TH_UNITS[u.k]&&u.k!=='cornucopity')thAttack(u,tg,d,p,P2);
-  else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor();hit(tg,shot);hit(tg,shot);hit(tg,shot)}
+  else if(P2&&u.k=='verity'){var shot=t.dmg*1.3*thAura(u)*thAttackFactor()*(window.RoundUpgrades?.damage(u)||1);hit(tg,shot);hit(tg,shot);hit(tg,shot)}
   else hit(tg,d);
   apElementAttack(u,p,d);
  });
@@ -1000,7 +1016,7 @@ function upd(dt){
  if(G.god&&G.lives<1)G.lives=1;if(G.lives<=0){G.lives=0;if(G.key=='harvest'){thLose();hud();return}M.bank+=Math.floor(G.coins/2);return endGame(1,'База пала. Половина монет ушла в банк.')}
  if(G.run&&G.q==0&&!G.en.length){if(G.key=='harvest'){thClear();hud();return}G.run=false;G.next=6;G.coins+=60;M.seeds+=5;M.bank+=Math.round(80*G.d.bm)*(typeof prOn=='function'&&prOn()?2:1);if(G.key=='hw'){addCandy(10);bpTrack('waves',1);bpAdd(8)}if(G.key=='hk'&&G.wave<10)hkWave();if(G.key=='pr')prAdd(8,1);
   if(G.tester&&G.wave>=G.tester.waves)return endGame(2,'Тест пройден.');
-  if(!G.tester&&G.wave>=10&&G.key!='inf'){M.done[G.key]=1;if(G.key=='hw'){addCandy(150);M.hq.wins++;bpAdd(100)}M.bank+=Math.floor(500*G.d.bm+G.coins);endGame(2,G.key=='hw'?'Тыквенный Король повержен! +150 🍬. Загляни во вкладку «Хэллоуин».':'Победа! Бонус в банк. Загляни в лобби за новыми Верити.')}else{save();say('Волна пройдена: +60 монет, +5 семечек.');if(G.key=='inf'&&!G.tester)infClear()}}
+  if(!G.tester&&G.wave>=battleWaveLimit()&&G.key!='inf'){M.done[G.key]=1;if(G.key=='hw'){addCandy(150);M.hq.wins++;bpAdd(100)}M.bank+=Math.floor(500*G.d.bm+G.coins);endGame(2,G.key=='hw'?'Тыквенный Король повержен! +150 🍬. Загляни во вкладку «Хэллоуин».':'Победа! Бонус в банк. Загляни в лобби за новыми Верити.')}else{save();say('Волна пройдена: +60 монет, +5 семечек.');if(G.key=='inf'&&!G.tester)infClear()}}
  hud()}
 function simonityAttack(unit,target,damage,point,phaseTwo){
   hit(target,damage);
@@ -1028,9 +1044,9 @@ function draw(){if(G.key=='harvest')thDrawBoard();else{for(var i=0;i<16;i++)for(
   if(u.k=='pumpkinity'){x.fillStyle='#2b7a2b';x.fillRect(u.x-2,u.y-24,4,6)}
   skinD(u,p2)});
  G.shots.forEach(function(s){x.strokeStyle=s.col;x.lineWidth=3;x.beginPath();x.moveTo(s.a,s.b-4);x.lineTo(s.c,s.e);x.stroke()});
- G.en.forEach(function(e){var p=pos(e.d),T=ET[e.ty],r=e.boss?26:T.r;if(G.key=='hw'&&hwDrawE(e,p))return;if(G.key=='harvest'){thDrawEnemy(e,p);return}x.globalAlpha=inv(e)?.3:1;x.fillStyle=e.po?'#6a1fc2':e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
+ G.en.forEach(function(e){var p=pos(e.d),T=ET[e.ty],r=e.boss?(G.d.boss.final?38:G.d.boss.mini?28:26):T.r;if(G.key=='hw'&&hwDrawE(e,p))return;if(G.key=='harvest'){thDrawEnemy(e,p);return}x.globalAlpha=inv(e)?.3:1;if(e.boss&&G.d.boss.final){var glow=x.createRadialGradient(p[0],p[1],r*.5,p[0],p[1],r+18);glow.addColorStop(0,G.d.boss.col);glow.addColorStop(1,'transparent');x.fillStyle=glow;x.beginPath();x.arc(p[0],p[1],r+18,0,7);x.fill()}x.fillStyle=e.po?'#6a1fc2':e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
   x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
-  if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8)}
+  if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8);if(G.d.boss.final){x.save();x.strokeStyle='#ffd978';x.lineWidth=3;x.beginPath();x.arc(p[0],p[1],r-4,0,7);x.stroke();x.fillStyle='#fff4d2';x.font='bold 11px system-ui';x.textAlign='center';x.fillText(Math.ceil(e.hp)+' HP',p[0],p[1]+r+13);x.restore()}}
   x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.po?'#c08cff':e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
  phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
 function lobby(){$('bk').textContent=Math.floor(M.bank);$('bs').textContent=M.seeds;var h='';for(var k in TY)h+='<div class="cu fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'')+(M.own[k]?'':' no')+'" style="--rc:'+RC[RA[k]]+'">'+pic(k,1,40)+pic(k,2,40)+'<br><b>'+TY[k].n+'</b><br>'+RA[k]+'<br>Урон '+(k=='demonity'?'1/6 HP':TY[k].dmg)+' · '+TY[k].rate+' с · дальн. '+TY[k].rng+'<br>'+TY[k].d+pkEx(k)+'</div>';$('col').innerHTML=h}
@@ -1050,15 +1066,15 @@ cv.onclick=function(e){if(!G||G.over)return;var c=cell(cvPos(e)),u=G.units.filte
  G.selU=null;showU();tryPlace(G.sel,c[0],c[1])};
 function ring(x0,y0,r,c){x.beginPath();x.arc(x0,y0,r,0,7);x.globalAlpha=.16;x.fillStyle=c;x.fill();x.globalAlpha=1;x.strokeStyle=c;x.lineWidth=2;x.setLineDash([6,4]);x.stroke();x.setLineDash([])}
 function drawUI(){G.units.forEach(function(u){if(G.selU===u){x.strokeStyle='#fff';x.lineWidth=2;x.strokeRect(u.cx*C+2,u.cy*C+2,C-4,C-4)}
-  if(u.sr){ring(u.x,u.y-4,TY[u.k].rng*(lordN(u)?1.15:1),'#ffffff');if(u.k=='lord')ring(u.x,u.y-4,170,'#ff2a3d')}})}
+  if(u.sr){ring(u.x,u.y-4,TY[u.k].rng*(lordN(u)?1.15:1)*xR(u),'#ffffff');if(u.k=='lord')ring(u.x,u.y-4,170,'#ff2a3d')}})}
 function chkc(u,id){var h=7,q=u+id;for(var i=0;i<q.length;i++)h=(h*31+q.charCodeAt(i))%1679616;var r=h.toString(36).toUpperCase();while(r.length<4)r='0'+r;return r}
 function tm(t){$('tmsg').textContent=t}
-function trd(){var h='';for(var k in TY)if(M.own[k]&&k!=='simonity')h+='<option value="'+k+'">'+TY[k].n+' ('+RA[k]+')</option>';$('tsel').innerHTML=h;$('tcode').textContent='';tm('')}
-$('tgo').onclick=function(){var k=$('tsel').value;if(!k||!M.own[k])return tm('Выбери Верити.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(Object.keys(M.own).length<2)return tm('Нельзя отдать единственного Верити.');
+function trd(){var h='';for(var k in TY)if(M.own[k]&&k!=='simonity'&&k!=='bossity')h+='<option value="'+k+'">'+TY[k].n+' ('+RA[k]+')</option>';$('tsel').innerHTML=h;$('tcode').textContent='';tm('')}
+$('tgo').onclick=function(){var k=$('tsel').value;if(!k||!M.own[k])return tm('Выбери Верити.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='bossity')return tm('Bossity — награда за мастерство боссов.');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(Object.keys(M.own).length<2)return tm('Нельзя отдать единственного Верити.');
  var id=Math.random().toString(36).slice(2,8).toUpperCase().padEnd(6,'X'),c='VTD-'+k.toUpperCase()+'-'+id+'-'+chkc(k,id);delete M.own[k];M.used[id]=1;save();$('tcode').textContent=c;
  try{cpy(c);tm('Код скопирован. '+TY[k].n+' убран из твоей коллекции.')}catch(e){tm('Скопируй код. '+TY[k].n+' убран из твоей коллекции.')}
- var h='';for(var q in TY)if(M.own[q]&&q!=='simonity')h+='<option value="'+q+'">'+TY[q].n+' ('+RA[q]+')</option>';$('tsel').innerHTML=h};
-$('tacc').onclick=function(){var m=$('tin').value.trim().toUpperCase().match(/^VTD-([A-Z]+)-([A-Z0-9]{5,6})-([A-Z0-9]{4})$/);if(!m)return tm('Неверный код.');var k=m[1].toLowerCase();if(!TY.hasOwnProperty(k)||chkc(k,m[2])!==m[3])return tm('Неверный код.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(M.used[m[2]])return tm('Этот код уже использован на этом устройстве.');
+ var h='';for(var q in TY)if(M.own[q]&&q!=='simonity'&&q!=='bossity')h+='<option value="'+q+'">'+TY[q].n+' ('+RA[q]+')</option>';$('tsel').innerHTML=h};
+$('tacc').onclick=function(){var m=$('tin').value.trim().toUpperCase().match(/^VTD-([A-Z]+)-([A-Z0-9]{5,6})-([A-Z0-9]{4})$/);if(!m)return tm('Неверный код.');var k=m[1].toLowerCase();if(!TY.hasOwnProperty(k)||chkc(k,m[2])!==m[3])return tm('Неверный код.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='bossity')return tm('Bossity — награда за мастерство боссов.');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(M.used[m[2]])return tm('Этот код уже использован на этом устройстве.');
  M.used[m[2]]=1;if(M.own[k]){M.bank+=120;tm('Такой Верити уже есть: +120 монет.')}else{M.own[k]=1;tm('Получен: '+TY[k].n+'!')}save();$('tin').value='';trd()};
 $('trb').onclick=function(){scr('trade')};
 var SPRI=new Image();SPRI.src=SPR;var FBI=new Image();FBI.src=FACEB;var BGI=new Image();BGI.src=ST_BG;
@@ -1244,7 +1260,7 @@ var TK=[
 {id:'phonk',n:'Выбей секретного Phonkity',a:'Король бита',s:100,c:800,v:700}];
 function chk(){var d=M.done;if(M.own.demonity)d.demonity=1;if(M.own.galaxity)d.galaxity=1;if(M.own.lord)d.lord=1;if(M.own.phonk)d.phonk=1;if(M.opens>=5)d.open5=1;if(Object.keys(M.own).length>=6)d.own6=1;if(Object.keys(M.promos).length)d.promo=1}
 function simonityQuestWin(){
-  if(!G||G.tester||G.adminTest||G.key!=='medium'||G.map!=='snow'||G.wave<10||M.done.simonityQuest)return false;
+  if(!G||G.tester||G.adminTest||G.key!=='medium'||G.map!=='snow'||G.wave<roundWaveLimit('medium')||M.done.simonityQuest)return false;
   M.done.simonityQuest=1;
   return true;
 }
@@ -1299,10 +1315,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.76',VOL=.8,MQ=[],CI=0;
+var VER='1.77',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.77',t:'Тюрьма боссов',a:['В режимах появилась арена «БОСС РАШ»: катсцена побега, 10 боссов и три ветки оружия.','В обычных боях можно улучшать поставленных Верити до 3-го уровня за монеты раунда.','Лёгкая: 10 волн, Средняя: 15, Сложная: 20, Инсейн: 30. Мини-боссы на 10-й волне Сложной и на 10-й и 20-й волнах Инсейна. Финальные боссы усилены.','Победи каждого из 10 боссов по 5 раз, чтобы получить Mythic Bossity. Добавлены разовые награды за мастерство.']},
 {v:'1.76',t:'Simonity: Сигнал в метели',a:['Выиграй бой на Средней сложности на карте «Снежная», затем забери Simonity в разделе «Задания».','Simonity — Epic за 220 монет в бою. Каждый четвёртый выстрел задевает до трёх соседних врагов. Во второй фазе импульс срабатывает каждый третий выстрел.']},
 {v:'1.74',t:'Арена боссфайта',a:['Кнопка «Игроки» показывает, кто сейчас на арене.','Вечеринка длится 5 минут. После сцены вторжения начинается 10-минутный бой.','В катсценах видны Верити игроков с никами. Обновлены эффекты атак.']},
 {v:'1.73',t:'Боссфайт 1x1x1x1',a:['На общей арене появился новый рейд с двумя фазами и катсценами.','Победители получают 1x1x1x1xty.']},
@@ -1683,7 +1700,7 @@ function admPanel(){ADR=0;var opts=Object.keys(DF).map(function(k){return'<optio
  mOpen('🛠 Админ-панель','<h3 class="adh">Верити</h3><p class="mu">Отметь юнитов, потом выбери: подарить другу кодом или выдать себе.</p>'+admUnits()+'<h3 class="adh">🐾 Питомцы</h3><p class="mu">Отметь питомцев: их тоже можно подарить кодом или выдать себе.</p>'+admPets()+
  '<div class="adr"><label>🪙 <input id="adc" type="number" min="0" value="0"></label><label>💎 <input id="adgm" type="number" min="0" value="0"></label><label>🎃 <input id="ads" type="number" min="0" value="0"></label><label>🍬 <input id="adk" type="number" min="0" value="0"></label></div>'+
  '<div class="row"><button class="go" data-a="gift">Создать код для друга</button><button data-a="self">Выдать себе</button><button data-a="all">Все Верити себе</button><button data-a="allp">Все питомцы себе</button></div><textarea id="adcode" readonly class="hide"></textarea><h3 class="adh">📬 Отправить по почте</h3><p class="mu">Отмеченные Верити, питомцы и валюта придут игроку прямо в «Почту». Нужен его код игрока.</p><div class="adr"><input id="admc" placeholder="Код игрока VT-…" maxlength="12"><input id="admn" placeholder="Записка (необязательно)" maxlength="80"></div><div class="row"><button class="go" data-a="mail">Отправить по почте</button><button data-a="uid">Мой UID</button></div><p class="mu" id="adm2"></p>'+
- '<h3 class="adh">Тест боя</h3><div class="adr"><select id="adk2">'+opts+'</select><label>Волна <input id="adw" type="number" min="1" max="10" value="1"></label><label><input type="checkbox" id="adg" style="flex:none;min-width:0" checked> Бессмертная база</label></div><div class="row"><button class="go" data-a="test">Запустить</button><button data-a="pass">Пропуск +500 ⭐</button><button data-a="daily">Сбросить ежедневные</button></div><h3 class="adh">💻 Хакер-ивент</h3><p class="mu">Предпросмотр включает ивент только на этом устройстве, чтобы проверить его до 8 ноября.</p><div class="row"><button data-a="hkprev">Предпросмотр: '+(M.hkPrev?'выключить':'включить')+'</button><button data-a="hkmk">Хакерити на рынок сейчас</button><button data-a="hkby">+500 💾</button><button data-a="hpxp">Пропуск +500 ⚡</button><button data-a="hpkey">+5 🔐</button></div>'+(typeof prAdmin=='function'?prAdmin():'')+
+ '<h3 class="adh">Тест боя</h3><div class="adr"><select id="adk2">'+opts+'</select><label>Волна <input id="adw" type="number" min="1" max="30" value="1"></label><label><input type="checkbox" id="adg" style="flex:none;min-width:0" checked> Бессмертная база</label></div><div class="row"><button class="go" data-a="test">Запустить</button><button data-a="pass">Пропуск +500 ⭐</button><button data-a="daily">Сбросить ежедневные</button></div><h3 class="adh">💻 Хакер-ивент</h3><p class="mu">Предпросмотр включает ивент только на этом устройстве, чтобы проверить его до 8 ноября.</p><div class="row"><button data-a="hkprev">Предпросмотр: '+(M.hkPrev?'выключить':'включить')+'</button><button data-a="hkmk">Хакерити на рынок сейчас</button><button data-a="hkby">+500 💾</button><button data-a="hpxp">Пропуск +500 ⚡</button><button data-a="hpkey">+5 🔐</button></div>'+(typeof prAdmin=='function'?prAdmin():'')+
  '<h3 class="adh">Ошибки игры ('+ERRS.length+')</h3><div class="aderr">'+(ERRS.length?ERRS.map(esc).join('<br>'):'Ошибок пока нет.')+'</div><div class="row"><button data-a="ecopy">Скопировать ошибки</button><button data-a="eclear">Очистить</button></div>'+
  '<h3 class="adh">Опасно</h3><div class="row"><button data-a="reset">Сбросить своё сохранение</button><button data-a="logout">Выйти из админа</button></div>',[['Закрыть',mClose]])}
 $('mc').addEventListener('click',function(e){var b=e.target.closest('button[data-a]');if(!b||!ADM||$('mt').textContent!='🛠 Админ-панель')return;var a=b.dataset.a,sel=admSel(),ps=admPSel(),gm=Math.max(0,+(($('adgm')||{}).value)||0),c=Math.max(0,+$('adc').value||0),s=Math.max(0,+$('ads').value||0),k=Math.max(0,+$('adk').value||0),msg=$('adm2');
@@ -1691,7 +1708,7 @@ $('mc').addEventListener('click',function(e){var b=e.target.closest('button[data
   crypto.subtle.sign({name:'ECDSA',hash:'SHA-256'},ADM,u8(p)).then(function(sig){var code='VTDA-'+p+'.'+b64u(sig),t=$('adcode');t.value=code;t.className='';t.select();cpy(code);msg.textContent='Код скопирован. Друг вставляет его во вкладке «Промокоды». Код срабатывает один раз на устройстве.'})}
  if(a=='allp'){petFix();Object.keys(PETS).forEach(function(q){M.pet[q]=1});save();msg.textContent='Выданы все питомцы ('+Object.keys(PETS).length+').';return}
  if(a=='self'||a=='all'){var l=a=='all'?Object.keys(TY):sel;l.forEach(function(u){M.own[u]=1});if(ps.length){petFix();ps.forEach(function(q){M.pet[q]=1})}M.gem=(M.gem||0)+gm;M.bank+=c;M.seeds+=s;M.candy+=k;save();msg.textContent='Выдано себе: '+(l.length?l.length+' Верити':'')+(ps.length?' '+ps.length+' питом.':'')+(gm?' +'+gm+' 💎':'')+(c?' +'+c+' 🪙':'')+(s?' +'+s+' 🎃':'')+(k?' +'+k+' 🍬':'')}
- if(a=='test'){var key=$('adk2').value,w=Math.max(1,Math.min(10,+$('adw').value||1)),god=$('adg').checked;MQ.length=0;$('modal').className='hide';(window.startNow?startNow(key):start(key));G.coins=99999;G.adminTest=true;G.god=god;G.wave=w-1;G.next=2;hud();say('Админ-тест: '+(key=='hw'?'Хэллоуинская ночь':key=='hk'?'Взлом системы':DF[key].n)+', старт с волны '+w+(god?', база бессмертна':''))}
+ if(a=='test'){var key=$('adk2').value,w=Math.max(1,Math.min(roundWaveLimit(key),+$('adw').value||1)),god=$('adg').checked;MQ.length=0;$('modal').className='hide';(window.startNow?startNow(key):start(key));G.coins=99999;G.adminTest=true;G.god=god;G.wave=w-1;G.next=2;hud();say('Админ-тест: '+(key=='hw'?'Хэллоуинская ночь':key=='hk'?'Взлом системы':DF[key].n)+', старт с волны '+w+(god?', база бессмертна':''))}
  if(a=='mail'){admMail($('admc').value,$('admn').value,sel,ps,gm,c,s,k,msg)}
  if(a=='uid'){if(!onOk()){msg.textContent='Сервер не подключён.';return}onAuth().then(function(){cpy(ON.uid);msg.textContent='Твой UID (скопирован): '+ON.uid+'. Его нужно добавить в Firebase: Realtime Database → Data → admins → '+ON.uid+' = true.'}).catch(function(){msg.textContent='Нет связи с сервером.'})}
  if(/^ar(on|off|drop|auto|clr|b1|b2|bx|cut|me)$/.test(a)){arAdm(a,msg);return}
@@ -1726,7 +1743,7 @@ var EVS=evOn();setInterval(function(){var n=evOn();if(n!==EVS){EVS=n;$('hwb').cl
  if(!n&&Date.now()>=EV_END&&cur=='menu')menu()}else if(evPre()&&$('hwsoon'))$('hwsoon').textContent=hwLeft()},1000);
 menu();requestAnimationFrame(loop);
 </script><script>
-var MKP={Common:5,Rare:12,Epic:25,Legendary:50,Mythic:90,Event:60,Secret:150},MKNS={simonity:'награда квеста',verity:'стартовый Верити',lovity:'стартовый Верити',skel:'награда пропуска',reaper:'награда пропуска'},MKLIM=3,MKTAB='sell';
+var MKP={Common:5,Rare:12,Epic:25,Legendary:50,Mythic:90,Event:60,Secret:150},MKNS={bossity:'награда за мастерство боссов',simonity:'награда квеста',verity:'стартовый Верити',lovity:'стартовый Верити',skel:'награда пропуска',reaper:'награда пропуска'},MKLIM=3,MKTAB='sell';
 function mkFix(){if(typeof M.gem!='number')M.gem=0;if(!M.mkd||M.mkd.d!==dKey())M.mkd={d:dKey(),n:0,b:{}}}
 function mkH(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return(h>>>0)/4294967296}
 function mkWant(){var l=Object.keys(TY).filter(function(k){return!MKNS[k]&&RA[k]!='Secret'});l.sort(function(a,b){return mkH(dKey()+'w'+a)-mkH(dKey()+'w'+b)});return l.slice(0,2)}
@@ -2640,7 +2657,7 @@ async function coOpen(){if(!onOk()||!M.fb||!M.fb.nick||!M.coop||!G||!coOkMode(G.
  G.coop={g:null,gn:'',hm:null};G.gc=G.d.co;G.eid=0;CO.room=ON.uid;coChip('🤝 Комната открыта · ждём друга');clearInterval(CO.iv);CO.iv=setInterval(coHostTick,500);say('Комната открыта: друзья могут подключиться через «Друзья 👥».')}catch(e){say('Нет связи с сервером: комната не открыта.')}}
 async function coClose(){clearInterval(CO.iv);CO.iv=null;var r=CO.room;CO.room=null;coChip('');if(r)try{await db('rooms/'+r,{m:'DELETE'})}catch(e){}}
 function coSnap(){var s={k:G.key,w:G.wave,adminTest:!!G.adminTest,l:G.lives,lv:G.d.lv,f:Math.round(G.fear||0),c:Math.floor(G.coins),gc:Math.floor(G.gc||0),r:G.run?1:0,nx:Math.ceil(G.next||0),ov:G.over||0,p2:G.p2?1:0,cl:G.cool>0?1:0,hn:M.fb.nick,
- u:G.units.map(function(u){return[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y)]}),
+ u:G.units.map(function(u){return[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y),u.upgradeLevel||1]}),
  e:G.en.filter(function(e){return!e.dead}).slice(0,90).map(function(e){if(!e.id)e.id=++G.eid;return[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0]}),
  s:G.shots.slice(-24).map(function(q){return[Math.round(q.a),Math.round(q.b),Math.round(q.c),Math.round(q.e),q.col||'']}),hm:G.coop&&G.coop.hm?G.coop.hm:null};return JSON.stringify(s)}
 async function coHostTick(){if(!CO.room)return;if(!G||cur!='game'||!G.coop){coClose();return}if(CO.busy)return;CO.busy=1;
@@ -2663,8 +2680,8 @@ async function coLeave(){clearInterval(CO.iv);CO.iv=null;var h=CO.host;CO.host=n
 async function coGuestTick(){if(!G||!G.guest||!CO.host)return;if(CO.busy)return;CO.busy=1;try{var r=await db('rooms/'+CO.host+'/sn');if(r.ok&&r.j&&r.j.s){var s=JSON.parse(r.j.s);coApplySnap(s)}else if(r.ok&&!r.j){coHostGone()}else{CO.miss=(CO.miss||0)+1;if(CO.miss>25)coHostGone()}}catch(e){CO.miss=(CO.miss||0)+1;if(CO.miss>25)coHostGone()}CO.busy=0}
 function coHostGone(){if(!G||!G.guest||G.over)return;G.over=1;clearInterval(CO.iv);$('end').className='';$('et').textContent=(G.hn||'Хост')+' закрыл игру. Твои монеты: '+Math.floor(G.coins/2)+' ушли в банк.';M.bank+=Math.floor(G.coins/2);save();coLeave()}
 function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/1000):.5;CO.lt=now;CO.miss=0;
- G.wave=s.w;G.lives=s.l;G.fear=s.f;G.coins=s.gc;G.run=!!s.r;G.next=s.nx;G.p2=!!s.p2;G.cool=s.cl?1:0;
- var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
+ G.wave=s.w;G.lives=s.l;G.fear=s.f;G.coins=s.gc;G.run=!!s.r;G.next=s.nx;G.p2=!!s.p2;G.cool=s.cl?1:0;if(ROUND_WAVES[G.key])G.d={...G.d,boss:roundBossSpec(G.key,G.wave,roundWaveLimit(G.key))||DF[G.key].boss};
+ var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
  var em={};G.en.forEach(function(e){em[e.id]=e});G.en=s.e.map(function(a){var e=em[a[0]];if(e){e.vv=Math.max(0,(a[2]-e.d)/dtS);if(Math.abs(a[2]-e.d)>60)e.d=a[2]}else e={id:a[0],ty:a[1],d:a[2],vv:0,t:0,v:0};e.ty=a[1];e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;if(!ET[e.ty])e.ty='walker';return e});
  (s.s||[]).forEach(function(q){G.shots.push({a:q[0],b:q[1],c:q[2],e:q[3],t:.12,col:q[4]||undefined})});if(G.shots.length>60)G.shots.splice(0,G.shots.length-60);
  if(s.hm&&(!CO.hmT||s.hm.t>CO.hmT)){CO.hmT=s.hm.t;if(COPH[s.hm.m])frToast('<b>'+esc(s.hn)+':</b> '+esc(COPH[s.hm.m]))}
@@ -3787,8 +3804,9 @@ function arLoop(ts){AR.raf=0;if(cur!='arn')return;var cv2=$('arc');if(!cv2){retu
  arPut(0);arDraw(cv2,t/1000,B,beat,now);AR.toasts.forEach(function(q){q.t-=dt});AR.toasts=AR.toasts.filter(function(q){return q.t>0});AR.fx.forEach(function(q){q.t+=dt});AR.fx=AR.fx.filter(function(q){return q.t<1});
  apBeatHud(beat,now,blocked);
  AR.raf=requestAnimationFrame(arLoop)}
-function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
+function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim,showClub){var s=56,I=IM[(k||'verity')+'1'],bob=Math.sin(t*6+x*.01)*2;c.fillStyle='rgba(0,0,0,.35)';c.beginPath();c.ellipse(x,y+26,24,8,0,0,7);c.fill();
  // дубинка
+ if(showClub!==false){
  var heading=sw?(aim??(face>0?0:Math.PI)):(face>0?0:Math.PI);
  var gripX=x+Math.cos(heading)*25, gripY=y+bob+Math.sin(heading)*25;
  var progress=sw?1-sw/AR_SWING_TIME:0, angle=heading+(sw?(-1.25+2.5*progress):(face>0?-1.08:1.08));
@@ -3800,6 +3818,7 @@ function arAvatar(c,x,y,k,nick,cs,me,carry,sw,st,face,t,crown,aim){var s=56,I=IM
  c.rotate(angle+Math.PI/2);c.fillStyle='#8a5a2a';c.strokeStyle='#3a2410';c.lineWidth=2;
  c.beginPath();c.moveTo(-4,0);c.lineTo(4,0);c.lineTo(8,-40);c.lineTo(-8,-40);c.closePath();c.fill();c.stroke();
  c.fillStyle='#a8743a';c.beginPath();c.ellipse(0,-42,10,7,0,0,7);c.fill();c.stroke();c.restore();
+ }
  if(I&&I.complete&&I.naturalWidth){c.save();c.beginPath();c.arc(x,y+bob,s/2,0,7);c.clip();c.drawImage(I,x-s/2,y-s/2+bob,s,s);c.restore()}else{c.fillStyle='#ffd21f';c.beginPath();c.arc(x,y+bob,s/2,0,7);c.fill()}
  var CS=typeof csP=='function'?csP(cs):{},frc=CS.fr&&typeof cosCol=='function'?cosCol('fr',CS.fr,t*1000):null,ncc=CS.nc&&typeof cosCol=='function'?cosCol('nc',CS.nc,t*1000):null;c.lineWidth=4;c.strokeStyle=frc||(me?'#ffd21f':'#ffffff');c.beginPath();c.arc(x,y+bob,s/2,0,7);c.stroke();
  if(crown)apDrawCrown(c,x,y+bob-31,.51);
@@ -7691,6 +7710,26 @@ function lrSceneCage(c,t){
   lrFade(c,1-apMove(t,4.12,4.67));
 }
 </script>
+<section id="boss-rush" class="hide p" aria-label="БОСС РАШ">
+  <header class="br-top">
+    <button type="button" id="br-back" data-br="back">← Режимы</button>
+    <button type="button" id="br-skip" data-br="skip" hidden>Пропустить катсцену</button>
+    <div id="br-stage" hidden>
+      <strong id="br-stage-title"></strong><span id="br-health"></span><span id="br-weapon"></span><span id="br-clock"></span>
+      <progress id="br-boss-health" aria-label="Здоровье босса" max="1" value="1" hidden></progress>
+    </div>
+  </header>
+  <div class="br-arena">
+    <canvas id="br-canvas" width="900" height="540" aria-label="Поле боя" hidden></canvas>
+    <p id="br-dialogue" aria-live="polite" hidden><span id="br-speaker"></span><span id="br-line"></span></p>
+  </div>
+  <div id="br-controls" hidden>
+    <div id="br-stick" aria-label="Джойстик движения"><span id="br-stick-dot"></span></div>
+    <button type="button" id="br-attack">Атака</button>
+  </div>
+  <div id="br-panel"></div>
+  <p id="br-status" role="status"></p>
+</section>
 <section id="tester" class="hide p" aria-label="Тестерка">
   <div class="tester-top"><h2>Тестерка</h2><button type="button" class="bk" id="tester-back">Назад</button></div>
   <form id="tester-lock">
@@ -7740,5 +7779,8 @@ function lrSceneCage(c,t){
   <p id="tester-status" role="status"></p>
 </section>
 <script src="verity-raid.js?v=1.74-timed"></script>
-<script src="tester.js?v=1.76-bossity-boss"></script>
+<script src="boss-rush-engine.js?v=1.77"></script>
+<script src="boss-rush.js?v=1.77-mastery"></script>
+<script src="round-upgrades.js?v=1.77"></script>
+<script src="tester.js?v=1.77-mastery"></script>
 </body></html>
