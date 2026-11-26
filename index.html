@@ -611,6 +611,8 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 .ap-market-art img {object-fit:contain;max-width:93px}
 .ap-market-card strong {font-size:14px}
 .ap-market-card small {color:#e9bfae;font-size:12px}
+.limited-verity-icon {outline:2px solid #ff963d;outline-offset:1px;border-radius:6px}
+span.limited-verity-icon {display:inline-flex;vertical-align:middle;margin-right:4px}
 .ap-market-card.ap-limited {border-color:#efad66;background:linear-gradient(150deg,#582e36,#312546)}
 .ap-market-card .ap-stock-left {color:#ffdc9a;font-weight:700}
 .ap-market-card button {margin:4px 0 0;padding:6px 8px;background:#733c4a;border:1px solid #eeb37e;color:#ffebc5;font-size:12px}
@@ -690,7 +692,7 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="tester.css?v=1.75">
 <link rel="stylesheet" href="boss-rush.css?v=1.77-mastery">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77.1</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -933,7 +935,12 @@ var HWCOVER="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYG
     IM[key]=sprite;
   }
 })();
-function pic(k,n,s){return IMG[k+n]?'<img src="'+IMG[k+n]+'" width="'+s+'" height="'+s+'" alt="" style="border-radius:6px;vertical-align:middle;margin-right:4px">':ico(TY[k].col,k,s)}
+function pic(k,n,s){
+  var limited=TY[k]?.limited===true;
+  if(IMG[k+n])return '<img'+(limited?' class="limited-verity-icon"':'')+' src="'+IMG[k+n]+'" width="'+s+'" height="'+s+'" alt="" style="border-radius:6px;vertical-align:middle;margin-right:4px">';
+  var icon=ico(TY[k].col,k,s);
+  return limited?'<span class="limited-verity-icon">'+icon+'</span>':icon;
+}
 function ico(c,k,s){var ang=k=='cruelity'||k=='demonity',lid=k=='manipulity';return'<svg viewBox="0 0 40 40" width="'+s+'" height="'+s+'" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="'+c+'" stroke="#111" stroke-width="2.5"/><circle cx="14" cy="17" r="2.4" fill="#111"/><circle cx="26" cy="17" r="2.4" fill="#111"/>'+(ang?'<path d="M9 10l9 4M31 10l-9 4M12 29q8-6 16 0" fill="none" stroke="#111" stroke-width="2.5"/>':'<path d="M11 24q9 9 18 0" fill="none" stroke="#111" stroke-width="2.5"/>')+(lid?'<path d="M10 14h8M22 14h8" stroke="#111" stroke-width="2.5"/>':'')+'</svg>'}
 function say(t){$('msg').textContent=t}function lm(t){$('lm').textContent=t}
 function scr(n){if((n=='th-event'||n=='th-feast')&&!thOn())n='lobby';if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market'||cur=='friends'||cur=='inf'||cur=='pets'||cur=='ldb'||cur=='lo'||cur=='mail'||cur=='hk'||cur=='tro'||cur=='pty'||cur=='shp'||cur=='rdl'||cur=='fusl'||cur=='chron'||cur=='arn'||cur=='tester'||cur=='th-event'||cur=='th-feast')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market','friends','inf','pets','ldb','lo','mail','hk','tro','pty','shp','rdl','fusl','chron','arn','tester','th-event','th-feast'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='th-event')thRender();if(n=='th-feast')thFeastRender();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR();if(n=='friends')frOpen();if(n=='inf')infScreen();if(n=='pets')ptRender();if(n=='ldb')lbOpen();if(n=='mail')mlOpen();if(n=='hk'){hkRender();if(!HKRAF)hkRain()}if(n=='tro')trRender();if(n=='pty'){prRender();prFetch().then(prRender).catch(function(){})}}
@@ -979,7 +986,7 @@ function upd(dt){
  window.BossityBattle?.tick(dt);
  G.units.forEach(function(u){var t=TY[u.k],P2=G.p2||u.inf>0;if(u.inf>0)u.inf-=dt;if(u.dr>0)u.dr-=dt;if(u.wl>0)u.wl-=dt;if(u.deb>0)u.deb-=dt;if(u.po&&u.po.dead){u.po=null;u.cd=4;say('Demonity вернулся в свою форму.')}if(u.po)return;if(u.curse>0){u.curse-=dt;return}if(u.k=='lord'&&P2){u.it=(u.it||0)+dt;if(u.it>6){u.it=0;var os=G.units.filter(function(o){return o!==u&&Math.hypot(o.x-u.x,o.y-u.y)<160});if(os.length){var o=os[Math.floor(Math.random()*os.length)];if(Math.random()<.8)o.inf=8;else o.deb=5}}}u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
  if(u.k=='demonity'&&P2){var c2=null;G.en.forEach(function(e){if(e.po||e.boss||inv(e))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=140&&(!c2||e.max>c2.max))c2=e});if(c2){c2.po=1;c2.pt=0;c2.hp*=2;c2.max*=2;u.po=c2;say('Demonity вселился во врага!');return}}
-  G.en.forEach(function(e){if(e.po||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
+  G.en.forEach(function(e){if(e.po||(e.dead&&u.k==='hacketurkity')||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
   G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
   if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(P2)aoe(p[0],p[1],50,d);else hit(tg,d)}
   else if(u.k=='simonity')simonityAttack(u,tg,d,p,P2);
@@ -1007,7 +1014,7 @@ function upd(dt){
   else hit(tg,d);
   apElementAttack(u,p,d);
  });
- G.cu=null;G.en.forEach(function(e){if(G.key=='harvest'&&e.dead)return;e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
+ G.cu=null;tickHackeTurkity(dt);G.en.forEach(function(e){if(G.key=='harvest'&&e.dead)return;e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
   var sk=G.d.boss.sk;if(G.key=='harvest'&&e.dead)return;if(e.boss){if(e.thBoss)thBossThink(e);if(sk==4)king(e,dt);if((sk==1||sk==3)&&!(e.nul>0))e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
   if(e.ty=='healer')G.en.forEach(function(o){if(o!==e&&Math.abs(o.d-e.d)<70)if(!(o.nul>0))o.hp=Math.min(o.max,o.hp+5*dt)});
   if(e.stun>0){e.stun-=dt;return}
@@ -1048,7 +1055,7 @@ function draw(){if(G.key=='harvest')thDrawBoard();else{for(var i=0;i<16;i++)for(
   x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
   if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8);if(G.d.boss.final){x.save();x.strokeStyle='#ffd978';x.lineWidth=3;x.beginPath();x.arc(p[0],p[1],r-4,0,7);x.stroke();x.fillStyle='#fff4d2';x.font='bold 11px system-ui';x.textAlign='center';x.fillText(Math.ceil(e.hp)+' HP',p[0],p[1]+r+13);x.restore()}}
   x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.po?'#c08cff':e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
- phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
+ drawHackeTurkity();phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
 function lobby(){$('bk').textContent=Math.floor(M.bank);$('bs').textContent=M.seeds;var h='';for(var k in TY)h+='<div class="cu fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'')+(M.own[k]?'':' no')+'" style="--rc:'+RC[RA[k]]+'">'+pic(k,1,40)+pic(k,2,40)+'<br><b>'+TY[k].n+'</b><br>'+RA[k]+'<br>Урон '+(k=='demonity'?'1/6 HP':TY[k].dmg)+' · '+TY[k].rate+' с · дальн. '+TY[k].rng+'<br>'+TY[k].d+pkEx(k)+'</div>';$('col').innerHTML=h}
 function cvPos(e){var r=cv.getBoundingClientRect();return[(e.clientX-r.left)*640/r.width,(e.clientY-r.top)*400/r.height]}
 function cell(p){return[Math.floor(p[0]/C),Math.floor(p[1]/C)]}
@@ -1315,10 +1322,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.77',VOL=.8,MQ=[],CI=0;
+var VER='1.77.1',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.77.1',t:'Взлом Hacke-Turkity',a:['Выстрел Hacke-Turkity наносит постепенный урон. Каждые 10 добиваний он призывает Глитч-индейку, которая таранит врага, оглушает его на секунду и оставляет взлом.','У иконок лимитированных Верити появилась оранжевая обводка.']},
 {v:'1.77',t:'Тюрьма боссов',a:['В режимах появилась арена «БОСС РАШ»: катсцена побега, 10 боссов и три ветки оружия.','В обычных боях можно улучшать поставленных Верити до 3-го уровня за монеты раунда.','Лёгкая: 10 волн, Средняя: 15, Сложная: 20, Инсейн: 30. Мини-боссы на 10-й волне Сложной и на 10-й и 20-й волнах Инсейна. Финальные боссы усилены.','Победи каждого из 10 боссов по 5 раз, чтобы получить Mythic Bossity. Добавлены разовые награды за мастерство.']},
 {v:'1.76',t:'Simonity: Сигнал в метели',a:['Выиграй бой на Средней сложности на карте «Снежная», затем забери Simonity в разделе «Задания».','Simonity — Epic за 220 монет в бою. Каждый четвёртый выстрел задевает до трёх соседних врагов. Во второй фазе импульс срабатывает каждый третий выстрел.']},
 {v:'1.74',t:'Арена боссфайта',a:['Кнопка «Игроки» показывает, кто сейчас на арене.','Вечеринка длится 5 минут. После сцены вторжения начинается 10-минутный бой.','В катсценах видны Верити игроков с никами. Обновлены эффекты атак.']},
@@ -2658,7 +2666,8 @@ async function coOpen(){if(!onOk()||!M.fb||!M.fb.nick||!M.coop||!G||!coOkMode(G.
 async function coClose(){clearInterval(CO.iv);CO.iv=null;var r=CO.room;CO.room=null;coChip('');if(r)try{await db('rooms/'+r,{m:'DELETE'})}catch(e){}}
 function coSnap(){var s={k:G.key,w:G.wave,adminTest:!!G.adminTest,l:G.lives,lv:G.d.lv,f:Math.round(G.fear||0),c:Math.floor(G.coins),gc:Math.floor(G.gc||0),r:G.run?1:0,nx:Math.ceil(G.next||0),ov:G.over||0,p2:G.p2?1:0,cl:G.cool>0?1:0,hn:M.fb.nick,
  u:G.units.map(function(u){return[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y),u.upgradeLevel||1]}),
- e:G.en.filter(function(e){return!e.dead}).slice(0,90).map(function(e){if(!e.id)e.id=++G.eid;return[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0]}),
+ e:G.en.filter(function(e){return!e.dead}).slice(0,90).map(function(e){if(!e.id)e.id=++G.eid;return[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0,e.hackEffects?.length?1:0]}),
+ gt:(G.glitchTurkeys||[]).map(turkey=>[turkey.id,Math.round(turkey.d)]),
  s:G.shots.slice(-24).map(function(q){return[Math.round(q.a),Math.round(q.b),Math.round(q.c),Math.round(q.e),q.col||'']}),hm:G.coop&&G.coop.hm?G.coop.hm:null};return JSON.stringify(s)}
 async function coHostTick(){if(!CO.room)return;if(!G||cur!='game'||!G.coop){coClose();return}if(CO.busy)return;CO.busy=1;
  try{await db('rooms/'+CO.room+'/sn',{m:'PUT',b:{s:coSnap(),t:{'.sv':'timestamp'}}});
@@ -2682,11 +2691,17 @@ function coHostGone(){if(!G||!G.guest||G.over)return;G.over=1;clearInterval(CO.i
 function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/1000):.5;CO.lt=now;CO.miss=0;
  G.wave=s.w;G.lives=s.l;G.fear=s.f;G.coins=s.gc;G.run=!!s.r;G.next=s.nx;G.p2=!!s.p2;G.cool=s.cl?1:0;if(ROUND_WAVES[G.key])G.d={...G.d,boss:roundBossSpec(G.key,G.wave,roundWaveLimit(G.key))||DF[G.key].boss};
  var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
- var em={};G.en.forEach(function(e){em[e.id]=e});G.en=s.e.map(function(a){var e=em[a[0]];if(e){e.vv=Math.max(0,(a[2]-e.d)/dtS);if(Math.abs(a[2]-e.d)>60)e.d=a[2]}else e={id:a[0],ty:a[1],d:a[2],vv:0,t:0,v:0};e.ty=a[1];e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;if(!ET[e.ty])e.ty='walker';return e});
+ var em={};G.en.forEach(function(e){em[e.id]=e});G.en=s.e.map(function(a){var e=em[a[0]];if(e){e.vv=Math.max(0,(a[2]-e.d)/dtS);if(Math.abs(a[2]-e.d)>60)e.d=a[2]}else e={id:a[0],ty:a[1],d:a[2],vv:0,t:0,v:0};e.ty=a[1];e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;e.hackVisual=Boolean(a[7]);if(!ET[e.ty])e.ty='walker';return e});
+ const previousTurkeys=new Map((G.glitchTurkeys||[]).map(turkey=>[turkey.id,turkey.d]));
+ G.glitchTurkeys=(s.gt||[]).map(([id,d])=>({id,d:previousTurkeys.get(id)??d,target:d}));
  (s.s||[]).forEach(function(q){G.shots.push({a:q[0],b:q[1],c:q[2],e:q[3],t:.12,col:q[4]||undefined})});if(G.shots.length>60)G.shots.splice(0,G.shots.length-60);
  if(s.hm&&(!CO.hmT||s.hm.t>CO.hmT)){CO.hmT=s.hm.t;if(COPH[s.hm.m])frToast('<b>'+esc(s.hn)+':</b> '+esc(COPH[s.hm.m]))}
  hud();if(s.ov&&!G.over){G.over=s.ov;var win=s.ov==2,bank=Math.floor(G.coins/2)+(win?300:0);M.bank+=bank;if(win){M.gem=(M.gem||0)+2;if(!s.adminTest)simonityQuestWin()}save();$('end').className='';$('et').textContent=(win?'🎉 Победа вместе с '+s.hn+'!':'База пала… Вы держались вместе до волны '+s.w+'.')+' +'+bank+' 🪙 в банк'+(win?', +2 💎':'')+'.';clearInterval(CO.iv);setTimeout(coLeave,1500)}}
-function coGuestUpd(dt){G.en.forEach(function(e){e.t=(e.t||0)+dt;if(!G.over)e.d+=Math.min(e.vv||0,140)*dt});G.shots.forEach(function(q){q.t-=dt});G.shots=G.shots.filter(function(q){return q.t>0});if(G.waves)G.waves.forEach(function(w){w.t+=dt})}
+function coGuestUpd(dt){
+ if(!G.over)for(const turkey of G.glitchTurkeys||[]){
+   turkey.d=Math.max(turkey.target,turkey.d-GLITCH_TURKEY_SPEED*2*dt);
+ }
+ G.en.forEach(function(e){e.t=(e.t||0)+dt;if(!G.over)e.d+=Math.min(e.vv||0,140)*dt});G.shots.forEach(function(q){q.t-=dt});G.shots=G.shots.filter(function(q){return q.t>0});if(G.waves)G.waves.forEach(function(w){w.t+=dt})}
 (function(){var oc=cv.onclick;cv.onclick=function(e){if(!G||!G.guest)return oc.call(this,e);if(G.over)return;var c=cell(cvPos(e)),u=G.units.filter(function(o){return o.cx==c[0]&&o.cy==c[1]})[0];
  if(u){if(!u.mine){say('Это Верити '+G.hn+'.');return}mOpen('Продать '+TY[u.k].n+'?','<p>Получишь +'+Math.floor(TY[u.k].cost*.7)+' 🪙.</p>',[['Продать',function(){mClose();db('rooms/'+CO.host+'/a',{m:'POST',b:{ty:'s',x:u.cx,y:u.cy,t:{'.sv':'timestamp'}}});say('Продаю…')}],['Отмена',mClose]]);return}
  var k=G.sel,t=TY[k];if(!t)return;if(!okCell(c[0],c[1]))return say('Сюда ставить нельзя.');if(G.coins<t.cost)return say('Не хватает монет.');db('rooms/'+CO.host+'/a',{m:'POST',b:{ty:'p',k:k,x:c[0],y:c[1],t:{'.sv':'timestamp'}}}).then(function(r){say(r.ok?t.n+': ставлю…':'Не получилось отправить.')})}})();
@@ -3334,7 +3349,7 @@ function busPaint(c,s,p2,dir,boss){c.save();c.clearRect(0,0,s,s);c.translate(s/2
  if(p2){c.fillStyle='#ffd21f';for(var f=0;f<3;f++){c.beginPath();c.moveTo(-w/2,y+h*.3+f*h*.18);c.lineTo(-w/2-s*.12,y+h*.36+f*h*.18);c.lineTo(-w/2,y+h*.42+f*h*.18);c.fill()}}
  c.restore()}
 function busIcons(){[1,2].forEach(function(n){var o=document.createElement('canvas');o.width=o.height=128;var c=o.getContext('2d');c.fillStyle=n==2?'#3a0a04':'#0e2a3a';c.beginPath();c.arc(64,64,62,0,7);c.fill();busPaint(c,128,n==2,1);IMG['busity'+n]=o.toDataURL();var im=new Image();im.src=IMG['busity'+n];IM['busity'+n]=im})}busIcons();setTimeout(busIcons,1500);setTimeout(busIcons,5000);
-TY.busity={n:'Busity',cost:480,dmg:22,rate:.9,rng:110,col:'#ffc21a',d:'Exclusive. Автобус-Верити: бибикает по врагам, а раз в 12 с выезжает на дорогу и таранит всех на пути — враги откатываются на 3 клетки назад (боссы на 1). Фаза 2: таран раз в 8 с и отправляет обычных врагов в самое начало. Только один на карте. 📜 Приехал из разлома вместе с классом на экскурсию.'};
+TY.busity={n:'Busity',limited:true,cost:480,dmg:22,rate:.9,rng:110,col:'#ffc21a',d:'Exclusive. Автобус-Верити: бибикает по врагам, а раз в 12 с выезжает на дорогу и таранит всех на пути — враги откатываются на 3 клетки назад (боссы на 1). Фаза 2: таран раз в 8 с и отправляет обычных врагов в самое начало. Только один на карте. 📜 Приехал из разлома вместе с классом на экскурсию.'};
 RA.busity='Exclusive';if(typeof MKNS!='undefined')MKNS.busity='эксклюзив из стока';if(typeof EXU!='undefined')EXU.push('busity');
 (function(){var tp=tryPlace;tryPlace=function(k,cx,cy){if(k=='busity'&&G&&G.units.some(function(u){return u.k=='busity'}))return say('Busity может быть на карте только один.');return tp(k,cx,cy)}})();
 /* таран */
@@ -3368,7 +3383,7 @@ var BGEM=80,BSL=['a','b','c'];
 function busLeft(){var s=BUS.sl||{};return 3-BSL.filter(function(k){return s[k]}).length}
 function busMine(){var s=BUS.sl||{};return BSL.some(function(k){return s[k]&&s[k].u==ON.uid})}
 function busShop(){var own=!!M.own.busity,left=BUS.shop?Math.max(0,BUS.shop.en-Date.now()):0,lf=busLeft(),mm=Math.ceil(left/6e4);
- mOpen('🚌 Сток: Busity','<div class="busc"><div class="busrd"><span>🚌</span><canvas id="busprev" width="240" height="240"></canvas></div><b>Busity</b><span class="rar" style="background:'+RC.Exclusive+'">EXCLUSIVE · ЛИМИТКА</span><p>Автобус-Верити. Раз в 12 секунд выезжает на дорогу и таранит врагов: они откатываются на 3 клетки назад, боссы — на 1. Во 2-й фазе таран чаще и отправляет обычных врагов в самое начало.</p><b class="busl">'+(lf>0?'Осталось: '+lf+' из 3':'РАСПРОДАНО')+'</b><small>'+(left?'Сток закроется через '+mm+' мин':'Сток закрыт')+'</small><small id="busmsg" class="hlm"></small></div>',
+ mOpen('🚌 Сток: Busity','<div class="busc"><div class="busrd"><span>🚌</span><canvas id="busprev" class="limited-verity-icon" width="240" height="240"></canvas></div><b>Busity</b><span class="rar" style="background:'+RC.Exclusive+'">EXCLUSIVE · ЛИМИТКА</span><p>Автобус-Верити. Раз в 12 секунд выезжает на дорогу и таранит врагов: они откатываются на 3 клетки назад, боссы — на 1. Во 2-й фазе таран чаще и отправляет обычных врагов в самое начало.</p><b class="busl">'+(lf>0?'Осталось: '+lf+' из 3':'РАСПРОДАНО')+'</b><small>'+(left?'Сток закроется через '+mm+' мин':'Сток закрыт')+'</small><small id="busmsg" class="hlm"></small></div>',
   own?[['Уже твой ✓',mClose]]:lf>0&&left?[['Купить за '+BGEM+' 💎',function(){busBuy()}],['Закрыть',mClose]]:[['Закрыть',mClose]]);
  var cv2=$('busprev');if(cv2){var c=cv2.getContext('2d');(function fr(){if(!document.body.contains(cv2))return;var t=performance.now()/1000;c.clearRect(0,0,240,240);c.save();c.translate(Math.sin(t*2)*8,Math.abs(Math.sin(t*6))*-4);busPaint(c,240,Math.sin(t)>.6,1);c.restore();requestAnimationFrame(fr)})()}}
 async function busBuy(){var m=$('busmsg');function say2(s){if(m)m.textContent=s}if(BUS.busy||M.own.busity)return;if(!busShopOn())return say2('Сток уже закрыт.');if((M.gem||0)<BGEM)return say2('Не хватает гемов: нужно '+BGEM+' 💎.');if(!onOk()||!ON.uid)return say2('Нужна связь с сервером.');
@@ -4031,7 +4046,7 @@ function hlPaint(c,s,p2){var m=s/2,R=s*.42;c.clearRect(0,0,s,s);
  // капюшон хакера
  c.fillStyle='rgba(10,10,14,.92)';c.beginPath();c.moveTo(m-s*.36,m+s*.42);c.quadraticCurveTo(m-s*.4,m-s*.3,m,m-s*.36);c.quadraticCurveTo(m+s*.4,m-s*.3,m+s*.36,m+s*.42);c.lineTo(m+s*.3,m+s*.42);c.quadraticCurveTo(m+s*.33,m-s*.2,m,m-s*.25);c.quadraticCurveTo(m-s*.33,m-s*.2,m-s*.3,m+s*.42);c.fill();
  c.strokeStyle=p2?'#ff2a3d':'#39ff6a';c.lineWidth=s*.03;c.beginPath();c.arc(m,m,R,0,7);c.stroke()}
-TY.hackol={n:'Hackoluinity',cost:520,dmg:34,rate:.55,rng:120,col:'#39ff6a',d:'Mythic, лимитка: всего 2 на всю игру. Хакерско-хэллоуинский Верити: стреляет кодом, каждый 4-й выстрел — тыква-вирус, которая взрывается по области и вызывает сбой (враги медленнее на 30% на 2 с). Фаза 2: тыква-вирус каждый 2-й выстрел и бьёт сильнее. Только из лавки вечеринки за 1000 🍭'};
+TY.hackol={n:'Hackoluinity',limited:true,cost:520,dmg:34,rate:.55,rng:120,col:'#39ff6a',d:'Mythic, лимитка: всего 2 на всю игру. Хакерско-хэллоуинский Верити: стреляет кодом, каждый 4-й выстрел — тыква-вирус, которая взрывается по области и вызывает сбой (враги медленнее на 30% на 2 с). Фаза 2: тыква-вирус каждый 2-й выстрел и бьёт сильнее. Только из лавки вечеринки за 1000 🍭'};
 RA.hackol='Mythic';MKNS.hackol='лимитка вечеринки';if(typeof EXU!='undefined')EXU.push('hackol');
 (function(){[1,2].forEach(function(n){var o=document.createElement('canvas');o.width=o.height=128;hlPaint(o.getContext('2d'),128,n==2);IMG['hackol'+n]=o.toDataURL();var im=new Image();im.src=IMG['hackol'+n];IM['hackol'+n]=im})})();
 function hlAtk(u,tg,d,p,P2){hit(tg,d);G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.08,col:'#39ff6a'});
@@ -4367,10 +4382,10 @@ var TH_UNITS = {
     d:'Рог изобилия усиливает обычные атаки других Верити в радиусе 95 на 10%, во второй фазе на 15%. Ауры Cornucopity не складываются.'},
   harvestity:{n:'Harvestity',rar:'Mythic',cost:570,dmg:46,rate:1.1,rng:112,col:'#aa371d',light:'#ffbe64',
     d:'Каждый 4-й удар поднимает вихрь из листьев: до 5 соседних врагов получают 45% урона. Во второй фазе вихрь замедляет задетых врагов на 25% на 1 с.'},
-  turkinity:{n:'Туркинити',rar:'Epic',cost:220,dmg:19,rate:.87,rng:107,col:'#e5a449',light:'#fff2b7',
+  turkinity:{n:'Туркинити',limited:true,rar:'Epic',cost:220,dmg:19,rate:.87,rng:107,col:'#e5a449',light:'#fff2b7',
     d:'Каждый третий выстрел задевает до двух соседей цели на 40% урона и замедляет их на 25% на 1 с. Во второй фазе перья летят на каждом втором выстреле.'},
-  hacketurkity:{n:'Hacke-Turkity',rar:'Legendary',cost:340,dmg:26,rate:1,rng:112,col:'#57e89b',light:'#b9ffc5',
-    d:'Каждый четвёртый выстрел оглушает цель и одного её соседа на 0,55 с. Во второй фазе эффект срабатывает каждые три выстрела и длится 0,8 с. Боссы оглушаются на 0,2 с.'}
+  hacketurkity:{n:'Hacke-Turkity',limited:true,rar:'Legendary',cost:340,dmg:26,rate:1,rng:112,col:'#57e89b',light:'#b9ffc5',
+    d:'Каждый выстрел взламывает цель на 3 с: 40% урона выстрела в секунду. Каждые 10 своих добиваний вызывает Глитч-индейку. Она бежит по дороге навстречу врагам, при столкновении наносит урон десяти выстрелов, оглушает на 1 с и оставляет взлом на 4 с. Импульс оглушения срабатывает каждый 4-й выстрел (каждый 3-й во второй фазе).'}
 };
 /* День благодарения: пропуск, магазин и застолье */
 var TH_CRATE_COST = 10, TH_MEAL_COST = 5, TH_SEATS = 15, TH_FEAST_XP = 10;
@@ -4979,8 +4994,105 @@ function thSplash(target,point,radius,limit){
     return Math.hypot(p[0]-point[0],p[1]-point[1])<=radius;
   }).sort(function(a,b){return b.d-a.d}).slice(0,limit);
 }
+const GLITCH_TURKEY_SPEED=220;
+const GLITCH_TURKEY_RADIUS=18;
+
+function hackeDamage(unit,enemy,amount,shotDamage){
+  if(enemy.dead||enemy.po)return;
+  hit(enemy,amount);
+  if(!enemy.dead||!G.units.includes(unit))return;
+  unit.hackKills=(unit.hackKills||0)+1;
+  if(unit.hackKills%10===0){
+    G.glitchTurkeySeq=(G.glitchTurkeySeq||0)+1;
+    (G.glitchTurkeys=G.glitchTurkeys||[]).push({id:G.glitchTurkeySeq,owner:unit,d:tot,shotDamage});
+    say('Hacke-Turkity призвал Глитч-индейку!');
+  }
+}
+
+function applyHack(unit,enemy,shotDamage,glitch=false){
+  if(enemy.dead||enemy.po)return;
+  const effects=enemy.hackEffects=enemy.hackEffects||[];
+  const existing=effects.find(effect=>effect.owner===unit&&effect.glitch===glitch);
+  const values={owner:unit,glitch,shotDamage,left:glitch?4:3};
+  if(existing)Object.assign(existing,values);
+  else effects.push(values);
+}
+
+function tickHackeTurkity(dt){
+  for(let i=0,length=G.en.length;i<length;i++){
+    const enemy=G.en[i];
+    if(enemy.dead||enemy.po||!enemy.hackEffects?.length)continue;
+    for(const effect of enemy.hackEffects){
+      const elapsed=Math.min(dt,effect.left);
+      effect.left-=elapsed;
+      hackeDamage(effect.owner,enemy,effect.shotDamage*(effect.glitch?2:.4)*elapsed,effect.shotDamage);
+      if(enemy.dead)break;
+    }
+    enemy.hackEffects=enemy.dead?[]:enemy.hackEffects.filter(effect=>effect.left>0);
+  }
+
+  if(!G.glitchTurkeys?.length||!G.en.some(enemy=>!enemy.dead&&!enemy.po))return;
+  // Keep new summons queued until the next tick, including kills caused by another turkey.
+  const running=G.glitchTurkeys;
+  G.glitchTurkeys=[];
+  for(const turkey of running){
+    const previous=turkey.d;
+    turkey.d=Math.max(0,previous-GLITCH_TURKEY_SPEED*dt);
+    let contact=null;
+    for(const enemy of G.en){
+      if(!enemy.dead&&!enemy.po&&enemy.d<=previous+GLITCH_TURKEY_RADIUS&&enemy.d>=turkey.d-GLITCH_TURKEY_RADIUS&&
+        (!contact||enemy.d>contact.d))contact=enemy;
+    }
+    if(!contact){
+      if(turkey.d>0)G.glitchTurkeys.push(turkey);
+      continue;
+    }
+    const [px,py]=pos(contact.d);
+    hackeDamage(turkey.owner,contact,turkey.shotDamage*10,turkey.shotDamage);
+    if(!contact.dead){
+      contact.stun=Math.max(contact.stun||0,1);
+      applyHack(turkey.owner,contact,turkey.shotDamage,true);
+    }
+    (G.waves=G.waves||[]).push({x:px,y:py,t:0,c:'#7dffbc',radius:42});
+  }
+}
+
+function drawHackeTurkity(){
+  x.save();
+  for(const enemy of G.en){
+    if(enemy.dead||enemy.po||!(enemy.hackEffects?.length||enemy.hackVisual))continue;
+    const [px,py]=pos(enemy.d);
+    x.fillStyle='#9cffbc';
+    x.fillRect(px-17,py+9,8,2);x.fillRect(px+10,py-11,8,2);
+    x.fillStyle='#b585ff';
+    x.fillRect(px+12,py+7,7,3);x.fillRect(px-18,py-6,4,3);
+  }
+  const sprite=IM.hacketurkity2;
+  for(const turkey of G.glitchTurkeys||[]){
+    const [px,py]=pos(turkey.d);
+    const [ahead]=pos(Math.max(0,turkey.d-5));
+    const heading=ahead>px?-1:1;
+    x.save();
+    x.translate(px,py-8);x.scale(heading,1);
+    x.fillStyle='#7dffbc';x.fillRect(12,-6,19,3);
+    x.fillStyle='#b585ff';x.fillRect(16,3,12,3);
+    if(sprite?.complete&&sprite.naturalWidth)x.drawImage(sprite,-24,-26,48,48);
+    else{
+      x.fillStyle='#48c68a';
+      x.beginPath();x.ellipse(0,0,15,12,0,0,Math.PI*2);x.fill();
+    }
+    x.strokeStyle='#9cffbc';x.lineWidth=2;
+    x.beginPath();x.ellipse(0,11,15,4,0,0,Math.PI*2);x.stroke();
+    x.restore();
+  }
+  x.restore();
+}
+
 function thAttack(u,target,damage,point,phase){
-  hit(target,damage);
+  if(u.k==='hacketurkity'){
+    hackeDamage(u,target,damage,damage);
+    applyHack(u,target,damage);
+  }else hit(target,damage);
   if(u.k==='pumpkity'){
     if(!target.dead&&u.n%(phase?2:3)===0)target.nul=Math.max(target.nul||0,phase?2.5:1.5);
     return;
@@ -6249,7 +6361,7 @@ var AP_TOKEN_AWARDS=[['apguest',4],['apdrop',4],['apbeat',6],['apstone',8],['apf
 var AP_STOCK_TAG=AP_EVENT+'-stock';
 var AP_STOCK_OFFERS=[
   {id:'turkinity',kind:'verity',name:TY.turkinity.n,cost:20,count:6,control:'stockTurkey',detail:'Веер перьев ранит и замедляет двух врагов рядом с целью.'},
-  {id:'hacketurkity',kind:'verity',name:TY.hacketurkity.n,cost:28,count:4,control:'stockHacke',detail:'Хакерити в костюме индейки. Импульс оглушает до двух врагов.'}
+  {id:'hacketurkity',kind:'verity',name:TY.hacketurkity.n,cost:28,count:4,control:'stockHacke',detail:'Взламывает врагов каждым выстрелом. За 10 добиваний призывает Глитч-индейку с тараном и оглушением.'}
 ];
 var AP_CONTROLS=['coins','turkey','intro','stone','final'].concat(AP_STOCK_OFFERS.map(function(offer){return offer.control}));
 var AP_MARKET_OFFERS=AP_STOCK_OFFERS.concat([
