@@ -614,6 +614,14 @@ body.raidm #shop,body.raidm #ph,body.raidm #sk,body.raidm #ust,body.raidm #petba
 .limited-verity-icon {outline:2px solid #ff963d;outline-offset:1px;border-radius:6px}
 span.limited-verity-icon {display:inline-flex;vertical-align:middle;margin-right:4px}
 .ap-market-card.ap-limited {border-color:#efad66;background:linear-gradient(150deg,#582e36,#312546)}
+.vault-unit-offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.vault-unit-card{min-width:0;display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;padding:14px;border:1px solid #634e71;border-radius:14px;background:#241d33;color:#fff4fc}
+.vault-unit-art{display:flex;justify-content:center;gap:12px;padding:12px 4px;border-radius:10px;background:radial-gradient(ellipse at 50% 0%,var(--unit-glow),#161826 75%)}
+.vault-unit-art figure{margin:0;text-align:center;min-width:0;flex:0 1 112px}.vault-unit-art img{display:block;width:min(100%,104px);height:auto;margin:0 auto 6px}
+.vault-unit-art figcaption,.vault-unit-stats{font-size:12px;color:#e2c9ee}
+.vault-unit-heading{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.vault-unit-heading h3,.vault-unit-card p{margin:0}.vault-unit-card p{margin-top:4px}
+.vault-unit-card button{width:100%;min-height:42px}
+#shp .shtabs{flex-wrap:wrap}
 .ap-market-card .ap-stock-left {color:#ffdc9a;font-weight:700}
 .ap-market-card button {margin:4px 0 0;padding:6px 8px;background:#733c4a;border:1px solid #eeb37e;color:#ffebc5;font-size:12px}
 #ap-market-status {color:var(--acc);margin:7px 0}
@@ -692,7 +700,7 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="tester.css?v=1.75">
 <link rel="stylesheet" href="boss-rush.css?v=1.77-mastery">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77.3</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77.4</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -857,6 +865,24 @@ phonk:{n:'Phonkity',cost:380,dmg:20,rate:.6,rng:105,col:'#7a3cff',d:'Secret. Г�
 skel:{n:'Skeletonity',cost:300,dmg:40,rate:.6,rng:105,col:'#e8e2cf',d:'Хэллоуин, награда пропуска. Кость-бумеранг бьёт цель и врага за ней. Фаза 2: раз в 8 с костяная стена оглушает врагов рядом с целью на 1,5 с'},
 reaper:{n:'Reaperity',cost:700,dmg:55,rate:.9,rng:66,col:'#2a1838',d:'Ближний бой: взмах косой. Хэллоуин, Mythic, финальная награда пропуска. Взмах косы бьёт всех рядом с целью и добивает обычных врагов ниже 15% HP. Фаза 2: собирает души, на 15 душах «Жатва» бьёт всех врагов на карте. Только один на карте'}};
 var RA={bossity:'Mythic',simonity:'Epic',verity:'Common',lovity:'Rare',sadity:'Rare',moggity:'Rare',cruelity:'Epic',falsity:'Epic',galaxity:'Legendary',demonity:'Legendary',pumpkinity:'Event',lord:'Mythic',monster:'Legendary',batv:'Common',ghostv:'Rare',vamp:'Epic',jack:'Mythic',phonk:'Secret',skel:'Legendary',reaper:'Mythic'};var RC={Common:'#9aa7b4',Rare:'#33c3ff',Epic:'#b45cff',Legendary:'#ffae1a',Mythic:'#ff2a3d',Event:'#ff8a1f',Secret:'#b48cff'};
+const ORBIT_REWIND={every:4,phaseEvery:3,radius:52,limit:3,seconds:1,max:32,phaseMax:48,lock:4};
+const CADENCE_COMBO={every:4,phaseEvery:3,bonus:.65};
+const VAULT_SALE_END=Date.parse('2026-12-12T00:00:00+03:00');
+const VAULT_TD_UNITS={
+  orbity:{n:'Orbity',rar:'Epic',limited:true,unlockCost:1800,cost:260,dmg:22,rate:1.05,rng:112,col:'#61dfff',
+    ability:'Орбитальная петля',
+    d:`Каждый ${ORBIT_REWIND.every}-й выстрел помечает до ${ORBIT_REWIND.limit} обычных врагов рядом с целью. `+
+      `Через ${ORBIT_REWIND.seconds} с они возвращаются к месту метки, максимум на ${(ORBIT_REWIND.max/C).toLocaleString('ru-RU')} клетки. `+
+      `Во второй фазе метка срабатывает каждый ${ORBIT_REWIND.phaseEvery}-й выстрел и возвращает врагов до ${(ORBIT_REWIND.phaseMax/C).toLocaleString('ru-RU')} клетки назад.`},
+  cadentity:{n:'Cadentity',rar:'Legendary',limited:true,unlockCost:2400,cost:330,dmg:31,rate:1.12,rng:108,col:'#ff92d8',
+    ability:'Удар в такт',
+    d:`Каждый ${CADENCE_COMBO.every}-й выстрел подряд в одну цель наносит на ${Math.round(CADENCE_COMBO.bonus*100)}% больше урона. `+
+      `Во второй фазе усиление срабатывает на ${CADENCE_COMBO.phaseEvery}-м выстреле. При смене цели серия начинается заново.`}
+};
+for(const [key, unit] of Object.entries(VAULT_TD_UNITS)){
+  TY[key]=unit;
+  RA[key]=unit.rar;
+}
 var M={bank:450,seeds:120,own:{verity:1,lovity:1}};
 var accountReloading=false, savedGameText=null;
 try{savedGameText=localStorage.getItem('vtd');var sv=JSON.parse(savedGameText);if(sv&&sv.own)M=sv}catch(e){}
@@ -1032,10 +1058,12 @@ function upd(dt){
  window.BossityBattle?.tick(dt);
  G.units.forEach(function(u){var t=TY[u.k],P2=G.p2||u.inf>0;if(u.inf>0)u.inf-=dt;if(u.dr>0)u.dr-=dt;if(u.wl>0)u.wl-=dt;if(u.deb>0)u.deb-=dt;if(u.po&&u.po.dead){u.po=null;u.cd=4;say('Demonity вернулся в свою форму.')}if(u.po)return;if(u.curse>0){u.curse-=dt;return}if(u.k=='lord'&&P2){u.it=(u.it||0)+dt;if(u.it>6){u.it=0;var os=G.units.filter(function(o){return o!==u&&Math.hypot(o.x-u.x,o.y-u.y)<160});if(os.length){var o=os[Math.floor(Math.random()*os.length)];if(Math.random()<.8)o.inf=8;else o.deb=5}}}u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
  if(u.k=='demonity'&&P2){var c2=null;G.en.forEach(function(e){if(e.po||e.boss||inv(e))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=140&&(!c2||e.max>c2.max))c2=e});if(c2){c2.po=1;c2.pt=0;c2.hp*=2;c2.max*=2;u.po=c2;say('Demonity вселился во врага!');return}}
-  G.en.forEach(function(e){if(e.po||(e.dead&&u.k==='hacketurkity')||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
+  G.en.forEach(function(e){if(e.po||(e.dead&&(u.k==='hacketurkity'||VAULT_TD_UNITS[u.k]))||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
   G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
   if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(P2)aoe(p[0],p[1],50,d);else hit(tg,d)}
   else if(u.k=='simonity')simonityAttack(u,tg,d,p,P2);
+  else if(u.k==='orbity')orbityAttack(u,tg,d,p,P2);
+  else if(u.k==='cadentity')cadentityAttack(u,tg,d,p,P2);
   else if(G.tester&&t.testAttack)t.testAttack(u,tg,d,p,P2);
   else if(u.k=='lovity'){tg.sl=1.5;tg.slp=P2?.8:.5;if(P2&&!tg.boss)tg.d=Math.max(0,tg.d-70);else if(u.n%12==0&&G.lives<G.d.lv)G.lives++;hit(tg,d)}
   else if(u.k=='pumpkinity'){if(P2)aoe(p[0],p[1],70,d*1.4);else{tg.burn=3;hit(tg,d)}}
@@ -1060,7 +1088,7 @@ function upd(dt){
   else hit(tg,d);
   apElementAttack(u,p,d);
  });
- G.cu=null;tickHackeTurkity(dt);G.en.forEach(function(e){if(e.dead&&(G.key==='harvest'||e.ty==='adminBoss'))return;e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
+ G.cu=null;tickHackeTurkity(dt);G.en.forEach(function(e){if(e.dead&&(G.key==='harvest'||e.ty==='adminBoss'))return;if(e.orbitLock>0)tickOrbity(e,dt);e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0||e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
   if(e.dead&&(G.key==='harvest'||e.ty==='adminBoss'))return;
   var sk=e.ty==='adminBoss'?0:G.d.boss.sk;if(e.boss){if(e.thBoss)thBossThink(e);if(sk==4)king(e,dt);if((sk==1||sk==3)&&!(e.nul>0))e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
   if(e.ty=='healer')G.en.forEach(function(o){if(o!==e&&Math.abs(o.d-e.d)<70)if(!(o.nul>0))o.hp=Math.min(o.max,o.hp+5*dt)});
@@ -1072,6 +1100,80 @@ function upd(dt){
   if(G.tester&&G.wave>=G.tester.waves)return endGame(2,'Тест пройден.');
   if(!G.tester&&G.wave>=battleWaveLimit()&&G.key!='inf'){M.done[G.key]=1;if(G.key=='hw'){addCandy(150);M.hq.wins++;bpAdd(100)}M.bank+=Math.floor(500*G.d.bm+G.coins);endGame(2,G.key=='hw'?'Тыквенный Король повержен! +150 🍬. Загляни во вкладку «Хэллоуин».':'Победа! Бонус в банк. Загляни в лобби за новыми Верити.')}else{save();say('Волна пройдена: +60 монет, +5 семечек.');if(G.key=='inf'&&!G.tester)infClear()}}
  hud()}
+function orbityAttack(unit,target,damage,[px,py],phaseTwo){
+  hit(target,damage);
+  const settings=ORBIT_REWIND;
+  if(unit.n%(phaseTwo?settings.phaseEvery:settings.every)!==0)return;
+  const marked=G.en.filter(enemy=>!enemy.dead&&!enemy.po&&!enemy.boss&&!inv(enemy)&&
+    !(enemy.orbitLock>0)&&Math.abs(enemy.d-target.d)<=settings.radius)
+    .sort((a,b)=>b.d-a.d).slice(0,settings.limit);
+  if(!marked.length)return;
+  for(const enemy of marked){
+    enemy.orbitMark={from:enemy.d,left:settings.seconds,cap:phaseTwo?settings.phaseMax:settings.max};
+    enemy.orbitLock=settings.lock;
+    const [tx,ty]=pos(enemy.d);
+    G.shots.push({a:px,b:py+4,c:tx,e:ty,t:.20,col:'#abf2ff'});
+  }
+  (G.waves=G.waves||[]).push({x:px,y:py,t:0,c:'#8ceaff',radius:settings.radius});
+}
+
+function tickOrbity(enemy,dt){
+  enemy.orbitLock=Math.max(0,enemy.orbitLock-dt);
+  const mark=enemy.orbitMark;
+  if(!mark)return;
+  mark.left-=dt;
+  if(mark.left>1e-6)return;
+  enemy.orbitMark=null;
+  if(enemy.dead||enemy.po||enemy.d<=mark.from)return;
+  enemy.d=Math.max(mark.from,enemy.d-mark.cap);
+  enemy.orbitRevision=(enemy.orbitRevision||0)+1;
+}
+
+function cadentityCharge(unit){
+  return unit.rhythmTarget?.dead?0:unit.rhythmHits||0;
+}
+
+function cadentityAttack(unit,target,damage,[px,py],phaseTwo){
+  const {every,phaseEvery,bonus}=CADENCE_COMBO;
+  unit.rhythmHits=unit.rhythmTarget===target?cadentityCharge(unit)+1:1;
+  unit.rhythmTarget=target;
+  if(unit.rhythmHits<(phaseTwo?phaseEvery:every)){
+    hit(target,damage);
+    return;
+  }
+  unit.rhythmHits=0;
+  hit(target,damage*(1+bonus));
+  G.shots.push({a:unit.x,b:unit.y,c:px,e:py,t:.22,col:'#ffe1f6'});
+  (G.waves=G.waves||[]).push({x:px,y:py,t:0,c:'#ff8ed5',radius:30});
+}
+
+function drawCadentityCharge(unit,phaseTwo){
+  const count=phaseTwo?CADENCE_COMBO.phaseEvery:CADENCE_COMBO.every;
+  const hits=Math.min(cadentityCharge(unit),count-1);
+  const left=unit.x-count*3;
+  x.fillStyle='#371d48';
+  x.fillRect(left-2,unit.y+12,count*6+3,5);
+  for(let i=0;i<count;i++){
+    x.fillStyle=i<hits?(hits===count-1?'#ffe49b':'#ffa4e4'):'#805479';
+    x.fillRect(left+i*6,unit.y+13,5,3);
+  }
+}
+
+function drawOrbityMarks(){
+  x.save();
+  x.lineWidth=2;
+  x.strokeStyle='#a9f4ff';
+  for(const enemy of G.en){
+    if(enemy.dead||enemy.po||!(enemy.orbitMark||enemy.orbitVisual))continue;
+    const [px,py]=pos(enemy.d);
+    const radius=ET[enemy.ty].r+5;
+    x.beginPath();
+    x.ellipse(px,py,radius,Math.max(6,radius*.42),-.52,0,Math.PI*2);
+    x.stroke();
+  }
+  x.restore();
+}
+
 function simonityAttack(unit,target,damage,point,phaseTwo){
   hit(target,damage);
   if(unit.n%(phaseTwo?3:4)!==0)return;
@@ -1096,13 +1198,15 @@ function draw(){if(G.key=='harvest')thDrawBoard();else{for(var i=0;i<16;i++)for(
   }
   var im=(u.k=='gumity'&&!p2&&u.gf&&IM['gumity_f'+u.gf])?IM['gumity_f'+u.gf]:IM[u.k+(p2?2:1)];if(G.key=='harvest'&&TH_PORTRAITS[u.k+(p2?2:1)]){thDrawTowerPortrait(u,p2)}else if(u.k=='monster'&&SPRI.complete&&SPRI.naturalWidth){var fh=70,fw=fh*SFW/SFH,bb=Math.sin(Date.now()/420+u.cx*1.7)*1.2;x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(SPRI,(p2?7:6)*SFW,0,SFW,SFH,u.x-fw/2,u.cy*C+25-fh+bb,fw,fh);x.globalAlpha=1}else if(im&&im.complete&&im.naturalWidth){x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(im,u.x-18,u.y-26,36,36);x.globalAlpha=1;}else{x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26)}
   if(u.k=='pumpkinity'){x.fillStyle='#2b7a2b';x.fillRect(u.x-2,u.y-24,4,6)}
-  skinD(u,p2)});
+  skinD(u,p2);
+  if(u.k==='cadentity')drawCadentityCharge(u,p2);
+ });
  G.shots.forEach(function(s){x.strokeStyle=s.col;x.lineWidth=3;x.beginPath();x.moveTo(s.a,s.b-4);x.lineTo(s.c,s.e);x.stroke()});
  G.en.forEach(function(e){var p=pos(e.d);if(e.ty==='adminBoss'){drawAdminBoss(e,p);return}var T=ET[e.ty],r=e.boss?(G.d.boss.final?38:G.d.boss.mini?28:26):T.r;if(G.key=='hw'&&hwDrawE(e,p))return;if(G.key=='harvest'){thDrawEnemy(e,p);return}x.globalAlpha=inv(e)?.3:1;if(e.boss&&G.d.boss.final){var glow=x.createRadialGradient(p[0],p[1],r*.5,p[0],p[1],r+18);glow.addColorStop(0,G.d.boss.col);glow.addColorStop(1,'transparent');x.fillStyle=glow;x.beginPath();x.arc(p[0],p[1],r+18,0,7);x.fill()}x.fillStyle=e.po?'#6a1fc2':e.boss?G.d.boss.col:(e.burn>0?'#7a2a1a':T.c);x.beginPath();x.arc(p[0],p[1],r,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();
   x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
   if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8);if(G.d.boss.final){x.save();x.strokeStyle='#ffd978';x.lineWidth=3;x.beginPath();x.arc(p[0],p[1],r-4,0,7);x.stroke();x.fillStyle='#fff4d2';x.font='bold 11px system-ui';x.textAlign='center';x.fillText(Math.ceil(e.hp)+' HP',p[0],p[1]+r+13);x.restore()}}
   x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.po?'#c08cff':e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
- drawHackeTurkity();phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
+ drawOrbityMarks();drawHackeTurkity();phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
 function drawAdminBoss(enemy,[px,py]){
   const time=thReducedMotion()?0:enemy.t;
   const radius=ET.adminBoss.r;
@@ -1391,10 +1495,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.77.3',VOL=.8,MQ=[],CI=0;
+var VER='1.77.4',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.77.4',t:'Серия «Сейф»',a:['Orbity и Cadentity теперь боевые Верити. Они доступны в «Магазин → Лимитки» за монеты из банка.','Orbity отматывает путь врагов, а Cadentity усиливает выстрелы серией попаданий в одну цель.']},
 {v:'1.77.3',t:'Админ-босс',a:['В админке можно задать HP Админити и призвать его на дорожку.','Кнопка «Изменить HP» задаёт новое здоровье последнему призванному боссу прямо в бою.']},
 {v:'1.77.2',t:'Спавн врагов в админке',a:['Выбери тип и количество врагов в админ-панели. Они появятся на дорожке в текущем бою.','В бою админ-панель открывается кнопкой «Админка» над полем.']},
 {v:'1.77.1',t:'Взлом Hacke-Turkity',a:['Выстрел Hacke-Turkity наносит постепенный урон. Каждые 10 добиваний он призывает Глитч-индейку, которая таранит врага, оглушает его на секунду и оставляет взлом.','У иконок лимитированных Верити появилась оранжевая обводка.']},
@@ -2846,8 +2951,17 @@ async function coOpen(){if(!onOk()||!M.fb||!M.fb.nick||!M.coop||!G||!coOkMode(G.
  G.coop={g:null,gn:'',hm:null};G.gc=G.d.co;G.eid=0;CO.room=ON.uid;coChip('🤝 Комната открыта · ждём друга');clearInterval(CO.iv);CO.iv=setInterval(coHostTick,500);say('Комната открыта: друзья могут подключиться через «Друзья 👥».')}catch(e){say('Нет связи с сервером: комната не открыта.')}}
 async function coClose(){clearInterval(CO.iv);CO.iv=null;var r=CO.room;CO.room=null;coChip('');if(r)try{await db('rooms/'+r,{m:'DELETE'})}catch(e){}}
 function coSnap(){var s={k:G.key,w:G.wave,adminTest:!!G.adminTest,l:G.lives,lv:G.d.lv,f:Math.round(G.fear||0),c:Math.floor(G.coins),gc:Math.floor(G.gc||0),r:G.run?1:0,nx:Math.ceil(G.next||0),ov:G.over||0,p2:G.p2?1:0,cl:G.cool>0?1:0,hn:M.fb.nick,
- u:G.units.map(function(u){return[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y),u.upgradeLevel||1]}),
- e:G.en.filter(function(e){return!e.dead}).slice(0,90).map(function(e){if(!e.id)e.id=++G.eid;return[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0,e.hackEffects?.length?1:0]}),
+ u:G.units.map(function(u){
+   const row=[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y),u.upgradeLevel||1];
+   if(u.k==='cadentity')row.push(cadentityCharge(u));
+   return row;
+ }),
+ e:G.en.filter(e=>!e.dead).slice(0,90).map(function(e){
+   if(!e.id)e.id=++G.eid;
+   const row=[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0,e.hackEffects?.length?1:0];
+   if(e.orbitMark||e.orbitRevision)row.push(e.orbitMark?1:0,e.orbitRevision||0);
+   return row;
+ }),
  gt:(G.glitchTurkeys||[]).map(turkey=>[turkey.id,Math.round(turkey.d)]),
  s:G.shots.slice(-24).map(function(q){return[Math.round(q.a),Math.round(q.b),Math.round(q.c),Math.round(q.e),q.col||'']}),hm:G.coop&&G.coop.hm?G.coop.hm:null};return JSON.stringify(s)}
 async function coHostTick(){if(!CO.room)return;if(!G||cur!='game'||!G.coop){coClose();return}if(CO.busy)return;CO.busy=1;
@@ -2871,8 +2985,19 @@ async function coGuestTick(){if(!G||!G.guest||!CO.host)return;if(CO.busy)return;
 function coHostGone(){if(!G||!G.guest||G.over)return;G.over=1;clearInterval(CO.iv);$('end').className='';$('et').textContent=(G.hn||'Хост')+' закрыл игру. Твои монеты: '+Math.floor(G.coins/2)+' ушли в банк.';M.bank+=Math.floor(G.coins/2);save();coLeave()}
 function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/1000):.5;CO.lt=now;CO.miss=0;
  G.wave=s.w;G.lives=s.l;G.fear=s.f;G.coins=s.gc;G.run=!!s.r;G.next=s.nx;G.p2=!!s.p2;G.cool=s.cl?1:0;if(ROUND_WAVES[G.key])G.d={...G.d,boss:roundBossSpec(G.key,G.wave,roundWaveLimit(G.key))||DF[G.key].boss};
- var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
- var em={};G.en.forEach(function(e){em[e.id]=e});G.en=s.e.map(function(a){var e=em[a[0]];if(e){e.vv=Math.max(0,(a[2]-e.d)/dtS);if(Math.abs(a[2]-e.d)>60)e.d=a[2]}else e={id:a[0],ty:a[1],d:a[2],vv:0,t:0,v:0};e.ty=a[1];e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;e.hackVisual=Boolean(a[7]);if(!ET[e.ty])e.ty='walker';return e});
+ var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));u.rhythmHits=a[7]||0;return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
+ var em={};G.en.forEach(function(e){em[e.id]=e});
+ G.en=s.e.map(function(a){
+   const e=em[a[0]]||{id:a[0],d:a[2],vv:0,t:0,v:0};
+   const revision=a[9]||0, rewound=revision!==(e.orbitRevision||0);
+   const gap=a[2]-e.d;
+   e.vv=rewound?0:Math.max(0,gap/dtS);
+   if(rewound||Math.abs(gap)>60)e.d=a[2];
+   e.ty=ET[a[1]]?a[1]:'walker';
+   e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;e.hackVisual=Boolean(a[7]);
+   e.orbitVisual=Boolean(a[8]);e.orbitRevision=revision;
+   return e;
+ });
  const previousTurkeys=new Map((G.glitchTurkeys||[]).map(turkey=>[turkey.id,turkey.d]));
  G.glitchTurkeys=(s.gt||[]).map(([id,d])=>({id,d:previousTurkeys.get(id)??d,target:d}));
  (s.s||[]).forEach(function(q){G.shots.push({a:q[0],b:q[1],c:q[2],e:q[3],t:.12,col:q[4]||undefined})});if(G.shots.length>60)G.shots.splice(0,G.shots.length-60);
@@ -3107,15 +3232,56 @@ var EXR={c:1000,g:10,lim:5};
 function exFix(){var d=new Date().toDateString();if(!M.exd||M.exd.d!=d)M.exd={d:d,n:0}}
 function exDo(n){exFix();n=Math.min(n,EXR.lim-M.exd.n);if(n<=0)return shMsg('На сегодня лимит обмена исчерпан. Приходи завтра!');if(M.bank<EXR.c*n)return shMsg('Не хватает монет: нужно '+(EXR.c*n)+' 🪙.');M.bank-=EXR.c*n;M.gem=(M.gem||0)+EXR.g*n;M.exd.n+=n;save();tone(880,.12,'triangle',.1,1320);shMsg('Обмен: −'+(EXR.c*n)+' 🪙 → +'+(EXR.g*n)+' 💎');shRender()}
 /* --- экран магазина --- */
-var SH={tab:'ex',msg:''};
+var SH={tab:Date.now()<VAULT_SALE_END?'vault':'ex',msg:''};
+const vaultCoinFormat=new Intl.NumberFormat('ru-RU');
+function shVaultOffers(){
+  const live=Date.now()<VAULT_SALE_END;
+  const closeDate=new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',timeZone:'Europe/Moscow'}).format(VAULT_SALE_END-1);
+  const cards=Object.entries(VAULT_TD_UNITS).map(([key,unit])=>{
+    const owned=M.own[key], funded=M.bank>=unit.unlockCost;
+    const action=owned?'В коллекции':live?'Купить за '+vaultCoinFormat.format(unit.unlockCost)+' 🪙':'Продажа завершилась';
+    const disabled=owned||!live||!funded;
+    const hint=live&&!owned&&!funded?'<p class="vault-unit-stats">Не хватает '+vaultCoinFormat.format(Math.ceil(unit.unlockCost-M.bank))+' 🪙</p>':'';
+    return '<article class="vault-unit-card" style="--unit-glow:'+unit.col+'55">'+
+      '<div class="vault-unit-art"><figure>'+pic(key,1,104)+'<figcaption>Фаза 1</figcaption></figure>'+
+      '<figure>'+pic(key,2,104)+'<figcaption>Фаза 2</figcaption></figure></div>'+
+      '<div class="vault-unit-heading"><h3>'+unit.n+'</h3><small style="color:'+RC[unit.rar]+'">'+unit.rar+'</small></div>'+
+      '<div><small class="vault-unit-stats">Размещение в бою · '+unit.cost+' 🪙</small>'+
+      '<p><strong>'+unit.ability+'</strong></p><p>'+unit.d+'</p></div>'+
+      '<div><button type="button" class="go" data-vault-unit="'+key+'"'+(disabled?' disabled':'')+'>'+action+'</button>'+hint+'</div></article>';
+  }).join('');
+  return '<p class="mkhint">Серия «Сейф» · '+(live?'в продаже по '+closeDate+' включительно (МСК)':'продажа завершилась')+
+    '</p><div class="vault-unit-offers">'+cards+'</div>';
+}
+
+function shBuyVaultUnit(key){
+  const unit=VAULT_TD_UNITS[key];
+  if(!unit?.unlockCost||M.own[key])return;
+  if(Date.now()>=VAULT_SALE_END){shRender();return}
+  if(M.bank<unit.unlockCost){shRender();return}
+  const bank=M.bank, previous=M.own[key];
+  M.bank-=unit.unlockCost;
+  M.own[key]=1;
+  if(!save()){
+    M.bank=bank;
+    if(previous===undefined)delete M.own[key];
+    else M.own[key]=previous;
+    shMsg('Не удалось сохранить покупку. Попробуй ещё раз.');
+    return;
+  }
+  shRender();
+  shMsg(unit.n+' в коллекции! Выбери его в наборе перед боем.');
+}
 function shMsg(s){SH.msg=s;var e=$('shmsg');if(e){e.textContent=s;e.className='shmsg show';clearTimeout(SH.mt);SH.mt=setTimeout(function(){e.className='shmsg'},2600)}}
-function shRender(){cosFix();exFix();var h='<div class="shtop"><span>🪙 <b>'+M.bank+'</b></span><span>💎 <b>'+(M.gem||0)+'</b></span></div><div class="shtabs"><button data-sht="ex"'+(SH.tab=='ex'?' class="on"':'')+'>💱 Обменник</button><button data-sht="cos"'+(SH.tab=='cos'?' class="on"':'')+'>✨ Косметика</button></div>';
- if(SH.tab=='ex'){var left=EXR.lim-M.exd.n;h+='<div class="shex"><div class="shrate"><span class="shc">'+EXR.c+' 🪙</span><span class="sharr">➜</span><span class="shg">'+EXR.g+' 💎</span></div><p>Обменивай лишние монеты на гемы. Гемы нужны для Хакерити на рынке, элитного пропуска, ящиков и покупок у игроков.</p><div class="shlim"><i style="width:'+(M.exd.n/EXR.lim*100)+'%"></i><span>Сегодня: '+(M.exd.n*EXR.g)+' / '+(EXR.lim*EXR.g)+' 💎</span></div>'+
+function shRender(){cosFix();exFix();var h='<div class="shtop"><span>🪙 <b>'+M.bank+'</b></span><span>💎 <b>'+(M.gem||0)+'</b></span></div><div class="shtabs"><button type="button" data-sht="vault"'+(SH.tab==='vault'?' class="on"':'')+'>Лимитки</button><button data-sht="ex"'+(SH.tab=='ex'?' class="on"':'')+'>💱 Обменник</button><button data-sht="cos"'+(SH.tab=='cos'?' class="on"':'')+'>✨ Косметика</button></div>';
+ if(SH.tab==='vault'){h+=shVaultOffers()}
+ else if(SH.tab=='ex'){var left=EXR.lim-M.exd.n;h+='<div class="shex"><div class="shrate"><span class="shc">'+EXR.c+' 🪙</span><span class="sharr">➜</span><span class="shg">'+EXR.g+' 💎</span></div><p>Обменивай лишние монеты на гемы. Гемы нужны для Хакерити на рынке, элитного пропуска, ящиков и покупок у игроков.</p><div class="shlim"><i style="width:'+(M.exd.n/EXR.lim*100)+'%"></i><span>Сегодня: '+(M.exd.n*EXR.g)+' / '+(EXR.lim*EXR.g)+' 💎</span></div>'+
   '<div class="shbtns"><button class="mkbtn go2" data-ex="1"'+(left<1||M.bank<EXR.c?' disabled':'')+'>Обменять '+EXR.c+' 🪙</button><button class="mkbtn go2" data-ex="'+left+'"'+(left<1||M.bank<EXR.c*left?' disabled':'')+'>Обменять всё ('+(EXR.c*Math.max(left,1))+' 🪙)</button></div><p class="mkhint">Лимит — '+(EXR.lim*EXR.g)+' 💎 в день, чтобы экономика не ломалась. Обновляется в полночь.</p></div>'}
  else{['nc','fr','tr','tw'].forEach(function(t){h+='<div class="shsec"><h3>'+COSN[t]+'</h3><p class="mkhint">'+COSH[t]+'</p><div class="shgrid">';COS[t].forEach(function(o){var own=M.cos.own[t+o[0]],on=M.cos[t]==o[0];
   h+='<div class="shit'+(on?' on':'')+'"><div class="shpv">'+cosPrev(t,o)+'</div><b>'+esc(o[1])+'</b>'+(on?'<button class="mkbtn" data-cun="'+t+'">Снять</button>':own?'<button class="mkbtn go2" data-cuse="'+t+'.'+o[0]+'">Надеть</button>':'<button class="mkbtn go2" data-cbuy="'+t+'.'+o[0]+'"'+(M.bank<o[2]?' disabled':'')+'>'+o[2]+' 🪙</button>')+'</div>'});h+='</div></div>'})}
- h+='<div id="shmsg" class="shmsg"></div>';var B=$('shbody');if(!B)return;B.innerHTML=h;
+ h+='<div id="shmsg" class="shmsg" role="status"></div>';var B=$('shbody');if(!B)return;B.innerHTML=h;
  [].forEach.call(B.querySelectorAll('[data-sht]'),function(b){b.onclick=function(){SH.tab=b.dataset.sht;shRender()}});
+ B.querySelectorAll('[data-vault-unit]').forEach(button=>button.onclick=()=>shBuyVaultUnit(button.dataset.vaultUnit));
  [].forEach.call(B.querySelectorAll('[data-ex]'),function(b){b.onclick=function(){exDo(+b.dataset.ex)}});
  [].forEach.call(B.querySelectorAll('[data-cbuy]'),function(b){b.onclick=function(){var a=b.dataset.cbuy.split('.'),o=cosGet(a[0],a[1]);if(!o||M.cos.own[a[0]+a[1]])return;if(M.bank<o[2])return shMsg('Не хватает монет.');M.bank-=o[2];M.cos.own[a[0]+a[1]]=1;M.cos[a[0]]=a[1];save();cosApply();tone(990,.15,'triangle',.1,1480);shMsg('Куплено и надето: '+o[1]+'!');shRender()}});
  [].forEach.call(B.querySelectorAll('[data-cuse]'),function(b){b.onclick=function(){var a=b.dataset.cuse.split('.');M.cos[a[0]]=a[1];save();cosApply();shRender()}});
@@ -6082,6 +6248,85 @@ function thExpire(){
     lm('День благодарения завершился.');
   }else if(active&&cur==='game'&&G&&G.key==='harvest'){
     say('День благодарения завершился.');
+  }
+}
+function drawVaultUnitArt(key,phaseTwo){
+  const canvas=thCanvas(160,160), c=canvas.getContext('2d'), orbity=key==='orbity';
+  const palette=orbity
+    ? (phaseTwo?['#afe1ff','#4168cb','#221855','#b5f5ff']:['#c3faff','#4aa4e5','#1b457e','#e2fbff'])
+    : (phaseTwo?['#ffb4e4','#c34e9f','#4c1c68','#ffd2f3']:['#ffc9e8','#e471bc','#873775','#ffe1f7']);
+  const [light,body,dark,lit]=palette;
+  const ink=orbity?'#122648':'#411c48';
+  const metal=orbity?'#4284ca':'#ad568b';
+  thGlow(c,80,79,76,body+'84');
+  thEllipse(c,80,135,47,9,ink+'90');
+  if(orbity){
+    thShape(c,p=>p.ellipse(80,86,70,29,-.44,0,Math.PI*2),null,ink,7);
+    thShape(c,p=>p.ellipse(80,86,70,29,-.44,0,Math.PI*2),null,body,3.5);
+    thShape(c,p=>p.ellipse(80,83,63,41,.52,0,Math.PI*2),null,lit+'8a',2.2);
+  }else{
+    thShape(c,p=>p.ellipse(80,80,54,57,0,Math.PI,Math.PI*2),null,ink,13);
+    thShape(c,p=>p.ellipse(80,80,54,57,0,Math.PI*1.06,Math.PI*1.94),null,lit,4);
+  }
+
+  thSoftBody(c,80,82,51,50,light,body,dark);
+  thShape(c,p=>p.ellipse(80,82,51,50,0,0,Math.PI*2),null,ink,3);
+  thShape(c,p=>p.ellipse(80,82,47,46,0,Math.PI*1.12,Math.PI*1.68),null,lit+'c0',2.4);
+  [62,98].forEach(eye=>{
+    const tilt=phaseTwo?(eye===62?-.24:.24):0;
+    thEllipse(c,eye,78,6.6,11,ink,tilt);
+    thEllipse(c,eye-1.3,75,2.35,4.2,lit,tilt);
+  });
+  const smile=p=>{p.moveTo(57,95);p.quadraticCurveTo(80,phaseTwo?116:115,103,95)};
+  thShape(c,smile,null,ink,4.2);
+  if(phaseTwo){
+    thPoly(c,[[54,62],[67,66]],null,ink,3.6);
+    thPoly(c,[[93,66],[106,62]],null,ink,3.6);
+    thEllipse(c,53,92,5,2.4,lit+'8c');
+    thEllipse(c,107,92,5,2.4,lit+'8c');
+  }
+
+  if(orbity){
+    const jewel=[[80,34],[94,48],[80,62],[66,48]];
+    thPoly(c,jewel,ink,metal,2);
+    thPoly(c,[[80,38],[89,48],[80,57],[72,48]],lit);
+    thPoly(c,[[80,38],[88,48],[80,48]],'#ffffffb8');
+    thShape(c,p=>p.ellipse(80,86,70,29,-.44,0,Math.PI),null,ink,8);
+    thShape(c,p=>p.ellipse(80,86,70,29,-.44,0,Math.PI),null,lit,3.4);
+    [[24,108,8],[134,58,7],[118,111,5]].forEach(([px,py,radius])=>{
+      thEllipse(c,px,py,radius,radius,ink);
+      thSoftBody(c,px,py,radius-2,radius-2,'#fff',light,metal);
+    });
+    if(phaseTwo){
+      thPoly(c,[[33,29],[37,41],[49,45],[37,49],[33,61],[29,49],[17,45],[29,41]],lit);
+      thEllipse(c,124,27,3.8,3.8,lit);
+    }
+  }else{
+    for(const px of [30,130]){
+      thShape(c,p=>p.roundRect(px-12,64,24,42,9),ink,metal,2.5);
+      thShape(c,p=>p.roundRect(px-7,71,14,27,5),thGradient(c,px-7,71,px+7,98,[lit,body,dark]));
+      thPoly(c,[[px-4,77],[px+4,77]],null,'#fff8',2);
+    }
+    thShape(c,p=>p.roundRect(49,113,62,25,8),ink,lit,2.4);
+    const bars=phaseTwo?[10,16,20,16,10]:[6,11,16,10,7];
+    bars.forEach((height,index)=>{
+      thShape(c,p=>p.roundRect(59+index*9,133-height,6,height,2),index===2?'#fff3ce':lit);
+    });
+    if(phaseTwo){
+      thPoly(c,[[18,53],[13,46],[18,37]],null,lit,2.5);
+      thPoly(c,[[142,53],[147,46],[142,37]],null,lit,2.5);
+    }
+  }
+  return canvas;
+}
+for(const key of Object.keys(VAULT_TD_UNITS)){
+  EXU.push(key);
+  MKNS[key]='лимитированная серия «Сейф»';
+  for(const phase of [1,2]){
+    const id=key+phase, art=new Image();
+    IMG[id]=drawVaultUnitArt(key,phase===2).toDataURL();
+    art.src=IMG[id];
+    IM[id]=art;
   }
 }
 thInitArt();
