@@ -1108,7 +1108,10 @@
       'data-vr="tab"','data-vr="tab" aria-pressed="'+adminTab+'"').replace(
       /data-ap-tab="(main|party)" aria-pressed="true"/g, (s)=>adminTab?s.replace('true','false'):s);
   };
-  admPanel=function(){return adminTab&&ADM?renderAdmin():originalPanel.apply(this,arguments)};
+  admPanel=function(tab){
+    if(tab==='main')adminTab=false;
+    return adminTab&&ADM?renderAdmin():originalPanel.apply(this,arguments);
+  };
   apRefreshArena=function(){originalRefresh.apply(this,arguments);refresh()};
   scr=function(){const result=originalScreen.apply(this,arguments);refresh();return result};
   $('mc').addEventListener('click',event=>{
