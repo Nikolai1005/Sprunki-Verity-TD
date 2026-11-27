@@ -700,7 +700,7 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="tester.css?v=1.75">
 <link rel="stylesheet" href="boss-rush.css?v=1.77-mastery">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77.4</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.77.5</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -869,12 +869,12 @@ const ORBIT_REWIND={every:4,phaseEvery:3,radius:52,limit:3,seconds:1,max:32,phas
 const CADENCE_COMBO={every:4,phaseEvery:3,bonus:.65};
 const VAULT_SALE_END=Date.parse('2026-12-12T00:00:00+03:00');
 const VAULT_TD_UNITS={
-  orbity:{n:'Orbity',rar:'Epic',limited:true,unlockCost:1800,cost:260,dmg:22,rate:1.05,rng:112,col:'#61dfff',
+  orbity:{n:'Orbity',rar:'Epic',limited:true,unlockTickets:14,cost:260,dmg:22,rate:1.05,rng:112,col:'#61dfff',
     ability:'Орбитальная петля',
     d:`Каждый ${ORBIT_REWIND.every}-й выстрел помечает до ${ORBIT_REWIND.limit} обычных врагов рядом с целью. `+
       `Через ${ORBIT_REWIND.seconds} с они возвращаются к месту метки, максимум на ${(ORBIT_REWIND.max/C).toLocaleString('ru-RU')} клетки. `+
       `Во второй фазе метка срабатывает каждый ${ORBIT_REWIND.phaseEvery}-й выстрел и возвращает врагов до ${(ORBIT_REWIND.phaseMax/C).toLocaleString('ru-RU')} клетки назад.`},
-  cadentity:{n:'Cadentity',rar:'Legendary',limited:true,unlockCost:2400,cost:330,dmg:31,rate:1.12,rng:108,col:'#ff92d8',
+  cadentity:{n:'Cadentity',rar:'Legendary',limited:true,unlockTickets:18,cost:330,dmg:31,rate:1.12,rng:108,col:'#ff92d8',
     ability:'Удар в такт',
     d:`Каждый ${CADENCE_COMBO.every}-й выстрел подряд в одну цель наносит на ${Math.round(CADENCE_COMBO.bonus*100)}% больше урона. `+
       `Во второй фазе усиление срабатывает на ${CADENCE_COMBO.phaseEvery}-м выстреле. При смене цели серия начинается заново.`}
@@ -1495,10 +1495,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.77.4',VOL=.8,MQ=[],CI=0;
+var VER='1.77.5',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.77.5',t:'Лимитки за тикеты',a:['В «Магазин → Лимитки» Orbity стоит 14 🎟, а Cadentity — 18 🎟. Покупки используют баланс Вечеринки Админити.']},
 {v:'1.77.4',t:'Серия «Сейф»',a:['Orbity и Cadentity теперь боевые Верити. Они доступны в «Магазин → Лимитки» за монеты из банка.','Orbity отматывает путь врагов, а Cadentity усиливает выстрелы серией попаданий в одну цель.']},
 {v:'1.77.3',t:'Админ-босс',a:['В админке можно задать HP Админити и призвать его на дорожку.','Кнопка «Изменить HP» задаёт новое здоровье последнему призванному боссу прямо в бою.']},
 {v:'1.77.2',t:'Спавн врагов в админке',a:['Выбери тип и количество врагов в админ-панели. Они появятся на дорожке в текущем бою.','В бою админ-панель открывается кнопкой «Админка» над полем.']},
@@ -3233,15 +3234,15 @@ function exFix(){var d=new Date().toDateString();if(!M.exd||M.exd.d!=d)M.exd={d:
 function exDo(n){exFix();n=Math.min(n,EXR.lim-M.exd.n);if(n<=0)return shMsg('На сегодня лимит обмена исчерпан. Приходи завтра!');if(M.bank<EXR.c*n)return shMsg('Не хватает монет: нужно '+(EXR.c*n)+' 🪙.');M.bank-=EXR.c*n;M.gem=(M.gem||0)+EXR.g*n;M.exd.n+=n;save();tone(880,.12,'triangle',.1,1320);shMsg('Обмен: −'+(EXR.c*n)+' 🪙 → +'+(EXR.g*n)+' 💎');shRender()}
 /* --- экран магазина --- */
 var SH={tab:Date.now()<VAULT_SALE_END?'vault':'ex',msg:''};
-const vaultCoinFormat=new Intl.NumberFormat('ru-RU');
-function shVaultOffers(){
+function shVaultOffers(wallet){
   const live=Date.now()<VAULT_SALE_END;
   const closeDate=new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',timeZone:'Europe/Moscow'}).format(VAULT_SALE_END-1);
   const cards=Object.entries(VAULT_TD_UNITS).map(([key,unit])=>{
-    const owned=M.own[key], funded=M.bank>=unit.unlockCost;
-    const action=owned?'В коллекции':live?'Купить за '+vaultCoinFormat.format(unit.unlockCost)+' 🪙':'Продажа завершилась';
-    const disabled=owned||!live||!funded;
-    const hint=live&&!owned&&!funded?'<p class="vault-unit-stats">Не хватает '+vaultCoinFormat.format(Math.ceil(unit.unlockCost-M.bank))+' 🪙</p>':'';
+    const owned=M.own[key], bought=wallet.receipts[key]>0;
+    const missing=unit.unlockTickets-wallet.balance;
+    const action=owned?'В коллекции':bought?'Получено':live?'Купить за '+unit.unlockTickets+' 🎟':'Продажа завершилась';
+    const disabled=owned||bought||!live||missing>0;
+    const hint=live&&!owned&&!bought&&missing>0?'<p class="vault-unit-stats">Не хватает '+missing+' 🎟</p>':'';
     return '<article class="vault-unit-card" style="--unit-glow:'+unit.col+'55">'+
       '<div class="vault-unit-art"><figure>'+pic(key,1,104)+'<figcaption>Фаза 1</figcaption></figure>'+
       '<figure>'+pic(key,2,104)+'<figcaption>Фаза 2</figcaption></figure></div>'+
@@ -3251,30 +3252,31 @@ function shVaultOffers(){
       '<div><button type="button" class="go" data-vault-unit="'+key+'"'+(disabled?' disabled':'')+'>'+action+'</button>'+hint+'</div></article>';
   }).join('');
   return '<p class="mkhint">Серия «Сейф» · '+(live?'в продаже по '+closeDate+' включительно (МСК)':'продажа завершилась')+
-    '</p><div class="vault-unit-offers">'+cards+'</div>';
+    '</p><details class="ap-market-rules"><summary>Тикеты за трофеи Вечеринки Админити</summary><ul>'+
+    apTicketAwards()+'</ul></details><div class="vault-unit-offers">'+cards+'</div>';
 }
 
 function shBuyVaultUnit(key){
-  const unit=VAULT_TD_UNITS[key];
-  if(!unit?.unlockCost||M.own[key])return;
-  if(Date.now()>=VAULT_SALE_END){shRender();return}
-  if(M.bank<unit.unlockCost){shRender();return}
-  const bank=M.bank, previous=M.own[key];
-  M.bank-=unit.unlockCost;
-  M.own[key]=1;
-  if(!save()){
-    M.bank=bank;
-    if(previous===undefined)delete M.own[key];
-    else M.own[key]=previous;
+  const unit=VAULT_TD_UNITS[key], wallet=apMarketWallet();
+  if(!unit?.unlockTickets||M.own[key]||wallet.receipts[key]>0)return;
+  if(Date.now()>=VAULT_SALE_END||wallet.balance<unit.unlockTickets){shRender();return}
+  if(AP.marketBusy){shMsg('Подожди, пока завершится покупка на рынке вечеринки.');return}
+  if(!apBuyWithTickets(key,unit.unlockTickets)){
     shMsg('Не удалось сохранить покупку. Попробуй ещё раз.');
     return;
   }
+  apMarketBadges();
   shRender();
   shMsg(unit.n+' в коллекции! Выбери его в наборе перед боем.');
 }
 function shMsg(s){SH.msg=s;var e=$('shmsg');if(e){e.textContent=s;e.className='shmsg show';clearTimeout(SH.mt);SH.mt=setTimeout(function(){e.className='shmsg'},2600)}}
-function shRender(){cosFix();exFix();var h='<div class="shtop"><span>🪙 <b>'+M.bank+'</b></span><span>💎 <b>'+(M.gem||0)+'</b></span></div><div class="shtabs"><button type="button" data-sht="vault"'+(SH.tab==='vault'?' class="on"':'')+'>Лимитки</button><button data-sht="ex"'+(SH.tab=='ex'?' class="on"':'')+'>💱 Обменник</button><button data-sht="cos"'+(SH.tab=='cos'?' class="on"':'')+'>✨ Косметика</button></div>';
- if(SH.tab==='vault'){h+=shVaultOffers()}
+function shRender(){
+ cosFix();exFix();
+ const wallet=SH.tab==='vault'?apMarketWallet():null;
+ const balance=wallet?'<span>Тикеты <b>'+wallet.balance+'</b> 🎟</span>':
+   '<span>🪙 <b>'+M.bank+'</b></span><span>💎 <b>'+(M.gem||0)+'</b></span>';
+ var h='<div class="shtop">'+balance+'</div><div class="shtabs"><button type="button" data-sht="vault"'+(SH.tab==='vault'?' class="on"':'')+'>Лимитки</button><button data-sht="ex"'+(SH.tab=='ex'?' class="on"':'')+'>💱 Обменник</button><button data-sht="cos"'+(SH.tab=='cos'?' class="on"':'')+'>✨ Косметика</button></div>';
+ if(wallet){h+=shVaultOffers(wallet)}
  else if(SH.tab=='ex'){var left=EXR.lim-M.exd.n;h+='<div class="shex"><div class="shrate"><span class="shc">'+EXR.c+' 🪙</span><span class="sharr">➜</span><span class="shg">'+EXR.g+' 💎</span></div><p>Обменивай лишние монеты на гемы. Гемы нужны для Хакерити на рынке, элитного пропуска, ящиков и покупок у игроков.</p><div class="shlim"><i style="width:'+(M.exd.n/EXR.lim*100)+'%"></i><span>Сегодня: '+(M.exd.n*EXR.g)+' / '+(EXR.lim*EXR.g)+' 💎</span></div>'+
   '<div class="shbtns"><button class="mkbtn go2" data-ex="1"'+(left<1||M.bank<EXR.c?' disabled':'')+'>Обменять '+EXR.c+' 🪙</button><button class="mkbtn go2" data-ex="'+left+'"'+(left<1||M.bank<EXR.c*left?' disabled':'')+'>Обменять всё ('+(EXR.c*Math.max(left,1))+' 🪙)</button></div><p class="mkhint">Лимит — '+(EXR.lim*EXR.g)+' 💎 в день, чтобы экономика не ломалась. Обновляется в полночь.</p></div>'}
  else{['nc','fr','tr','tw'].forEach(function(t){h+='<div class="shsec"><h3>'+COSN[t]+'</h3><p class="mkhint">'+COSH[t]+'</p><div class="shgrid">';COS[t].forEach(function(o){var own=M.cos.own[t+o[0]],on=M.cos[t]==o[0];
@@ -6798,6 +6800,7 @@ var AP_MARKET_OFFERS=AP_STOCK_OFFERS.concat([
   {id:'pieity',kind:'verity',name:TY.pieity.n,cost:24,detail:'Кусочки пирога бьют по области.'},
   {id:'adelem',kind:'pet',name:'Элемент админа',cost:34,detail:'Усиливает атаки рядом с носителем.'}
 ]);
+const AP_TICKET_OFFER_IDS=AP_MARKET_OFFERS.map(offer=>offer.id).concat(Object.keys(VAULT_TD_UNITS));
 var AP={commands:{},verified:new Map(),key:null,busy:false,tab:'main',boxBusy:new Set(),
   show:null,seen:new Set(),sound:true,lastRewardCheck:0,stock:{},marketBusy:false};
 var AP_BEAT={first:60000,repeat:180000,notice:9000,pulses:3,gap:5200,window:2500,lag:1000,
@@ -7331,11 +7334,33 @@ function apMarketWallet(){
   var receipts=state?.id===AP_EVENT?state.market||{}:{};
   // Trophy ownership supplies each reward once, including trophies earned before the market opened.
   var earned=AP_TOKEN_AWARDS.reduce(function(sum,award){return sum+(M.tro?.[award[0]]?award[1]:0)},0);
-  var spent=AP_MARKET_OFFERS.reduce(function(sum,offer){
-    var paid=receipts[offer.id];
+  var spent=AP_TICKET_OFFER_IDS.reduce(function(sum,id){
+    var paid=receipts[id];
     return sum+(Number.isSafeInteger(paid)&&paid>0?paid:0);
   },0);
   return {earned:earned,balance:Math.max(0,earned-spent),receipts:receipts};
+}
+function apBuyWithTickets(id,cost,inventory=M.own,key=id,value=1){
+  const wallet=apMarketWallet();
+  if(wallet.balance<cost||wallet.receipts[id]>0)return false;
+
+  const state=apState();
+  const receipts=state.market||(state.market={});
+  const previous=inventory[key], previousReceipt=receipts[id];
+  inventory[key]=value;
+  receipts[id]=cost;
+  if(save())return true;
+
+  if(previous===undefined)delete inventory[key];
+  else inventory[key]=previous;
+  if(previousReceipt===undefined)delete receipts[id];
+  else receipts[id]=previousReceipt;
+  return false;
+}
+function apTicketAwards(){
+  return AP_TOKEN_AWARDS.map(function(award){
+    return '<li>'+esc(TROM[award[0]].n)+' · +'+award[1]+' 🎟</li>';
+  }).join('');
 }
 function apMarketAccessible(wallet){
   return cur==='arn'?AR.party&&apLive()&&!AP.show:apLive()||wallet.earned>0;
@@ -7370,9 +7395,7 @@ function apMarket(message,keepScroll){
   if(!apMarketAccessible(wallet))return;
   var existing=apMarketIsOpen();
   var scroll=existing?$('mbox').scrollTop:0, detailsOpen=existing&&$('ap-market-rules').open;
-  var rules=AP_TOKEN_AWARDS.map(function(award){
-    return '<li>'+esc(TROM[award[0]].n)+' · +'+award[1]+' 🎟</li>';
-  }).join('');
+  var rules=apTicketAwards();
   var offers=AP_MARKET_OFFERS.filter(function(offer){return !offer.control||AP.commands[offer.control]}).map(function(offer){
     var bought=wallet.receipts[offer.id]>0, owned=apMarketOwned(offer);
     var owners=AP.stock[offer.id], left=owners?.filter(function(owner){return owner===null}).length;
@@ -7417,14 +7440,7 @@ async function apMarketBuy(id){
   if(offer.kind==='frame'){cosFix();inventory=M.cos.own;key='frb'}
   if(offer.kind==='pet'){petFix();inventory=M.pet}
   if(offer.kind==='box'){inventory=state;key='turkey';value=apPresents()+1}
-  var previous=inventory[key];
-  inventory[key]=value;
-  var receipts=state.market||(state.market={});
-  receipts[id]=offer.cost;
-  if(!save()){
-    if(previous===undefined)delete inventory[key];
-    else inventory[key]=previous;
-    delete receipts[id];
+  if(!apBuyWithTickets(id,offer.cost,inventory,key,value)){
     if(apMarketIsOpen())apMarket('Не удалось сохранить обмен. Попробуй ещё раз.');
     return;
   }
