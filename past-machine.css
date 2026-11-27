@@ -1,0 +1,76 @@
+#past-entry {position:relative;display:flex;align-items:center;justify-content:space-between;text-align:left;
+  isolation:isolate;overflow:hidden;width:100%;min-height:126px;padding:18px 20px;margin:10px 0 12px;
+  border:1px solid #829fd5;border-radius:14px;background:#253355;color:#f6f9ff;box-shadow:0 7px 16px #10193652}
+#past-entry[hidden],#past [hidden],#past-battle[hidden],#past-battle [hidden]{display:none!important}
+#past-entry canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;z-index:-2}
+#past-entry::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#101a37 1%,#151d3bd9 34%,transparent 82%);z-index:-1}
+#past-entry b{display:block;font-size:clamp(22px,4.5vw,40px);line-height:1.08;letter-spacing:-.035em}
+#past-entry small{display:block;margin-top:6px;color:#c5dcfa;font-size:13px}
+.past-entry-arrow{font-size:33px;color:#c2efff}
+#past{position:fixed;inset:0;z-index:200;width:auto;max-width:none;margin:0!important;padding:0!important;border:0!important;
+  border-radius:0!important;overflow:hidden;background:#111a34;color:#edf6ff;overscroll-behavior:contain}
+#past-canvas,#past-cover{border:0;border-radius:0;background:none;box-shadow:none}
+#past-canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+#past button,#past-battle button{border:1px solid #799bd3;border-radius:10px;background:#25365a;color:#f4faff;
+  padding:8px 12px;min-height:42px;box-shadow:0 3px 10px #080e2965}
+#past button:focus-visible,#past-battle button:focus-visible,#past-entry:focus-visible{outline:3px solid #a6f0ff;outline-offset:2px}
+#past button:disabled,#past-battle button:disabled{opacity:.6}
+.past-top{position:absolute;left:clamp(10px,4vw,44px);right:clamp(10px,4vw,44px);
+  top:max(12px,env(safe-area-inset-top));display:flex;align-items:start;justify-content:space-between;gap:8px}
+.past-top>div{background:#151d38eb;border:1px solid #7089b7;border-radius:10px;padding:9px 13px;min-width:0}
+.past-top strong{display:block;font-size:clamp(15px,3.4vw,21px);letter-spacing:-.015em}
+.past-top #past-place{display:block;color:#c1d3f0;font-size:12px;margin-top:2px}
+#past-joystick{position:absolute;bottom:max(22px,env(safe-area-inset-bottom));left:clamp(12px,4vw,44px);
+  width:clamp(78px,18vw,112px);aspect-ratio:1;border-radius:50%;touch-action:none;
+  border:2px solid #b1d7ffb3;background:#1832586e;display:grid;place-items:center;user-select:none}
+#past-joystick i{width:43%;aspect-ratio:1;border-radius:50%;background:#bef0ff;
+  border:2px solid #fff;box-shadow:0 3px 16px #1b5369a3;pointer-events:none}
+#past-caption,#past-prompt{position:absolute;right:clamp(10px,4vw,44px);bottom:max(18px,env(safe-area-inset-bottom));
+  background:linear-gradient(153deg,#222c50f7,#151c39f7);border:1px solid #8eacd6;border-radius:15px;
+  padding:clamp(10px,2vw,18px);box-shadow:0 12px 50px #080c245e}
+#past-caption{left:50%;transform:translateX(-50%);right:auto;width:min(690px,calc(100% - 20px))}
+#past-speaker{display:block;color:#a7f1ff;font-size:13px;font-weight:850;letter-spacing:.035em}
+#past-line{min-height:2.5em;margin:6px 0 12px;font-size:clamp(15px,2.3vw,21px);line-height:1.35}
+.past-caption-actions{display:flex;gap:7px;flex-wrap:wrap}
+#past-next,#past-action,#past-archive .past-primary{background:#b7e9ff;color:#122545;border-color:#e1faff;font-weight:850}
+#past-next{margin-left:auto}
+#past-prompt{width:min(360px,calc(100% - 112px))}
+#past-prompt p{margin:0;line-height:1.35}
+#past-prompt button{margin-top:9px}
+#past-action{width:100%}
+#past-archive{position:absolute;inset:max(84px,12%) 0 0;overflow:auto;padding:16px;
+  background:linear-gradient(0deg,#10182dec 45%,#10182d0a);display:grid;align-items:center;justify-items:center}
+.past-archive-panel{width:min(600px,100%);background:#151f3aef;border:1px solid #788ebf;border-radius:17px;
+  padding:clamp(14px,4vw,24px);box-shadow:0 10px 35px #0a102d99}
+.past-archive-panel h2{margin:0 0 9px;font-size:clamp(20px,4vw,31px)}
+.past-archive-panel p{color:#d1ddf4;line-height:1.46;margin:.5rem 0 1rem}
+.past-rewards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.past-rewards>div{min-width:0;display:flex;align-items:center;gap:7px;border-radius:9px;padding:6px;
+  background:#212e4e;font-size:13px;overflow-wrap:anywhere}
+.past-rewards img{width:45px;height:45px;object-fit:contain;margin:0}
+.past-archive-actions{display:flex;flex-wrap:wrap;gap:8px}
+#past-flash{position:absolute;inset:0;pointer-events:none;background:#f7fcff;z-index:5}
+#past-flash[data-color="blue"]{background:#c5edff}
+#past-battle{margin:7px 0;display:grid;gap:6px;border:1px solid #637da9;border-radius:11px;
+  padding:9px;background:#1a2542;color:#f0f6ff}
+.past-battle-data,.past-battle-actions{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:7px}
+.past-battle-data span{font-size:12px;color:#c5d9fa}
+#past-freeze{display:flex;gap:5px 10px;align-items:center;justify-content:space-between;flex-wrap:wrap;flex:1;text-align:left;border-color:#86dcff}
+#past-freeze small{color:#b7dcf5;white-space:nowrap}
+#past-boss-health{display:grid;grid-template-columns:max-content 1fr auto;align-items:center;gap:7px;color:#ffcee4;font-size:12px}
+#past-boss-health progress{width:100%;height:9px;appearance:none;accent-color:#fa83b5}
+#past-boss-health progress::-webkit-progress-bar{background:#363554;border-radius:8px}
+#past-boss-health progress::-webkit-progress-value{background:linear-gradient(90deg,#f6689e,#ffb8ce);border-radius:8px}
+body.past-defense{--bg:#10172e;--bg2:#263452;--surf:#1c2848;--surf2:#25375a;
+  --line:#667eaa;--ink:#ecf5ff;--mute:#bbcff1;--acc:#a9e9ff;color-scheme:dark}
+body.past-defense #sp,body.past-defense #th-seed-chip,body.past-defense .w>header{display:none}
+body.past-defense .w{padding-top:10px}
+body.past-defense .cw{border-color:#7386ad}
+@media (max-width:480px){
+  #past-caption button{font-size:12px;min-height:39px;padding:6px 9px}
+  #past-battle button{padding:7px 9px;font-size:13px}
+  #past-boss-health{grid-template-columns:1fr auto}
+  #past-boss-health progress{grid-column:1/-1;grid-row:2}
+}
+@media (prefers-reduced-motion:reduce){#past-flash{display:none!important}}
+body.past-open #modal{z-index:410}

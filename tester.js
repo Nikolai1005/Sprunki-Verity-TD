@@ -19,7 +19,7 @@
     G.bossityMinions=G.bossityMinions||[];
     G.bossityBossCd=Math.max(0,(G.bossityBossCd||0)-dt);
     for(const unit of G.units){
-      if(unit.k!=='bossity')continue;
+      if(unit.k!=='bossity'||unit.pastLock>0)continue;
       // Spawners use their own cooldown and do not shoot.
       unit.cd=Math.max(unit.cd||0,dt+1);
       const phaseTwo=G.p2||unit.inf>0;
