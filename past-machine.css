@@ -67,6 +67,7 @@ body.past-defense #sp,body.past-defense #th-seed-chip,body.past-defense .w>heade
 body.past-defense .w{padding-top:10px}
 body.past-defense .cw{border-color:#7386ad}
 @media (max-width:480px){
+  #past-entry>span:first-of-type{max-width:78%}
   #past-caption button{font-size:12px;min-height:39px;padding:6px 9px}
   #past-battle button{padding:7px 9px;font-size:13px}
   #past-boss-health{grid-template-columns:1fr auto}
@@ -74,3 +75,20 @@ body.past-defense .cw{border-color:#7386ad}
 }
 @media (prefers-reduced-motion:reduce){#past-flash{display:none!important}}
 body.past-open #modal{z-index:410}
+
+#vault-abuse {position:fixed;inset:0;z-index:200;display:grid;grid-template-rows:auto minmax(0,1fr);
+  margin:0;padding:0;border:0;border-radius:0;box-shadow:none;
+  background:#110f24;color:#f9f4ff;overscroll-behavior:contain}
+#vault-abuse [hidden] {display:none!important}
+.vault-abuse-header {display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 16px;
+  padding-top:max(9px,env(safe-area-inset-top));background:linear-gradient(100deg,#292043,#182b4d);
+  border-bottom:1px solid #8f759d}
+.vault-abuse-header strong {display:block;font-size:clamp(15px,3.3vw,21px);line-height:1.22}
+.vault-abuse-header small {display:block;margin-bottom:2px;color:#f4cd92;font-size:12px}
+#vault-abuse button {min-height:42px;background:#282344;color:#fff5e9;border:1px solid #9b83b1;border-radius:10px;white-space:nowrap}
+#vault-abuse-stage {min-height:0;position:relative}
+#vault-abuse-stage iframe {border:0;display:block;width:100%;height:100%;color-scheme:dark}
+#vault-abuse-status {position:absolute;inset:0;display:flex;justify-content:center;align-content:center;
+  align-items:center;flex-wrap:wrap;gap:8px;padding:18px;background:radial-gradient(ellipse at 56% 32%,#363056,#130f26 66%)}
+#vault-abuse-message {width:100%;margin:0 0 6px;text-align:center;font-size:17px;color:#f9e7d7}
+#vault-abuse-fallback {background:#304b68;border-color:#a0d4f4}

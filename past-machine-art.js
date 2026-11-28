@@ -280,6 +280,23 @@
     c.restore();
   }
 
+  function safe(c,x,y,scale) {
+    c.save();c.translate(x,y);c.scale(scale,scale);
+    thEllipse(c,2,65,85,11,'#0b122cb0');
+    thShape(c,p=>p.roundRect(-70,-66,140,132,16),
+      thGradient(c,-67,-66,68,67,['#bdb3b4','#685270','#352c53']),'#d7b891',3);
+    thShape(c,p=>p.roundRect(-55,-55,105,105,11),
+      thGradient(c,-32,-45,42,48,['#986e73','#443855','#29273f']),'#edbd84',2.8);
+    circle(c,-7,-3,31,'#412f4e','#edc38b',4);
+    circle(c,-7,-3,12,'#dcb284','#73577d',2.4);
+    for(let i=0;i<6;i++){
+      const a=i*full/6;
+      line(c,[[-7+Math.cos(a)*13,-3+Math.sin(a)*13],[-7+Math.cos(a)*26,-3+Math.sin(a)*26]],'#f3d4a4',3);
+    }
+    for(const y of [-35,25])thShape(c,p=>p.roundRect(44,y,14,11,3),'#eabe89','#73577c',2);
+    c.restore();
+  }
+
   function cover(c) {
     background(c,960,220,['#101a36','#302345','#413159']);
     thGlow(c,755,104,237,'#5997da91');
@@ -292,8 +309,9 @@
       const points=Array.from({length:23},(_,i)=>[i*46,height+Math.sin(i*2.23+j)*16+j*i*1.6]);
       thPoly(c,[...points,[1012,220],[0,220]],['#51618736','#30395c','#1b2644'][j]);
     }
-    portal(c,765,110,112,.5);
-    crystal(c,672,159,13,ink.violet,.5);
+    safe(c,645,117,.80);
+    portal(c,790,109,112,.5);
+    crystal(c,683,180,13,ink.violet,.5);
     crystal(c,862,64,16,ink.ice,-.33);
     traveler(c,886,176,31);
   }

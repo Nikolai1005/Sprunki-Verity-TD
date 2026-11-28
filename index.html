@@ -699,16 +699,16 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="verity-raid.css?v=1.74">
 <link rel="stylesheet" href="tester.css?v=1.75">
 <link rel="stylesheet" href="boss-rush.css?v=1.77-mastery">
-<link rel="stylesheet" href="past-machine.css?v=1.78">
+<link rel="stylesheet" href="past-machine.css?v=1.79">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.78</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.79</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
     <a id="apk-download" class="account-download" href="https://raw.githubusercontent.com/Nikolai1005/Sprunki-Verity-TD/android-downloads/Sprunki-Verity-TD.apk" target="_blank" rel="noopener">↓ Скачать APK</a>
   </div>
   <button type="button" id="ap-menu" class="hide ap-launch"></button><button type="button" id="vr-menu" class="hide"></button>
-  <button type="button" id="past-entry" hidden><canvas id="past-cover" width="960" height="220" aria-hidden="true"></canvas><span><b>Машина прошлого</b><small id="past-entry-note">Открыть историю</small></span><span class="past-entry-arrow" aria-hidden="true">›</span></button>
+  <button type="button" id="past-entry" hidden><canvas id="past-cover" width="960" height="220" aria-hidden="true"></canvas><span><b>Абьюз · Хранилище времени</b><small id="past-entry-note">Арена хранилища · Машина прошлого</small></span><span class="past-entry-arrow" aria-hidden="true">›</span></button>
   <button type="button" id="br-menu"><img id="br-card-art" alt=""><span><strong>БОСС РАШ</strong><small>Тюрьма боссов · арена</small></span></button><h2>Выбери сложность</h2><div class="dg" id="diffs"></div>
 </section>
 <section id="game" class="hide">
@@ -844,6 +844,17 @@ body.ap-arena #modal {z-index:500}
   <canvas id="ap-scene-canvas" width="960" height="540" aria-hidden="true"></canvas>
   <div id="ap-scene-sub" aria-live="polite"></div>
   <button type="button" id="ap-scene-skip">Пропустить ⏭</button>
+</section>
+<section id="vault-abuse" class="hide" aria-labelledby="vault-abuse-title">
+  <div class="vault-abuse-header"><div><small>Хранилище времени · Этап 1 из 2</small><strong id="vault-abuse-title">Арена хранилища</strong></div>
+    <button type="button" id="vault-abuse-exit">В меню</button></div>
+  <div id="vault-abuse-stage">
+    <div id="vault-abuse-status">
+      <p id="vault-abuse-message" role="status">Открываем сейф…</p>
+      <button type="button" id="vault-abuse-retry" hidden>Попробовать снова</button>
+      <button type="button" id="vault-abuse-fallback" hidden>К Машине прошлого</button>
+    </div>
+  </div>
 </section>
 <section id="past" class="hide p" aria-label="Машина прошлого">
   <canvas id="past-canvas" aria-hidden="true"></canvas>
@@ -1003,7 +1014,7 @@ function pic(k,n,s){
 }
 function ico(c,k,s){var ang=k=='cruelity'||k=='demonity',lid=k=='manipulity';return'<svg viewBox="0 0 40 40" width="'+s+'" height="'+s+'" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="'+c+'" stroke="#111" stroke-width="2.5"/><circle cx="14" cy="17" r="2.4" fill="#111"/><circle cx="26" cy="17" r="2.4" fill="#111"/>'+(ang?'<path d="M9 10l9 4M31 10l-9 4M12 29q8-6 16 0" fill="none" stroke="#111" stroke-width="2.5"/>':'<path d="M11 24q9 9 18 0" fill="none" stroke="#111" stroke-width="2.5"/>')+(lid?'<path d="M10 14h8M22 14h8" stroke="#111" stroke-width="2.5"/>':'')+'</svg>'}
 function say(t){$('msg').textContent=t}function lm(t){$('lm').textContent=t}
-function scr(n){if((n=='th-event'||n=='th-feast')&&!thOn())n='lobby';if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market'||cur=='friends'||cur=='inf'||cur=='pets'||cur=='ldb'||cur=='lo'||cur=='mail'||cur=='hk'||cur=='tro'||cur=='pty'||cur=='shp'||cur=='rdl'||cur=='fusl'||cur=='chron'||cur=='arn'||cur=='past'||cur=='tester'||cur=='th-event'||cur=='th-feast')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market','friends','inf','pets','ldb','lo','mail','hk','tro','pty','shp','rdl','fusl','chron','arn','past','tester','th-event','th-feast'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='th-event')thRender();if(n=='th-feast')thFeastRender();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR();if(n=='friends')frOpen();if(n=='inf')infScreen();if(n=='pets')ptRender();if(n=='ldb')lbOpen();if(n=='mail')mlOpen();if(n=='hk'){hkRender();if(!HKRAF)hkRain()}if(n=='tro')trRender();if(n=='pty'){prRender();prFetch().then(prRender).catch(function(){})}}
+function scr(n){if((n=='th-event'||n=='th-feast')&&!thOn())n='lobby';if(cur=='story'&&n!='story')sHalt();prev=(cur=='lobby'||cur=='tasks'||cur=='promo'||cur=='trade'||cur=='story'||cur=='hw'||cur=='market'||cur=='friends'||cur=='inf'||cur=='pets'||cur=='ldb'||cur=='lo'||cur=='mail'||cur=='hk'||cur=='tro'||cur=='pty'||cur=='shp'||cur=='rdl'||cur=='fusl'||cur=='chron'||cur=='arn'||cur=='vault-abuse'||cur=='past'||cur=='tester'||cur=='th-event'||cur=='th-feast')?prev:cur;cur=n;['menu','game','lobby','tasks','promo','trade','story','hw','market','friends','inf','pets','ldb','lo','mail','hk','tro','pty','shp','rdl','fusl','chron','arn','vault-abuse','past','tester','th-event','th-feast'].forEach(function(k){$(k).className=(k==n?'':'hide')+(k=='game'?'':' p')+(k=='hw'?' hwp':'')});if(n=='lobby')lobby();if(n=='th-event')thRender();if(n=='th-feast')thFeastRender();if(n=='hw')hwRender();if(n=='tasks')tasks();if(n=='promo')pmm('');if(n=='trade')trd();if(n=='market')mkR();if(n=='friends')frOpen();if(n=='inf')infScreen();if(n=='pets')ptRender();if(n=='ldb')lbOpen();if(n=='mail')mlOpen();if(n=='hk'){hkRender();if(!HKRAF)hkRain()}if(n=='tro')trRender();if(n=='pty'){prRender();prFetch().then(prRender).catch(function(){})}}
 function menu(){var h='';for(var k in DF){var d=DF[k];h+='<button class="df'+(d.y?' y':'')+'" data-k="'+k+'" style="--c:'+d.c+'"><span class="sq">'+ico(d.ic2,d.ic,64)+'</span><b>'+d.n+'</b><small>'+d.d+'</small><small>Босс '+roundWaveLimit(k)+' волны: '+d.boss.n+'</small><em>Рекомендуются: '+d.rec.map(function(u){return M.own[u]?TY[u].n:'<i>'+TY[u].n+' 🔒</i>'}).join(', ')+'</em></button>'}
  h='<button class="df story" data-k="story" style="background-image:linear-gradient(90deg,rgba(0,0,0,.25),transparent),url('+ST_COVER+')"><span class="nw">НОВОЕ!</span><b>История</b><small>Глава 1: сцены и вопросы Моба. Глава 2: 3D-погоня, в которой ты огромный монстр.</small><em>Награда: Monster Verity (Legendary)</em></button>'+hwCard()+(typeof prCard=='function'?prCard():'')+(typeof hkCard=='function'?hkCard():'')+(typeof infCard=='function'?infCard():'')+h;
  $('diffs').innerHTML=h;[].forEach.call($('diffs').children,function(b){b.onclick=function(){var k=b.dataset.k;if(k=='soon')return;k=='story'?sStart():start(k)}})}
@@ -1524,10 +1535,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over&&!G.past?.paused)for(var i=0;i<G.spd;i++)upd(dt);draw()}requestAnimationFrame(loop)}
-var VER='1.78',VOL=.8,MQ=[],CI=0;
+var VER='1.79',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.79',t:'Хранилище времени',a:['Арена хранилища и «Машина прошлого» теперь идут одним абьюзом. После 20 минут на арене сейф закрывается, и открывается белый разлом.','Кнопка «Абьюз · Хранилище времени» возвращает на сохранённый этап.']},
 {v:'1.78',t:'Машина прошлого',a:['После Арены абьюза открывается глава о первых днях Веритии. Историю можно заново запустить из меню.','Защити портал от шести волн, останови время и верни собранные частицы. Награды за финал: фигурка, Chronosity и два эха мира.']},
 {v:'1.77.5',t:'Лимитки за тикеты',a:['В «Магазин → Лимитки» Orbity стоит 14 🎟, а Cadentity — 18 🎟. Покупки используют баланс Вечеринки Админити.']},
 {v:'1.77.4',t:'Серия «Сейф»',a:['Orbity и Cadentity теперь боевые Верити. Они доступны в «Магазин → Лимитки» за монеты из банка.','Orbity отматывает путь врагов, а Cadentity усиливает выстрелы серией попаданий в одну цель.']},
@@ -3946,6 +3958,7 @@ function arExit(message,finished=false){
     if(cur!=='arn'&&AR.entry===entry)return db('arena/p/'+uid,{m:'DELETE'});
   }).catch(function(){});
   AR.party=false;
+  if(finished&&!raid&&window.VaultAbuse){VaultAbuse.open();return}
   if(finished&&!raid&&window.PastMachine){PastMachine.open(true);return}
   if(fromTester)scr('tester');
   else{menu();scr('menu')}
@@ -4533,7 +4546,7 @@ function prCut(){if($('cutov').className=='on')return;var o=$('cutov'),i=-1,tw=n
 <script>
 /* ===== Музыка вечеринки (своя, синтезатор) и сообщения автора ===== */
 var PM={on:0,g:null,t:0,step:0,iv:null,nz:null};
-function pmWant(){return SND&&M.set.mus&&!document.hidden&&VOL>0&&(prOn()||cur=='pty')&&!musWant()&&cur!='hw'&&cur!='th-event'&&cur!=='past'&&!(cur==='game'&&G?.past)&&!(cur==='arn'&&AR.party)}
+function pmWant(){return SND&&M.set.mus&&!document.hidden&&VOL>0&&(prOn()||cur=='pty')&&!musWant()&&cur!='hw'&&cur!='th-event'&&cur!=='past'&&cur!=='vault-abuse'&&!(cur==='game'&&G?.past)&&!(cur==='arn'&&AR.party)}
 function pmNoise(a){if(PM.nz)return PM.nz;var b=a.createBuffer(1,a.sampleRate*.5,a.sampleRate),d=b.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;return PM.nz=b}
 function pmStart(){var a=au();if(!a)return;PM.g=a.createGain();PM.g.gain.value=.0001;PM.g.gain.setTargetAtTime(.38*VOL,a.currentTime,.4);PM.g.connect(a.destination);PM.t=a.currentTime+.1;PM.step=0;PM.on=1;PM.iv=setInterval(pmSched,60)}
 function pmStop(){PM.on=0;clearInterval(PM.iv);var g=PM.g;PM.g=null;if(g&&AC){try{g.gain.setTargetAtTime(0,AC.currentTime,.2)}catch(e){}setTimeout(function(){try{g.disconnect()}catch(e){}},900)}}
@@ -8411,7 +8424,8 @@ function lrSceneCage(c,t){
 <script src="boss-rush.js?v=1.77-mastery"></script>
 <script src="round-upgrades.js?v=1.77"></script>
 <script src="tester.js?v=1.78"></script>
-<script src="past-machine-art.js?v=1.78"></script>
+<script src="past-machine-art.js?v=1.79"></script>
 <script src="past-machine-battle.js?v=1.78"></script>
-<script src="past-machine.js?v=1.78"></script>
+<script src="past-machine.js?v=1.79"></script>
+<script src="vault-abuse.js?v=1.79"></script>
 </body></html>

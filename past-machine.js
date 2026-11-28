@@ -70,7 +70,8 @@
   }
 
   function refreshEntry() {
-    $('past-entry-note').textContent=pending()?'Продолжить у портала':progress().complete?'История и два эха':'Сюжетная глава · оборона портала';
+    const state=progress();
+    $('past-entry-note').textContent=window.VaultAbuse?.eventNote(state)??'Арена хранилища · Машина прошлого';
   }
 
   function sound(hz,duration,end) {
@@ -145,7 +146,7 @@
     sceneRoot.classList.remove('hide');
     document.body.classList.add('past-open');
     displayText('past-title',title);
-    displayText('past-place',detail);
+    displayText('past-place',progress().abuseStage?'Этап 2 из 2 · '+detail:detail);
     joystick.hidden=true;
     $('past-caption').hidden=true;
     $('past-prompt').hidden=true;
@@ -190,9 +191,27 @@
     prompt('Музыка стихает. Над танцполом раскрывается разлом.','Войти в разлом',whiteField);
   }
 
+  function fromVault() {
+    partyAtEnd=[];
+    if(cur!=='past')scr('past');
+    const profile=M.fb, connected=Boolean(profile?.nick&&onOk());
+    enterWhiteField(connected&&Boolean(ON.uid));
+    if(connected&&!ON.uid){
+      const field=view;
+      onAuth().then(()=>{
+        if(cur==='past'&&view===field&&M.fb===profile&&ON.uid){
+          view.online=true;
+          stagePresence('white',true);
+        }
+      }).catch(()=>{});
+    }
+  }
+
   function whiteField() {
-    if(view?.kind!=='aftermath')return;
-    const online=view.online;
+    if(view?.kind==='aftermath')enterWhiteField(view.online);
+  }
+
+  function enterWhiteField(online) {
     const offset=online?[...ON.uid].reduce((sum,char)=>sum+char.charCodeAt(0),0)%149-74:0;
     fieldPosition(1000+offset,810+Math.abs(offset)/4);
     setView('white','Белое поле','За границей времени');
@@ -216,6 +235,10 @@
   }
 
   function openLoadout() {
+    if(progress().abuseStage==='white'){
+      progress().abuseStage='defense';
+      save();
+    }
     loadoutBattle=true;
     detachView();
     loOpen('past-defense');
@@ -334,6 +357,8 @@
     const shards=pending()||view?.fragments||0;
     if(shards<1){archive();return}
     M.past={...oldState,complete:true,figure:true,pending:0};
+    delete M.past.abuseStage;
+    delete M.past.vaultRun;
     M.own[battle.unitKey]=1;
     if(!save()){
       M.past=oldState;
@@ -356,10 +381,13 @@
       '<div>'+pic(battle.unitKey,1,45)+'<b>Chronosity · Relic</b></div></div>'+
       '<div class="past-archive-actions"><button type="button" class="past-primary" data-echo="retroland">Первый луг</button>'+
       '<button type="button" class="past-primary" data-echo="retrodisco">Старая Арена абьюза</button>'+
-      '<button type="button" id="past-replay">Пройти историю заново</button></div></div>';
+      '<button type="button" id="past-replay">Пройти абьюз заново</button></div></div>';
     root.hidden=false;
     root.querySelectorAll('[data-echo]').forEach(button=>button.onclick=()=>openEcho(button.dataset.echo));
-    $('past-replay').onclick=()=>{partyAtEnd=[];aftermath()};
+    $('past-replay').onclick=()=>{
+      if(window.VaultAbuse){VaultAbuse.open(true);return}
+      partyAtEnd=[];aftermath();
+    };
   }
 
   function openEcho(kind) {
@@ -694,7 +722,7 @@
     return null;
   }
 
-  window.PastMachine={...battle,open,presence,showBoss,endBattle,lostConnection,snapshot,receive,music:preferredMusic};
+  window.PastMachine={...battle,open,fromVault,resumeDefense:openLoadout,presence,showBoss,endBattle,lostConnection,snapshot,receive,music:preferredMusic};
 
   const startScreen=scr;
   scr=function(screen){
