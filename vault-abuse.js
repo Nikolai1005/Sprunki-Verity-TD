@@ -19,6 +19,10 @@
     return now>=windowHours.end;
   }
 
+  function pastEventOpens(now=Date.now()){
+    return now>=windowHours.end+15*60*1000;
+  }
+
   function checkpoint(){
     return M.past??(M.past={});
   }
@@ -32,7 +36,7 @@
     const state=M.past;
     if(adminWindow()&&state?.abuseFinished!==windowHours.id)return true;
     if(storyOpened)return false;
-    return Boolean(state?.pending>0||['white','defense'].includes(state?.abuseStage)||state?.participated&&canFinish(state));
+    return Boolean(state?.pending>0||['white','defense','rift'].includes(state?.abuseStage)||state?.participated&&canFinish(state));
   }
 
   function canFinish(state){
@@ -66,7 +70,7 @@
     retry.hidden=fallback.hidden=true;
     status.hidden=false;
     const url=new URL('vault-stage.html',document.baseURI);
-    url.searchParams.set('v','18');
+    url.searchParams.set('v','20');
     url.searchParams.set('abuse-run',run);
     url.searchParams.set('abuse-end',String(windowHours.end));
     if(!SND||!M.set?.mus||VOL<=0)url.searchParams.set('music','off');
@@ -83,10 +87,7 @@
     if(!canFinish(state))return;
     const completed={...state,abuseStage:'white',abuseFinished:windowHours.id};
     const previousUnit=M.own.chronosity;
-    if(state.participated){
-      if(!previousUnit)M.own.chronosity=1;
-      completed.vaultTicketReward=true;
-    }
+    if(state.participated&&!previousUnit)M.own.chronosity=1;
     delete completed.vaultRun;
     delete completed.participated;
     M.past=completed;
@@ -99,10 +100,6 @@
         failed('Не удалось сохранить завершение арены. Попробуй ещё раз.');
       }
       return;
-    }
-    if(state.participated){
-      apMarketBadges();
-      lm('За участие в Хранилище времени получено '+VAULT_ATTENDANCE_TICKETS+' 🎟.');
     }
     if(dismissed)return;
     storyOpened=true;
@@ -119,7 +116,7 @@
       }
       storyOpened=true;
       if(state.pending>0)PastMachine.open();
-      else if(state.abuseStage==='defense')PastMachine.resumeDefense();
+      else if(state.abuseStage==='defense'||state.abuseStage==='rift')PastMachine.resumeDefense();
       else if(state.abuseStage==='white')PastMachine.fromVault();
       return;
     }
@@ -140,7 +137,8 @@
     const state=M.past;
     if(dismissed&&state?.participated&&canFinish(state)){continueStory();return}
     const note=adminWindow()?'Арена хранилища открыта до 20:20 МСК.':
-      Date.now()<windowHours.start?'28 ноября в 20:00 МСК начнётся абьюз «Хранилище времени».':'';
+      Date.now()<windowHours.start?'28 ноября в 20:00 МСК начнётся абьюз «Хранилище времени».':
+      !pastEventOpens()?'«Ивент прошлого» откроется в 20:35 МСК.':'';
     const banner=$('vault-schedule');
     banner.textContent=note;
     banner.hidden=!note;
@@ -178,7 +176,7 @@
   $('vault-abuse-exit').onclick=()=>{
     dismissed=true;menu();scr('menu');
   };
-  window.VaultAbuse={adminWindow,hasEnded,needsStage,poll,getFrame:()=>frame};
+  window.VaultAbuse={adminWindow,pastEventOpens,needsStage,poll,getFrame:()=>frame};
   setInterval(poll,1000);
   setTimeout(poll,100);
 })();

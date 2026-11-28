@@ -92,7 +92,7 @@
   }
 
   function start(){
-    if(cur==='timeline'||!window.VaultAbuse.hasEnded())return;
+    if(cur==='timeline'||!window.VaultAbuse.pastEventOpens())return;
     if(!$('modal').classList.contains('hide'))mClose();
     scr('timeline');
     window.scrollTo(0,0);
@@ -154,19 +154,15 @@
     }
     rewardPending=null;
     refreshEntry();
-    const tickets=TIMELINE_TICKET_AWARDS[next.next]||0;
-    if(tickets)apMarketBadges();
-    if(finale){showFinish(tickets);return}
+    if(finale){showFinish();return}
     const unlock=result.crown?' Корона прошлого теперь с тобой.':result.demonity?' Demonity открыт для следующих миссий.':
       model.mission.kind==='hunt'?' Лорд Верити: «Спасибо, хранители!»':'';
     showResult('Миссия '+model.mission.number+' пройдена',
-      (coins?'Временные монеты +'+coins+'.':'Портал ведёт дальше.')+unlock+
-      (tickets?' Тикеты +'+tickets+' 🎟.':''),'Следующая версия',startMission);
+      (coins?'Временные монеты +'+coins+'.':'Портал ведёт дальше.')+unlock,'Следующая версия',startMission);
   }
 
-  function showFinish(tickets=0){
-    showResult('История Веритии восстановлена','Награды за 40 миссий — Фигурка времени и Futurity редкости Relic.'+
-      (tickets?' Тикеты +'+tickets+' 🎟.':''),
+  function showFinish(){
+    showResult('История Веритии восстановлена','Награды за 40 миссий — Фигурка времени и Futurity редкости Relic.',
       'В меню',()=>{menu();scr('menu')});
     root.dataset.scene='complete';
     text('timeline-number','40 из 40 миссий');
@@ -257,7 +253,7 @@
   }
 
   function refreshEntry(){
-    const unlocked=window.VaultAbuse.hasEnded();
+    const unlocked=window.VaultAbuse.pastEventOpens();
     $('past-entry').hidden=!unlocked;
     const archiveButton=$('past-timeline');
     if(archiveButton){

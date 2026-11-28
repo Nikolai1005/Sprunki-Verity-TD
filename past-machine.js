@@ -28,9 +28,9 @@
       ['Странник','Возьмите устройство остановки времени. Оно задержит врагов на пять секунд. Собирайте частицы, которые они оставляют.','device'],
       ['Админити','Вы справитесь. Я в вас верю, хранители!','ruins']
     ],
-    archon:[
-      ['Админити','Держитесь! К порталу идёт кто-то огромный.','archon',4.1],
-      ['Архонт перемотки','Ваше время вышло.','archon',3.5]
+    rift:[
+      ['Админити','Разлом разрезал поле надвое. Держите позиции на лугу!','rift',2.9],
+      ['1×1×1×1','Теперь моя очередь остановить время.','rift',2.7]
     ],
     closing:[
       ['', '', 'shards', 4.3],
@@ -264,25 +264,54 @@
     next();
   }
 
-  function showBoss(activeRound) {
-    showScene('archon','Архонт перемотки','Последняя волна',()=>{
-      detachView();
-      if(G!==activeRound||cur!=='game'||G.over)return;
-      G.past.paused=false;
-      if(!G.guest)battle.startWave();
-    });
+  function showRift(){
+    showScene('rift','1×1×1×1','Разлом над лугом',detachView);
+    sound(122,.52,48);
+  }
+
+  function beginRift(game, checkpoint=true){
+    if(game.past.rift)return;
+    game.past.elapsed=battle.defenseTime;
+    RiftFinale.prepare(game);
+    RiftFinale.start(game);
+    if(checkpoint){
+      const state=progress();
+      state.abuseStage='rift';
+      state.riftShards=game.past.fragments;
+      save();
+    }
+    showRift();
+    renderBattleHud();
+  }
+
+  const rewardKey='1x1xty';
+
+  function persistVictory(game) {
+    const old=progress(), previous=M.own[rewardKey];
+    const shards=Math.max(1,game.past.fragments);
+    const win=Boolean(game.past.rift);
+    M.past={...old,pending:shards};
+    if(win)M.own[rewardKey] ||= 1;
+    if(save())return true;
+    M.past=old;
+    if(previous===undefined)delete M.own[rewardKey];
+    else M.own[rewardKey]=previous;
+    return false;
   }
 
   function endBattle(won) {
     if(G.over)return;
+    if(cut?.chapter==='rift')completeScene();
     G.over=won?2:1;
     G.run=false;
     G.past.resultAt=performance.now();
     if(won){
-      progress().pending=G.past.fragments;
-      save();
-      $('et').textContent='Архонт повержен. '+pl(G.past.fragments,'частица','частицы','частиц')+' для портала.';
-      setEndButtons('К порталу');
+      G.past.rewardSaved=persistVictory(G);
+      $('et').textContent=G.past.rewardSaved?
+        (G.past.rift?'1×1×1×1 повержен. 1x1xty в коллекции.':'Оборона завершена.')+
+          ' '+pl(Math.max(1,G.past.fragments),'частица','частицы','частиц')+' для портала.':
+        'Победа! Нужно сохранить награду.';
+      setEndButtons(G.past.rewardSaved?'К порталу':'Сохранить награду');
     }else{
       $('et').textContent='Портал не выдержал оборону';
       setEndButtons('Повторить оборону');
@@ -307,6 +336,10 @@
     if(!game?.past)return;
     if(game.over===1){openLoadout();return}
     if(game.over!==2)return;
+    if(!game.past.rewardSaved){
+      if(!persistVictory(game))return;
+      game.past.rewardSaved=true;
+    }
     const resultInTransit=()=>{
       const now=performance.now(), sentAt=game.past.finalSentAt;
       return game.coop?.g&&now-game.past.resultAt<4500&&(!sentAt||now-sentAt<1000);
@@ -321,7 +354,7 @@
         }
       }finally{button.disabled=false}
     }
-    if(cur==='game'&&G===game)enterDeposit(game.past.fragments);
+    if(cur==='game'&&G===game)enterDeposit(Math.max(1,game.past.fragments));
   }
 
   function enterDeposit(shards) {
@@ -344,6 +377,7 @@
     M.past={...oldState,complete:true,pending:0};
     delete M.past.abuseStage;
     delete M.past.vaultRun;
+    delete M.past.riftShards;
     if(!save()){
       M.past=oldState;
       prompt('Сохранение награды прервалось. Попробуй ещё раз.','Сохранить награду',finishStory);
@@ -359,7 +393,8 @@
     const root=$('past-archive');
     root.innerHTML='<div class="past-archive-panel"><h2>'+(justWon?'Вы спасли Веритию':'История завершена')+'</h2>'+
       '<p id="past-timeline-message"></p>'+
-      (M.own[battle.unitKey]?'<div class="past-rewards"><div>'+pic(battle.unitKey,1,45)+'<b>Chronosity · Relic</b></div></div>':'')+
+      '<div class="past-rewards">'+(M.own[battle.unitKey]?'<div>'+pic(battle.unitKey,1,45)+'<b>Chronosity · Relic</b></div>':'')+
+      (M.own[rewardKey]?'<div>'+pic(rewardKey,3,45)+'<b>1x1xty · Relic</b></div>':'')+'</div>'+
       '<div class="past-archive-actions"><button type="button" class="past-primary" id="past-timeline" hidden>В Ивент прошлого</button></div></div>';
     root.hidden=false;
     $('past-timeline').onclick=()=>window.VerityTimeline?.open();
@@ -367,9 +402,9 @@
   }
 
   function exitView() {
-    if(cut?.chapter==='archon'){completeScene();return}
+    if(cut?.chapter==='rift'){completeScene();return}
     if(cur==='game'&&G?.past&&!G.over){
-      mOpen('Выйти из обороны?','<p>Текущая оборона начнётся заново при следующем входе.</p>',[
+      mOpen('Выйти из обороны?',G.past.rift?'<p>Следующая попытка начнётся с финального боя.</p>':'<p>Оборона начнётся заново при следующем входе.</p>',[
         ['Выйти',()=>{mClose();menu();scr('menu')}],['Продолжить',mClose]
       ]);
       return;
@@ -543,10 +578,12 @@
       posterStage(c,'white');
       drawAdmin(c,474,282,83,time,true);
       drawCrew(c,time);
-    }else if(view.kind==='archon'){
-      posterStage(c,'ruins');
-      art.portal(c,465,243,127,time,0,true);
-      art.archon(c,477,310,131,time,1);
+    }else if(view.kind==='rift'&&G?.past?.rift){
+      c.save();
+      c.translate(0,-15);
+      c.scale(1.5,1.5);
+      RiftFinale.drawBoard(c,G);
+      c.restore();
     }else if(view.kind==='arrival'){
       posterStage(c,'ruins');
       art.portal(c,563,231,116,time,0,true);
@@ -607,19 +644,26 @@
     if(!state)return;
     const wave=battle.waves[G.wave>0?G.wave-1:0], max=battle.waves.length;
     displayText('wmx','/'+max);
-    displayText('past-battle-wave',G.wave?'Волна '+G.wave+'/'+max+' · '+wave.label:'Подготовка · '+max+' волн');
+    displayText('past-battle-wave',state.rift?'Финал · Разлом над лугом':
+      G.run&&wave?'Волна '+G.wave+'/'+max+' · '+wave.label:
+      G.wave===max?'Портал заряжается':'Следующая волна · '+Math.max(0,Math.ceil(G.next))+' с');
+    $('sk').disabled=true;
+    const left=Math.max(0,Math.ceil((state.rift?battle.roundTime:battle.defenseTime)-state.elapsed));
+    displayText('past-round-clock',Math.floor(left/60)+':'+String(left%60).padStart(2,'0'));
+    displayText('cd',G.over?'Конец':state.rift?'Бой с 1×1×1×1':G.wave===max&&!G.run?'Портал заряжается':
+      G.run?'Волна идёт':'Следующая волна: '+Math.max(0,Math.ceil(G.next))+' с');
     displayText('past-shards',pl(state.fragments,'частица','частицы','частиц'));
     const button=$('past-freeze');
     button.disabled=Boolean(G.over||state.paused||state.cooldown>0||!G.en.some(enemy=>!enemy.dead&&!enemy.po));
     button.classList.toggle('on',state.frozen>0);
     const caption=state.frozen>0?'Время стоит · '+Math.ceil(state.frozen)+' с':state.cooldown>0?'Зарядка · '+Math.ceil(state.cooldown)+' с':'5 секунд · F';
     if(button.lastElementChild.textContent!==caption)button.lastElementChild.textContent=caption;
-    const boss=G.en.find(enemy=>enemy.ty==='time_archon'&&!enemy.dead);
+    const boss=G.en.find(enemy=>enemy.ty===RiftFinale.key&&!enemy.dead);
     const bossHud=$('past-boss-health');
     bossHud.hidden=!boss;
     if(boss){
       bossHud.querySelector('progress').value=Math.max(0,boss.hp/boss.max*100);
-      bossHud.lastElementChild.textContent='Фаза '+(battle.phase(boss)+1)+' · '+Math.ceil(boss.hp)+' HP';
+      $('past-boss-stats').textContent='Фаза '+(state.rift?.phase||1)+' · '+Math.ceil(boss.hp)+' HP';
     }
   }
 
@@ -644,6 +688,7 @@
   function snapshot() {
     const state=G.past;
     return {fragments:state.fragments,frozen:state.frozen,cooldown:state.cooldown,paused:state.paused,
+      elapsed:state.elapsed,rift:state.rift?RiftFinale.snapshot(G):null,
       locked:G.units.flatMap((unit,index)=>unit.pastLock>0?[index]:[])};
   }
 
@@ -653,10 +698,15 @@
     state.frozen=remote.frozen||0;state.cooldown=remote.cooldown||0;
     state.fragments=Math.max(0,Math.floor(remote.fragments||0));
     state.paused=Boolean(remote.paused);
+    state.elapsed=Math.max(0,Math.min(battle.roundTime,Number(remote.elapsed)||0));
     const locks=new Set(remote.locked||[]);
     G.units.forEach((unit,i)=>{unit.pastGuestLock=locks.has(i)});
-    if(remote.paused&&!state.seenArchon){state.seenArchon=true;showBoss(G)}
-    if(packet.ov&&!G.over){if(cut?.chapter==='archon')completeScene();endBattle(packet.ov===2)}
+    if(remote.rift){
+      const entered=!state.rift;
+      RiftFinale.receive(G,remote.rift);
+      if(entered&&!packet.ov)showRift();
+    }
+    if(packet.ov&&!G.over)endBattle(packet.ov===2);
     renderBattleHud();
   }
 
@@ -666,7 +716,7 @@
     return null;
   }
 
-  window.PastMachine={...battle,open,fromVault,resumeDefense:openLoadout,presence,showBoss,endBattle,lostConnection,snapshot,receive,music:preferredMusic};
+  window.PastMachine={...battle,open,fromVault,resumeDefense:openLoadout,presence,beginRift,endBattle,lostConnection,snapshot,receive,music:preferredMusic};
 
   const startScreen=scr;
   scr=function(screen){
@@ -688,7 +738,13 @@
     if(mode==='past-defense'){
       loadoutBattle=false;
       G.spd=1;
-      say('Поставь Верити рядом с дорожкой. Заморозку лучше сохранить до подхода Стопоров.');
+      const saved=progress();
+      if(!CO.joining&&saved.abuseStage==='rift'){
+        G.past.fragments=Math.max(0,Number(saved.riftShards)||0);
+        beginRift(G,false);
+      }else{
+        say('Оборона портала продлится 10 минут. Сохрани заморозку до подхода Стопоров.');
+      }
       renderBattleHud();
       window.scrollTo(0,0);
     }

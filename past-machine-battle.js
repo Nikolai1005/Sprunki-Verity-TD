@@ -6,7 +6,11 @@
   const path=[[-1,2],[3,2],[3,6],[7,6],[7,2],[11,2],[11,6],[16,6]];
   const rules={n:'Оборона портала',co:540,lv:18,hp:1,sp:1,cn:1,off:0,bm:1,
     boss:{n:'Архонт перемотки',hp:2820,v:20,col:'#c1acff',sk:0}};
-  const freezeTime=5, freezeCooldown=26, preparation=9;
+  const freezeTime=5, freezeCooldown=26;
+  const defenseTime=600;
+  const roundTime=900;
+  const attackTimes=[12,105,198,291,384,477];
+  const attackLength=72;
   const unitKey='chronosity';
   const enemyTypes={
     time_shift: {label:'Сдвиг',hp:47,growth:11,v:42,r:13,c:'#99d6fc',art:0},
@@ -25,27 +29,21 @@
     {label:'Шов истории',gap:.88,enemies:[shift,shift,guard,lock,skip,mend,shift,shift,lock,skip,guard,mend,skip,shift]},
     {label:'Парадокс',gap:.86,enemies:[skip,shift,split,lock,guard,shift,mend,skip,split,shift,guard,lock,shift,skip,split]},
     {label:'Осада портала',gap:.78,enemies:[guard,lock,skip,split,shift,mend,skip,guard,lock,split,skip,shift,guard,mend,lock,shift,split,skip]},
-    {label:'Архонт перемотки',gap:1,enemies:[skip,shift,split,lock,guard,mend,skip,shift,lock,archon]}
+    {label:'Последние минуты',gap:1,enemies:[skip,shift,split,lock,guard,mend,skip,shift,lock,guard,split,guard,shift,lock]}
   ];
   // Existing effects expect entries in the shared enemy catalogue.
   Object.entries(enemyTypes).forEach(([id,data])=>{ET[id]=data});
 
   function prepare(battle) {
     battle.spd=1;
-    battle.next=14;
-    battle.past={wave:null,index:0,fragments:0,sparks:[],frozen:0,cooldown:0,archonDown:false,paused:false,seenArchon:false};
+    battle.next=attackTimes[0];
+    battle.past={wave:null,index:0,fragments:0,sparks:[],frozen:0,cooldown:0,elapsed:0,paused:false};
     setMap('meadow',path);
   }
 
   function startWave() {
     const battle=G, state=battle.past;
-    if(battle.over||battle.run||state.paused)return;
-    if(battle.wave===waves.length-1&&!state.seenArchon){
-      state.seenArchon=true;
-      state.paused=true;
-      window.PastMachine.showBoss(battle);
-      return;
-    }
+    if(battle.over||battle.run||state.paused||state.rift||state.elapsed+0.1<attackTimes[battle.wave])return;
     const plan=waves[battle.wave];
     if(!plan)return;
     battle.wave++;
@@ -66,12 +64,13 @@
 
   function spawn(dt) {
     const state=G.past;
-    if(!G.run||!G.q||state.frozen>0)return;
+    if(state.rift||!G.run||!G.q||state.frozen>0)return;
     G.sp-=dt;
     if(G.sp>0)return;
     G.q--;
     const type=state.wave.enemies[state.index++];
-    G.sp=state.wave.gap;
+    const interval=attackLength/Math.max(1,state.wave.enemies.length-1);
+    G.sp=state.index%3===0?interval*2.55:interval*.225;
     const enemy=makeEnemy(type);
     G.en.push(enemy);
     if(enemy.boss){say('Архонт перемотки вошёл в разлом!');cue(84,.4,45)}
@@ -83,7 +82,6 @@
     state.fragments++;
     const [px,py]=pos(enemy.d);
     if(!thReducedMotion())state.sparks.push({x:px,y:py,age:0});
-    if(enemy.ty===archon)state.archonDown=true;
     if(enemy.ty===split){
       G.en.push(makeEnemy(shift,Math.max(0,enemy.d-9),true),makeEnemy(shift,Math.max(0,enemy.d-21),true));
     }
@@ -155,6 +153,7 @@
 
   function update(dt) {
     const battle=G, state=battle.past;
+    state.elapsed=Math.min(roundTime,state.elapsed+dt);
     if(state.sparks.length){
       for(const spark of state.sparks)spark.age+=dt;
       state.sparks=state.sparks.filter(spark=>spark.age<.72);
@@ -164,9 +163,14 @@
     if(state.frozen<1e-7)state.frozen=0;
     if(state.cooldown<1e-7)state.cooldown=0;
     if(battle.lives<=0){battle.lives=0;window.PastMachine.endBattle(false);return}
+    if(state.rift){
+      const result=RiftFinale.update(battle,dt,Math.max(0,state.elapsed-defenseTime));
+      if(result)window.PastMachine.endBattle(result==='won');
+      return;
+    }
+    if(state.elapsed+1e-6>=defenseTime){window.PastMachine.beginRift(battle);return}
     if(!battle.run||battle.q||battle.en.length||battle.adminSpawns?.length)return;
-    if(battle.wave===waves.length){window.PastMachine.endBattle(state.archonDown);return}
-    battle.run=false; battle.next=preparation; battle.coins+=89;
+    battle.run=false; battle.next=Math.max(.1,(attackTimes[battle.wave]??defenseTime)-state.elapsed); battle.coins+=89;
     say('Волна сдержана. +89 монет на оборону.');
   }
 
@@ -175,6 +179,7 @@
   }
 
   function drawBoard(c) {
+    if(G.past.rift){RiftFinale.drawBoard(c,G);return}
     c.drawImage(art.board(PT),0,0);
     const clock=thReducedMotion()?0:performance.now()/1000;
     art.portal(c,618,265,39,clock,G.past.frozen?1:0,true);
@@ -192,6 +197,7 @@
   }
 
   function drawEnemy(c,enemy,[x,y]) {
+    if(enemy.ty===RiftFinale.key)return RiftFinale.drawEnemy(c,enemy,G);
     const data=enemyTypes[enemy.ty];
     if(!data)return false;
     c.save();
@@ -212,6 +218,7 @@
   }
 
   function drawEffects(c) {
+    if(G.past.rift)RiftFinale.drawEffects(c,G);
     c.save();
     for(const spark of G.past.sparks){
       c.globalAlpha=1-spark.age/.72;
@@ -276,6 +283,6 @@
   }
 
   registerReward();
-  window.PastMachineBattle={rules,waves,phase,prepare,startWave,spawn,update,enemyKilled,enemyTick,tickTowers,freeze,
+  window.PastMachineBattle={rules,waves,defenseTime,roundTime,phase,prepare,startWave,spawn,update,enemyKilled,enemyTick,tickTowers,freeze,
     drawBoard,drawEnemy,drawTowerBase,drawEffects,attack,cue,unitKey};
 })();

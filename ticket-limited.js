@@ -7,13 +7,13 @@
   const beat = {radius:125, targets:3, life:3, every:4, phaseEvery:3, power:[.30,.45], cap:[24,50]};
   const percent = fraction => Math.round(fraction * 100) + '%';
   const units = Object.freeze({
-    prismity:{n:'Prismity',rar:'Epic',limited:true,unlockTickets:12,cost:295,dmg:24,rate:.96,rng:110,col:'#76ebff',
+    prismity:{n:'Prismity',rar:'Epic',limited:true,unlockTickets:600,cost:295,dmg:24,rate:.96,rng:110,col:'#76ebff',
       ability:'Расщепление света',
       d:`Каждый ${prism.every}-й выстрел преломляется и бьёт до ${prism.targets} врагов рядом с целью на ${percent(prism.power)} урона. В фазе 2 — каждый ${prism.phaseEvery}-й на ${percent(prism.phasePower)}.`},
-    polarity:{n:'Polarity',rar:'Legendary',limited:true,unlockTickets:16,cost:365,dmg:29,rate:1.10,rng:106,col:'#ffc860',
+    polarity:{n:'Polarity',rar:'Legendary',limited:true,unlockTickets:900,cost:365,dmg:29,rate:1.10,rng:106,col:'#ffc860',
       ability:'Полярная метка',
       d:`Каждый ${pole.every}-й выстрел ставит метку на ${pole.life.toLocaleString('ru-RU')} с и замедляет цель на ${percent(pole.slow[0])}. Удар башни другого типа снимает метку и наносит ещё ${pole.bonus[0]} урона. В фазе 2 метка срабатывает каждый ${pole.phaseEvery}-й выстрел, замедляет на ${percent(pole.slow[1])} и добавляет ${pole.bonus[1]} урона. На боссах эффект слабее. Одна метка на врага за ${pole.recovery} с.`},
-    metronity:{n:'Metronity',rar:'Mythic',limited:true,unique:true,unlockTickets:20,cost:440,dmg:22,rate:1,rng:110,col:'#79edb6',
+    metronity:{n:'Metronity',rar:'Mythic',limited:true,unique:true,unlockTickets:1300,cost:440,dmg:22,rate:1,rng:110,col:'#79edb6',
       ability:'Вступление в такт',
       d:`Каждый ${beat.every}-й выстрел подзаряжает до ${beat.targets} ближайших союзных башен на ${beat.life} с. Следующее попадание каждой наносит на ${percent(beat.power[0])} больше урона (до +${beat.cap[0]}). В фазе 2 — каждый ${beat.phaseEvery}-й выстрел и +${percent(beat.power[1])} (до +${beat.cap[1]}). Одна башня на команду.`}
   });
@@ -23,7 +23,7 @@
       TY[key] = unit;
       RA[key] = unit.rar;
       EXU.push(key);
-      MKNS[key] = 'лимитка за тикеты вечеринки';
+      MKNS[key] = 'лимитка за тикеты Арены хранилища';
       for (const phase of [1, 2]) {
         const size = 144, canvas = thCanvas(size, size), art = new Image();
         window.TicketLimitedArt.draw(canvas.getContext('2d'), key, phase, size);

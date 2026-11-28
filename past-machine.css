@@ -55,6 +55,8 @@
   padding:9px;background:#1a2542;color:#f0f6ff}
 .past-battle-data,.past-battle-actions{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:7px}
 .past-battle-data span{font-size:12px;color:#c5d9fa}
+#past-round-clock{font:800 .95rem ui-monospace,monospace;color:#dbf6b4;padding:4px 8px;border:1px solid #627f6b;
+  border-radius:7px;background:#263c39;font-variant-numeric:tabular-nums}
 #past-freeze{display:flex;gap:5px 10px;align-items:center;justify-content:space-between;flex-wrap:wrap;flex:1;text-align:left;border-color:#86dcff}
 #past-freeze small{color:#b7dcf5;white-space:nowrap}
 #past-boss-health{display:grid;grid-template-columns:max-content 1fr auto;align-items:center;gap:7px;color:#ffcee4;font-size:12px}

@@ -701,10 +701,10 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="verity-raid.css?v=1.74">
 <link rel="stylesheet" href="tester.css?v=1.75">
 <link rel="stylesheet" href="boss-rush.css?v=1.77-mastery">
-<link rel="stylesheet" href="past-machine.css?v=1.80">
+<link rel="stylesheet" href="past-machine.css?v=1.81">
 <link rel="stylesheet" href="timeline.css?v=1.80">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.80.2</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.81</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -740,9 +740,9 @@ body.ap-arena #modal {z-index:500}
   </div>
 </section>
 <div id="past-battle" hidden aria-label="Оборона портала">
-  <div class="past-battle-data"><strong>Оборона портала</strong><span id="past-battle-wave"></span>
+  <div class="past-battle-data"><strong>Машина прошлого</strong><span id="past-battle-wave"></span><time id="past-round-clock" aria-label="До конца этапа">10:00</time>
     <span id="past-shards">0 частиц</span></div>
-  <div id="past-boss-health" hidden><strong>Архонт перемотки</strong><progress max="100" value="100" aria-label="Здоровье Архонта"></progress><span></span></div>
+  <div id="past-boss-health" hidden><strong>1×1×1×1</strong><progress max="100" value="100" aria-label="Здоровье 1×1×1×1"></progress><span id="past-boss-stats"></span></div>
   <div class="past-battle-actions"><button type="button" id="past-freeze" title="Зарядка устройства занимает 26 секунд"><span>❄ Остановить время</span><small>5 секунд · F</small></button><button type="button" id="past-battle-exit">Выйти</button></div>
 </div>
 <div id="ust" class="hide"></div><div id="shop"></div>
@@ -908,7 +908,8 @@ body.ap-arena #modal {z-index:500}
   <div id="past-flash" aria-hidden="true" hidden></div>
 </section>
 <script src="ticket-limited-art.js?v=1.80.2"></script>
-<script src="ticket-limited.js?v=1.80.2"></script>
+<script src="ticket-limited.js?v=1.80.3"></script>
+<script src="vault-ticket-shop.js?v=1.80.3"></script>
 <script>
 var $=function(i){return document.getElementById(i)},cv=$('cv'),x=cv.getContext('2d'),C=40,G=null,cur='menu',prev='menu';
 var PT=[[-1,2],[4,2],[4,6],[9,6],[9,1],[13,1],[13,7],[16,7]].map(function(p){return[(p[0]+.5)*C,(p[1]+.5)*C]});
@@ -965,7 +966,11 @@ function save(){
  M.lastSeen=Date.now();
  try{
    var current=localStorage.getItem('vtd');
-   if(current&&current!==savedGameText&&JSON.parse(current)?.accountRevision!==M.accountRevision)return false;
+   if(current&&current!==savedGameText){
+     var snapshot=JSON.parse(current);
+     if(snapshot?.accountRevision!==M.accountRevision)return false;
+     VaultTicketShop.mergePurchases(M,snapshot);
+   }
    var text=JSON.stringify(M);
    localStorage.setItem('vtd',text);
    savedGameText=text;
@@ -1067,7 +1072,7 @@ $('sk').onclick=function(){if(!G.run)G.next=0};
 $('sp').onclick=function(){G.spd=G.spd==1?2:1;hud()};
 $('ph').onclick=function(){if(G.p2){G.p2=false}else if(G.fear>=20&&G.cool<=0){G.p2=true}else say('Страх ещё не накопился.');hud()};
 function mk(ty,d){var h=25+G.wave*6;return{d:d,hp:h,max:h,v:60,sl:0,burn:0,vul:0,t:0,ty:ty,boss:0,bt:0}}
-function hit(e,d){if(e.thBoss&&e.hp>e.max*.72)d*=.82;if(e.vul>0)d*=(e.vm||1.25);e.hp-=d;if(e.hp<=0&&!e.dead){e.dead=1;if(e.ty==='adminBoss'){say('Админ-босс повержен!');return}if(G.past)PastMachine.enemyKilled(e);G.coins+=e.boss?300:(e.ty=='tank'?15:8);if(e.boss&&G.key!='harvest'&&!G.past)M.seeds+=50;if(G.key=='harvest')thEnemyKilled(e);if(G.key=='hw')hwKill(e);if(e.ty=='splitter'){G.en.push(mk('runner',e.d),mk('runner',e.d))}}}
+function hit(e,d){if(e.thBoss&&e.hp>e.max*.72)d*=.82;if(e.vul>0)d*=(e.vm||1.25);if(e.ty==='time_rift_giant')d=RiftFinale.damage(e,d,G?.cu);e.hp-=d;if(e.hp<=0&&!e.dead){e.dead=1;if(e.ty==='adminBoss'){say('Админ-босс повержен!');return}if(G.past)PastMachine.enemyKilled(e);G.coins+=e.boss?300:(e.ty=='tank'?15:8);if(e.boss&&G.key!='harvest'&&!G.past)M.seeds+=50;if(G.key=='harvest')thEnemyKilled(e);if(G.key=='hw')hwKill(e);if(e.ty=='splitter'){G.en.push(mk('runner',e.d),mk('runner',e.d))}}}
 function aoe(cx,cy,r,d){G.en.forEach(function(e){if(e.po)return;var p=pos(e.d);if(Math.hypot(p[0]-cx,p[1]-cy)<=r)hit(e,d)})}
 function pick(){var w=G.wave+G.d.off,l=['walker'];if(w>=2)l.push('runner');if(w>=3)l.push('tank');if(w>=4)l.push('ghost');if(w>=5)l.push('healer');if(w>=6)l.push('splitter');if(G.key=='hw'){if(G.wave>=2)l.push('bat','bat');if(G.wave>=3)l.push('mimic');if(hwPh()=='hour')l.push('ghost','ghost')}return l[Math.floor(Math.random()*l.length)]}
 function lordN(u){return u.k!='lord'&&G.units.some(function(l){return l.k=='lord'&&Math.hypot(l.x-u.x,l.y-u.y)<170})}
@@ -1138,14 +1143,16 @@ function upd(dt){
  window.BossityBattle?.tick(dt);
  G.units.forEach(function(u){var t=TY[u.k],P2=G.p2||u.inf>0;if(u.inf>0)u.inf-=dt;if(u.dr>0)u.dr-=dt;if(u.wl>0)u.wl-=dt;if(u.deb>0)u.deb-=dt;if(u.po&&u.po.dead){u.po=null;u.cd=4;say('Demonity вернулся в свою форму.')}if(u.po||u.pastLock>0)return;if(u.curse>0){u.curse-=dt;return}if(u.k=='lord'&&P2){u.it=(u.it||0)+dt;if(u.it>6){u.it=0;var os=G.units.filter(function(o){return o!==u&&Math.hypot(o.x-u.x,o.y-u.y)<160});if(os.length){var o=os[Math.floor(Math.random()*os.length)];if(Math.random()<.8)o.inf=8;else o.deb=5}}}u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
  if(u.k=='demonity'&&P2){var c2=null;G.en.forEach(function(e){if(e.po||e.boss||inv(e))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=140&&(!c2||e.max>c2.max))c2=e});if(c2){c2.po=1;c2.pt=0;c2.hp*=2;c2.max*=2;u.po=c2;say('Demonity вселился во врага!');return}}
-  G.en.forEach(function(e){if(e.po||(e.dead&&(u.k==='hacketurkity'||u.k==='futurity'||VAULT_TD_UNITS[u.k]||TicketLimitedUnits[u.k]))||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
-  G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
+  const targetRange=(u.k==='1x1xty'?RiftReward.range(u,P2):t.rng)*(lordN(u)?1.15:1)*petR(u)*xR(u);
+  G.en.forEach(function(e){if(e.po||(e.dead&&(u.k==='hacketurkity'||u.k==='futurity'||u.k==='1x1xty'||VAULT_TD_UNITS[u.k]||TicketLimitedUnits[u.k]))||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=targetRange&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
+  G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();if(u.k!=='1x1xty'||RiftReward.phase(u,P2)===1)G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
   if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(P2)aoe(p[0],p[1],50,d);else hit(tg,d)}
   else if(u.k=='simonity')simonityAttack(u,tg,d,p,P2);
   else if(u.k==='orbity')orbityAttack(u,tg,d,p,P2);
   else if(u.k==='cadentity')cadentityAttack(u,tg,d,p,P2);
   else if(u.k==='chronosity')window.PastMachine.attack(u,tg,d,p,P2);
   else if(u.k==='futurity')window.FuturityBattle.attack(u,tg,d,p,P2);
+  else if(u.k==='1x1xty')RiftReward.attack(u,tg,d,p,P2);
   else if(TicketLimitedUnits[u.k])TicketLimitedBattle.attack(u,tg,d,p,P2);
   else if(G.tester&&t.testAttack)t.testAttack(u,tg,d,p,P2);
   else if(u.k=='lovity'){tg.sl=1.5;tg.slp=P2?.8:.5;if(P2&&!tg.boss)tg.d=Math.max(0,tg.d-70);else if(u.n%12==0&&G.lives<G.d.lv)G.lives++;hit(tg,d)}
@@ -1171,7 +1178,7 @@ function upd(dt){
   else hit(tg,d);
   apElementAttack(u,p,d);
  });
- G.cu=null;tickHackeTurkity(dt);G.en.forEach(function(e){if(frozen||G.past?.frozen>0||e.dead&&(G.past||G.key==='harvest'||e.ty==='adminBoss'))return;if(G.past)PastMachine.enemyTick(e,dt);if(e.orbitLock>0)tickOrbity(e,dt);e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0){e.dead=1;if(G.past)PastMachine.enemyKilled(e)}else if(e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
+ G.cu=null;RiftReward.tick(dt);tickHackeTurkity(dt);G.en.forEach(function(e){if(frozen||G.past?.frozen>0||e.dead&&(G.past||G.key==='harvest'||e.ty==='adminBoss'))return;if(G.past)PastMachine.enemyTick(e,dt);if(e.orbitLock>0)tickOrbity(e,dt);e.t+=dt;if(e.po){e.pt+=dt;e.d=Math.max(0,e.d-45*dt);var pp=pos(e.d);G.en.forEach(function(o){if(o===e||o.po||o.dead)return;var q=pos(o.d);if(Math.hypot(q[0]-pp[0],q[1]-pp[1])<34){hit(o,80*dt);e.hp-=(o.boss?30:12)*dt}});if(e.hp<=0){e.dead=1;if(G.past)PastMachine.enemyKilled(e)}else if(e.pt>15)e.dead=1;return}if(e.vul>0)e.vul-=dt;if(e.nul>0)e.nul-=dt;if(e.burn>0){e.burn-=dt;hit(e,15*dt)}if(e.sleep>0){e.sleep-=dt;return}
   if(e.dead&&(G.key==='harvest'||e.ty==='adminBoss'))return;
   var sk=e.ty==='adminBoss'?0:G.d.boss.sk;if(e.boss){if(e.thBoss)thBossThink(e);if(sk==4)king(e,dt);if((sk==1||sk==3)&&!(e.nul>0))e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
   if(e.ty=='healer')G.en.forEach(function(o){if(o!==e&&Math.abs(o.d-e.d)<70)if(!(o.nul>0))o.hp=Math.min(o.max,o.hp+5*dt)});
@@ -1280,7 +1287,7 @@ function draw(){if(G.past)PastMachine.drawBoard(x);else if(G.key=='harvest')thDr
   if(G.past)PastMachine.drawTowerBase(x,u);else if(G.key=='harvest')thDrawTowerBase(u);else{
     x.fillStyle='rgba(0,0,0,.25)';x.fillRect(u.cx*C+4,u.cy*C+34,C-8,4);x.fillStyle='#6b4a2b';x.fillRect(u.cx*C+4,u.cy*C+22,C-8,14);x.fillStyle='#4aa83a';x.fillRect(u.cx*C+4,u.cy*C+20,C-8,6);
   }
-  var im=(u.k=='gumity'&&!p2&&u.gf&&IM['gumity_f'+u.gf])?IM['gumity_f'+u.gf]:IM[u.k+(p2?2:1)];if(G.key=='harvest'&&TH_PORTRAITS[u.k+(p2?2:1)]){thDrawTowerPortrait(u,p2)}else if(u.k=='monster'&&SPRI.complete&&SPRI.naturalWidth){var fh=70,fw=fh*SFW/SFH,bb=Math.sin(Date.now()/420+u.cx*1.7)*1.2;x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(SPRI,(p2?7:6)*SFW,0,SFW,SFH,u.x-fw/2,u.cy*C+25-fh+bb,fw,fh);x.globalAlpha=1}else if(im&&im.complete&&im.naturalWidth){x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(im,u.x-18,u.y-26,36,36);x.globalAlpha=1;}else{x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26)}
+  var im=(u.k=='gumity'&&!p2&&u.gf&&IM['gumity_f'+u.gf])?IM['gumity_f'+u.gf]:IM[u.k+(u.k==='1x1xty'?RiftReward.phase(u,p2):p2?2:1)];if(G.key=='harvest'&&TH_PORTRAITS[u.k+(p2?2:1)]){thDrawTowerPortrait(u,p2)}else if(u.k=='monster'&&SPRI.complete&&SPRI.naturalWidth){var fh=70,fw=fh*SFW/SFH,bb=Math.sin(Date.now()/420+u.cx*1.7)*1.2;x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(SPRI,(p2?7:6)*SFW,0,SFW,SFH,u.x-fw/2,u.cy*C+25-fh+bb,fw,fh);x.globalAlpha=1}else if(im&&im.complete&&im.naturalWidth){x.globalAlpha=G.cool>0||u.po?.45:1;x.drawImage(im,u.x-18,u.y-26,36,36);x.globalAlpha=1;}else{x.fillStyle=G.cool>0?'#777':(p2?'#c4161c':t.col);x.beginPath();x.arc(u.x,u.y-4,15,0,7);x.fill();x.strokeStyle='#111';x.lineWidth=2;x.stroke();face(u,p2,26)}
   if(u.k=='pumpkinity'){x.fillStyle='#2b7a2b';x.fillRect(u.x-2,u.y-24,4,6)}
   skinD(u,p2);
   if(u.k==='cadentity')drawCadentityCharge(u,p2);
@@ -1290,7 +1297,7 @@ function draw(){if(G.past)PastMachine.drawBoard(x);else if(G.key=='harvest')thDr
   x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
   if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8);if(G.d.boss.final){x.save();x.strokeStyle='#ffd978';x.lineWidth=3;x.beginPath();x.arc(p[0],p[1],r-4,0,7);x.stroke();x.fillStyle='#fff4d2';x.font='bold 11px system-ui';x.textAlign='center';x.fillText(Math.ceil(e.hp)+' HP',p[0],p[1]+r+13);x.restore()}}
   x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.po?'#c08cff':e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
- if(G.past)PastMachine.drawEffects(x);drawOrbityMarks();TicketLimitedBattle.drawEffects(x,G);drawHackeTurkity();phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
+ if(G.past)PastMachine.drawEffects(x);drawOrbityMarks();TicketLimitedBattle.drawEffects(x,G);drawHackeTurkity();RiftReward.drawEffects(x);phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
 function drawAdminBoss(enemy,[px,py]){
   const time=thReducedMotion()?0:enemy.t;
   const radius=ET.adminBoss.r;
@@ -1313,14 +1320,14 @@ function drawAdminBoss(enemy,[px,py]){
   x.fillStyle='#ffc075';x.fillRect(left+4,top+27,(width-8)*Math.max(0,Math.min(1,enemy.hp/enemy.max)),3);
   x.restore();
 }
-function lobby(){$('bk').textContent=Math.floor(M.bank);$('bs').textContent=M.seeds;var h='';for(var k in TY)h+='<div class="cu fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'')+(M.own[k]?'':' no')+'" style="--rc:'+RC[RA[k]]+'">'+pic(k,1,40)+pic(k,2,40)+'<br><b>'+TY[k].n+'</b><br>'+RA[k]+'<br>Урон '+(k=='demonity'?'1/6 HP':TY[k].dmg)+' · '+TY[k].rate+' с · дальн. '+TY[k].rng+'<br>'+TY[k].d+pkEx(k)+'</div>';$('col').innerHTML=h}
+function lobby(){$('bk').textContent=Math.floor(M.bank);$('bs').textContent=M.seeds;var h='';for(var k in TY)h+='<div class="cu fc'+(/Mythic|Secret/.test(RA[k])?' my'+(RA[k]=='Secret'?' sec':''):'')+(M.own[k]?'':' no')+'" style="--rc:'+RC[RA[k]]+'">'+pic(k,1,40)+pic(k,2,40)+(k==='1x1xty'?pic(k,3,40):'')+'<br><b>'+TY[k].n+'</b><br>'+RA[k]+'<br>Урон '+(k=='demonity'?'1/6 HP':TY[k].dmg)+' · '+TY[k].rate+' с · дальн. '+TY[k].rng+'<br>'+TY[k].d+pkEx(k)+'</div>';$('col').innerHTML=h}
 function cvPos(e){var r=cv.getBoundingClientRect();return[(e.clientX-r.left)*640/r.width,(e.clientY-r.top)*400/r.height]}
 function cell(p){return[Math.floor(p[0]/C),Math.floor(p[1]/C)]}
-function okCell(cx,cy,ig){return !thTableCell(cx,cy)&&cx>=0&&cy>=0&&cx<16&&cy<10&&!road[cx+','+cy]&&!G.units.some(function(u){return u!==ig&&u.cx==cx&&u.cy==cy})}
+function okCell(cx,cy,ig){return (!G?.past?.rift||RiftFinale.allowCell(cx,cy))&&!thTableCell(cx,cy)&&cx>=0&&cy>=0&&cx<16&&cy<10&&!road[cx+','+cy]&&!G.units.some(function(u){return u!==ig&&u.cx==cx&&u.cy==cy})}
 function tryPlace(k,cx,cy){var t=TY[k];if(!okCell(cx,cy))return say('Сюда ставить нельзя.');if((k=='lord'||k=='jack'||k=='reaper'||k=='hacker'||k=='manip'||k==='chronosity'||t.unique)&&G.units.some(function(u){return u.k==k}))return say(TY[k].n+' может стоять на карте только один.');if(G.coins<t.cost)return say('Не хватает монет.');G.coins-=t.cost;G.units.push({k:k,cx:cx,cy:cy,x:(cx+.5)*C,y:(cy+.5)*C,cd:0,n:0});hud();say(t.n+' поставлен.')}
 function mv(u,c){u.cx=c[0];u.cy=c[1];u.x=(c[0]+.5)*C;u.y=(c[1]+.5)*C;G.mvu=null;say('Верити перемещён.')}
-function showU(){var u=G&&G.selU,b=$('ust');if(!u){b.className='hide';return}var t=TY[u.k],rar=RA[u.k],rr=Math.round(t.rng*(lordN(u)?1.15:1));
- b.className='p ust fc'+(/Mythic|Secret/.test(rar)?' my'+(rar=='Secret'?' sec':''):'');b.style.setProperty('--rc',RC[rar]);b.innerHTML=pic(u.k,1,56)+'<div style="flex:1 1 180px"><b>'+t.n+'</b> · <span style="color:'+RC[rar]+'">'+rar+'</span><br>Урон: '+(u.k=='demonity'?'1/6 HP цели':t.dmg)+' · Скорость: '+t.rate+' с<br>Дальность: '+rr+(u.k=='lord'?' · Аура: 170':'')+'<br><small>'+t.d+'</small></div><div class="row" style="margin:0"><button id="ub1">Продать +'+Math.floor(t.cost*.7)+' 🪙</button><button id="ub2">Переставить</button><button id="ub3">Радиус: '+(u.sr?'вкл':'выкл')+'</button></div>';
+function showU(){var u=G&&G.selU,b=$('ust');if(!u){b.className='hide';return}var t=TY[u.k],rar=RA[u.k],ph=(G.p2&&G.cool<=0)||u.inf>0,rr=Math.round((u.k==='1x1xty'?RiftReward.range(u,ph):t.rng)*(lordN(u)?1.15:1));
+ b.className='p ust fc'+(/Mythic|Secret/.test(rar)?' my'+(rar=='Secret'?' sec':''):'');b.style.setProperty('--rc',RC[rar]);b.innerHTML=pic(u.k,u.k==='1x1xty'?RiftReward.phase(u,ph):1,56)+'<div style="flex:1 1 180px"><b>'+t.n+'</b> · <span style="color:'+RC[rar]+'">'+rar+'</span><br>Урон: '+(u.k=='demonity'?'1/6 HP цели':t.dmg)+' · Скорость: '+t.rate+' с<br>Дальность: '+rr+(u.k=='lord'?' · Аура: 170':'')+'<br><small>'+t.d+'</small></div><div class="row" style="margin:0"><button id="ub1">Продать +'+Math.floor(t.cost*.7)+' 🪙</button><button id="ub2">Переставить</button><button id="ub3">Радиус: '+(u.sr?'вкл':'выкл')+'</button></div>';
  $('ub1').onclick=function(){G.coins+=Math.floor(t.cost*.7);G.units=G.units.filter(function(o){return o!==u});G.selU=null;showU();hud();say('Продан: '+t.n)};
  $('ub2').onclick=function(){G.mvu=u;say('Нажми на новую клетку.')};
  $('ub3').onclick=function(){u.sr=!u.sr;showU()}}
@@ -1330,14 +1337,14 @@ cv.onclick=function(e){if(!G||G.over)return;var c=cell(cvPos(e)),u=G.units.filte
  G.selU=null;showU();tryPlace(G.sel,c[0],c[1])};
 function ring(x0,y0,r,c){x.beginPath();x.arc(x0,y0,r,0,7);x.globalAlpha=.16;x.fillStyle=c;x.fill();x.globalAlpha=1;x.strokeStyle=c;x.lineWidth=2;x.setLineDash([6,4]);x.stroke();x.setLineDash([])}
 function drawUI(){G.units.forEach(function(u){if(G.selU===u){x.strokeStyle='#fff';x.lineWidth=2;x.strokeRect(u.cx*C+2,u.cy*C+2,C-4,C-4)}
-  if(u.sr){ring(u.x,u.y-4,TY[u.k].rng*(lordN(u)?1.15:1)*xR(u),'#ffffff');if(u.k=='lord')ring(u.x,u.y-4,170,'#ff2a3d')}})}
+  if(u.sr){ring(u.x,u.y-4,(u.k==='1x1xty'?RiftReward.range(u,(G.p2&&G.cool<=0)||u.inf>0):TY[u.k].rng)*(lordN(u)?1.15:1)*xR(u),'#ffffff');if(u.k=='lord')ring(u.x,u.y-4,170,'#ff2a3d')}})}
 function chkc(u,id){var h=7,q=u+id;for(var i=0;i<q.length;i++)h=(h*31+q.charCodeAt(i))%1679616;var r=h.toString(36).toUpperCase();while(r.length<4)r='0'+r;return r}
 function tm(t){$('tmsg').textContent=t}
-function trd(){var h='';for(var k in TY)if(M.own[k]&&k!=='simonity'&&k!=='bossity'&&k!=='chronosity'&&k!=='futurity')h+='<option value="'+k+'">'+TY[k].n+' ('+RA[k]+')</option>';$('tsel').innerHTML=h;$('tcode').textContent='';tm('')}
-$('tgo').onclick=function(){var k=$('tsel').value;if(!k||!M.own[k])return tm('Выбери Верити.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='bossity')return tm('Bossity — награда за мастерство боссов.');if(k==='chronosity')return tm('Chronosity открывается за участие в Хранилище времени.');if(k==='futurity')return tm('Futurity открывается после 40 миссий «Ивента прошлого».');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(Object.keys(M.own).length<2)return tm('Нельзя отдать единственного Верити.');
+function trd(){var h='';for(var k in TY)if(M.own[k]&&k!=='simonity'&&k!=='bossity'&&k!=='chronosity'&&k!=='futurity'&&k!=='1x1xty')h+='<option value="'+k+'">'+TY[k].n+' ('+RA[k]+')</option>';$('tsel').innerHTML=h;$('tcode').textContent='';tm('')}
+$('tgo').onclick=function(){var k=$('tsel').value;if(!k||!M.own[k])return tm('Выбери Верити.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='bossity')return tm('Bossity — награда за мастерство боссов.');if(k==='chronosity')return tm('Chronosity открывается за участие в Хранилище времени.');if(k==='1x1xty')return tm('1x1xty открывается за победу в финале «Машины прошлого».');if(k==='futurity')return tm('Futurity открывается после 40 миссий «Ивента прошлого».');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(Object.keys(M.own).length<2)return tm('Нельзя отдать единственного Верити.');
  var id=Math.random().toString(36).slice(2,8).toUpperCase().padEnd(6,'X'),c='VTD-'+k.toUpperCase()+'-'+id+'-'+chkc(k,id);delete M.own[k];M.used[id]=1;save();$('tcode').textContent=c;
  try{cpy(c);tm('Код скопирован. '+TY[k].n+' убран из твоей коллекции.')}catch(e){tm('Скопируй код. '+TY[k].n+' убран из твоей коллекции.')}
- var h='';for(var q in TY)if(M.own[q]&&q!=='simonity'&&q!=='bossity'&&q!=='chronosity'&&q!=='futurity')h+='<option value="'+q+'">'+TY[q].n+' ('+RA[q]+')</option>';$('tsel').innerHTML=h};
+ var h='';for(var q in TY)if(M.own[q]&&q!=='simonity'&&q!=='bossity'&&q!=='chronosity'&&q!=='futurity'&&q!=='1x1xty')h+='<option value="'+q+'">'+TY[q].n+' ('+RA[q]+')</option>';$('tsel').innerHTML=h};
 $('tacc').onclick=function(){var m=$('tin').value.trim().toUpperCase().match(/^VTD-([A-Z]+)-([A-Z0-9]{5,6})-([A-Z0-9]{4})$/);if(!m)return tm('Неверный код.');var k=m[1].toLowerCase();if(!TY.hasOwnProperty(k)||chkc(k,m[2])!==m[3])return tm('Неверный код.');if(TH_UNITS[k])return tm('Этого праздничного Верити нельзя передать.');if(k==='bossity')return tm('Bossity — награда за мастерство боссов.');if(k==='chronosity')return tm('Chronosity открывается за участие в Хранилище времени.');if(k==='futurity')return tm('Futurity открывается после 40 миссий «Ивента прошлого».');if(k==='simonity')return tm('Simonity можно получить за квест «Сигнал в метели».');if(M.used[m[2]])return tm('Этот код уже использован на этом устройстве.');
  M.used[m[2]]=1;if(M.own[k]){M.bank+=120;tm('Такой Верити уже есть: +120 монет.')}else{M.own[k]=1;tm('Получен: '+TY[k].n+'!')}save();$('tin').value='';trd()};
 $('trb').onclick=function(){scr('trade')};
@@ -1579,12 +1586,14 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over&&!G.past?.paused)for(var i=0;i<G.spd;i++)upd(dt,dt/G.spd);draw()}requestAnimationFrame(loop)}
-var VER='1.80.2',VOL=.8,MQ=[],CI=0;
+var VER='1.81',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
-{v:'1.80.2',t:'Три лимитки за тикеты',a:['В «Магазине → Лимитки» появились Prismity за 12, Polarity за 16 и Metronity за 20 тикетов.','Тикеты можно заработать за участие в Хранилище времени и за прохождение 10, 20 и 40 миссий Ивента прошлого.']},
-{v:'1.80.1',t:'Ивент после абьюза',a:['«Ивент прошлого» откроется после закрытия Хранилища времени в 20:20 МСК. После этого режим останется в главном меню.']},
+{v:'1.81',t:'Разлом над лугом',a:['«Машина прошлого» длится 15 минут. После десяти минут обороны начинается пятиминутный бой с 1×1×1×1 за юнита 1x1xty.','В Хранилище обновились катсцены, появилось плавное управление и кнопка дубинки.','«Ивент прошлого» откроется после абьюза в 20:35 МСК.']},
+{v:'1.80.3',t:'Тикеты Арены хранилища',a:['Prismity, Polarity и Metronity продаются за тикеты из 3D-арены Хранилища времени. Зарабатывай их на артефактах, в Mega Vault и бою с Discolord.']},
+{v:'1.80.2',t:'Три новые лимитки',a:['В «Магазине → Лимитки» появились Prismity, Polarity и Metronity.']},
+{v:'1.80.1',t:'Ивент после абьюза',a:['«Ивент прошлого» открывается после завершения абьюза и остаётся в главном меню.']},
 {v:'1.80',t:'Ивент прошлого',a:['40 миссий по обновлениям Веритии. За финал — Фигурка времени и Futurity редкости Relic.','Хранилище времени открывается по расписанию в 20:00 МСК. Chronosity получают участники арены к её закрытию.']},
 {v:'1.79',t:'Хранилище времени',a:['Арена хранилища и «Машина прошлого» теперь идут одним абьюзом. После 20 минут на арене сейф закрывается, и открывается белый разлом.','Кнопка «Абьюз · Хранилище времени» возвращает на сохранённый этап.']},
 {v:'1.78',t:'Машина прошлого',a:['После Арены абьюза открывается глава о первых днях Веритии. Историю можно заново запустить из меню.','Защити портал от шести волн, останови время и верни собранные частицы. Награды за финал: фигурка, Chronosity и два эха мира.']},
@@ -3125,6 +3134,7 @@ function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/100
    e.vv=rewound?0:Math.max(0,gap/dtS);
    if(rewound||Math.abs(gap)>60)e.d=a[2];
    e.ty=ET[a[1]]?a[1]:'walker';
+   if(e.ty==='time_rift_giant'){e.d=a[2];e.vv=0}
    e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;e.hackVisual=Boolean(a[7]);
    e.orbitVisual=Boolean(a[8]);e.orbitRevision=revision;
    e.ticketPoleVisual=a[10]===1;
@@ -3366,35 +3376,46 @@ function exFix(){var d=new Date().toDateString();if(!M.exd||M.exd.d!=d)M.exd={d:
 function exDo(n){exFix();n=Math.min(n,EXR.lim-M.exd.n);if(n<=0)return shMsg('На сегодня лимит обмена исчерпан. Приходи завтра!');if(M.bank<EXR.c*n)return shMsg('Не хватает монет: нужно '+(EXR.c*n)+' 🪙.');M.bank-=EXR.c*n;M.gem=(M.gem||0)+EXR.g*n;M.exd.n+=n;save();tone(880,.12,'triangle',.1,1320);shMsg('Обмен: −'+(EXR.c*n)+' 🪙 → +'+(EXR.g*n)+' 💎');shRender()}
 /* --- экран магазина --- */
 const TICKET_LIMITED_OFFERS=Object.freeze({...window.TicketLimitedUnits,...VAULT_TD_UNITS});
-const VAULT_ATTENDANCE_TICKETS=16;
-const TIMELINE_TICKET_AWARDS=Object.freeze({10:12,20:16,40:20});
 var SH={tab:Date.now()<VAULT_SALE_END?'vault':'ex',msg:''};
-function shVaultOffers(wallet){
+function shVaultOffers(vaultWallet,partyWallet){
   const live=Date.now()<VAULT_SALE_END;
   const closeDate=new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',timeZone:'Europe/Moscow'}).format(VAULT_SALE_END-1);
-  const cards=Object.entries(TICKET_LIMITED_OFFERS).map(([key,unit])=>{
-    const owned=M.own[key], bought=wallet.receipts[key]>0;
-    const missing=unit.unlockTickets-wallet.balance;
-    const action=owned?'В коллекции':bought?'Получено':live?'Купить за '+unit.unlockTickets+' 🎟':'Продажа завершилась';
-    const disabled=owned||bought||!live||missing>0;
-    const hint=live&&!owned&&!bought&&missing>0?'<p class="vault-unit-stats">Не хватает '+missing+' 🎟</p>':'';
-    return '<article class="vault-unit-card" style="--unit-glow:'+unit.col+'55">'+
-      '<div class="vault-unit-art"><figure>'+pic(key,1,104)+'<figcaption>Фаза 1</figcaption></figure>'+
-      '<figure>'+pic(key,2,104)+'<figcaption>Фаза 2</figcaption></figure></div>'+
-      '<div class="vault-unit-heading"><h3>'+unit.n+'</h3><small style="color:'+RC[unit.rar]+'">'+unit.rar+'</small></div>'+
-      '<div><small class="vault-unit-stats">Размещение в бою · '+unit.cost+' 🪙</small>'+
-      '<p><strong>'+unit.ability+'</strong></p><p>'+unit.d+'</p></div>'+
-      '<div><button type="button" class="go" data-vault-unit="'+key+'"'+(disabled?' disabled':'')+'>'+action+'</button>'+hint+'</div></article>';
-  }).join('');
+  function cards(units,wallet){
+    return Object.entries(units).map(([key,unit])=>{
+      const owned=M.own[key], bought=wallet.receipts[key]>0||partyWallet.receipts[key]>0;
+      const missing=wallet.balance===null?null:unit.unlockTickets-wallet.balance;
+      const action=owned?'В коллекции':bought?'Получено':live?'Купить за '+unit.unlockTickets.toLocaleString('ru-RU')+' 🎟':'Продажа завершилась';
+      const disabled=owned||bought||!live||missing===null||missing>0;
+      const hint=live&&!owned&&!bought&&missing>0?'<p class="vault-unit-stats">Не хватает '+missing.toLocaleString('ru-RU')+' 🎟</p>':'';
+      return '<article class="vault-unit-card" style="--unit-glow:'+unit.col+'55">'+
+        '<div class="vault-unit-art"><figure>'+pic(key,1,104)+'<figcaption>Фаза 1</figcaption></figure>'+
+        '<figure>'+pic(key,2,104)+'<figcaption>Фаза 2</figcaption></figure></div>'+
+        '<div class="vault-unit-heading"><h3>'+unit.n+'</h3><small style="color:'+RC[unit.rar]+'">'+unit.rar+'</small></div>'+
+        '<div><small class="vault-unit-stats">Размещение в бою · '+unit.cost+' 🪙</small>'+
+        '<p><strong>'+unit.ability+'</strong></p><p>'+unit.d+'</p></div>'+
+        '<div><button type="button" class="go" data-vault-unit="'+key+'"'+(disabled?' disabled':'')+'>'+action+'</button>'+hint+'</div></article>';
+    }).join('');
+  }
   return '<p class="mkhint">'+(live?'В продаже по '+closeDate+' включительно (МСК)':'Продажа завершилась')+
-    '</p><details class="ap-market-rules"'+(wallet.earned===0?' open':'')+'><summary>Как заработать тикеты</summary><ul>'+
-    apTimeTicketAwards()+'</ul></details><details class="ap-market-rules"><summary>Тикеты за трофеи Вечеринки Админити</summary><ul>'+
-    apTicketAwards()+'</ul></details><div class="vault-unit-offers">'+cards+'</div>';
+    '</p><h3>За тикеты Арены хранилища</h3><p class="mkhint">Собирай артефакты в 3D-арене внутри основной игры, проходи Mega Vault или сражайся с Discolord.</p>'+
+    (vaultWallet.balance===null?'<p class="mkhint" role="status">Не удалось прочитать баланс Арены хранилища.</p>':'')+
+    '<div class="vault-unit-offers">'+cards(window.TicketLimitedUnits,vaultWallet)+'</div>'+
+    '<h3>За тикеты Вечеринки Админити</h3><details class="ap-market-rules"><summary>Тикеты за трофеи Вечеринки Админити</summary><ul>'+
+    apTicketAwards()+'</ul></details><div class="vault-unit-offers">'+cards(VAULT_TD_UNITS,partyWallet)+'</div>';
 }
 
-function shBuyVaultUnit(key){
+async function shBuyVaultUnit(key){
   const unit=TICKET_LIMITED_OFFERS[key], wallet=apMarketWallet();
   if(!unit?.unlockTickets||M.own[key]||wallet.receipts[key]>0)return;
+  if(Object.hasOwn(window.TicketLimitedUnits,key)){
+    const result=await VaultTicketShop.purchase(key);
+    if(cur==='shp'&&SH.tab==='vault'){
+      shRender();
+      if(result==='bought')shMsg(unit.n+' в коллекции! Выбери его в наборе перед боем.');
+      if(result==='error')shMsg('Не удалось сохранить покупку. Попробуй ещё раз.');
+    }
+    return;
+  }
   if(Date.now()>=VAULT_SALE_END||wallet.balance<unit.unlockTickets){shRender();return}
   if(AP.marketBusy){shMsg('Подожди, пока завершится покупка на рынке вечеринки.');return}
   if(!apBuyWithTickets(key,unit.unlockTickets)){
@@ -3409,10 +3430,12 @@ function shMsg(s){SH.msg=s;var e=$('shmsg');if(e){e.textContent=s;e.className='s
 function shRender(){
  cosFix();exFix();
  const wallet=SH.tab==='vault'?apMarketWallet():null;
- const balance=wallet?'<span>Тикеты <b>'+wallet.balance+'</b> 🎟</span>':
+ const vault=wallet?VaultTicketShop.wallet(M):null;
+ const balance=wallet?'<span id="vault-shop-tickets">Хранилище <b>'+(vault.balance?.toLocaleString('ru-RU')??'—')+'</b> 🎟</span>'+
+   '<span id="party-shop-tickets">Вечеринка <b>'+wallet.balance+'</b> 🎟</span>':
    '<span>🪙 <b>'+M.bank+'</b></span><span>💎 <b>'+(M.gem||0)+'</b></span>';
  var h='<div class="shtop">'+balance+'</div><div class="shtabs"><button type="button" data-sht="vault"'+(SH.tab==='vault'?' class="on"':'')+'>Лимитки</button><button data-sht="ex"'+(SH.tab=='ex'?' class="on"':'')+'>💱 Обменник</button><button data-sht="cos"'+(SH.tab=='cos'?' class="on"':'')+'>✨ Косметика</button></div>';
- if(wallet){h+=shVaultOffers(wallet)}
+ if(wallet){h+=shVaultOffers(vault,wallet)}
  else if(SH.tab=='ex'){var left=EXR.lim-M.exd.n;h+='<div class="shex"><div class="shrate"><span class="shc">'+EXR.c+' 🪙</span><span class="sharr">➜</span><span class="shg">'+EXR.g+' 💎</span></div><p>Обменивай лишние монеты на гемы. Гемы нужны для Хакерити на рынке, элитного пропуска, ящиков и покупок у игроков.</p><div class="shlim"><i style="width:'+(M.exd.n/EXR.lim*100)+'%"></i><span>Сегодня: '+(M.exd.n*EXR.g)+' / '+(EXR.lim*EXR.g)+' 💎</span></div>'+
   '<div class="shbtns"><button class="mkbtn go2" data-ex="1"'+(left<1||M.bank<EXR.c?' disabled':'')+'>Обменять '+EXR.c+' 🪙</button><button class="mkbtn go2" data-ex="'+left+'"'+(left<1||M.bank<EXR.c*left?' disabled':'')+'>Обменять всё ('+(EXR.c*Math.max(left,1))+' 🪙)</button></div><p class="mkhint">Лимит — '+(EXR.lim*EXR.g)+' 💎 в день, чтобы экономика не ломалась. Обновляется в полночь.</p></div>'}
  else{['nc','fr','tr','tw'].forEach(function(t){h+='<div class="shsec"><h3>'+COSN[t]+'</h3><p class="mkhint">'+COSH[t]+'</p><div class="shgrid">';COS[t].forEach(function(o){var own=M.cos.own[t+o[0]],on=M.cos[t]==o[0];
@@ -7479,10 +7502,6 @@ function apMarketWallet(){
   var receipts=state?.id===AP_EVENT?state.market||{}:{};
   // Trophy ownership supplies each reward once, including trophies earned before the market opened.
   var earned=AP_TOKEN_AWARDS.reduce(function(sum,award){return sum+(M.tro?.[award[0]]?award[1]:0)},0);
-  if(M.past?.vaultTicketReward===true)earned+=VAULT_ATTENDANCE_TICKETS;
-  for(const [mission,tickets] of Object.entries(TIMELINE_TICKET_AWARDS)){
-    if(M.timeline?.next>=mission)earned+=tickets;
-  }
   var spent=AP_TICKET_OFFER_IDS.reduce(function(sum,id){
     var paid=receipts[id];
     return sum+(Number.isSafeInteger(paid)&&paid>0?paid:0);
@@ -7510,11 +7529,6 @@ function apTicketAwards(){
   return AP_TOKEN_AWARDS.map(function(award){
     return '<li>'+esc(TROM[award[0]].n)+' · +'+award[1]+' 🎟</li>';
   }).join('');
-}
-function apTimeTicketAwards(){
-  return '<li>Участие в Хранилище времени · +'+VAULT_ATTENDANCE_TICKETS+' 🎟</li>'+
-    Object.entries(TIMELINE_TICKET_AWARDS).map(([mission,tickets])=>
-      '<li>Пройти '+mission+' из 40 миссий «Ивента прошлого» · +'+tickets+' 🎟</li>').join('');
 }
 function apMarketAccessible(wallet){
   return cur==='arn'?AR.party&&apLive()&&!AP.show:apLive()||wallet.earned>0;
@@ -7549,7 +7563,7 @@ function apMarket(message,keepScroll){
   if(!apMarketAccessible(wallet))return;
   var existing=apMarketIsOpen();
   var scroll=existing?$('mbox').scrollTop:0, detailsOpen=existing&&$('ap-market-rules').open;
-  var rules=apTimeTicketAwards()+apTicketAwards();
+  var rules=apTicketAwards();
   var offers=AP_MARKET_OFFERS.filter(function(offer){return !offer.control||AP.commands[offer.control]}).map(function(offer){
     var bought=wallet.receipts[offer.id]>0, owned=apMarketOwned(offer);
     var owners=AP.stock[offer.id], left=owners?.filter(function(owner){return owner===null}).length;
@@ -8493,12 +8507,14 @@ function lrSceneCage(c,t){
 <script src="round-upgrades.js?v=1.77"></script>
 <script src="tester.js?v=1.78"></script>
 <script src="past-machine-art.js?v=1.79"></script>
-<script src="past-machine-battle.js?v=1.80"></script>
+<script src="rift-finale.js?v=1.81"></script>
+<script src="past-machine-battle.js?v=1.81"></script>
 <script src="timeline-art.js?v=1.80"></script>
 <script src="timeline-missions.js?v=1.80"></script>
-<script src="past-machine.js?v=1.80.1"></script>
+<script src="past-machine.js?v=1.81"></script>
 <script src="futurity.js?v=1.80"></script>
-<script src="vault-abuse.js?v=1.80.2"></script>
+<script src="rift-reward.js?v=1.81"></script>
+<script src="vault-abuse.js?v=1.81"></script>
 <script src="vault-admin.js?v=1.80"></script>
-<script src="timeline.js?v=1.80.2"></script>
+<script src="timeline.js?v=1.81"></script>
 </body></html>
