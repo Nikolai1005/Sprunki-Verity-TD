@@ -171,6 +171,7 @@
     if(state.elapsed+1e-6>=defenseTime){window.PastMachine.beginRift(battle);return}
     if(!battle.run||battle.q||battle.en.length||battle.adminSpawns?.length)return;
     battle.run=false; battle.next=Math.max(.1,(attackTimes[battle.wave]??defenseTime)-state.elapsed); battle.coins+=89;
+    AdminityShop.pay(battle);
     say('Волна сдержана. +89 монет на оборону.');
   }
 

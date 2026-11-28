@@ -162,7 +162,7 @@
       frameState(frame).sent.clear();
       poll(true);
     }else if(data.type==='playing'){
-      attendance(frame);
+      if(!window.VaultPvp?.isPublishing(frame))attendance(frame);
       poll();
     }else if(data.type==='admin-applied'){
       const state=frameState(frame);

@@ -8,8 +8,8 @@
   ];
   const level=unit=>Math.max(1,Math.min(3,Math.floor(Number(unit.upgradeLevel)||1)));
   const bonus=unit=>stats[level(unit)-1];
-  const supported=unit=>unit&&TY[unit.k]&&TY[unit.k].dmg>0&&!TY[unit.k].testAttack;
-  const cost=unit=>level(unit)<3?Math.max(25,Math.ceil(TY[unit.k].cost*stats[level(unit)].costPercent/500)*5):0;
+  const supported=unit=>unit&&TY[unit.k]&&(TY[unit.k].dmg>0||AdminityShop.special(unit))&&!TY[unit.k].testAttack;
+  const cost=unit=>level(unit)<3?(AdminityShop.special(unit)?.cost??Math.max(25,Math.ceil(TY[unit.k].cost*stats[level(unit)].costPercent/500)*5)):0;
   const damageMultiplier=xD, cooldownMultiplier=xC, rangeMultiplier=xR;
   xD=unit=>damageMultiplier(unit)*bonus(unit).damage;
   xC=unit=>cooldownMultiplier(unit)*bonus(unit).cooldown;
@@ -18,6 +18,8 @@
 
   function priceFor(unit){
     if(!supported(unit))return 'У этого Верити прокачка пока недоступна';
+    const special=AdminityShop.special(unit);
+    if(special)return special.text;
     if(level(unit)===3)return 'Уровень 3/3 · Максимум';
     const next=stats[level(unit)];
     return 'До ур. '+(level(unit)+1)+': +'+Math.round((next.damage-1)*100)+'% обычного урона, −'+Math.round((1-next.cooldown)*100)+'% интервала, +'+Math.round((next.range-1)*100)+'% дальности';

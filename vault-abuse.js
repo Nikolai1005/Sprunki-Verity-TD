@@ -70,7 +70,7 @@
     retry.hidden=fallback.hidden=true;
     status.hidden=false;
     const url=new URL('vault-stage.html',document.baseURI);
-    url.searchParams.set('v','20');
+    url.searchParams.set('v','21');
     url.searchParams.set('abuse-run',run);
     url.searchParams.set('abuse-end',String(windowHours.end));
     if(!SND||!M.set?.mus||VOL<=0)url.searchParams.set('music','off');
@@ -138,7 +138,7 @@
     if(dismissed&&state?.participated&&canFinish(state)){continueStory();return}
     const note=adminWindow()?'Арена хранилища открыта до 20:20 МСК.':
       Date.now()<windowHours.start?'28 ноября в 20:00 МСК начнётся абьюз «Хранилище времени».':
-      !pastEventOpens()?'«Ивент прошлого» откроется в 20:35 МСК.':'';
+      !pastEventOpens()?'«Ивент прошлого» и лавка Adminity откроются в 20:35 МСК.':'';
     const banner=$('vault-schedule');
     banner.textContent=note;
     banner.hidden=!note;

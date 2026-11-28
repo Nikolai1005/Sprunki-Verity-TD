@@ -3,7 +3,8 @@
 
   const arenaKey = 'vault_party_v10';
   const arenaKeys = [arenaKey, 'vault_party_v9', 'vault_party_v8', 'vault_party_v7'];
-  const allowed = window.TicketLimitedUnits;
+  const allowed = window.AdminityShop.offers;
+  const all = {...window.TicketLimitedUnits,...allowed};
   const idValid = id => typeof id === 'string' && /^[a-z0-9-]{12,64}$/i.test(id);
 
   function readArena() {
@@ -30,7 +31,7 @@
 
   function grant(profile, key, price) {
     if (profile.vaultShop.receipts?.[key] > 0) return false;
-    profile.own[key] ||= 1;
+    if (!AdminityShop.owned(profile,key)) AdminityShop.setOwned(profile,key,1);
     profile.vaultShop = {...profile.vaultShop, receipts:{...profile.vaultShop.receipts, [key]:price}};
     return true;
   }
@@ -39,11 +40,11 @@
     const prior = stored?.vaultShop;
     if (!idValid(prior?.id) || (profile.vaultShop?.id && profile.vaultShop.id !== prior.id)) return;
     profile.vaultShop ??= {id:prior.id, receipts:{}};
-    for (const key of Object.keys(allowed)) {
+    for (const key of Object.keys(all)) {
       const receipt = prior.receipts?.[key];
       if (!Number.isSafeInteger(receipt) || receipt <= 0 || profile.vaultShop.receipts?.[key] > 0) continue;
       profile.vaultShop = {...profile.vaultShop, receipts:{...profile.vaultShop.receipts, [key]:receipt}};
-      if (stored.own?.[key]) profile.own[key] ||= stored.own[key];
+      if (AdminityShop.owned(stored,key)&&!AdminityShop.owned(profile,key)) AdminityShop.setOwned(profile,key,1);
     }
   }
 
@@ -57,7 +58,7 @@
       return false;
     }
     let changed = false;
-    for (const key of Object.keys(allowed)) {
+    for (const key of Object.keys(all)) {
       const receipt = orders?.[key];
       if (Number.isSafeInteger(receipt) && receipt > 0 && grant(profile, key, receipt)) changed = true;
     }
@@ -65,12 +66,12 @@
   }
 
   function buy(key) {
-    if (!Object.hasOwn(allowed,key) || Date.now() >= VAULT_SALE_END) return 'closed';
+    if (!Object.hasOwn(allowed,key) || !VaultAbuse.pastEventOpens() || Date.now() >= VAULT_SALE_END) return 'closed';
     if (accountReloading || window.VerityTester?.isSimulating()) return 'error';
     const stored = JSON.parse(localStorage.getItem('vtd') || 'null');
     if (stored && stored.accountRevision !== M.accountRevision) return 'error';
     mergePurchases(M, stored);
-    if (M.own[key] || M.vaultShop?.receipts?.[key] > 0 || apMarketWallet().receipts[key] > 0) return 'owned';
+    if (AdminityShop.owned(M,key) || M.vaultShop?.receipts?.[key] > 0) return 'owned';
 
     const {data, tickets, original} = readArena();
     const price = allowed[key].unlockTickets;
@@ -97,7 +98,7 @@
     if (save()) return 'bought';
 
     M.vaultShop = shop;
-    delete M.own[key];
+    AdminityShop.setOwned(M,key,undefined);
     if (paid !== null && localStorage.getItem(arenaKey) === paid) {
       if (original === null) localStorage.removeItem(arenaKey);
       else localStorage.setItem(arenaKey, original);
@@ -120,6 +121,16 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     if (recover(M)) save();
+    const entry=$('adminity-shop-entry');
+    entry.onclick=()=>{SH.tab='vault';shOpen()};
+    const update=()=>{
+      const open=VaultAbuse.pastEventOpens();
+      if(entry.hidden===!open)return;
+      entry.hidden=!open;
+      refreshShop();
+    };
+    update();
+    setInterval(update,1000);
   });
   addEventListener('storage', event => {
     if (event.key === arenaKey) {
