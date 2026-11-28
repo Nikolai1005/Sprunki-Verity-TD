@@ -1,0 +1,32 @@
+#timeline{position:fixed;inset:0;z-index:205;overflow:auto;overscroll-behavior:contain;color:#eef5ff;
+  background:radial-gradient(ellipse at 82% 0%,#30315b,#141b35 57%,#111629);font-family:system-ui,sans-serif}
+#timeline[hidden],#timeline [hidden]{display:none!important}
+.timeline-layout{width:min(940px,100%);margin:auto;padding:max(12px,env(safe-area-inset-top)) clamp(10px,3vw,25px) 20px}
+.timeline-nav,.timeline-heading,.timeline-row,.timeline-wallet{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.timeline-nav{justify-content:space-between}
+.timeline-wallet{color:#ffdca5;font-variant-numeric:tabular-nums}
+.timeline-wallet span,.timeline-chip{border:1px solid #718ac1;background:#253054;color:#f5e9da;padding:5px 9px;border-radius:9px;font-size:13px}
+.timeline-heading{justify-content:space-between;margin:12px 0 9px}
+.timeline-heading h2,#timeline-result h3{margin:0;color:#f3f8ff;font:800 clamp(21px,4vw,35px)/1.08 system-ui}
+.timeline-tags{display:flex;gap:6px;flex-wrap:wrap}
+#timeline-canvas{border:1px solid #698cba;border-radius:12px;background:#141c37;box-shadow:0 10px 30px #070b1c66;
+  width:100%;height:auto;aspect-ratio:16/9;display:block;touch-action:manipulation}
+.timeline-panel{border:1px solid #6681ac;border-radius:13px;background:#202e50;margin-top:10px;padding:clamp(10px,2.4vw,16px)}
+.timeline-panel p{margin:5px 0;line-height:1.42}
+#timeline button{min-height:41px;background:#2a3f65;color:#edf7ff;padding:7px 12px;border:1px solid #80a3d1;border-radius:9px;
+  font-weight:790;font-family:inherit}
+#timeline .timeline-primary,#timeline button[aria-pressed="true"]{background:#bcecff;color:#152744;border-color:#f1fcff}
+#timeline button:disabled{opacity:.56}
+#timeline button:focus-visible{outline:3px solid #ffdca4;outline-offset:2px}
+#timeline-line{color:#f0f8ff;font-size:clamp(16px,2.6vw,21px);margin:5px 0 12px}
+#timeline-speaker{color:#a7eaff;font-size:14px;font-weight:800}
+#timeline-next{margin-left:auto}
+#timeline-detail,#timeline-lore{font-size:13px;color:#cbdcfa}
+#timeline-status:empty,#timeline-detail:empty{display:none}
+#timeline-towers,#timeline-actions{margin-top:7px}
+#timeline-towers:empty,#timeline-actions:empty{display:none}
+#timeline-boss{margin-top:5px;font-size:14px;color:#ffe1f6}
+#timeline-boss progress{vertical-align:middle;width:min(42vw,220px);margin-left:8px;accent-color:#ec89ce}
+#timeline-rewards{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0}
+#timeline-rewards div{display:flex;align-items:center;gap:6px;background:#2b3b60;border-radius:8px;padding:5px 10px}
+@media(max-width:520px){#timeline button{font-size:13px}.timeline-heading{align-items:flex-start;flex-direction:column}#timeline-heading h2{font-size:22px}}

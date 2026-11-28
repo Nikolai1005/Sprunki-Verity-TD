@@ -9,7 +9,7 @@
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
   const soundtrack={
     story:{data:'past-machine-memory.mp3',volume:.43},
-    war:{data:'past-machine-score.mp3',volume:.47}
+    war:{data:'timeline-score.mp3',volume:.43}
   };
   const dialogues={
     meeting:[
@@ -38,26 +38,12 @@
       ['', '', 'beam', 4.6],
       ['Захватчики','Не-е-е-е-ет!','seal',3.0],
       ['Странник','Вы достойные хранители этого мира. Я могу остаться с вами и помогать вам.','goodbye'],
-      ['Странник','Пока вы сражались, захватчики успели выпустить луч. Я удержал его в двух копиях Веритии. Теперь вы сможете их навещать.','echoes'],
-      ['Странник','Возьмите фигурку и Chronosity. Он найдёт вас, когда настанет его время. Прощайте, хранители!','goodbye']
+      ['Странник','Я удержал луч. Теперь он может открыть проход к первым версиям Веритии. Встретимся по ту сторону портала.','echoes'],
+      ['Странник','Найдите Фигурку времени и Futurity, пройдя всю историю Веритии. До встречи, хранители!','goodbye']
     ]
   };
-  const echoes={
-    retroland:{title:'Первый луг',note:'Верития на заре своего появления.',
-      points:[
-        {x:852,y:725,text:'На этом лугу Первый Верити услышал первый шум из разлома.'},
-        {x:1264,y:514,text:'Здесь Админити ставил первые башни и проверял, куда приведёт дорога.'},
-        {x:613,y:1065,text:'В одной из копий время остановилось до появления первого большого босса.'}
-      ]},
-    retrodisco:{title:'Эхо старого абьюза',note:'Танцпол и пульт из первых вечеринок.',
-      points:[
-        {x:847,y:620,text:'Свет первого танцпола сохранился таким, каким его помнили хранители.'},
-        {x:1300,y:690,text:'С этого пульта Админити включал общие биты для игроков арены.'},
-        {x:719,y:1070,text:'Вторая копия сохранила арену за мгновение до того, как погасли колонки.'}
-      ]}
-  };
   let view=null, cut=null, joy=null, raf=0, formerStamp=0, flash=null, presenceTag=null, partyAtEnd=[];
-  let figureImage, loadoutBattle=false;
+  let loadoutBattle=false;
 
   function progress() {
     if(!M.past||typeof M.past!=='object')M.past={};
@@ -70,8 +56,7 @@
   }
 
   function refreshEntry() {
-    const state=progress();
-    $('past-entry-note').textContent=window.VaultAbuse?.eventNote(state)??'Арена хранилища · Машина прошлого';
+    window.VerityTimeline?.refreshEntry();
   }
 
   function sound(hz,duration,end) {
@@ -353,17 +338,14 @@
   }
 
   function finishStory() {
-    const oldState=M.past, oldUnit=M.own[battle.unitKey];
+    const oldState=M.past;
     const shards=pending()||view?.fragments||0;
     if(shards<1){archive();return}
-    M.past={...oldState,complete:true,figure:true,pending:0};
+    M.past={...oldState,complete:true,pending:0};
     delete M.past.abuseStage;
     delete M.past.vaultRun;
-    M.own[battle.unitKey]=1;
     if(!save()){
       M.past=oldState;
-      if(oldUnit===undefined)delete M.own[battle.unitKey];
-      else M.own[battle.unitKey]=oldUnit;
       prompt('Сохранение награды прервалось. Попробуй ещё раз.','Сохранить награду',finishStory);
       return;
     }
@@ -373,48 +355,18 @@
 
   function archive(justWon=false) {
     disconnect();
-    setView('archive','Машина прошлого','Архив');
+    setView('archive','Машина прошлого','Портал времени');
     const root=$('past-archive');
     root.innerHTML='<div class="past-archive-panel"><h2>'+(justWon?'Вы спасли Веритию':'История завершена')+'</h2>'+
-      '<p>Фигурка сохранила луч. Оба эха открыты для посещения.</p>'+
-      '<div class="past-rewards"><div><img src="'+figureImage+'" alt=""><b>Фигурка времени</b></div>'+
-      '<div>'+pic(battle.unitKey,1,45)+'<b>Chronosity · Relic</b></div></div>'+
-      '<div class="past-archive-actions"><button type="button" class="past-primary" data-echo="retroland">Первый луг</button>'+
-      '<button type="button" class="past-primary" data-echo="retrodisco">Старая Арена абьюза</button>'+
-      '<button type="button" id="past-replay">Пройти абьюз заново</button></div></div>';
+      '<p>Странник открыл портал к первой версии Веритии.</p>'+
+      (M.own[battle.unitKey]?'<div class="past-rewards"><div>'+pic(battle.unitKey,1,45)+'<b>Chronosity · Relic</b></div></div>':'')+
+      '<div class="past-archive-actions"><button type="button" class="past-primary" id="past-timeline">В Ивент прошлого</button></div></div>';
     root.hidden=false;
-    root.querySelectorAll('[data-echo]').forEach(button=>button.onclick=()=>openEcho(button.dataset.echo));
-    $('past-replay').onclick=()=>{
-      if(window.VaultAbuse){VaultAbuse.open(true);return}
-      partyAtEnd=[];aftermath();
-    };
-  }
-
-  function openEcho(kind) {
-    if(!progress().complete||!echoes[kind])return;
-    fieldPosition(1000,821);
-    setView(kind,echoes[kind].title,'Копия Веритии');
-    joystick.hidden=false;
-    $('past-exit').textContent='К эхо';
-    echoPrompt();
-  }
-
-  function echoPrompt() {
-    const echo=echoes[view?.kind];
-    if(!echo)return;
-    const near=echo.points.find(point=>Math.hypot(mover.x-point.x,mover.y-point.y)<95);
-    if(view.lastPoint===near&&view.promptSet)return;
-    view.lastPoint=near;view.promptSet=true;
-    prompt(near?echo.note:'Подойди к светящейся частице.',near?'Прочитать воспоминание · E':'',()=>{
-      if(view?.lastPoint!==near||!near)return;
-      sound(704,.23,880);
-      displayText('past-instruction',near.text);
-    },!near);
+    $('past-timeline').onclick=()=>window.VerityTimeline?.open();
   }
 
   function exitView() {
     if(cut?.chapter==='archon'){completeScene();return}
-    if(echoes[view?.kind]){archive();return}
     if(cur==='game'&&G?.past&&!G.over){
       mOpen('Выйти из обороны?','<p>Текущая оборона начнётся заново при следующем входе.</p>',[
         ['Выйти',()=>{mClose();menu();scr('menu')}],['Продолжить',mClose]
@@ -469,14 +421,6 @@
         thShape(c,p=>p.ellipse(1000,695,20+entrance*78,6+entrance*21,0,0,Math.PI*2),null,'#81c6f4',3);
         c.restore();
       }
-    }
-    const echo=echoes[kind];
-    if(echo){
-      for(const [i,point] of echo.points.entries()){
-        thGlow(c,point.x,point.y,42,'#85ddff8a');
-        art.crystal(c,point.x,point.y+Math.sin(time*2+i)*5,13,'#8ee6ff',.24);
-      }
-      if(kind==='retrodisco')apDJ(c,motion.matches?0:time);
     }
     const players=[...visiblePeers().filter(()=>Boolean(presenceTag)),{...mover,...playerData(),own:true}];
     players.sort((a,b)=>a.y-b.y).forEach(p=>drawPlayer(c,p.x,p.y,p,time,p.own));
@@ -582,7 +526,7 @@
   function render(c,w,h,time) {
     c.fillStyle=view.kind==='white'?'#eef8ff':'#1c2540';c.fillRect(0,0,w,h);
     const stage=cut?.lines[cut.index][2];
-    if(view.kind==='white'||echoes[view.kind]){fieldCamera(c,view.kind,w,h,time);return}
+    if(view.kind==='white'){fieldCamera(c,view.kind,w,h,time);return}
     const theme=stage==='white'?'white':view.kind==='aftermath'?'retrodisco':'ruins';
     const restore=poster(c,theme,w,h);
     if(view.kind==='aftermath'){
@@ -625,7 +569,7 @@
     formerStamp=now;
     if(!cut?.paused)view.age+=dt;
     if(view.kind==='aftermath'&&view.age>=4.5)whiteField();
-    if(view.kind==='white'||echoes[view.kind]){
+    if(view.kind==='white'){
       move(dt,now);
       if(view.kind==='white'&&view.age>=1.8&&!view.appeared){
         view.appeared=true;
@@ -633,7 +577,6 @@
         prompt('Админити появился на белом поле. Он запыхался и зовёт хранителей.','Выслушать Админити · E',meetAdmin);
       }
       if(view.kind==='white'&&view.age>=9.5)meetAdmin();
-      echoPrompt();
     }else if(presenceTag&&AR.me){arMovePeers(now,Date.now(),dt);arPut(0)}
     if(cut&&!cut.paused){
       cut.age+=dt;
@@ -777,7 +720,6 @@
     event.stopImmediatePropagation();menu();scr('menu');
   },true);
 
-  $('past-entry').onclick=()=>open();
   $('past-exit').onclick=exitView;
   $('past-battle-exit').onclick=exitView;
   $('past-freeze').onclick=handleFreeze;
@@ -810,9 +752,6 @@
   addEventListener('blur',()=>{keys.clear();stopJoystick()});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){keys.clear();stopJoystick()}});
 
-  const figureCanvas=thCanvas(144,144);
-  art.figure(figureCanvas.getContext('2d'),72,73,57);
-  figureImage=figureCanvas.toDataURL();
   art.cover($('past-cover').getContext('2d'));
-  refreshEntry();$('past-entry').hidden=false;
+  refreshEntry();
 })();
