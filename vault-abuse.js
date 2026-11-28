@@ -15,6 +15,10 @@
     return now>=windowHours.start&&now<windowHours.end?windowHours:null;
   }
 
+  function hasEnded(now=Date.now()){
+    return now>=windowHours.end;
+  }
+
   function checkpoint(){
     return M.past??(M.past={});
   }
@@ -32,7 +36,7 @@
   }
 
   function canFinish(state){
-    return relevant(state)&&state.abuseStage==='vault'&&state.vaultRun&&Date.now()>=windowHours.end;
+    return relevant(state)&&state.abuseStage==='vault'&&state.vaultRun&&hasEnded();
   }
 
   function unload(){
@@ -42,7 +46,7 @@
   }
 
   function updateFallback(){
-    fallback.hidden=retry.hidden||Date.now()<windowHours.end;
+    fallback.hidden=retry.hidden||!hasEnded();
   }
 
   function failed(message){
@@ -167,7 +171,7 @@
   $('vault-abuse-exit').onclick=()=>{
     dismissed=true;menu();scr('menu');
   };
-  window.VaultAbuse={adminWindow,needsStage,poll,getFrame:()=>frame};
+  window.VaultAbuse={adminWindow,hasEnded,needsStage,poll,getFrame:()=>frame};
   setInterval(poll,1000);
   setTimeout(poll,100);
 })();

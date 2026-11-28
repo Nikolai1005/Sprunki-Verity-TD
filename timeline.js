@@ -92,7 +92,7 @@
   }
 
   function start(){
-    if(cur==='timeline')return;
+    if(cur==='timeline'||!window.VaultAbuse.hasEnded())return;
     if(!$('modal').classList.contains('hide'))mClose();
     scr('timeline');
     window.scrollTo(0,0);
@@ -253,14 +253,24 @@
   }
 
   function refreshEntry(){
+    const unlocked=window.VaultAbuse.hasEnded();
+    $('past-entry').hidden=!unlocked;
+    const archiveButton=$('past-timeline');
+    if(archiveButton){
+      archiveButton.hidden=!unlocked;
+      text('past-timeline-message',unlocked?'Странник открыл портал к первой версии Веритии.':
+        'Странник откроет портал после окончания абьюза.');
+    }
+    if(!unlocked)return false;
     const state=checkpoint();
     text('past-entry-note',state.next===missions.catalog.length?'40 из 40 · Награды и архив':
       state.next>0?'Продолжить миссию '+(state.next+1)+' из 40':'40 миссий по истории Sprunki Verity TD');
+    return true;
   }
 
   function autoStart(){
-    if(autoShown||document.hidden||cur!=='menu'||!$('modal').classList.contains('hide'))return;
-    if(window.VaultAbuse?.needsStage())return;
+    if(!refreshEntry()||autoShown||document.hidden||cur!=='menu'||!$('modal').classList.contains('hide'))return;
+    if(window.VaultAbuse.needsStage())return;
     autoShown=true;
     if(!checkpoint().intro)start();
   }
@@ -316,6 +326,5 @@
   TRI[figureTrophy.id]=figure;
   window.VerityTimeline={open:start,refreshEntry,music:()=>track,canInterrupt:()=>true};
   refreshEntry();
-  $('past-entry').hidden=false;
   setInterval(autoStart,1000);
 })();

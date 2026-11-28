@@ -358,11 +358,12 @@
     setView('archive','Машина прошлого','Портал времени');
     const root=$('past-archive');
     root.innerHTML='<div class="past-archive-panel"><h2>'+(justWon?'Вы спасли Веритию':'История завершена')+'</h2>'+
-      '<p>Странник открыл портал к первой версии Веритии.</p>'+
+      '<p id="past-timeline-message"></p>'+
       (M.own[battle.unitKey]?'<div class="past-rewards"><div>'+pic(battle.unitKey,1,45)+'<b>Chronosity · Relic</b></div></div>':'')+
-      '<div class="past-archive-actions"><button type="button" class="past-primary" id="past-timeline">В Ивент прошлого</button></div></div>';
+      '<div class="past-archive-actions"><button type="button" class="past-primary" id="past-timeline" hidden>В Ивент прошлого</button></div></div>';
     root.hidden=false;
     $('past-timeline').onclick=()=>window.VerityTimeline?.open();
+    window.VerityTimeline?.refreshEntry();
   }
 
   function exitView() {

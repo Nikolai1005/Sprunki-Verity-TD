@@ -704,7 +704,7 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="past-machine.css?v=1.80">
 <link rel="stylesheet" href="timeline.css?v=1.80">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.80</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.80.1</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -1575,10 +1575,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over&&!G.past?.paused)for(var i=0;i<G.spd;i++)upd(dt,dt/G.spd);draw()}requestAnimationFrame(loop)}
-var VER='1.80',VOL=.8,MQ=[],CI=0;
+var VER='1.80.1',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.80.1',t:'Ивент после абьюза',a:['«Ивент прошлого» откроется после закрытия Хранилища времени в 20:20 МСК. После этого режим останется в главном меню.']},
 {v:'1.80',t:'Ивент прошлого',a:['40 миссий по обновлениям Веритии. За финал — Фигурка времени и Futurity редкости Relic.','Хранилище времени открывается по расписанию в 20:00 МСК. Chronosity получают участники арены к её закрытию.']},
 {v:'1.79',t:'Хранилище времени',a:['Арена хранилища и «Машина прошлого» теперь идут одним абьюзом. После 20 минут на арене сейф закрывается, и открывается белый разлом.','Кнопка «Абьюз · Хранилище времени» возвращает на сохранённый этап.']},
 {v:'1.78',t:'Машина прошлого',a:['После Арены абьюза открывается глава о первых днях Веритии. Историю можно заново запустить из меню.','Защити портал от шести волн, останови время и верни собранные частицы. Награды за финал: фигурка, Chronosity и два эха мира.']},
@@ -8469,9 +8470,9 @@ function lrSceneCage(c,t){
 <script src="past-machine-battle.js?v=1.80"></script>
 <script src="timeline-art.js?v=1.80"></script>
 <script src="timeline-missions.js?v=1.80"></script>
-<script src="past-machine.js?v=1.80"></script>
+<script src="past-machine.js?v=1.80.1"></script>
 <script src="futurity.js?v=1.80"></script>
-<script src="vault-abuse.js?v=1.80"></script>
+<script src="vault-abuse.js?v=1.80.1"></script>
 <script src="vault-admin.js?v=1.80"></script>
-<script src="timeline.js?v=1.80"></script>
+<script src="timeline.js?v=1.80.1"></script>
 </body></html>
