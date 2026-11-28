@@ -83,7 +83,10 @@
     if(!canFinish(state))return;
     const completed={...state,abuseStage:'white',abuseFinished:windowHours.id};
     const previousUnit=M.own.chronosity;
-    if(state.participated&&!previousUnit)M.own.chronosity=1;
+    if(state.participated){
+      if(!previousUnit)M.own.chronosity=1;
+      completed.vaultTicketReward=true;
+    }
     delete completed.vaultRun;
     delete completed.participated;
     M.past=completed;
@@ -96,6 +99,10 @@
         failed('Не удалось сохранить завершение арены. Попробуй ещё раз.');
       }
       return;
+    }
+    if(state.participated){
+      apMarketBadges();
+      lm('За участие в Хранилище времени получено '+VAULT_ATTENDANCE_TICKETS+' 🎟.');
     }
     if(dismissed)return;
     storyOpened=true;

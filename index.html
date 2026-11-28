@@ -704,7 +704,7 @@ body.ap-arena #modal {z-index:500}
 <link rel="stylesheet" href="past-machine.css?v=1.80">
 <link rel="stylesheet" href="timeline.css?v=1.80">
 </head><body><div class="w">
-<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.80.1</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
+<header><h1>Sprunki <em>Verity</em> TD <span id="verb" class="vb" role="button" tabindex="0" title="Что нового">v1.80.2</span><button id="onc" class="hide" title="Сейчас в игре"><i class="dot"></i><b id="oncn">0</b><span>в игре</span></button></h1><div class="row" style="margin:0"><button id="th-header" type="button" title="День благодарения" aria-label="День благодарения">🍂</button><button id="hwb" class="hwbtn" title="Хэллоуин" aria-label="Хэллоуин">🎃</button><button id="hkbtn" class="hide" title="Хакер-ивент" aria-label="Хакер-ивент">💻</button><button id="setb" aria-label="Настройки" title="Настройки">⚙</button><button id="lb">Лобби</button><button id="tk">Задания</button><button id="pmb">Промокоды</button><button id="trb">Обмен</button><button id="mkb">Рынок 💎</button><button id="frb">Друзья 👥<span id="frbd" class="bdg"></span></button><button id="mlb">Почта 📬<span id="mlbd" class="bdg"></span></button><button id="ptb">Питомцы 🐾</button><button id="lbb">Топ 🏆</button><button id="trofb">Трофеи 🏅</button><button id="hlsb" class="hide">Сток 🛒</button><button id="shb">Магазин 🛍</button><button id="rdb">Налёт ⚔️</button><button id="flb">Лаборатория ⚗️</button><button id="lrb">Летопись 📜</button><button id="busb" class="hide">Busity 🚌</button><button id="arb" class="hide">Арена 🎪</button></div></header>
 <section id="menu" class="p">
   <div class="account-tools">
     <button type="button" id="account-btn">👤 Аккаунт</button>
@@ -907,6 +907,8 @@ body.ap-arena #modal {z-index:500}
   <div id="past-archive" hidden></div>
   <div id="past-flash" aria-hidden="true" hidden></div>
 </section>
+<script src="ticket-limited-art.js?v=1.80.2"></script>
+<script src="ticket-limited.js?v=1.80.2"></script>
 <script>
 var $=function(i){return document.getElementById(i)},cv=$('cv'),x=cv.getContext('2d'),C=40,G=null,cur='menu',prev='menu';
 var PT=[[-1,2],[4,2],[4,6],[9,6],[9,1],[13,1],[13,7],[16,7]].map(function(p){return[(p[0]+.5)*C,(p[1]+.5)*C]});
@@ -1111,6 +1113,7 @@ function endGame(w,t){if(w===2&&simonityQuestWin())t+=' Квест «Сигна�
 function upd(dt){
  if(G.past?.paused)return;
  if(G.key=='harvest'&&!thOn()){thExpire();return}
+ TicketLimitedBattle.step(G,dt);
  if(G.p2){G.fear-=14*dt;if(G.fear<=0){G.fear=0;G.p2=false;G.cool=5;say('Страх кончился, юниты спят 5 секунд.')}}else{G.fear=Math.min(100,G.fear+5*dt*(hwPh()=='dusk'?1.5:1))}
  if(G.cool>0)G.cool-=dt;
  const frozen=G.futurity?.frozen>0;
@@ -1135,7 +1138,7 @@ function upd(dt){
  window.BossityBattle?.tick(dt);
  G.units.forEach(function(u){var t=TY[u.k],P2=G.p2||u.inf>0;if(u.inf>0)u.inf-=dt;if(u.dr>0)u.dr-=dt;if(u.wl>0)u.wl-=dt;if(u.deb>0)u.deb-=dt;if(u.po&&u.po.dead){u.po=null;u.cd=4;say('Demonity вернулся в свою форму.')}if(u.po||u.pastLock>0)return;if(u.curse>0){u.curse-=dt;return}if(u.k=='lord'&&P2){u.it=(u.it||0)+dt;if(u.it>6){u.it=0;var os=G.units.filter(function(o){return o!==u&&Math.hypot(o.x-u.x,o.y-u.y)<160});if(os.length){var o=os[Math.floor(Math.random()*os.length)];if(Math.random()<.8)o.inf=8;else o.deb=5}}}u.cd-=dt;if(u.cd>0||G.cool>0)return;var tg=null,bd=-1;
  if(u.k=='demonity'&&P2){var c2=null;G.en.forEach(function(e){if(e.po||e.boss||inv(e))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=140&&(!c2||e.max>c2.max))c2=e});if(c2){c2.po=1;c2.pt=0;c2.hp*=2;c2.max*=2;u.po=c2;say('Demonity вселился во врага!');return}}
-  G.en.forEach(function(e){if(e.po||(e.dead&&(u.k==='hacketurkity'||u.k==='futurity'||VAULT_TD_UNITS[u.k]))||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
+  G.en.forEach(function(e){if(e.po||(e.dead&&(u.k==='hacketurkity'||u.k==='futurity'||VAULT_TD_UNITS[u.k]||TicketLimitedUnits[u.k]))||(inv(e)&&u.k!='demonity'&&u.k!='ghostv'&&!(u.k=='gumity'&&u.gf==1)))return;var p=pos(e.d);if(Math.hypot(p[0]-u.x,p[1]-u.y)<=t.rng*(lordN(u)?1.15:1)*petR(u)*xR(u)&&e.d>bd){bd=e.d;tg=e}});if(!tg)return;
   G.cu=u;u.cd=t.rate*(G.units.some(function(l){return l.k=='lovity'&&l!==u&&Math.hypot(l.x-u.x,l.y-u.y)<90})?.85:1)*(lordN(u)?.8:1)*(u.deb>0?1.5:1)*(phN(u)?.7:1)*petC(u)*xC(u)*thCooldown(u);u.n++;var p=pos(tg.d),m=P2?2.5*(hwPh()=='mid'?1.5:1):1,d=t.dmg*m*(lordN(u)?1.15:1)*petD(u)*xD(u)*prD(u)*thAura(u)*thAttackFactor();G.shots.push({a:u.x,b:u.y,c:p[0],e:p[1],t:.12,col:t.col});
   if(u.k=='cruelity'){if(u.n%4==0)d*=2.5;if(P2)aoe(p[0],p[1],50,d);else hit(tg,d)}
   else if(u.k=='simonity')simonityAttack(u,tg,d,p,P2);
@@ -1143,6 +1146,7 @@ function upd(dt){
   else if(u.k==='cadentity')cadentityAttack(u,tg,d,p,P2);
   else if(u.k==='chronosity')window.PastMachine.attack(u,tg,d,p,P2);
   else if(u.k==='futurity')window.FuturityBattle.attack(u,tg,d,p,P2);
+  else if(TicketLimitedUnits[u.k])TicketLimitedBattle.attack(u,tg,d,p,P2);
   else if(G.tester&&t.testAttack)t.testAttack(u,tg,d,p,P2);
   else if(u.k=='lovity'){tg.sl=1.5;tg.slp=P2?.8:.5;if(P2&&!tg.boss)tg.d=Math.max(0,tg.d-70);else if(u.n%12==0&&G.lives<G.d.lv)G.lives++;hit(tg,d)}
   else if(u.k=='pumpkinity'){if(P2)aoe(p[0],p[1],70,d*1.4);else{tg.burn=3;hit(tg,d)}}
@@ -1172,7 +1176,7 @@ function upd(dt){
   var sk=e.ty==='adminBoss'?0:G.d.boss.sk;if(e.boss){if(e.thBoss)thBossThink(e);if(sk==4)king(e,dt);if((sk==1||sk==3)&&!(e.nul>0))e.hp=Math.min(e.max,e.hp+25*dt);e.bt+=dt;if(sk==3&&e.bt>5){e.bt=0;G.en.push(mk('runner',e.d),mk('runner',e.d))}}
   if(e.ty=='healer')G.en.forEach(function(o){if(o!==e&&Math.abs(o.d-e.d)<70)if(!(o.nul>0))o.hp=Math.min(o.max,o.hp+5*dt)});
   if(e.stun>0){e.stun-=dt;return}
-  var s=e.sl>0&&e.ty!='bat'?(e.sl-=dt,1-(e.slp||0)):1,rg=e.boss&&sk>=2&&sk<4&&e.hp<e.max*.5?1.8:1;e.d+=e.v*s*rg*dt*thMoveFactor();if(e.d>=tot){e.dead=1;G.lives-=e.ty==='time_archon'?G.lives:e.boss?10:1;if(G.key=='harvest')thOnLeak(e)}});
+  var s=e.sl>0&&e.ty!='bat'?(e.sl-=dt,1-(e.slp||0)):1,rg=e.boss&&sk>=2&&sk<4&&e.hp<e.max*.5?1.8:1;e.d+=e.v*Math.min(s,TicketLimitedBattle.slow(e,G))*rg*dt*thMoveFactor();if(e.d>=tot){e.dead=1;G.lives-=e.ty==='time_archon'?G.lives:e.boss?10:1;if(G.key=='harvest')thOnLeak(e)}});
  G.en=G.en.filter(function(e){return!e.dead});G.shots=G.shots.filter(function(s){return(s.t-=dt)>0});
  if(G.past){PastMachine.update(dt);hud();return}
  if(G.god&&G.lives<1)G.lives=1;if(G.lives<=0){G.lives=0;if(G.key=='harvest'){thLose();hud();return}M.bank+=Math.floor(G.coins/2);return endGame(1,'База пала. Половина монет ушла в банк.')}
@@ -1286,7 +1290,7 @@ function draw(){if(G.past)PastMachine.drawBoard(x);else if(G.key=='harvest')thDr
   x.fillStyle='#fff';x.fillRect(p[0]-r*.5,p[1]-r*.25,r*.25,r*.25);x.fillRect(p[0]+r*.25,p[1]-r*.25,r*.25,r*.25);
   if(e.boss){x.fillStyle='#ffd21f';x.fillRect(p[0]-14,p[1]-r-10,28,8);if(G.d.boss.final){x.save();x.strokeStyle='#ffd978';x.lineWidth=3;x.beginPath();x.arc(p[0],p[1],r-4,0,7);x.stroke();x.fillStyle='#fff4d2';x.font='bold 11px system-ui';x.textAlign='center';x.fillText(Math.ceil(e.hp)+' HP',p[0],p[1]+r+13);x.restore()}}
   x.fillStyle='#000';x.fillRect(p[0]-r,p[1]-r-8,r*2,4);x.fillStyle=e.po?'#c08cff':e.boss?'#ff5a5a':'#4cd04c';x.fillRect(p[0]-r,p[1]-r-8,r*2*Math.max(0,e.hp/e.max),4);x.globalAlpha=1});
- if(G.past)PastMachine.drawEffects(x);drawOrbityMarks();drawHackeTurkity();phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
+ if(G.past)PastMachine.drawEffects(x);drawOrbityMarks();TicketLimitedBattle.drawEffects(x,G);drawHackeTurkity();phDraw();bpUnitsDraw();meleeDraw();if(G.key=='hw')hwFog();if(G.key=='inf')infFx();if(G.key=='hk')hkFx();if(G.key=='pr')prFx();apFireDraw();drawUI();if(G.key=='harvest'){thDrawDrops();thDrawBattleNotice()}if(G.p2&&G.cool<=0){x.fillStyle='rgba(180,0,0,.14)';x.fillRect(0,0,640,400)}}
 function drawAdminBoss(enemy,[px,py]){
   const time=thReducedMotion()?0:enemy.t;
   const radius=ET.adminBoss.r;
@@ -1575,10 +1579,11 @@ $('im').onclick=accountLogin;
 addEventListener('pagehide',save);document.addEventListener('visibilitychange',save);try{navigator.storage.persist()}catch(e){}
 $('e1').onclick=function(){menu();scr('menu')};$('e2').onclick=function(){lm('Монеты копятся в банк за волны и победу.');scr('lobby')};
 var last=0;function loop(t){var dt=Math.min(.05,(t-last)/1000||0);last=t;if(G&&cur=='game'){if(!G.over&&!G.past?.paused)for(var i=0;i<G.spd;i++)upd(dt,dt/G.spd);draw()}requestAnimationFrame(loop)}
-var VER='1.80.1',VOL=.8,MQ=[],CI=0;
+var VER='1.80.2',VOL=.8,MQ=[],CI=0;
 var TH_END=Date.parse('2026-11-28T00:00:00+03:00');
 function thOn(){return Date.now()<TH_END}
 var CHG=[
+{v:'1.80.2',t:'Три лимитки за тикеты',a:['В «Магазине → Лимитки» появились Prismity за 12, Polarity за 16 и Metronity за 20 тикетов.','Тикеты можно заработать за участие в Хранилище времени и за прохождение 10, 20 и 40 миссий Ивента прошлого.']},
 {v:'1.80.1',t:'Ивент после абьюза',a:['«Ивент прошлого» откроется после закрытия Хранилища времени в 20:20 МСК. После этого режим останется в главном меню.']},
 {v:'1.80',t:'Ивент прошлого',a:['40 миссий по обновлениям Веритии. За финал — Фигурка времени и Futurity редкости Relic.','Хранилище времени открывается по расписанию в 20:00 МСК. Chronosity получают участники арены к её закрытию.']},
 {v:'1.79',t:'Хранилище времени',a:['Арена хранилища и «Машина прошлого» теперь идут одним абьюзом. После 20 минут на арене сейф закрывается, и открывается белый разлом.','Кнопка «Абьюз · Хранилище времени» возвращает на сохранённый этап.']},
@@ -2836,7 +2841,7 @@ function hkSetup(){G.mx=[];for(var i=0;i<32;i++)G.mx.push({x:i*20+5,y:Math.rando
   if(e.poi&&e.poi.t>0){e.poi.t-=dt;hit(e,e.poi.dps*dt)}
   if(e.rev>0){e.rev-=dt;e.d=Math.max(0,e.d-e.v*(e.boss?.6:1.8)*dt)}});
  G.units.forEach(function(u){if(u.k!='fwall')return;var t=TY.fwall;G.en.forEach(function(e){if(e.boss)return;var q=pos(e.d);if(Math.hypot(q[0]-u.x,q[1]-u.y)<=t.rng&&!(e.sl>0)){e.sl=.2;e.slp=.3}})})}})();
-(function(){var h0=hit;hit=function(e,d){if(e.sh>0){var a=Math.min(e.sh,d);e.sh-=a;d-=a;if(e.sh<=0){hkT('fw');if(G)(G.waves=G.waves||[]).push({x:pos(e.d)[0],y:pos(e.d)[1],t:0,c:'#ff6a2a'})}if(d<=0)return}var w=e.dead;h0(e,d);
+(function(){var h0=hit;hit=function(e,d){d=TicketLimitedBattle.modifyDamage(G,e,d);if(e.sh>0){var a=Math.min(e.sh,d);e.sh-=a;d-=a;if(e.sh<=0){hkT('fw');if(G)(G.waves=G.waves||[]).push({x:pos(e.d)[0],y:pos(e.d)[1],t:0,c:'#ff6a2a'})}if(d<=0)return}var w=e.dead;h0(e,d);
  if(!w&&e.dead&&G){if(e.ty=='bug'&&G.key=='hk'){G.en.push(mk('mini',e.d),mk('mini',e.d));hkT('bug')}if(e.ty=='virus')hkT('vir');
   if(e.poi&&e.poi.t>0){var sp=e.poi.n||1,p=pos(e.d);G.en.filter(function(o){return!o.dead&&o!==e&&!(o.poi&&o.poi.t>0)}).map(function(o){var q=pos(o.d);return[o,Math.hypot(q[0]-p[0],q[1]-p[1])]}).filter(function(a){return a[1]<90}).sort(function(a,b){return a[1]-b[1]}).slice(0,sp).forEach(function(a){a[0].poi={t:3,dps:e.poi.dps*.8,n:sp};G.shots.push({a:p[0],b:p[1],c:pos(a[0].d)[0],e:pos(a[0].d)[1],t:.15,col:'#7dff2a'})})}}}})();
 function hkAtk(u,tg,d,p,P2){
@@ -3038,13 +3043,17 @@ async function coClose(){clearInterval(CO.iv);CO.iv=null;var r=CO.room;CO.room=n
 function coSnap(){var s={k:G.key,w:G.wave,past:G.past?PastMachine.snapshot():undefined,adminTest:!!G.adminTest,l:G.lives,lv:G.d.lv,f:Math.round(G.fear||0),c:Math.floor(G.coins),gc:Math.floor(G.gc||0),r:G.run?1:0,nx:Math.ceil(G.next||0),ov:G.over||0,p2:G.p2?1:0,cl:G.cool>0?1:0,hn:M.fb.nick,
  u:G.units.map(function(u){
    const row=[u.k,u.cx,u.cy,u.og?1:0,Math.round(u.x),Math.round(u.y),u.upgradeLevel||1];
-   if(u.k==='cadentity')row.push(cadentityCharge(u));
+   const charged=TicketLimitedBattle.charged(u,G.ticketBattleTime);
+   if(u.k==='cadentity'||charged)row.push(u.k==='cadentity'?cadentityCharge(u):0);
+   if(charged)row.push(1);
    return row;
  }),
  e:G.en.filter(e=>!e.dead).slice(0,90).map(function(e){
    if(!e.id)e.id=++G.eid;
    const row=[e.id,e.ty,Math.round(e.d),Math.round(e.hp),Math.round(e.max),e.boss?1:0,e.sh>0?1:0,e.hackEffects?.length?1:0];
-   if(e.orbitMark||e.orbitRevision)row.push(e.orbitMark?1:0,e.orbitRevision||0);
+   const marked=TicketLimitedBattle.marked(e,G.ticketBattleTime);
+   if(e.orbitMark||e.orbitRevision||marked)row.push(e.orbitMark?1:0,e.orbitRevision||0);
+   if(marked)row.push(1);
    return row;
  }),
  gt:(G.glitchTurkeys||[]).map(turkey=>[turkey.id,Math.round(turkey.d)]),
@@ -3106,7 +3115,8 @@ async function coGuestTick(){if(!G||!G.guest||!CO.host)return;if(CO.busy)return;
 function coHostGone(){if(!G||!G.guest||G.over)return;if(G.past){PastMachine.lostConnection();coLeave();return}G.over=1;clearInterval(CO.iv);$('end').className='';$('et').textContent=(G.hn||'Хост')+' закрыл игру. Твои монеты: '+Math.floor(G.coins/2)+' ушли в банк.';M.bank+=Math.floor(G.coins/2);save();coLeave()}
 function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/1000):.5;CO.lt=now;CO.miss=0;
  G.wave=s.w;G.lives=s.l;G.fear=s.f;G.coins=s.gc;G.run=!!s.r;G.next=s.nx;G.p2=!!s.p2;G.cool=s.cl?1:0;if(ROUND_WAVES[G.key])G.d={...G.d,boss:roundBossSpec(G.key,G.wave,roundWaveLimit(G.key))||DF[G.key].boss};
- var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));u.rhythmHits=a[7]||0;return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
+ G.hasTicketEffects=false;
+ var old={};G.units.forEach(function(u){old[u.k+','+u.cx+','+u.cy]=u});G.units=s.u.map(function(a){var key=a[0]+','+a[1]+','+a[2],u=old[key]||{k:a[0],cx:a[1],cy:a[2],cd:0,n:0};u.x=a[4];u.y=a[5];u.mine=a[3]==1;u.og=a[3];u.upgradeLevel=Math.max(1,Math.min(3,Number(a[6])||1));u.rhythmHits=a[7]||0;u.ticketBeatVisual=a[8]===1;G.hasTicketEffects||=u.ticketBeatVisual;return u});if(G.selU&&G.units.indexOf(G.selU)<0)G.selU=null;
  var em={};G.en.forEach(function(e){em[e.id]=e});
  G.en=s.e.map(function(a){
    const e=em[a[0]]||{id:a[0],d:a[2],vv:0,t:0,v:0};
@@ -3117,6 +3127,8 @@ function coApplySnap(s){var now=Date.now(),dtS=CO.lt?Math.max(.2,(now-CO.lt)/100
    e.ty=ET[a[1]]?a[1]:'walker';
    e.hp=a[3];e.max=a[4];e.boss=a[5]==1;e.sh=a[6]?1:0;e.hackVisual=Boolean(a[7]);
    e.orbitVisual=Boolean(a[8]);e.orbitRevision=revision;
+   e.ticketPoleVisual=a[10]===1;
+   G.hasTicketEffects||=e.ticketPoleVisual;
    return e;
  });
  const previousTurkeys=new Map((G.glitchTurkeys||[]).map(turkey=>[turkey.id,turkey.d]));
@@ -3353,11 +3365,14 @@ var EXR={c:1000,g:10,lim:5};
 function exFix(){var d=new Date().toDateString();if(!M.exd||M.exd.d!=d)M.exd={d:d,n:0}}
 function exDo(n){exFix();n=Math.min(n,EXR.lim-M.exd.n);if(n<=0)return shMsg('На сегодня лимит обмена исчерпан. Приходи завтра!');if(M.bank<EXR.c*n)return shMsg('Не хватает монет: нужно '+(EXR.c*n)+' 🪙.');M.bank-=EXR.c*n;M.gem=(M.gem||0)+EXR.g*n;M.exd.n+=n;save();tone(880,.12,'triangle',.1,1320);shMsg('Обмен: −'+(EXR.c*n)+' 🪙 → +'+(EXR.g*n)+' 💎');shRender()}
 /* --- экран магазина --- */
+const TICKET_LIMITED_OFFERS=Object.freeze({...window.TicketLimitedUnits,...VAULT_TD_UNITS});
+const VAULT_ATTENDANCE_TICKETS=16;
+const TIMELINE_TICKET_AWARDS=Object.freeze({10:12,20:16,40:20});
 var SH={tab:Date.now()<VAULT_SALE_END?'vault':'ex',msg:''};
 function shVaultOffers(wallet){
   const live=Date.now()<VAULT_SALE_END;
   const closeDate=new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'long',timeZone:'Europe/Moscow'}).format(VAULT_SALE_END-1);
-  const cards=Object.entries(VAULT_TD_UNITS).map(([key,unit])=>{
+  const cards=Object.entries(TICKET_LIMITED_OFFERS).map(([key,unit])=>{
     const owned=M.own[key], bought=wallet.receipts[key]>0;
     const missing=unit.unlockTickets-wallet.balance;
     const action=owned?'В коллекции':bought?'Получено':live?'Купить за '+unit.unlockTickets+' 🎟':'Продажа завершилась';
@@ -3371,13 +3386,14 @@ function shVaultOffers(wallet){
       '<p><strong>'+unit.ability+'</strong></p><p>'+unit.d+'</p></div>'+
       '<div><button type="button" class="go" data-vault-unit="'+key+'"'+(disabled?' disabled':'')+'>'+action+'</button>'+hint+'</div></article>';
   }).join('');
-  return '<p class="mkhint">Серия «Сейф» · '+(live?'в продаже по '+closeDate+' включительно (МСК)':'продажа завершилась')+
-    '</p><details class="ap-market-rules"><summary>Тикеты за трофеи Вечеринки Админити</summary><ul>'+
+  return '<p class="mkhint">'+(live?'В продаже по '+closeDate+' включительно (МСК)':'Продажа завершилась')+
+    '</p><details class="ap-market-rules"'+(wallet.earned===0?' open':'')+'><summary>Как заработать тикеты</summary><ul>'+
+    apTimeTicketAwards()+'</ul></details><details class="ap-market-rules"><summary>Тикеты за трофеи Вечеринки Админити</summary><ul>'+
     apTicketAwards()+'</ul></details><div class="vault-unit-offers">'+cards+'</div>';
 }
 
 function shBuyVaultUnit(key){
-  const unit=VAULT_TD_UNITS[key], wallet=apMarketWallet();
+  const unit=TICKET_LIMITED_OFFERS[key], wallet=apMarketWallet();
   if(!unit?.unlockTickets||M.own[key]||wallet.receipts[key]>0)return;
   if(Date.now()>=VAULT_SALE_END||wallet.balance<unit.unlockTickets){shRender();return}
   if(AP.marketBusy){shMsg('Подожди, пока завершится покупка на рынке вечеринки.');return}
@@ -6459,6 +6475,7 @@ for(const key of Object.keys(VAULT_TD_UNITS)){
     IM[id]=art;
   }
 }
+TicketLimitedBattle.register();
 thInitArt();
 thUpgradePass();
 thUpgradeCrate();
@@ -6928,7 +6945,7 @@ var AP_MARKET_OFFERS=AP_STOCK_OFFERS.concat([
   {id:'pieity',kind:'verity',name:TY.pieity.n,cost:24,detail:'Кусочки пирога бьют по области.'},
   {id:'adelem',kind:'pet',name:'Элемент админа',cost:34,detail:'Усиливает атаки рядом с носителем.'}
 ]);
-const AP_TICKET_OFFER_IDS=AP_MARKET_OFFERS.map(offer=>offer.id).concat(Object.keys(VAULT_TD_UNITS));
+const AP_TICKET_OFFER_IDS=AP_MARKET_OFFERS.map(offer=>offer.id).concat(Object.keys(TICKET_LIMITED_OFFERS));
 var AP={commands:{},verified:new Map(),key:null,busy:false,tab:'main',boxBusy:new Set(),
   show:null,seen:new Set(),sound:true,lastRewardCheck:0,stock:{},marketBusy:false};
 var AP_BEAT={first:60000,repeat:180000,notice:9000,pulses:3,gap:5200,window:2500,lag:1000,
@@ -7462,6 +7479,10 @@ function apMarketWallet(){
   var receipts=state?.id===AP_EVENT?state.market||{}:{};
   // Trophy ownership supplies each reward once, including trophies earned before the market opened.
   var earned=AP_TOKEN_AWARDS.reduce(function(sum,award){return sum+(M.tro?.[award[0]]?award[1]:0)},0);
+  if(M.past?.vaultTicketReward===true)earned+=VAULT_ATTENDANCE_TICKETS;
+  for(const [mission,tickets] of Object.entries(TIMELINE_TICKET_AWARDS)){
+    if(M.timeline?.next>=mission)earned+=tickets;
+  }
   var spent=AP_TICKET_OFFER_IDS.reduce(function(sum,id){
     var paid=receipts[id];
     return sum+(Number.isSafeInteger(paid)&&paid>0?paid:0);
@@ -7489,6 +7510,11 @@ function apTicketAwards(){
   return AP_TOKEN_AWARDS.map(function(award){
     return '<li>'+esc(TROM[award[0]].n)+' · +'+award[1]+' 🎟</li>';
   }).join('');
+}
+function apTimeTicketAwards(){
+  return '<li>Участие в Хранилище времени · +'+VAULT_ATTENDANCE_TICKETS+' 🎟</li>'+
+    Object.entries(TIMELINE_TICKET_AWARDS).map(([mission,tickets])=>
+      '<li>Пройти '+mission+' из 40 миссий «Ивента прошлого» · +'+tickets+' 🎟</li>').join('');
 }
 function apMarketAccessible(wallet){
   return cur==='arn'?AR.party&&apLive()&&!AP.show:apLive()||wallet.earned>0;
@@ -7523,7 +7549,7 @@ function apMarket(message,keepScroll){
   if(!apMarketAccessible(wallet))return;
   var existing=apMarketIsOpen();
   var scroll=existing?$('mbox').scrollTop:0, detailsOpen=existing&&$('ap-market-rules').open;
-  var rules=apTicketAwards();
+  var rules=apTimeTicketAwards()+apTicketAwards();
   var offers=AP_MARKET_OFFERS.filter(function(offer){return !offer.control||AP.commands[offer.control]}).map(function(offer){
     var bought=wallet.receipts[offer.id]>0, owned=apMarketOwned(offer);
     var owners=AP.stock[offer.id], left=owners?.filter(function(owner){return owner===null}).length;
@@ -8472,7 +8498,7 @@ function lrSceneCage(c,t){
 <script src="timeline-missions.js?v=1.80"></script>
 <script src="past-machine.js?v=1.80.1"></script>
 <script src="futurity.js?v=1.80"></script>
-<script src="vault-abuse.js?v=1.80.1"></script>
+<script src="vault-abuse.js?v=1.80.2"></script>
 <script src="vault-admin.js?v=1.80"></script>
-<script src="timeline.js?v=1.80.1"></script>
+<script src="timeline.js?v=1.80.2"></script>
 </body></html>
